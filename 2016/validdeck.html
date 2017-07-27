@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+	h2 { margin-bottom: 30pt; }
+	h3 { margin-top: 30pt; }
+</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+
+
+<h2>마비노기 듀얼: 올바른 덱인가요?</h2>
+<p>모바일 TCG 마비노기 듀얼에는 다섯 종류의 자원이 있다. 자원은 각각 골드, 마나, 빛, 어둠, 자연이라 불린다.</p>
+
+
+<p style="text-align: center;"><img src="resources.png"></p>
+
+
+<p>카드들은 자원에 따라 구분된다. 예를 들어, 다음 카드를 보면 맨 위에 파란색 병 모양의 아이콘이 있는데, 이는 이 카드를 사용하려면 마나를 요구함을 뜻한다.</p>
+
+
+<p style="text-align: center;"><img src="rule_card.png" style="max-width: 70%;" /></p>
+
+
+<p>게임을 진행하려면 이 카드들을 12장 이하로 모아 하나의 덱(deck)을 구성해야 한다. 이때, 각 덱은 최대 세 종류의 자원을 섞어서 구성할 수 있다.</p>
+
+<p>12장 이하의 카드들이 요구하는 자원의 목록이 주어질 때, 이 카드들이 올바른 덱을 구성하는지 아닌지 판단하는 프로그램을 작성하여라.</p>
+
+<h3>입력</h3>
+
+<p>첫 줄에 카드의 수 N이 주어진다. N은 1 이상 12 이하이다.
+다음 N개의 줄에 걸쳐 <code>gold</code>(골드), <code>mana</code>(마나), <code>light</code>(빛), <code>dark</code>(어둠), <code>nature</code>(자연) 중 하나의 문자열이 주어진다. 이는 각 카드가 요구하는 자원을 뜻한다.</p>
+
+<h3>출력</h3>
+
+<p>주어진 카드들이 올바른 덱을 구성한다면 <code>valid</code>를, 아니라면 <code>invalid</code>를 출력한다.</p>
+
+<h3>입력 예시 1</h3>
+
+
+<pre>
+12
+gold
+gold
+gold
+gold
+gold
+gold
+gold
+gold
+gold
+gold
+gold
+gold
+</pre>
+
+
+<h3>출력 예시 1</h3>
+
+
+<pre>
+valid
+</pre>
+
+
+<p>단일 자원으로 구성된 덱은 올바른 덱이다.</p>
+
+<h3>입력 예시 2</h3>
+
+
+<pre>
+12
+light
+light
+light
+light
+nature
+mana
+mana
+nature
+mana
+mana
+mana
+nature
+</pre>
+
+
+<h3>출력 예시 2</h3>
+
+
+<pre>
+valid
+</pre>
+
+
+<p>세 종류의 자원으로 구성된 덱은 올바른 덱이다.</p>
+
+<h3>입력 예시 3</h3>
+
+
+<pre>
+5
+gold
+mana
+light
+dark
+nature
+</pre>
+
+
+<h3>출력 예시 3</h3>
+
+
+<pre>
+invalid
+</pre>
+
+
+<p>다섯 종류의 자원으로는 덱을 구성할 수 없다.</p>
+
+<h3>입력 예시 4</h3>
+
+
+<pre>
+12
+light
+light
+light
+dark
+dark
+light
+light
+light
+light
+light
+dark
+light
+</pre>
+
+
+<h3>출력 예시 4</h3>
+
+
+<pre>
+valid
+</pre>
+
+
+
+<p style="text-align: center;"><img src="deck.png" style="max-width: 50%;" /></p>
+
+
+<p>양심이 없는 덱이더라도 올바른 덱이다.</p>
+
+<h3><i class="fa fa-balance-scale"></i> 채점 규칙</h3>
+
+<p><strong style="text-decoration: underline">모든 숨겨진 입력 데이터에 대해</strong> 정답이면 만점을 주고, 하나라도 틀리면 점수를 주지 않는다.</p>
+
+
+</body></html>

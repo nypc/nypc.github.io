@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+	h2 { margin-bottom: 30pt; }
+	h3 { margin-top: 30pt; }
+</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+
+
+<h2>전등 켜기</h2>
+<p>2차원 격자 공간상에 45도 또는 135도로 기울어진 거울과 전등이 놓여있다. <br/>
+공간 밖에서부터 가로 또는 세로 방향에 평행한 레이저를 발사하고자 한다.
+레이저가 전등을 맞추게 되면 전등에 불이 들어온다. <br/>
+레이저가 거울을 만나는 경우 거울이 기울어진 방향에 따라 진행방향이 90도 꺾인다.  </p>
+
+<p>전등에 불을 켜기 위해 쏴야 하는 레이저의 방향을 하나 찾으시오. <br/>
+전등에 불을 켤 수 없는 경우는 입력으로 들어오지 않는다.</p>
+
+<p>성공적으로 전등에 불을 켠 경우:  </p>
+
+
+<p style="text-align: center;"><img src="lamp_success.png"></p>
+
+
+<p>거울에 반사되어 전등에 불을 켜지 못한 경우:  </p>
+
+
+<p style="text-align: center;"><img src="lamp_fail.png"></p>
+
+
+<h3>입력</h3>
+
+<p>첫 줄에 두 숫자 W, H가 주어진다. (1 ≤ W ≤ 30, 1 ≤ H ≤ 30) <br/>
+다음 줄부터 W 길이의 문자열이 H개 주어진다. <br/>
+각 문자열은 <code>.</code>, <code>/</code>, <code>\`,</code>O`의 4 종류의 글자로 이루어져 있으며
+각각 빈칸, 45도 거울, 135도 거울, 전등을 뜻한다.</p>
+
+<h3>출력</h3>
+
+<p>레이저를 쐈을 때 전등에 불을 켤 수 있는 위치를 하나 출력한다.</p>
+
+<p>쏘는 방향에 따라 아래와 같은 양식으로 출력한다.</p>
+
+<ul>
+    <li>왼쪽에서부터 쏘는 경우 <code>L &lt;위에서부터 몇 번째 칸인지&gt;</code></li>
+    <li>오른쪽에서부터 쏘는 경우 <code>R &lt;위에서부터 몇 번째 칸인지&gt;</code></li>
+    <li>위에서부터 쏘는 경우 <code>U &lt;왼쪽에서부터 몇 번째 칸인지&gt;</code></li>
+    <li>아래에서부터 쏘는 경우 <code>D &lt;왼쪽에서부터 몇 번째 칸인지&gt;</code></li>
+</ul>
+<p>맨 위 칸, 맨 왼쪽 칸을 0번째 칸으로 친다.</p>
+
+<h3>입력 예시</h3>
+
+
+<pre>
+5 4
+.....
+/.\..
+/.O..
+..\..
+</pre>
+
+
+<h3>출력 예시</h3>
+
+
+<pre>
+L 2
+</pre>
+
+
+<p><code>O</code>에 불을 켜기 위해 가능한 출력은 <code>L 2</code>, <code>R 2</code>, <code>D 0</code>, <code>R 3</code> 의 4가지가 있으며 그 중 하나를 출력하면 답이 된다.</p>
+
+<h3><i class="fa fa-balance-scale"></i> 채점 규칙</h3>
+
+<p><strong style="text-decoration: underline">모든 숨겨진 입력 데이터에 대해</strong> 정답이면 만점을 주고, 하나라도 틀리면 점수를 주지 않는다.</p>
+
+
+</body></html>
