@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		h2 { margin-bottom: 30pt; }
+		h3 { margin-top: 30pt; }
+	</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<h2>성냥개비로 그린 수식: 도전</h2>
+
+<p>성냥개비로 그린 수식이 주어진다.</p>
+
+
+<p style="text-align: center;">
+<img src="m2_img11.png" style="max-width: 80%;"><br>
+</p>
+
+
+<p>예를 들면 위 그림은 <code>5000-7000+3000</code> 을 나타내고, 그 계산 결과는 1000이다.</p>
+
+<p>이 그림으로부터 숫자 <code>3</code>을 이루는 성냥개비 중 하나를 옮기면, 아래 그림과 같이 되고, 계산 결과가 0이 된다.</p>
+
+
+<p style="text-align: center;">
+<img src="m2_img12.png" style="max-width: 80%;"><br>
+</p>
+
+
+<p>위 예와 같이, 성냥개비를 가능한 한 적게 옮겨서, 식의 계산 결과의 절대값이 가능한 한 작도록 해보자.</p>
+
+
+
+
+<ul>
+    <li><p>식은 0 이상 10000 미만의(한 자리에서 네 자리까지의) 수, <code>+</code>, <code>-</code> 로 이루어져 있다.</p></li>
+    <li><p>숫자는 <code>0</code>부터 <code>9</code>까지 각각, 아래와 같은 모양만 허용된다:</p>
+    
+    <p style="text-align: center;">
+    <img src="m2_img21.png" style="max-width: 80%;"><br>
+    </p>
+    
+    
+    
+    <p>즉, 다음 예와 같은 모양으로 숫자를 만드는 것은 허용되지 않는다:</p></li>
+</ul>
+
+
+<p style="text-align: center;">
+<img src="m2_img22.png" style="max-width: 80%;"><br>
+</p>
+
+
+<ul>
+    <li>새로 만든 식의 결과도 0 이상 10000 미만의(한 자리에서 네 자리까지의) 수, <code>+</code>, <code>-</code>로 이루어져야 한다.</li>
+    <li>어떤 숫자(<code>0</code>~<code>9</code>) 혹은 기호(<code>+</code>, <code>-</code>)를 구성하는 성냥개비를 다른 숫자 혹은 기호로 옮기는 것은 허용된다.<br>예) <code>0+1</code>을 <code>8-1</code>로 바꿀 수 있다.</li>
+    <li>숫자를 기호로 바꾸거나, 기호를 숫자로 바꾸는 것은 허용되지 않는다.<br>예) <code>+</code>를 <code>1</code>로 바꿀 수는 없다.</li>
+    <li>아무것도 없던 곳으로 성냥개비를 옮겨서 숫자 혹은 기호를 만들어내거나, 성냥개비를 모두 제거해서 숫자 혹은 기호를 없애는 것은 허용되지 않는다. <br>예) <code>111</code>을 <code>9</code>로 바꿀 수는 없다.</li>
+    <li>전체 수식에 성냥개비를 추가하거나, 빼는 것은 허용되지 않는다.<br>즉, 입력을 이루는 전체 성냥개비의 개수와 출력을 이루는 전체 성냥개비의 개수는 같아야 한다.</li>
+    <li>성냥개비를 옮겨서 숫자의 첫 글자를 <code>0</code>으로 만드는 것은 허용된다. 이때 이것을 8진수로 해석하지 않고 10진수로 해석하여야 한다.<br>
+    예: <code>8000</code> 에서 성냥개비 하나를 옮겨서 <code>0800</code>으로 바꿀 수 있고, 이것의 값은 800이다.</li>
+    <li>입력되는 식에서는 기호끼리 서로 인접해 있지 않으며, 첫 문자는 숫자이다. 출력되는 식에서도 마찬가지이다.<br>예) <code>-1+10</code> 이나 <code>1--1</code> 같은 수식은 입력되지 않는다.</li>
+</ul>
+
+
+<h3>입력</h3>
+
+<p>성냥개비로 그린 수식을 나타내는 문자열이 첫번째 줄에 주어진다.</p>
+
+<p>※ 입력 데이터 중 2개는 입력 문자열의 길이가 100 미만이다.<br>
+　 입력 데이터 중 3개는 입력 문자열의 길이가 100 이상 1000 미만이다.<br>
+　 입력 데이터 중 5개는 입력 문자열의 길이가 1000 이상 10000 미만이다.</p>
+
+<h3>출력</h3>
+
+<p>성냥개비를 옮긴 결과로 얻은 수식을 첫번째 줄에 출력한다.</p>
+
+
+<h3>입력 예시</h3>
+
+
+<pre>
+5000-7000+3000
+</pre>
+
+
+<h3>출력 예시</h3>
+
+
+<pre>
+5000-7000+2000
+</pre>
+
+
+<h3><i class="fa fa-balance-scale"></i> 채점 규칙</h3>
+
+<p>각 숨겨진 입력 데이터별로 아래 규칙에 따라 점수를 받는다:</p>
+
+<ul>
+    <li><p>입력 식(입력으로 주어진 식)의 계산 결과를 <code>I</code>라고 하고,<br>
+    출력 식(제출한 프로그램이 출력한 식)의 계산 결과를 <code>R</code>이라고 하고,<br>
+    입력 식을 출력 식으로 만들기 위해 최소로 옮겨야 하는 성냥개비 개수를 <code>N</code>이라고 할 때,<br>
+    해당 입력 데이터에 대한 포인트는 <code>floor((I - |R|) / sqrt(N + 100))</code> 이다.<br>
+    (<code>|X|</code> 는 <code>X</code>의 절대값이다. <code>sqrt(X)</code>는 <code>X</code>의 제곱근이다. <code>floor(X)</code> 는 <code>X</code>에서 소숫점 아래를 버린 값이다)<br>
+    단, <code>I &lt; |R|</code> 일 경우 0포인트이다.<br>
+    예) 위의 출력 예시는 99포인트를 얻는다.</p></li>
+    <li><p>각 입력 데이터별로, 가장 포인트가 높은 답안이 10점을 받는다.</p></li>
+    <li><p>그보다 포인트가 낮은 답안은 <code>floor(10 * (제출한 답안의 포인트) / (가장 포인트가 높은 답안의 포인트))</code> 점을 받는다.<br></p></li>
+</ul>
+
+
+<p>따라서 이미 답안을 제출하여 점수를 받은 이후에, 누군가가 답안을 제출하여 어떤 입력 데이터에 대한 최대 포인트가 갱신되는 경우가 발생한다면, 점수가 감소하게 될 수 있다.</p>
+
+</body></html>

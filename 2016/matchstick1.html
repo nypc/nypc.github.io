@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		h2 { margin-bottom: 30pt; }
+		h3 { margin-top: 30pt; }
+	</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<h2>성냥개비로 그린 수식: 하나만</h2>
+
+<p>성냥개비로 그린 수식이 주어진다.</p>
+
+
+<p style="text-align: center;">
+<img src="m1_img11.png" style="max-width: 80%;"><br>
+</p>
+
+
+<p>예를 들면 위 그림은 <code>5-7+3</code> 을 나타내고, 그 계산 결과는 1이다.</p>
+
+<p>이 그림으로부터 숫자 <code>3</code>을 이루는 성냥개비 중 하나를 옮기면, 아래 그림과 같이 되고, 계산 결과가 0이 된다.</p>
+
+
+<p style="text-align: center;">
+<img src="m1_img12.png" style="max-width: 80%;"><br>
+</p>
+
+
+<p>위 예와 같이, 성냥개비를 단 하나만 옮겨서, 식의 계산 결과가 0이 되도록 바꿔 보자.</p>
+
+
+
+
+<ul>
+    <li><p>식은 한 자리 수, <code>+</code>, <code>-</code> 로 이루어져 있다.</p></li>
+    <li><p>숫자는 <code>0</code>부터 <code>9</code>까지 각각, 아래와 같은 모양이어야 한다:</p>
+    
+    <p style="text-align: center;">
+    <img src="m1_img21.png" style="max-width: 80%;"><br>
+    </p>
+    </li>
+</ul>
+
+
+<p>즉, 다음 예와 같은 모양으로 숫자를 만드는 것은 허용되지 않는다:</p>
+
+
+<p style="text-align: center;">
+<img src="m1_img22.png" style="max-width: 80%;"><br>
+</p>
+
+
+<ul>
+    <li>새로 만든 식의 결과도 한 자리 수, <code>+</code>, <code>-</code>로 이루어져야 한다.</li>
+    <li>어떤 숫자(<code>0</code>~<code>9</code>) 혹은 기호(<code>+</code>, <code>-</code>)를 구성하는 성냥개비를 다른 숫자 혹은 기호로 옮기는 것은 허용된다.<br>예) <code>0+1</code>을 <code>8-1</code>로 바꿀 수 있다.</li>
+    <li>숫자를 기호로 바꾸거나, 기호를 숫자로 바꾸는 것은 허용되지 않는다.<br>예) <code>+</code>를 <code>1</code>로 바꿀 수는 없다.</li>
+    <li>아무것도 없던 곳으로 성냥개비를 옮겨서 숫자 혹은 기호를 만들어내거나, 성냥개비를 모두 제거해서 숫자 혹은 기호를 없애는 것은 허용되지 않는다. <br>예) <code>111</code>을 <code>9</code>로 바꿀 수는 없다.</li>
+    <li>전체 수식에 성냥개비를 추가하거나, 빼는 것은 허용되지 않는다.<br>즉, 입력을 이루는 전체 성냥개비의 개수와 출력을 이루는 전체 성냥개비의 개수는 같아야 한다.</li>
+    <li>둘 이상의 성냥개비를 옮기는 것은 허용되지 않는다.</li>
+    <li>입력되는 식에서는 기호끼리 서로 인접해 있지 않으며, 첫 문자는 숫자이다. 출력되는 식에서도 마찬가지이다.<br>예) <code>-1+10</code> 이나 <code>1--1</code> 같은 수식은 입력되지 않는다.</li>
+</ul>
+
+<h3>입력</h3>
+
+<p>성냥개비로 그린 수식을 나타내는 문자열이 첫번째 줄에 주어진다.</p>
+
+<p>문자열의 길이는 최대 100문자이다.</p>
+
+<h3>출력</h3>
+
+<p>성냥개비를 단 하나만 옮겨서 계산 결과가 0이 되도록 한 식을 적는다.</p>
+
+<p>하나의 입력에 대해 여러 가지 답이 존재할 수도 있는데, 그런 경우에는 가능한 여러 가지 답 중 아무거나 하나를 출력하면 된다.</p>
+
+
+<h3>입력 예시</h3>
+
+
+<pre>
+7-2-3-4
+</pre>
+
+
+<h3>출력 예시</h3>
+
+
+<pre>
+1-2-3+4
+</pre>
+
+
+<h3><i class="fa fa-balance-scale"></i> 채점 규칙</h3>
+
+<p><strong style="text-decoration: underline">모든 숨겨진 입력 데이터에 대해</strong> 정답을 맞춘 데이터의 수에 비례하여 점수를 준다.</p>
+
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		h2 { margin-bottom: 30pt; }
+		h3 { margin-top: 30pt; }
+	</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<h2>돌리고 밀고</h2>
+
+<p>가상의 퍼즐게임에 들어갈 코드를 만들어 보자.
+이 퍼즐게임의 게임판은 <code>N×N</code> 의 크기이고,
+게임판의 각각의 칸은 빈칸이거나, 특정 색의 <code>1×1</code> 크기인 정사각형 블럭이 놓여 있다.</p>
+
+
+<p style="text-align: center;">
+<img src="ss_img1.png" style="max-width: 80%;"><br>
+= 원래 게임판
+</p>
+
+
+<p>이것이 게임판의 초기 상태이다.
+이 게임판을 오른쪽으로 90도 돌리면 아래와 같은 모양이 될 것이다.</p>
+
+
+<p style="text-align: center;">
+<img src="ss_img2.png" style="max-width: 80%;"><br>
+</p>
+
+
+<p>이 블럭들을 모두 아래쪽으로 끝까지 밀어놓으면 아래와 같은 모양이 된다.</p>
+
+
+<p style="text-align: center;">
+<img src="ss_img3.png" style="max-width: 80%;"><br>
+= SpinAndSlide(원래 게임판, 1)
+</p>
+
+
+<p>'게임판을 오른쪽으로 90도 회전한 뒤, 블럭들을 모두 아래쪽으로 끝까지 미는' 동작을 <code>SpinAndSlide</code> 라고 정의하자.
+주어진 게임판에 <code>SpinAndSlide</code>를 여러번 적용했을 때 그 결과가 어떻게 될지를 알아내 보자.</p>
+
+<p>예를 들어, 바로 위 그림에 <code>SpinAndSlide</code>를 한 번 더 적용한 결과는 아래와 같다.</p>
+
+
+<p style="text-align: center;">
+<img src="ss_img4.png" style="max-width: 80%;"><br>
+= SpinAndSlide(원래 게임판, 2)
+</p>
+
+
+
+<h3>입력</h3>
+
+<p>첫번째 줄에 게임판의 크기를 나타내는 <code>N</code>이 주어진다. <code>N</code>은 1 이상 100 이하의 정수이다.</p>
+
+<p>두번째 줄에 <code>SpinAndSlide</code>를 몇 번 적용할지를 나타내는 <code>M</code>이 주어진다. <code>M</code>은 0 이상 100 이하의 정수이다.</p>
+
+<p>세번째 줄부터 <code>N</code>개의 줄에 걸쳐 게임판의 초기 상태가 주어지는데,
+각 줄은 (개행문자를 제외하고) <code>N</code>개의 문자로 이루어져 있다.
+각 문자는, 각 칸에 블럭이 들어있는 경우 블럭의 색을 나타내는 알파벳 대문자이며,
+빈칸인 경우 <code>.</code> 이다.</p>
+
+<p>게임판의 초기 상태는 블럭들을 모두 아래쪽으로 밀어놓은 상태이다.</p>
+
+<h3>출력</h3>
+
+<p>게임판의 초기 상태에 <code>SpinAndSlide</code>를 <code>M</code>회 적용한 결과를, <code>N</code>개의 줄에 걸쳐 출력한다.
+각 줄은 (개행문자를 제외하고) <code>N</code>개의 문자로 이루어져야 한다.
+각 칸에 블럭이 들어있는 경우 블럭의 색을 나타내는 알파벳 대문자를,
+빈칸인 경우 <code>.</code> 을 출력한다.</p>
+
+
+<h3>입력 예시</h3>
+
+
+<pre>
+7
+2
+.......
+.......
+...A...
+...B...
+..ACA..
+..BBB..
+.AAAAA.
+</pre>
+
+
+<h3>출력 예시</h3>
+
+
+<pre>
+.......
+.......
+A......
+B......
+AAA....
+BBB....
+ACAAA..
+</pre>
+
+
+<h3><i class="fa fa-balance-scale"></i> 채점 규칙</h3>
+
+<p><strong style="text-decoration: underline">모든 숨겨진 입력 데이터에 대해</strong> 정답을 맞춘 데이터의 수에 비례하여 점수를 준다.</p>
+
+</body></html>
