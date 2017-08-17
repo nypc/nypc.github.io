@@ -1,3 +1,8 @@
+<script>
+document.children[0].children[1].children[0].children[0].remove()
+</script>
+<!--BEGIN-->
+
 # 대회 규칙
 
 ## 진행
@@ -103,3 +108,5 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 * 자신에게 사용 권한이 없는 코드
 
 이 코드를 사용해도 되는지 확신이 없다면 주최측에게 문의하여야 합니다.
+
+<!--END-->
