@@ -23,8 +23,8 @@ document.children[0].children[1].children[0].children[0].remove()
 | GNU C++ | g++ 5.4.0 | `-O2 -static` |
 | GNU C++ 11 | g++ 5.4.0 | `-O2 -static --std=c++11` |
 | C# 4.0 | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
-| Node.js | v6.11.2 | |
-| Oracle Java 8 | 8u144 | |
+| JavaScript | Node.js v6.11.2 | |
+| Java | Oracle Java 8u144 | |
 | Python 2 | 2.7.12 | |
 | Python 3 | 3.5.2 | |
 
@@ -95,69 +95,18 @@ Visual Studio 에서 프로그램을 실행해 볼 수 있습니다.
 32
 ```
 
-### Python
+### C
 
 ```
-s = raw_input()
-arr = split()
-a = int(arr[0])
-b = int(arr[1])
-print a*b
-```
+#include <stdio.h>
 
-### Python 3
-
-```
-s = input()
-arr = s.split()
-a = int(arr[0])
-b = int(arr[1])
-print(a*b)
-```
-
-### C#
-
-```
-using System;
-
-public class Program {
-    public static void Main() {
-        string s = Console.ReadLine();
-        string[] arr = s.Split();
-        int a = int.Parse(arr[0]);
-        int b = int.Parse(arr[1]);
-        Console.WriteLine(a * b);
-    }
+int main()
+{
+	int a, b;
+	scanf("%d %d", &a, &b);
+	printf("%d\n", a * b);
+	return 0;
 }
-```
-
-### Java
-
-```
-import java.util.*;
-public class Main{
-    public static void main(String args[]){
-        Scanner sc = new Scanner(System.in);
-        int a, b;
-        a = sc.nextInt();
-        b = sc.nextInt();
-        System.out.println(a * b);
-    }
-}
-```
-
-### JavaScript (node.js)
-
-```
-var input = '';
-process.stdin.resume();
-process.stdin.on('data', function(data) {
-    input += data;
-});
-process.stdin.on('end', function() {
-    input = input.split(/\s+/);
-    console.log(parseInt(input[0]) * parseInt(input[1]));
-});
 ```
 
 ### C++
@@ -176,18 +125,69 @@ int main()
 }
 ```
 
-### C++ 선택 후 C 스타일로 작성할 경우
+### C&#35;
 
 ```
-#include <stdio.h>
+using System;
 
-int main()
-{
-	int a, b;
-	scanf("%d %d", &a, &b);
-	printf("%d\n", a * b);
-	return 0;
+public class Program {
+    public static void Main() {
+        string s = Console.ReadLine();
+        string[] arr = s.Split();
+        int a = int.Parse(arr[0]);
+        int b = int.Parse(arr[1]);
+        Console.WriteLine(a * b);
+    }
 }
+```
+
+### JavaScript (node.js)
+
+```
+var input = '';
+process.stdin.resume();
+process.stdin.on('data', function(data) {
+    input += data;
+});
+process.stdin.on('end', function() {
+    input = input.split(/\s+/);
+    console.log(parseInt(input[0]) * parseInt(input[1]));
+});
+```
+
+### Java
+
+```
+import java.util.*;
+public class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int a, b;
+        a = sc.nextInt();
+        b = sc.nextInt();
+        System.out.println(a * b);
+    }
+}
+```
+
+### Python
+
+```
+s = raw_input()
+arr = split()
+a = int(arr[0])
+b = int(arr[1])
+print a*b
+```
+
+### Python 3
+
+```
+s = input()
+arr = s.split()
+a = int(arr[0])
+b = int(arr[1])
+print(a*b)
 ```
 
 ## 프로그램의 종료 코드 (exit code)
