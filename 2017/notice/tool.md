@@ -39,6 +39,10 @@ document.children[0].children[1].children[0].children[0].remove()
 |`CString`| `CString` 은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용|
 |`#include <stdafx.h>`|`stdafx.h` 는 Visual C++ 전용 precompiled header 임|
 
+## Java 사용
+
+클래스 이름은 반드시 `Main` 이어야 합니다.
+
 ## Visual Studio / Visual C++ 사용
 
 Visual Studio 를 사용할 경우 Visual Studio Community 2017 사용을 권장합니다. Visual Studio Community 2017 은 아래의 URL 에서 다운로드 받을 수 있습니다.
