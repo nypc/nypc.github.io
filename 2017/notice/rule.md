@@ -44,15 +44,16 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 
 | 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 |
 |---|---|---|
-| GNU C | gcc 5.4.0 | `-O2 -static` |
-| GNU C 11 | gcc 5.4.0 | `-O2 -static --std=c11` |
-| GNU C++ | g++ 5.4.0 | `-O2 -static` |
-| GNU C++ 11 | g++ 5.4.0 | `-O2 -static --std=c++11` |
-| C# 4.0 | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
+| C | GNU C: gcc 5.4.0 | `-O2 -static` |
+| C 11 | GNU C: gcc 5.4.0 | `-O2 -static --std=c11` |
+| C++ | GNU C++: g++ 5.4.0 | `-O2 -static` |
+| C++ 11 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++11` |
+| C# | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
 | JavaScript | Node.js v6.11.2 | |
 | Java | Oracle Java 8u144 | |
 | Python 2 | 2.7.12 | |
 | Python 3 | 3.5.2 | |
+
 
 ## 개발 도구 사용
 
