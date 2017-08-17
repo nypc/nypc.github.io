@@ -43,7 +43,7 @@ document.children[0].children[1].children[0].children[0].remove()
 
 Visual Studio 를 사용할 경우 Visual Studio Community 2017 사용을 권장합니다. Visual Studio Community 2017 은 아래의 URL 에서 다운로드 받을 수 있습니다.
 
-[https://www.visualstudio.com/ko-kr/products/visual-studio-community-vs.aspx](https://www.visualstudio.com/ko-kr/products/visual-studio-community-vs.aspx)
+<a href='https://www.visualstudio.com/ko-kr/products/visual-studio-community-vs.aspx' target='_blank'>[https://www.visualstudio.com/ko-kr/products/visual-studio-community-vs.aspx]</a>
 
 ### Visual Studio 에서 프로젝트 만들기
 
