@@ -42,20 +42,20 @@ document.children[0].children[1].children[0].children[0].remove()
 
 OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다음과 같습니다:
 
-| 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 | 추가 계산 자원 |
-|---|---|---|---|
-| C | GNU C: gcc 5.4.0 | `-O2 -static` | |
-| C 11 | GNU C: gcc 5.4.0 | `-O2 -static --std=c11` | |
-| C++ | GNU C++: g++ 5.4.0 | `-O2 -static` | |
-| C++ 11 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++11` | |
-| C# | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` | 시간 +5초, 메모리 +512MB |
-| JavaScript | Node.js v6.11.2 | | 시간 +5초, 메모리 +1024MB |
-| Java | Oracle Java 8u144 | | 시간 +5초, 메모리 +512MB |
-| Python 2 | 2.7.12 | | 시간 +10초, 메모리 +512MB |
-| Python 3 | 3.5.2 | | 시간 +10초, 메모리 +512MB |
+| 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 |
+|---|---|---|
+| C | GNU C: gcc 5.4.0 | `-O2 -static` |
+| C 11 | GNU C: gcc 5.4.0 | `-O2 -static --std=c11` |
+| C++ | GNU C++: g++ 5.4.0 | `-O2 -static` |
+| C++ 11 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++11` |
+| C# | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
+| JavaScript | Node.js v6.11.2 | |
+| Java | Oracle Java 8u144 | |
+| Python 2 | 2.7.12 | |
+| Python 3 | 3.5.2 | |
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
-그 이외의 언어에서는 시간과 메모리를 일정하게 더 쓸 수 있도록 허용되지만,
+그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만,
 모든 문제를 모든 언어로 해결할 수 있다는 보장은 드리지 않습니다.
 문제를 해결하는 데 계산 자원이 많이 필요하다고 판단되면 C/C++를 사용할 것을 권장합니다.
 
