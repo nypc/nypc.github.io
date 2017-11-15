@@ -1,0 +1,6 @@
+local json = {}
+
+--# assume json.encode: function(table | number | string | bool) --> string
+--# assume json.decode: function(string) --> any
+
+return json
