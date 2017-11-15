@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+		h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+		h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+		blockquote { font-size: 11pt; }
+		</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+
+<h1>알사탕</h1>
+
+<p>당신은 친구 한 명과 같이 N개의 알사탕을 먹고 있다. 알사탕은 모두 N개가 있는데, 각각의 알사탕의 중간에는 구멍이 뚫려 있고, 이 구멍을 하나의 줄이 지나고 있어서 모든 알사탕은 하나로 이어져 있다. 줄을 끊지 않고는 중간에 있는 알사탕을 먼저 먹을 수 없기 때문에, 먹을 수 있는 알사탕은 줄의 양쪽 끝에 놓인 두 개이다. 당신이 먼저 하나를 먹으면 당신의 친구가 다시 하나를 먹는 식으로 알사탕을 먹는다. 따라서, N이 짝수라면 당신과 당신 친구 모두 N/2개의 알사탕을 먹고, N이 홀수라면 당신은 (N+1)/2개, 당신의 친구는 (N-1)/2개의 알사탕을 먹는다. 알사탕은 총 26가지가 있고, a부터 z까지의 문자로 각 종류에 해당하는 알사탕을 표현할 수 있다.  </p>
+
+<p>다음 그림과 같이 알사탕이 놓여진 경우를 생각해보자. N=6이다. </p>
+
+<p>| 1     |  2    | 3     | 4     |  5    | 6  |
+|---    |---    |---    |---    |---    |--- |
+| a     |  b    |  c    |  b    | a     | d  |</p>
+
+<p>맨 처음 당신은 1번 또는 6번 위치의 알사탕  중 하나를 먹을 수 있다. 만약 1번 위치의 a를 먹었다면, 친구는 2번 또는 6번 위치의 알사탕 중 하나를 먹을 수 있다. 만약 2번 위치의 b를 먹었다면 당신은 이제 3번 또는 6번 중 하나를 먹을 수 있고, 6번의 d를 먹었다고 하자. 친구는 이제 3번 또는 5번 중 하나를 먹을 수 있고, 5번 a를 먹었다고 하자. 당신은 이제 3번 또는 4번 중 하나를 먹을 수 있고, 4번 b를 먹었다고 하자. 친구는 이제 3번 c를 먹을 수밖에 없다. 그렇다면 당신이 먹은 사탕을 순서대로 나타낸 문자열은 adb이며, 친구가 먹은 사탕을 순서대로 나타낸 문자열은 bac이다. 당연하지만, 당신이 cba의 순서로 사탕을 먹을 수는 없다. 왜냐하면 맨 처음에 먹을 수 있는 사탕은 a 아니면 d이기 때문이다. </p>
+
+<p>알사탕의 수, 알사탕의 순서가 주어졌을 때, 당신이 규칙을 지키면서 먹을 수 있는 알사탕의 순서를 나타낸 문자열 중 가능한 것 아무거나 하나를 출력하는 프로그램을 작성하시오. </p>
+
+<h2>입력 형식</h2>
+<p>첫째 줄에 알사탕의 수를 나타내는 자연수 N (1 이상 10,000 이하)가 주어진다. 다음줄에는 영어 소문자로 된 길이 N인 문자열이 주어지는데, 이 문자열은 왼쪽부터 오른쪽으로 알사탕이 꿰인 줄을 읽었을 때 각 위치에 놓인 알사탕을 나타내는 문자열이다. </p>
+
+<h2>출력 형식</h2>
+<p>첫 줄에 결과를 출력한다. 여기에는 주어진 알사탕들로부터 여러분이 친구와 돌아가면서 하나씩 알사탕을 먹었을 때, 가능한 알사탕의 순서를 나타내는 문자열을 출력한다. 이 문자열의 길이는 N이 짝수라면 N/2, N이 홀수라면 (N+1)/2이다.   </p>
+
+<h2>입력 예제</h2>
+
+<pre>
+6
+abcbad
+</pre>
+
+
+<h2>출력 예제</h2>
+
+<pre>
+adb
+</pre>
+
+
+<h2>채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다. </p>
+
+<ul>
+    <li>종류 1 (32점): 모든 알사탕은 같은 종류이다. </li>
+    <li>종류 2 (48점): 문제의 원래 제한조건 이외의 추가된 제한이 없음.</li>
+</ul>
+
+
+
+<h2>해설</h2>
+
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p>
+
+<div id='hint_text' style='display: none;'>
+여러 풀이가 있다. 총 알사탕의 수를 N이라고 할 때, 내가 먹은 알사탕의 수는 N이 홀수인 경우 (N+1) /2, 짝수인 경우 N/2개 이다. 개수를 구한 뒤, 가장 앞에서부터 개수만큼을 출력하면 된다.
+</div>
+
+
+</body></html>

@@ -58,3 +58,8 @@ make_html('2017', '../2017', '2017_final_d')
 make_html('2017', '../2017', '2017_final_e')
 make_html('2017', '../2017', '2017_final_f')
 make_html('2017', '../2017', '2017_final_g')
+for stage = 1, 3 do
+	for n = 1, 5 do
+		make_html('2017', '../2017', '2017_online_' .. stage .. '-' .. n)
+	end
+end

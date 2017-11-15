@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+		h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+		h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+		blockquote { font-size: 11pt; }
+		</style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+
+<h1>타일 맞추기</h1>
+
+<p>세계적으로 유명한 타일 생산 회사인 오썸타일 사에서는 창사 100주년을 맞아 한글을 무늬로 넣은 흥미있는 타일을 생산한다. 정사각형 모양의 각 타일은  3*3 격자모양으로 되어 있고, 아래 그림에서 보듯이 격자의 각 칸에는 [풀], [물], [길], [흙] 중 한 글자가 새겨져 있다. </p>
+
+<p>글자가 새겨진 타일들을 여러 장 이어 붙여 지도를 제작하고자 한다. 아래 그림은 4장의 타일을 이어 붙여 얻은 지도의 한 형태를 보여 준다. 한 격자 칸에서 상하좌우에 연결된 격자 칸을 인접한 칸이라고 부른다. 또한 한 타일에서 상하좌우에 연결된 타일을 인접한 타일이라 부른다. </p>
+
+
+<p>여러 장의 타일을 이어 붙여 지도를 만들 때, 아래에서 설명한 규칙을 따라서 제작된 지도는 ‘바른 지도’, 그렇지 않은 지도는 ‘엉터리 지도’라고 부른다.</p>
+
+<p><img src="https://problem-manage.s3.ap-northeast-2.amazonaws.com/images/tyg03485/1502773626253_Picture1.png &amp;quot;1&amp;quot;" alt="1"/></p>
+
+<p>지도 제작 규칙은 다음과 같다.</p>
+
+<ol>
+    <li>한 타일 안에 있는 [길]들끼리는 반드시 서로 인접해야 한다.</li>
+    <li>[길]을 포함한 타일의 [길] 중 하나는, 적어도 하나 이상의 다른 타일의 [길]과 연결되어야 한다</li>
+    <li>[길]의 폭은 반드시 한 칸이어야 한다. (임의의  2*2 격자 칸이 모두 [길]로만 이뤄지는 경우가 있어선 안 된다.)</li>
+    <li>[물]과 [흙]은 인접해선 안 된다.</li>
+    <li>[풀]은 [물]이나 [길]에 반드시 인접해야 한다.</li>
+</ol>
+
+<p>지도에 대한 정보가 주어질 때, 이 지도가 ‘바른 지도’인지 ‘엉터리 지도’인지를 판별하는 프로그램을 작성하고자 한다.</p>
+
+
+<h2>입력 형식</h2>
+<p>첫 번째 줄에는 타일 종류의 수를 나타내는 정수 N (1 ≤ N ≤ 100,000)이 주어진다.
+다음 N개의 각 줄에는 타일 정보가 주어진다.
+타일 정보는 타일의 고유 아이디를 나타내는 정수 K와,  3*3 격자의 각 칸에 적인 글자 정보로 구성된다. 격자에 적힌 한글 정보는 편의상 영어 알파벳 G(풀), W(물), R(길), D(흙)으로 이뤄져 있고, 좌에서 우로, 위에서 아래로의 순서로 적힌다.
+참고로, 타일 아이디 K는 중복되지 않는 고유한 값이다. 아래 그림은 아이디가 283인 타일에 대한 그림이며 이를 위한 입력 예는 다음과 같다. (1 ≤ K ≤ 100,000)</p>
+
+<p><code>283 G R D G R R W W W</code></p>
+
+<p><img src="https://problem-manage.s3.ap-northeast-2.amazonaws.com/images/tyg03485/1502773626253_2.png" alt=""/></p>
+
+
+<p>다음 줄에는 지도의 크기를 나타내는 두 정수 C와 R이 주어진다. 즉, C개의 타일이 한 가로줄에 이어 붙여 놓여 있으며, 이런 줄 수가 R개임을 나타낸다. (1 ≤ C, R ≤ 300)
+이어지는 R 줄 각각엔 C개의 정수가 공백으로 구분되어 주어지는데, 각 값은 타일 고유 아이디를 나타내는 정수이다.</p>
+
+
+
+<h2>출력 형식</h2>
+
+<p>주어진 지도가 바른 지도이면 Good, 그렇지 않은 경우엔 Bad를 표준 출력으로 출력한다.</p>
+
+<h2>입력 예제</h2>
+
+
+<pre>
+4
+33 G G G R R G G R G
+71 G R D G R R G R D
+65 G R G W R R W W W
+92 G R D R R R W W W
+2 2
+33 71
+65 92
+</pre>
+
+
+<h2>출력 예제</h2>
+
+
+<pre>
+Bad
+</pre>
+
+
+<h2>채점 방식</h2>
+
+<p>전체 입력 케이스들 중 답을 맞춘 입력 케이스 개수에 비례하여 점수를 받는다.</p>
+
+
+
+
+
+<h2>해설</h2>
+
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p>
+
+<div id='hint_text' style='display: none;'>
+입력을 받고 전체 맵을 번호에 맞게 세팅한다. 그런 다음 모든 타일에 대해 DFS를 돌린다. DFS는 인접해 있는 (상하좌우)에 대해 같은 타일이면 이동을 하는 규칙이다. 이 과정 속에서 각 타일의 조건에 맞게 체크를 한다. 예를 들어, 길 같은 경우 DFS를 돌리는 과정에서 현재 격자를 포함해서 길로 이루어진 2*2 타일을 모두 살펴보아 있는지 체크한다. 마찬가지로 2,3,4,5번 조건을 길, 물, 흙에 대해 DFS 돌릴 때 체크하면 된다.
+</div>
+
+
+</body></html>
