@@ -123,6 +123,12 @@ int main()
 
 ### C++ (표준입출력을 input.txt의 내용으로 받아오고, 표준출력을 output.txt으로 내보내는 예제)
 
+<div id="Standard_Input_Output_Guide_CPP"></div>
+<script>
+	let videoTag_Standard_Input_Output_Guide_CPP = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let dom_Standard_Input_Output_Guide_CPP = document.getElementById("Standard_Input_Output_Guide_CPP");
+    dom_Standard_Input_Output_Guide_CPP.insertAdjacentHTML('beforeend', videoTag_Standard_Input_Output_Guide_CPP);
+</script>
 ```
 #include <iostream>
 
