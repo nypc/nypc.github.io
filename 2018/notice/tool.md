@@ -52,8 +52,8 @@ document.children[0].children[1].children[0].children[0].remove()
 ## GNU C/C++ 컴파일러 / Code::Blocks 사용
 GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks 사용을 권장합니다. 아래의 URL에서 다운로드 받을 수 있습니다.
 
-* MinGW [http://www.mingw.org/]
-* Code::Blocks [http://www.codeblocks.org/]
+* [MinGW]: http://www.mingw.org/
+* [Code::Blocks]: http://www.codeblocks.org/
 
 
 ### MinGW에서 GNU C/C++ 컴파일러(GCC) 설치하기
