@@ -47,7 +47,9 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 ## 문제풀이 튜토리얼 (소스제출/결과제출)
 
 <div id="Tutorial_Source"></div>
+<span>한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.</span>
 <div id="Tutorial_Output"></div>
+<span>한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.</span>
 <script>
 	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
@@ -56,8 +58,6 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
     dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
     dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
 </script>
-
-한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
 
 ## Java 사용
 
@@ -73,6 +73,7 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
 ### MinGW에서 GNU C/C++ 컴파일러(GCC) 설치하기
 
 <div id="MinGW_Install_Guide"></div>
+<span>한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.</span>
 <script>
 	let videoTag_MinGW = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kRMELNEE2zk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_MinGW = document.getElementById("MinGW_Install_Guide");
@@ -82,6 +83,7 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
 ### Code::Blocks IDE 설치하기
 
 <div id="Code_Blocks_Install_Guide"></div>
+<span>한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.</span>
 <script>
 	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/or8wDAhS840?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_CodeBlocks = document.getElementById("Code_Blocks_Install_Guide");
