@@ -180,20 +180,6 @@ public class Program {
 }
 ```
 
-### JavaScript (node.js)
-
-```
-var input = '';
-process.stdin.resume();
-process.stdin.on('data', function(data) {
-    input += data;
-});
-process.stdin.on('end', function() {
-    input = input.split(/\s+/);
-    console.log(parseInt(input[0]) * parseInt(input[1]));
-});
-```
-
 ### Java
 
 ```
