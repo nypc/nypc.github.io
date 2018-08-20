@@ -48,6 +48,7 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 
 <div id="Tutorial_Source"></div>
 <div id="Tutorial_Output"></div>
+한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
 <script>
 	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
