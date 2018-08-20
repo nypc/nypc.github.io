@@ -55,7 +55,7 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
     	dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
     	dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
-	let subtitle = '<span>한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.</span>';
+	let subtitle = '<p>한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.</p>';
 	dom_Tutorial_Source.insertAdjacentHTML('beforeend', subtitle);
     	dom_Tutorial_Output.insertAdjacentHTML('beforeend', subtitle);
 </script>
