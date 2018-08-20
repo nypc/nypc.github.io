@@ -27,6 +27,8 @@ document.children[0].children[1].children[0].children[0].remove()
 | C 11 | GNU C: gcc 5.4.0 | `-O2 -static --std=c11 -DNYPC_GRADING` |
 | C++ | GNU C++: g++ 5.4.0 | `-O2 -static -DNYPC_GRADING` |
 | C++ 11 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++11 -DNYPC_GRADING` |
+| C++ 14 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++14 -DNYPC_GRADING` |
+| C++ 17 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++17 -DNYPC_GRADING` |
 | C# | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
 | Java | Oracle Java 8 | |
 | Python 2 | 2.7.12 | |
@@ -118,6 +120,34 @@ int main()
 	cout << a * b << endl;
 	return 0;
 }
+```
+
+### C++ (표준입출력을 input.txt의 내용으로 받아오고, 표준출력을 output.txt으로 내보내는 예제)
+
+```
+#include <iostream>
+
+#ifndef NYPC_GRADING
+    #define REDIRECT_STDIN() freopen("input.txt","r",stdin)
+    #define REDIRECT_STDOUT() freopen("ouput.txt","w",stdout)
+#else
+    #define REDIRECT_STDIN()
+    #define REDIRECT_STDOUT()
+#endif
+
+using namespace std;
+
+int main()
+{
+    REDIRECT_STDIN();
+    REDIRECT_STDOUT();
+
+    int a, b;
+    cin >> a >> b;
+    cout << a * b << endl;
+    return 0;
+}
+
 ```
 
 ### C&#35;
