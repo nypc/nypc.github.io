@@ -3,108 +3,219 @@ document.children[0].children[1].children[0].children[0].remove()
 </script>
 <!--BEGIN-->
 
-# 대회 규칙
+# 개발 도구 사용 안내
 
-## 진행
+코드 작성시 디버깅과 편의를 위해 로컬 컴퓨터의 개발 도구를 사용할 수 있습니다.
 
-대회는 예선과 본선으로 나뉘어 열립니다. 예선은 **총  20여문제가 5 회에 걸쳐 나누어 단계적으로 오픈**이 되며, 문제가 오픈된 시점부터 정해진 마감 기한 전까지 스스로 문제를 해결하여 그 코드 또는 답안을 제출하여야 합니다.
+이 경우 로컬 컴퓨터에서의 개발 환경과 채점에서의 개발 환경이 달라 실행이나 채점이 되지 않는 불이익이 없도록 본 안내를 꼭 읽어보시기 바랍니다 (특히 Visual Studio / Visual C++ 사용시).
 
-* 8/20(월): 연습문제 공개
-* 8/22(수) 오전 10시: 1회차 문제 공개
-* 8/24(금) 오전 10시: 2회차 문제 공개
-* 8/26(일) 오전 10시: 3회차 문제 공개
-* 8/28(화) 오전 10시: 4회차 문제 공개
-* 8/30(목) 오전 10시: 5회차 문제 공개
+## 채점 환경
 
-22일 대회가 시작되기 전, 연습 문제를 통해 대회에서 사용하는 환경을 미리 테스트해볼 수 있습니다.
-연습 문제의 점수는 총점에 반영이 되지 않으며, 본선 진출자 선정시에도 연습 문제의 풀이 결과는 반영되지 않습니다.
-
-**각 회차에 오픈된 문제는 예선 일정  종료 전까지 풀이가 가능 합니다.**
-또한 문제의 질문에 대한 답변은 예선 기간 동안 매일 저녁 7시부터 저녁 10시 사이 업데이트가 되오니 참고를 부탁드리겠습니다.
-
-## 문제 풀이
-
-문제의 목록과 배점을 확인하고 문제를 선택해 읽을 수 있습니다. 문제 페이지에서 문제의 설명과 조건을 확인할 수 있으며, 코드 또는 답안을 작성하고 제출할 수 있습니다.
-
-제출이 완료되면 자동 채점이 시작되고, 자동 채점이 끝난 후 `마지막 채점 결과` 페이지에서 제출 내역과 결과를 확인할 수 있습니다. 여러번 답을 제출할 수 있으며, **마지막 제출한 답이 최종 평가 기준이 됩니다.**
-
-## 문제의 분류
-
-* `일반` - 테스트케이스 종류별로 요구하는 조건을 정확히 만족시켜야만 해당 테스트케이스가 맞은 것으로 간주되는 문제입니다. 
-* `실행 결과만 제출` 소스 코드가 아닌 실행 결과만 제출하는 문제입니다. 꼭 프로그래밍으로 풀지 않아도 되며 정답만 제출하면 됩니다. (혹시라도 소스 코드를 제출하시지 않도록 유의해주시길 바랍니다.)
-* `부분 점수` - 제출한 프로그램이 출력한 답이 해당 테스트케이스에 대해 최적의 답이 아니더라도 부분 점수가 주어지는 문제입니다. 자세한 채점 규칙은 문제마다 다르고, 문제에 자세히 명시되어 있습니다.
-* (작년에 진행되었던 포인트 경쟁의 문제 형태는 올해 예선에는 진행되지 않습니다.)
-
-### 코드 제출 문제
-
-문제의 답안으로는 문제에서 요구하는 코드를 작성하여 제출하여야 합니다. 이러한 문제는 문제에서 요구하는 바에 대한 설명, 입력과 출력 형식, 입력과 출력 예시, 채점 규칙으로 구성됩니다.
-
-모든 입력과 출력은 표준입출력 (standard input, standard output)으로 이루어집니다. 언어별로 표준 입력/출력을 처리하는 방법에 대해서는 <a href='https://nypc.github.io/2017/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
-
-코드 작성을 마무리했다면, `제출하기` 버튼을 눌러 문제를 제출할 수 있습니다. 
-
-**제출하는 데는 하트(♥)가 필요한데, 하트는 3분마다 하나씩 자동으로 충전되고 최대 5개까지 유지됩니다. 하트를 모두 소모했으면 기다려야 하며, 문제 정답을 맞춘 경우 하트 1개를 회복시켜 주고 있습니다.** 
-
-제출이 몰릴 경우 채점이 지연될 수 있으며 마지막 제출로 최종 평가가 이루어지는 만큼, 마감 전에는 신중하게 문제를 제출해 주시기 바랍니다. 제출하지 않은 코드는 풀지 않은 것으로 간주되며 최종 평가에서 제외됩니다.
-
-## 실행 및 채점 환경
-
-코드 제출 문제에 제출된 모든 코드의 실행과 채점은 이 사이트의 환경 위에서 이루어집니다. 해당 환경에서 동작하지 않는 코드는 채점이 되지 않습니다.
+코드 제출 문제에 제출된 모든 코드의 실행과 채점은 이 사이트의 환경 위에서 이루어집니다. 해당 환경에서 동작하지 않는 코드는 채점이 되지 않습니다. 유념하여 개발 도구를 사용해주시기 바랍니다.
 
 OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다음과 같습니다:
-구체적인 개발 환경에 대해서는  <a href='https://nypc.github.io/2018/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
+
+| 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 |
+|---|---|---|
+| C | GNU C: gcc 5.4.0 | `-O2 -static -DNYPC_GRADING` |
+| C 11 | GNU C: gcc 5.4.0 | `-O2 -static --std=c11 -DNYPC_GRADING` |
+| C++ | GNU C++: g++ 5.4.0 | `-O2 -static -DNYPC_GRADING` |
+| C++ 11 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++11 -DNYPC_GRADING` |
+| C++ 14 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++14 -DNYPC_GRADING` |
+| C++ 17 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++17 -DNYPC_GRADING` |
+| C# | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
+| Java | Oracle Java 8 | |
+| Python 2 | 2.7.12 | |
+| Python 3 | 3.5.2 | |
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만,
 모든 문제를 모든 언어로 해결할 수 있다는 보장은 드리지 않습니다.
 문제를 해결하는 데 계산 자원이 많이 필요하다고 판단되면 C/C++를 사용할 것을 권장합니다.
 
-## 평가 규칙
+아래의 예시처럼 특정 플랫폼(특히, Windows나 Visual C++)에서만 동작하는 코드를 작성하지 않도록 유의하시기 바랍니다.
 
-### 중간 평가
+|사용금지 예시|비고|
+|---|---|
+|`void main()`|  표준에 따라 `int main`이어야 함|
+|`getch()`| 대신 `getchar()`를 사용|
+|`fflush(stdin)` | 비표준|
+|`GetTickCount()` | Windows API 는 사용할 수 없음|
+|`CString`| `CString` 은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용|
+|`#include <stdafx.h>`|`stdafx.h` 는 Visual C++ 전용 precompiled header 임|
 
-예선 진행 도중 지금까지 획득한 점수를 언제든지 확인할 수 있습니다. 
+## Java 사용
 
-### 최종 평가
+클래스 이름은 반드시 `Main` 이어야 합니다.
 
-예선 종료 후 결과가 모두 취합되어 추후에 최종 평가 점수가 확정됩니다. 부정 행위가 적발되는 등의 상황이 발생하면, 중간 평가 점수와 최종 평가 점수는 다를 수 있습니다.
-부정 행위 적발시에는 0점으로 처리되며 참가 및 수상 자격을 박탈합니다.
+## GNU C/C++ 컴파일러 / Code::Blocks 사용
+GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks 사용을 권장합니다. 아래의 URL에서 다운로드 받을 수 있습니다.
 
-### 본선 진출자 선정
+* MinGW - http://www.mingw.org/
+* Code::Blocks - http://www.codeblocks.org/
 
-본선 진출자는 22일부터 31일까지 획득한 점수의 총 합이 가장 높은 순으로 N명을 선정하게 됩니다.
-이 때, 순위는 점수 합계가 높은 순,  같은 경우 마지막 제출의 일련번호가 더 빠른 순으로 매깁니다.
 
-## 부정행위
+### MinGW에서 GNU C/C++ 컴파일러(GCC) 설치하기
 
-다음과 같은 행위 들은 모두 부정행위입니다. 여기서 "다른 사람"은 참가자에 한정되지 않고, 학부모와 교사 등을 포함한 대회 주최측 이외의 모든 다른 사람을 뜻합니다.
-또한 참가자 1명 당 한개의 계정만 허용합니다.
+<div id="MinGW_Install_Guide"></div>
+<script>
+	let videoTag_MinGW = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kRMELNEE2zk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let dom_MinGW = document.getElementById("MinGW_Install_Guide");
+    dom_MinGW.insertAdjacentHTML('beforeend', videoTag_MinGW);
+</script>
 
-* 다른 사람과 문제에 대해 토론하는 행위
-* 다른 사람에게 문제에 대한 도움을 받는 행위
-* 웹 사이트 요청 데이터를 조작하거나 다량의 요청을 보내는 등 웹 사이트를 공격하는 행위
+### Code::Blocks IDE 설치하기
 
-위의 행위를 포함하여 주최측은 부정행위가 발견되거나 의심되는 경우 언제든지 참가 및 수상 자격을 박탈할 수 있습니다. 
+<div id="Code_Blocks_Install_Guide"></div>
+<script>
+	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/or8wDAhS840" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let dom_CodeBlocks = document.getElementById("Code_Blocks_Install_Guide");
+    dom_CodeBlocks.insertAdjacentHTML('beforeend', videoTag_CodeBlocks);
+</script>
 
-주최측은 필요한 경우 문제의 풀이 과정에 대해 참가자에게 물을 수 있으며, 참가자는 대답할 수 있어야 합니다.
+## 표준 입출력 사용하기
 
-어떤 행위가 부정행위인지 아닌지 궁금하다면 자의적으로 판단하지 않고 주최측에게 문의하여야 합니다.
+모든 코드 제출 문제에서는 주어진 입력 형식에 따라 표준 입력 (standard input)으로 입력을 받고 주어진 출력 형식에 따라 표준 출력(standard output)으로 출력해야 합니다.
 
-### 외부 코드의 사용
+아래 예시와 같이 두 개의 정수를 받아 곱하여 출력해야 하는 문제가 있다면, 언어별로 표준 입력과 표준 출력을 처리하는 방법은 아래와 같습니다.
 
-아래와 같은 코드의 사용은 부정행위가 아닙니다.
+### 입력 예시
 
-* 자신이 직접 과거에 작성한 코드
-* 대회 이전에 작성되었고 아무나 접근할 수 있는 곳에 공개되어 자유롭게 사용될 수 있도록 허가된 코드
+```
+8 4
+```
 
-그렇다고 하더라도, 참가자는 반드시 외부 코드의 사용을 명시하고 출처를 기입해야 합니다. 또한 대회 주최측은 필요한 경우 외부 코드의 사용에 대해 물을 수 있으며, 참가자는 외부 코드의 사용이 정당하였음을 증명할 의무를 가집니다.
+### 출력 예시
 
-다음과 같은 코드의 사용은 부정행위입니다.
+```
+32
+```
 
-* 대회 시작 시점 이후에 제3자에 의해 작성된 코드
-* 대회 이전에 작성되었다고 하더라도 아무나 접근할 수 없었던 코드
-* 자신에게 사용 권한이 없는 코드
+### C
 
-이 코드를 사용해도 되는지 확신이 없다면 주최측에게 문의하여야 합니다.
+```
+#include <stdio.h>
+
+int main()
+{
+	int a, b;
+	scanf("%d %d", &a, &b);
+	printf("%d\n", a * b);
+	return 0;
+}
+```
+
+### C++
+
+```
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int a, b;
+	cin >> a >> b;
+	cout << a * b << endl;
+	return 0;
+}
+```
+
+### C++ (표준입출력을 input.txt의 내용으로 받아오고, 표준출력을 output.txt으로 내보내는 예제)
+
+```
+#include <iostream>
+
+#ifndef NYPC_GRADING
+    #define REDIRECT_STDIN() freopen("input.txt","r",stdin)
+    #define REDIRECT_STDOUT() freopen("ouput.txt","w",stdout)
+#else
+    #define REDIRECT_STDIN()
+    #define REDIRECT_STDOUT()
+#endif
+
+using namespace std;
+
+int main()
+{
+    REDIRECT_STDIN();
+    REDIRECT_STDOUT();
+
+    int a, b;
+    cin >> a >> b;
+    cout << a * b << endl;
+    return 0;
+}
+
+```
+
+### C&#35;
+
+```
+using System;
+
+public class Program {
+    public static void Main() {
+        string s = Console.ReadLine();
+        string[] arr = s.Split();
+        int a = int.Parse(arr[0]);
+        int b = int.Parse(arr[1]);
+        Console.WriteLine(a * b);
+    }
+}
+```
+
+### JavaScript (node.js)
+
+```
+var input = '';
+process.stdin.resume();
+process.stdin.on('data', function(data) {
+    input += data;
+});
+process.stdin.on('end', function() {
+    input = input.split(/\s+/);
+    console.log(parseInt(input[0]) * parseInt(input[1]));
+});
+```
+
+### Java
+
+```
+import java.util.*;
+public class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int a, b;
+        a = sc.nextInt();
+        b = sc.nextInt();
+        System.out.println(a * b);
+    }
+}
+```
+
+### Python
+
+```
+s = raw_input()
+arr = split()
+a = int(arr[0])
+b = int(arr[1])
+print a*b
+```
+
+### Python 3
+
+```
+s = input()
+arr = s.split()
+a = int(arr[0])
+b = int(arr[1])
+print(a*b)
+```
+
+## 프로그램의 종료 코드 (exit code)
+
+작성된 프로그램은 exit code 0 으로 종료하여야 합니다. exit code 가 0 이 아닐 경우 맞는 답을 출력하는 프로그램을 제출하였더라도 채점이 되지 않을 수 있습니다. 많은 언어에서, `main()`이 0을 리턴하는 것으로 해결됩니다.
 
 <!--END-->
