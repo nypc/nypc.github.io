@@ -39,7 +39,7 @@ document.children[0].children[1].children[0].children[0].remove()
 
 문제의 답안으로는 문제에서 요구하는 코드를 작성하여 제출하여야 합니다. 이러한 문제는 문제에서 요구하는 바에 대한 설명, 입력과 출력 형식, 입력과 출력 예시, 채점 규칙으로 구성됩니다.
 
-모든 입력과 출력은 표준입출력 (standard input, standard output)으로 이루어집니다. 언어별로 표준 입력/출력을 처리하는 방법에 대해서는 <a href='https://nypc.github.io/2017/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
+모든 입력과 출력은 표준입출력 (standard input, standard output)으로 이루어집니다. 언어별로 표준 입력/출력을 처리하는 방법에 대해서는 <a href='https://nypc.github.io/2018/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
 
 코드 작성을 마무리했다면, `제출하기` 버튼을 눌러 문제를 제출할 수 있습니다. 
 
