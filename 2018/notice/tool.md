@@ -46,6 +46,8 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 
 ## 문제풀이 튜토리얼 (소스제출/결과제출)
 
+한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
+
 <div id="Tutorial_Source"></div>
 <div id="Tutorial_Output"></div>
 <script>
@@ -56,8 +58,6 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
     dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
     dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
 </script>
-
-한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
 
 ## Java 사용
 
