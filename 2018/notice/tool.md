@@ -44,6 +44,19 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 |`CString`| `CString` 은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용|
 |`#include <stdafx.h>`|`stdafx.h` 는 Visual C++ 전용 precompiled header 임|
 
+## 문제풀이 튜토리얼 (소스제출/결과제출)
+
+<div id="Tutorial_Source"></div>
+<div id="Tutorial_Output"></div>
+<script>
+	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let dom_Tutorial_Source = document.getElementById("Tutorial_Source");
+	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
+    dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
+    dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
+</script>
+
 ## Java 사용
 
 클래스 이름은 반드시 `Main` 이어야 합니다.
@@ -123,12 +136,6 @@ int main()
 
 ### C++ (표준입출력을 input.txt의 내용으로 받아오고, 표준출력을 output.txt으로 내보내는 예제)
 
-<div id="Standard_Input_Output_Guide_CPP"></div>
-<script>
-	let videoTag_Standard_Input_Output_Guide_CPP = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let dom_Standard_Input_Output_Guide_CPP = document.getElementById("Standard_Input_Output_Guide_CPP");
-    dom_Standard_Input_Output_Guide_CPP.insertAdjacentHTML('beforeend', videoTag_Standard_Input_Output_Guide_CPP);
-</script>
 ```
 #include <iostream>
 
