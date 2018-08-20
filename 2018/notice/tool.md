@@ -73,22 +73,6 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
     dom_CodeBlocks.insertAdjacentHTML('beforeend', videoTag_CodeBlocks);
 </script>
 
-## 문제풀이 튜토리얼 (소스제출/결과제출)
-
-한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
-
-<div id="Tutorial_Source"></div>
-<div id="Tutorial_Output"></div>
-<script>
-	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let dom_Tutorial_Source = document.getElementById("Tutorial_Source");
-	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
-    dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
-    dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
-</script>
-
-
 ## 표준 입출력 사용하기
 
 모든 코드 제출 문제에서는 주어진 입력 형식에 따라 표준 입력 (standard input)으로 입력을 받고 주어진 출력 형식에 따라 표준 출력(standard output)으로 출력해야 합니다.
@@ -219,5 +203,21 @@ print(a*b)
 ## 프로그램의 종료 코드 (exit code)
 
 작성된 프로그램은 exit code 0 으로 종료하여야 합니다. exit code 가 0 이 아닐 경우 맞는 답을 출력하는 프로그램을 제출하였더라도 채점이 되지 않을 수 있습니다. 많은 언어에서, `main()`이 0을 리턴하는 것으로 해결됩니다.
+
+## 문제풀이 튜토리얼 (소스제출/결과제출)
+
+한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
+
+<div id="Tutorial_Source"></div>
+<div id="Tutorial_Output"></div>
+<script>
+	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let dom_Tutorial_Source = document.getElementById("Tutorial_Source");
+	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
+    dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
+    dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
+</script>
+
 
 <!--END-->
