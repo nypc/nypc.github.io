@@ -51,8 +51,7 @@ document.children[0].children[1].children[0].children[0].remove()
 
 코드 제출 문제에 제출된 모든 코드의 실행과 채점은 이 사이트의 환경 위에서 이루어집니다. 해당 환경에서 동작하지 않는 코드는 채점이 되지 않습니다.
 
-OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다음과 같습니다:
-구체적인 개발 환경에 대해서는  <a href='https://nypc.github.io/2017/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
+OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러와 구체적인 개발 환경에 대해서는  <a href='https://nypc.github.io/2018/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만,
