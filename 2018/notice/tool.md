@@ -49,8 +49,8 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 <div id="Tutorial_Source"></div>
 <div id="Tutorial_Output"></div>
 <script>
-	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_Tutorial_Source = document.getElementById("Tutorial_Source");
 	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
     dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
@@ -74,7 +74,7 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
 
 <div id="MinGW_Install_Guide"></div>
 <script>
-	let videoTag_MinGW = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kRMELNEE2zk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let videoTag_MinGW = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kRMELNEE2zk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_MinGW = document.getElementById("MinGW_Install_Guide");
     dom_MinGW.insertAdjacentHTML('beforeend', videoTag_MinGW);
 </script>
@@ -83,7 +83,7 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
 
 <div id="Code_Blocks_Install_Guide"></div>
 <script>
-	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/or8wDAhS840" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/or8wDAhS840?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_CodeBlocks = document.getElementById("Code_Blocks_Install_Guide");
     dom_CodeBlocks.insertAdjacentHTML('beforeend', videoTag_CodeBlocks);
 </script>
