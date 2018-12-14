@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">이진트리</h1>
+<p>이진트리 T 가 있을 때, T의 왼쪽서브트리를 T<sub>l</sub> , 오른쪽 서브트리를 T<sub>r</sub> 로 두면 T의 높이 h(T)는 다음과 정의된다. </p>
+<ul>
+<li>T가 공백트리(정점의 개수가 0인 트리)이면 h(T) = 0 이다</li>
+<li>T가 공백트리가 아니면 h(T) = max { h(T<sub>l</sub>) , h(T<sub>r</sub>) } + 1 이다.</li>
+</ul>
+<p>음수가 아닌 두 정수 N과 k가 주어질 때, 정점의 개수가 N이고 높이가 k인 이진트리는 모두 몇개인지를 결정하는 프로그램을 작성하시오.  예를 들어, 정점의 개수가 4이고 높이가 3인 이진트리는 아래 보인 그림에서처럼 모두 6개가 있다.</p>
+<p><img src="https://s3.ap-northeast-2.amazonaws.com/nypc2018/BT1.png" alt="그림"></p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 이진트리 T의 정점 개수를 나타내는 정수 N(1≤ N ≤ 500)과 높이를 나타내는 정수 k(0 ≤ k ≤ N)가 주어진다. </p>
+<h2 id="-">출력 형식</h2>
+<p>한 줄로 결과를 출력한다. 정점의 개수가 N이고 높이가 k인 서로 다른 이진트리 갯수를 찾아 그 값을 1,000,000,007로 나눈 나머지를 출력한다.</p>
+<h2 id="-1">입력 예제 1</h2>
+<pre><code>3 2</code></pre><h2 id="-1">출력 예제 1</h2>
+<pre><code>1</code></pre><h2 id="-2">입력 예제 2</h2>
+<pre><code>4 3</code></pre><h2 id="-2">출력 예제 2</h2>
+<pre><code>6</code></pre><h2 id="-3">입력 예제 3</h2>
+<pre><code>4 2</code></pre><h2 id="-3">출력 예제 3</h2>
+<pre><code>0</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다. </p>
+<ul>
+<li>종류 1 (20점): N=k</li>
+<li>종류 2 (35점): N ≤ 10</li>
+<li>종류 3 (45점): 별다른 제약조건 없음.</li>
+</ul>
+<!--------------->
+</body>
+</html>
