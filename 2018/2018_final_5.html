@@ -60,5 +60,10 @@
 <li>종류 4 (34점): 별다른 제약조건 없음. </li>
 </ul>
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+로봇이 갈 수 없는 칸들이 모두 바깥쪽에 있고, 또 모두 연결되어 있다는 것에서 쿼리에 대한 대답 경로는 트리 위를 지나가는 것과 비슷하다는 것을 알 수 있다. 다만 트리에서처럼 경로가 유일하지 않을 수 있다. 가로 방향으로 움직이는 것과 세로 방향으로 움직이는 것을 따로 계산하면, 각각의 경우 유일한 경로를 찾을 수 있다.
+</div> 
 </body>
 </html>

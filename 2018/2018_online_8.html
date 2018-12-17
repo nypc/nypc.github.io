@@ -41,5 +41,10 @@
 </ul>
 
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+변수 a를 b에 더하는 연산과 그 반대 연산만을 사용할 수 있을 때 주어진 값 X, Y를 a와 b에 저장할 수 있는지 판단하여야 한다. 변수 a와 b는 대칭임을 알 수 있다. 그래서 모두 1인 경우를 제외하면 X>Y임을 가정해도 된다. 이 경우가 만들어질 방법은 X-Y, Y가 저장된 경우 밖에 없다. 이 과정을 계속 반복하면 가능한지 불가능한지의 여부를 판단할 수 있다.    
+</div> 
 </body>
 </html>

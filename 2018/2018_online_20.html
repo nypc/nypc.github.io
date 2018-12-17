@@ -52,5 +52,10 @@ UDLRRUUDLRRDUDLRRLUDLRRRUDLRRU</code></pre><h2 id="-">출력 예제</h2>
 <li>종류3 (200점): 문제의 원래 제한조건 이외의 추가된 제한이 없음.</li>
 </ul>
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+착안할 수 있는 점은, 봇이 존재한다면, 문제의 조건에 따라서 이동 기록을 나타내는 문자열의 접미사 중 반드시 봇의 정해진 루틴으로 시작하는 것이 둘 이상 존재한다. 따라서 이동 기록의 접미사들을 사전순으로 정렬하고, 이 접미사들에 공통으로 나오면서 최장인 것의 길이를 구하면 된다.    
+</div> 
 </body>
 </html>

@@ -43,5 +43,10 @@
 <li>종류 3 (45점): 별다른 제약조건 없음.</li>
 </ul>
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+정점의 개수가 N개인 이진 트리의 개수는 정점의 개수가 각각 x, N-x-1개인 이진트리의 개수들을 알고 있다고 가정하면 계산할 수 있다. 이 아이디어를 통해서 간단한 동적계획법 알고리즘을 만들 수 있다. 이 문제에서는 트리의 높이가 k로 고정되어 있으므로 높이가 1, 2, … k-1인 경우들을 모두 고려하는 방식으로 계산이 가능하다.    
+</div> 
 </body>
 </html>

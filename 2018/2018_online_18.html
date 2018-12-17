@@ -67,5 +67,10 @@
 <li>종류 2 (165점): 추가적 제약조건 없음. </li>
 </ul>
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+위에서 아래로 스크롤되는 게임 판에서 K명의 상대 선수를 없어지게 하여 길을 열어서 게임 판의 제일 위까지 갈 수 있는지를 판단해야 한다. 선수와 게임 판이 움직이는 규칙이 간단하므로 게임 판의 각 칸들을 정점으로 하는 그래프를 만들어 해결할 수도 있다. 또, 선수가 가장 아래에서 시작한다는 점을 이용해서 제일 아래 줄부터 선수가 갈 수 있는 칸들을 계산하고 그까지 가기 위해 사용해야 하는 최소 축구공 개수를 기록하는 방법으로도 해결할 수 있다.    
+</div> 
 </body>
 </html>

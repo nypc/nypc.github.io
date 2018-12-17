@@ -42,5 +42,10 @@
 <p>입력 케이스들 각각에 대해 동일한 점수가 배분된다.</p>
 
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+평면에 주어진 점들에서 거리의 제곱의 합이 최소가 되는 위치를 구해야 한다. 우선 x좌표와 y 좌표를 따로 다룰 수 있다는 것을 알 수 있다. x좌표에 대해서 답을 구할 때, 답 위치의 x좌표가 아주 크거나 아주 작으면 좋지 않다는 것을 짐작할 수 있어 이분 탐색을 사용할 수 있다. 좀더 생각하면 단순히 평균을 구하면 된다는 것을 알 수 있다.    
+</div> 
 </body>
 </html>

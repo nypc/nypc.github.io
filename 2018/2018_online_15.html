@@ -50,5 +50,10 @@
 <li>종류3 (70점): 문제의 원래 제한조건 이외의 추가된 제한이 없음.</li>
 </ul>
 <!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+일단 N x N의 각 칸 하나가 원소인 집합들을 만든다. 다음, 가장 왼쪽 위 칸부터 시작하여, 가로/세로/위/아래로 인접한 칸들을 나타내는 집합들의 합집합을 구한다. 이 과정이 끝나면 같은 색의 연속한 칸들을 나타내는 서로소인 집합들을 만들 수 있으며, 두 집합에 대해서, 각각의 집합에 속하고 가로/세로/위/아래로 연속한 두 개의 칸이 있다면 이 집합도 서로 인접했다고 정의한다. 가장 왼쪽 위 칸의 색을 주어진 정보대로 바꿀 때마다, 이 칸이 속한 집합과 인접한 집합 중 같은 색인 것을 찾아 합집합을 구해 나가면 된다.    
+</div> 
 </body>
 </html>
