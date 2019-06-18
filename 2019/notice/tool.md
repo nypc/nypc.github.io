@@ -24,8 +24,8 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 | C++ 14 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++14 -DNYPC_GRADING` | |
 | C++ 17 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++17 -DNYPC_GRADING` | |
 | C# | Mono C# 4.6.2.0 | `-codepage:utf8 -warn:0 -optimize+ -clscheck- -reference:System.Numerics.dll` | `--optimize=all` |
-| Java | OpenJDK 1.8.0_212 | | |
-| Python 2 | CPython 2.7.15rc1 | | |
+| Java | OpenJDK 1.8.0 | | |
+| Python 2 | CPython 2.7.15 | | |
 | Python 3 | CPython 3.6.7 | | |
 | Pypy 2 | Python 2.7.13 PyPy 5.10.0 with GCC 7.3.0 | | |
 
