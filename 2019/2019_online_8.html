@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="마비노기-색상표">마비노기 색상표</h1>
+<p>사람이 색을 볼 때는 눈에 존재하는 원추세포의 도움을 받는다. 원추세포에는 빨간색, 파란색, 초록색의 세 가지 빛에 반응하는 종류의 세포들이 있다. 각 종류의 세포들이 얼마나 신호를 발생시키느냐에 따라 사람은 색을 구별할 수 있다. 그래서, 컴퓨터에서 색을 표현할 때는, 빨간색, 파란색, 초록색의 섞인 비율을 사용하는 경우가 많다.</p>
+<p>어떤 사람들은 원추세포 중 일부가 색을 잘 구분하지 못할 수 있다. 가장 흔한 경우는 빨간색 빛을 받아들이는 세포가 제대로 동작하지 않는 것이다. 이 경우 빨간색과 파란색이 섞여져 만들어진 보라색의 경우와 빨간색이 없이 파란색만 있는 경우를 잘 구분하지 못한다.</p>
+<p>최근에 마비노기팀은 더욱 다양한 사람들에게 다가가고자 이런 경우에 속하는 사람들을 도와주기 위한 모드를 추가하려고 한다. </p>
+<p>그리고 이 목적으로 사용될 수 있는 새로운 색상표를 만들려고 한다. 이 색상표에는 N개의 색이 있고, 각 색은 파란색 빛의 세기를 나타내는 b, 초록색 빛의 세기를 나타내는  g로 표현된다. 각 빛의 세기는 0 이상 K 미만이다. 두 색 (b<sub>1</sub>,g<sub>1</sub>), (b<sub>2</sub>,g<sub>2</sub>)의 거리는 √((b<sub>1</sub>-b<sub>2</sub>)<sup>2</sup>+(g<sub>1</sub>-g<sub>2</sub>)<sup>2</sup>) 이다. 즉, 거리가 가까울수록 구분이 잘 안 되고, 거리가 멀수록 구분이 잘 된다. </p>
+<p>새로운 색상표는 모든 두 색의 거리 차이가 C 이상이 되도록 만들어 색상의 구분이 잘 되게 하려고 한다. 새로운 색상표를 만들어주자!</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫째 줄에는 세 정수 N, K, C가 공백으로 구분되어 주어진다. 이는 문제에 설명된 N, K, C와 같으며, 데이터 별로 다음과 같이 주어진다.</p>
+<table>
+<thead>
+<tr>
+<th>데이터</th>
+<th>N</th>
+<th>K</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>11</td>
+<td>7</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9</td>
+<td>11</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8</td>
+<td>16</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>13</td>
+<td>21</td>
+<td>7</td>
+</tr>
+<tr>
+<td>6</td>
+<td>16</td>
+<td>29</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>32</td>
+<td>32</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13</td>
+<td>15</td>
+<td>5</td>
+</tr>
+<tr>
+<td>9</td>
+<td>32</td>
+<td>25</td>
+<td>5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20</td>
+<td>29</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<h2 id="출력-형식">출력 형식</h2>
+<p>총 N개의 줄을 출력한다. i번째 줄에는 i번째 색의 파란색 빛의 세기와 초록색 빛의 세기를 공백으로 구분하여 출력한다.</p>
+<p>만약 가능한 답이 여러 가지인 경우 그중 아무거나 하나 출력한다.</p>
+<h2 id="입력-예제">입력 예제</h2>
+<pre><code>3 3 1</code></pre><h2 id="출력-예제">출력 예제</h2>
+<pre><code>0 0
+1 2
+2 1</code></pre><h2 id="채점-방식">채점 방식</h2>
+<p>이 문제는 풀이 소스코드를 제출하지 않고, 각 테스트케이스의 입력데이터를 다운받아 알맞은 출력 파일을 만들어 <strong>출력 파일만을 제출</strong>하는 문제다.</p>
+<p>문제 해결을 도와주는 시뮬레이터가 아래 미션에 대해 제공된다. 제공되는 시뮬레이터는 최신 버전의 크롬 브라우저에서 여는 것을 권장한다.</p>
+<ul>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=1" target="_blank">미션1 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=2" target="_blank">미션2 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=3" target="_blank">미션3 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=4" target="_blank">미션4 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=5" target="_blank">미션5 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=6" target="_blank">미션6 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=7" target="_blank">미션7 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=8" target="_blank">미션8 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=9" target="_blank">미션9 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=10" target="_blank">미션10 시뮬레이터 열기</a></li>
+</ul>
+
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+    최대한 촘촘하게 색상을 배치해야 많은 색상이 들어갈 수 있다. 이를 배치하는 방법은 정삼각형 모양으로 격자를 배치하거나, 정사각형 모양으로 격자를 배치하는 등 여러가지 전략이 있을 수 있다
+</div> 
+</body>
+</html>

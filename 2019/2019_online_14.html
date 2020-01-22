@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="카트라이더-경험치">카트라이더 경험치</h1>
+<p>호준이는 자신을 포함해 N명의 친구와 함께 카트라이더 경주를 하려고 한다. 호준이는 경주하기 전에 카트라이더 내부 보상 시스템 정보를 입수했다.</p>
+<p>호준이를 포함해 호준이의 친구들은 1부터 N까지 번호가 매겨져 있고, 내부 보상시스템은 N×N 크기의 경험치 테이블로 구성되어 있다. 경험치 테이블 M(i, j)에는 i가 j보다 먼저 골인했을 때 받을 수 있는 경험치가 적혀있다. 단, 자신이 자신보다 먼저 골인하는 경우는 없기 때문에 M(i, i)에는 0이 적혀있다.</p>
+<p>예를 들어 호준이를 포함한 3명의 친구가 경주를 하고, 2 → 3 → 1 순서로 골인한다면 1은 아무 경험치를 못 받고, 2는 M(2, 1) + M(2, 3)의 경험치를 받고, 3은 M(3, 1)의 경험치를 받는다.</p>
+<p>호준이는 월등한 실력으로 1등을 할 수 있었지만, 친구들을 배려해 결승점에 들어올 순서를 미리 정해서 모두가 얻는 경험치 합을 최대화하려고 한다. 호준이를 도와 모두가 얻는 경험치 합의 최댓값을 구해주자.</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫 줄에 호준이를 포함한 친구의 수 N이 입력으로 주어진다. (2 ≤ N ≤ 15)</p>
+<p>i+1번째 줄에 N개의 자연수가 공백으로 구분되어 주어지는데, j번째 정수는 경험치 테이블의 정보 M(i, j)를 의미한다. (1 ≤ i, j ≤ N; 0 ≤ M(i, j) ≤ 10,000,000)</p>
+<h2 id="출력-형식">출력 형식</h2>
+<p>순서를 잘 정했을 때 얻을 수 있는 경험치 합의 최댓값을 출력하라.</p>
+<h2 id="입력-예제">입력 예제</h2>
+<pre><code>3
+0 10 2
+3 0 20
+40 31 0</code></pre><h2 id="출력-예제">출력 예제</h2>
+<pre><code>81</code></pre><h2 id="채점-방식">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li>종류 1 (43점): N ≤ 10</li>
+<li>종류 2 (57점): 별다른 제약조건 없음.</li>
+</ul>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+문제의 규칙에서 인접한 두 블록에 적힌 수를 알 수 있다면 두 블록에 모두 인접한 블록에 적힌 수를 정할 수 있음을 짐작할 수 있다. 이 규칙을 체계적으로 적용해 나가면 값을 알아낼 수 있는 모든 블록을 판단할 수 있다.    
+</div> 
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+
+<h1 id="요리-제작">요리 제작</h1>
+<p>트라하를 즐기는 아란은 전문 기술 중 요리 제작에 푹 빠져 있다. 특히 스테이크를 좋아하는 아란은 주어진 재료로 최대한 많은 스테이크를 만들고 싶다. </p>
+<p>스테이크를 만들 때는 필요한 재료 수가 적혀 있는 레시피가 필요하다. 레시피에 쓰여있는 양 만큼의 재료를 창고에서 꺼내어서 요리하면 스테이크를 한 개 만들 수 있다. 재료 중 하나라도 모자란 경우 스테이크를 만들 수 없으며, 스테이크는 한 개 단위로만 만들 수 있다. 즉, 재료의 일부만 써서 스테이크를 일부만 만들 수는 없다.</p>
+<p>필요한 재료 수가 적혀 있는 스테이크의 레시피와 창고에 있는 재료의 수가 주어질 때, 최대 몇 개의 스테이크를 만들 수 있는지 구하여라.</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫째 줄에 재료의 가짓수 N이 주어진다. (1 ≤ N ≤ 100)</p>
+<p>둘째 줄에는 N개의 정수가 공백으로 구분되어 주어지는데, 그중 i번째 수는 창고에 있는 i번째 재료의 개수를 의미한다. 이때, 주어지는 수는 0 이상 100 이하이다.</p>
+<p>셋째 줄에는 N개의 정수가 공백으로 구분되어 주어지는데, 그중 i번째 수는 스테이크를 만드는데 필요한 i번째 재료의 개수이다. 이때, 주어지는 수는 0 이상 100 이하이다.</p>
+<p>요리를 만들 때 적어도 하나의 재료가 필요하다는 것이 보장된다.</p>
+<h2 id="출력-형식">출력 형식</h2>
+<p>첫째 줄에 만들 수 있는 스테이크의 최대 개수를 출력한다.</p>
+<h2 id="입력-예제-1">입력 예제 1</h2>
+<pre><code>3
+6 3 5
+1 1 2</code></pre><h2 id="출력-예제-1">출력 예제 1</h2>
+<pre><code>2</code></pre><h2 id="입력-예제-2">입력 예제 2</h2>
+<pre><code>2
+100 0
+1 1</code></pre><h2 id="출력-예제-2">출력 예제 2</h2>
+<pre><code>0</code></pre><h2 id="채점-방식">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li>종류 1 (27점): N = 1</li>
+<li>종류 2 (31점): 스테이크를 요리할 때, 모든 재료는 정확히 1개씩 사용된다.</li>
+<li>종류 3 (42점): 별다른 제약조건 없음.</li>
+</ul>
+
+
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+숫자가 매우 작기 때문에, 하나씩 요리를 만들어 보면서 재료가 모자랄 때까지 요리를 만들어 나가서 개수를 세어주면 되는 문제이다. 나눗셈을 사용할 경우에는 0으로 나누는 경우가 있음을 매우 조심해야 한다.
+</div> 
+</body>
+</html>

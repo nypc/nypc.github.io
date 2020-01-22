@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="배찌의-대청소">배찌의 대청소</h1>
+<p>배찌는 가을을 맞아 대청소를 하려고 한다. 배찌의 집은 세로 N칸, 가로 M칸으로 이루어진 격자로 나타낼 수 있으며, 빈칸, 장애물, 블럭으로 이루어져 있다. 배찌는 초기에 빈칸 중 하나에 서 있으며 다음과 같은 5가지 종류의 행동을 반복할 수 있다.</p>
+<ul>
+<li>위로 이동</li>
+<li>아래로 이동</li>
+<li>왼쪽으로 이동</li>
+<li>오른쪽으로 이동</li>
+<li>물폭탄을 터트림</li>
+</ul>
+<p>이동의 경우 상하좌우 중 한 방향으로 인접해있는 빈칸으로 이동하는 것이며, 장애물 또는 블럭이 있는 칸으로 이동하거나 집 밖으로 이동하는 것은 불가능하다.</p>
+<p>물폭탄을 터트리는 경우 즉시 물줄기가 상하좌우 네 방향으로 최대 K칸 나아간다. 네 방향의 물줄기는 서로 독립적이며, 각 물줄기는 처음으로 장애물, 블럭, 혹은 집 끝에 도달한 경우 멈춘다. 만약 물줄기를 멈춘 것이 블럭이라면 해당 블럭은 파괴된다. 따라서 물줄기가 파괴한 블럭과 배찌와의 거리는 최대 K칸이고, 한 번 물폭탄을 터트려서 파괴할 수 있는 블럭은 최대 4개이다.</p>
+<p>배찌는 집에 있는 블럭들을 되도록 많이 파괴하는 것이 목표이며, 블럭을 모두 파괴하는 방법이 여러 가지일 경우 행동을 되도록 적게 쓰는 것이 목표이다.</p>
+<p>배찌의 대청소를 도와주자!</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫 번째 줄에 정수 N, M, K가 공백을 사이에 두고 주어진다. (1 ≤ N, M, K ≤ 100)</p>
+<p>두 번째 줄부터 N개의 줄에 걸쳐 집의 상태를 나타내는 길이 M의 문자열이 주어진다.</p>
+<p>각 줄에 주어지는 문자열에 등장하는 문자와 그 의미는 다음과 같다.</p>
+<ul>
+<li><code>.</code>: 빈칸</li>
+<li><code>#</code>: 장애물</li>
+<li><code>@</code>: 블럭</li>
+<li><code>*</code>: 초기에 배찌가 있는 빈칸</li>
+</ul>
+<p>단, 입력에 <code>*</code>은 정확히 한 개, <code>@</code>은 한 개 이상 존재하며, 배찌가 블럭을 모두 파괴할 수 있는 입력만 주어진다.</p>
+<h2 id="출력-형식">출력 형식</h2>
+<p>배찌의 행동을 나타내는 <code>U</code>, <code>D</code>, <code>L</code>, <code>R</code>, <code>B</code>로 이루어진 길이 1 이상 100,000 이하의 문자열을 출력한다.</p>
+<p>각 문자의 의미는 다음과 같다.</p>
+<ul>
+<li><code>U</code>: 위로 이동</li>
+<li><code>D</code>: 아래로 이동</li>
+<li><code>L</code>: 왼쪽으로 이동</li>
+<li><code>R</code>: 오른쪽으로 이동</li>
+<li><code>B</code>: 물폭탄을 터트림</li>
+</ul>
+<p>단, 이동의 경우 해당 방향으로 이동이 불가능한 경우, 즉 해당 방향에 장애물 또는 블럭이 있거나 집 바깥인 경우 제자리에 머무른다.</p>
+<h2 id="입력-예제">입력 예제</h2>
+<pre><code>3 4 2
+*@.@
+##..
+@@@#</code></pre><h2 id="출력-예제">출력 예제</h2>
+<pre><code>BRRBDDBB</code></pre><h2 id="예제-설명">예제 설명</h2>
+<p>이 출력은 최소한의 행동으로 모든 블럭을 파괴하는 출력이다. 단, 블럭을 다 파괴하지 못하거나 너무 긴 출력도 경우에 따라 부분점수를 얻을 수 있다. 정확한 부분점수의 계산 공식은 아래의 &quot;채점 방식&quot;을 참고하라.</p>
+<h2 id="채점-방식">채점 방식</h2>
+<p>이 문제는 풀이 소스코드를 제출하지 않고, 각 테스트케이스의 입력데이터를 다운받아 알맞은 출력 파일을 만들어 <strong>출력 파일만을 제출</strong>하는 문제다.</p>
+<p>이 문제의 총점은 모든 테스트케이스의 점수의 합으로 계산된다.
+각 테스트케이스의 점수를 계산하는 방법은 다음과 같다.</p>
+<p>X: 참가자의 테스트케이스 점수</p>
+<p>V: 집의 초기 블럭 개수</p>
+<p>B: 배찌가 파괴한 블럭 개수</p>
+<p>L: 출력 길이</p>
+<p>S: 테스트케이스 만점</p>
+<p>P, Q: 테스트케이스별 상수</p>
+<p>i. B &lt; V 인 경우:</p>
+<ul>
+<li>X = S × (0.2 × B / V)</li>
+</ul>
+<p>ii. B = V, Q ≤ L 인 경우:</p>
+<ul>
+<li>X = S × 0.2</li>
+</ul>
+<p>iii. B = V, P &lt; L &lt; Q 인 경우:</p>
+<ul>
+<li>X = S × (0.2 + 0.8 × (Q - L) / (Q - P))</li>
+</ul>
+<p>iv. B = V, L ≤ P 인 경우:</p>
+<ul>
+<li>X = S</li>
+</ul>
+<p>이때 X는 0.1 단위로 버림 된다.
+각 테스트케이스의 S, P, Q 값은 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>S</th>
+<th>P</th>
+<th>Q</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>5</td>
+<td>17</td>
+<td>21</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>20</td>
+<td>28</td>
+</tr>
+<tr>
+<td>3</td>
+<td>10</td>
+<td>6729</td>
+<td>7500</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10</td>
+<td>8650</td>
+<td>9500</td>
+</tr>
+<tr>
+<td>5</td>
+<td>10</td>
+<td>483</td>
+<td>550</td>
+</tr>
+<tr>
+<td>6</td>
+<td>12</td>
+<td>93</td>
+<td>125</td>
+</tr>
+<tr>
+<td>7</td>
+<td>12</td>
+<td>1893</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>8</td>
+<td>12</td>
+<td>9131</td>
+<td>12000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>12</td>
+<td>7337</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>10</td>
+<td>12</td>
+<td>4858</td>
+<td>7000</td>
+</tr>
+</tbody></table>
+<p>각 테스트케이스에서 만점을 받을 수 있는 출력이 존재함이 보장된다.</p>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+    하나의 도시에서 회의를 할 때 이동하는데 드는 시간의 합은 쉽게 깊이 우선 탐색 등을 통해 계산할 수 있다. 그 후, 인접한 건물로 옮겨가면서 변화값을 빠르게 계산해 주는 것으로 문제를 풀 수 있다. 또한, 이 문제를 매우 짧게 해결할 수 있는 좋은 아이디어도 존재한다
+</div> 
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="마비노기-인벤토리">마비노기 인벤토리</h1>
+<p>마비노기의 인벤토리는 다른 게임의 인벤토리와는 달리 아이템마다 특정 크기를 갖고 있고, 각각 크기에 맞추어 인벤토리의 원하는 위치에 겹치지 않게 배치할 인벤토리에 배치할 수 있다.</p>
+<p>아래 &lt;그림 1&gt;은 실제 마비노기 인벤토리의 스크린샷이다.</p>
+<figure style="text-align:center;">
+<img src="https://s3.ap-northeast-2.amazonaws.com/nypc2019/inventory.jpg" />
+<figcaption>&lt;그림 1&gt; 실제 마비노기 인벤토리의 스크린샷</figcaption>
+</figure>
+
+<p>현재 재성이의 인벤토리는 세로 길이 H, 가로 길이 W로 H×W 크기이다.
+재성이는 은행에서 미리 모아놓은 양털과 나무장작을 찾아 상점에 가서 팔려고 한다. 
+양털 하나를 상점에 팔 때 A원을 받을 수 있고, 나무장작 하나를 상점에 팔 때 B원을 받을 수 있다. 은행과 상점을 왕복하는 것은 매우 번거로운 일이므로 한번에 최대한 많은 돈을 벌 수 있도록 인벤토리에 넣어 이동하고 싶다. </p>
+<p>이 때 양털과 나무장작은 각각 2 × 2, 3 × 1 크기를 차지한다. 아이템은 인벤토리 내의 공간에 다른 아이템과 겹치지 않게 어디에든 배치할 수 있지만 아이템을 회전할 수는 없다. 즉, 나무장작을 90도 회전해서 1 × 3으로 배치할 수 없다. (문제에 주어진 시뮬레이터의 내용을 참고하면 좋다.)</p>
+<p>인벤토리의 크기와 원래 있던 아이템들에 대한 정보가 주어졌을 때, 은행에서 상점을 한 번 갈 때 최대한 많은 돈을 벌어보자. 단, 원래 있던 아이템은 재배치할 수 없다.</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫 줄에 인벤토리의 세로 크기 H, 가로 크기 W, 양털 하나의 가격 A, 나무장작 하나의 가격 B가 공백으로 구분되어 주어진다. (1 ≤ H, W ≤ 18; 0 ≤ A, B ≤ 10,000)</p>
+<p>그다음 H개의 줄에 걸쳐 H×W 크기의 인벤토리에 대한 정보가 주어진다. <code>-</code>는 인벤토리에서 빈칸을 나타내고, <code>X</code>는 인벤토리에 이미 다른 아이템이 놓여있음을 의미한다.</p>
+<h2 id="출력-형식">출력 형식</h2>
+<p>첫 줄에 은행에서 상점을 한 번 갈 때 최대한 많이 벌 수 있는 돈의 액수와 그 때 담은 양털의 개수 s와 나무장작 개수 w를 공백으로 구분하여 출력한다.</p>
+<p>그 다음 s개 줄에 걸쳐 각 줄에 양털을 놓은 인벤토리 왼쪽 위 좌표를 행 번호, 열 번호 순서대로 출력한다. 다음에는 w개 줄에 걸쳐 각 줄에 나무장작을 놓은 인벤토리 왼쪽 위 좌표를 행 번호, 열 번호 순서대로 출력한다.</p>
+<p>만약, 가능한 답이 여러 가지라면 그중 아무거나 하나 출력한다.</p>
+<h2 id="입력-예제-1">입력 예제 1</h2>
+<pre><code>5 5 4 4
+XXXXX
+X---X
+X---X
+X---X
+XXXXX</code></pre><h2 id="출력-예제-1">출력 예제 1</h2>
+<pre><code>12 0 3
+2 2
+2 3
+2 4</code></pre><h2 id="입력-예제-2">입력 예제 2</h2>
+<pre><code>5 5 4 4
+XXXXX
+X--XX
+X--X-
+XXXX-
+XXXX-</code></pre><h2 id="출력-예제-2">출력 예제 2</h2>
+<pre><code>8 1 1
+2 2
+3 5</code></pre><h2 id="채점-방식">채점 방식</h2>
+<p>이 문제는 풀이 소스코드를 제출하지 않고, 각 테스트케이스의 입력데이터를 다운받아 알맞은 출력 파일을 만들어 <strong>출력 파일만을 제출</strong>하는 문제다.</p>
+<p>문제 해결을 도와주는 시뮬레이터가 아래 미션에 대해 제공된다. 제공되는 시뮬레이터는 최신 버전의 크롬 브라우저에서 여는 것을 권장한다.</p>
+<ul>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=1" target="_blank">미션1 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=2" target="_blank">미션2 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=3" target="_blank">미션3 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=4" target="_blank">미션4 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=5" target="_blank">미션5 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=6" target="_blank">미션6 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=7" target="_blank">미션7 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=8" target="_blank">미션8 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=9" target="_blank">미션9 시뮬레이터 열기</a></li>
+<li><a href="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=10" target="_blank">미션10 시뮬레이터 열기</a></li>
+</ul>
+
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+시뮬레이터가 제공되는 문제이므로 미션5까지는 손으로 직접 해봐도 어렵지 않게 해결할 수 있다. 미션6부터는 시뮬레이터를 이용한 풀이법에 어려움이 따르며, 프로그램을 작성하는 편이 좋다. 이 문제에서 인벤토리의 사이즈 H, W의 최대값이 18로 굉장히 작기 때문에, 약 2^H가지 상태를 지정하는 bit DP를 이용하여 해결할 수 있다.
+</div> 
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="소수의-합">소수의 합</h1>
+<p>소수란 약수가 1과 자기 자신 밖에 없는 2 이상의 자연수를 말한다. 예를 들어, 2, 3, 5, 97과 같은 수들은 소수이고, 1, 6, 18, 55와 같은 수 들은 소수가 아니다.</p>
+<p>2 이상의 자연수 N이 주어졌을 때, N을 한 개 이상의 소수들의 합으로 나타내는 방법의 수를 구하여라. 여기서 덧셈의 순서만 다른 경우는 모두 한 가지로 센다.</p>
+<p>예를 들면, 7 = 2 + 2 + 3 = 2 + 5 = 7 이므로 N = 7 일 때의 답은 3이다. 여기서, 7은 소수이므로 &quot;7&quot; 자체도 7을 소수의 합으로 표현하는 올바른 방법이다. &quot;2 + 5&quot;와 &quot;5 + 2&quot; 같은 경우에는 덧셈의 순서만 다른 경우이므로 한 가지로 센다.</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫째 줄에 정수 N이 주어진다. (2 ≤ N ≤ 20,000)</p>
+<h2 id="출력-형식">출력 형식</h2>
+<p>N을 한 개 이상의 소수들의 합으로 나타나는 방법의 수를 첫째 줄에 출력하여라. 단, 답이 매우 클 수 있으므로 1,000,000,007 (10<sup>9</sup>+7)로 나눈 나머지를 출력한다. </p>
+<h2 id="입력-예제">입력 예제</h2>
+<pre><code>7</code></pre><h2 id="출력-예제">출력 예제</h2>
+<pre><code>3</code></pre><h2 id="채점-방식">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li>종류 1 (13점): N ≤ 20</li>
+<li>종류 2 (31점): N ≤ 2,000</li>
+<li>종류 3 (56점): 별다른 제약조건 없음.</li>
+</ul>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+소수들을 전부 에라토스테네스의 체를 사용하여 구할 수 있다. 그 후, 동적 계획법을 사용하여, k이하의 수만 사용하여 합이 n이 되도록 하는 배열을 계산해서 문제를 해결할 수 있다.
+</div> 
+</body>
+</html>

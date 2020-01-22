@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="vip-쿠폰">VIP 쿠폰</h1>
+<p>희지는 생일 선물로 카트라이더 VIP 쿠폰 N개를 받았다. 지금은 VIP가 아니지만, 쿠폰을 사용함으로써 VIP가 되어 게임의 여러 혜택을 받을 수 있다.</p>
+<p>희지가 받은 VIP 쿠폰은 쿠폰마다 유효기간과 효과기간이 다르다. 선물 받은 i번째 쿠폰의 유효기간은 E<sub>i</sub>일이며, 효과기간은 D<sub>i</sub>일이다. VIP 혜택을 받는 기간에는 VIP 쿠폰을 사용할 수 없고, VIP 기간이 끝난 직후에만 사용할 수 있다. 그리고 쿠폰은 유효기간이 0일이 되는 순간 자동으로 폐기되어 더는 사용할 수 없게 되어버린다.</p>
+<p>편의상 현재 시점을 1일차라고 하자. i번째 쿠폰은 E<sub>i</sub>일차까지 사용할 수 있고, 사용 즉시 쿠폰은 소멸하며 VIP 기간이 D<sub>i</sub>일 연장된다. 예를 들어 1일차에 효과기간이 3일인 쿠폰을 사용하면 VIP 기간은 3일차까지 연장되고, 4일차에는 새로운 쿠폰을 사용하여 VIP 기간을 연장해야 한다. 이때 E<sub>i</sub>가 4이상인 쿠폰만 사용할 수 있다.</p>
+<p>희지는 VIP 기간을 연속하여 최대한 오래 유지하고 싶어 한다. 그러기 위해서는 쿠폰을 전략적으로 사용해야 하는데, 희지를 도와 VIP 기간을 현재 시점부터 시작하여 최대 며칠 동안 유지할 수 있는지 계산하는 프로그램을 작성하시오.</p>
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫 줄에 선물 받은 쿠폰의 개수 N이 주어진다. (N ≥ 1)</p>
+<p>그다음 N개의 줄에 걸쳐 i+1번째 줄에는 선물 받은 i번째 쿠폰의 유효기간 E<sub>i</sub>와 효과기간 D<sub>i</sub>가 공백으로 구분되어 주어진다. (E<sub>i</sub>, D<sub>i</sub> ≥ 1)</p>
+<p><strong>각각의 상한은 아래의 채점방식을 참고하라.</strong></p>
+<h2 id="출력-형식">출력 형식</h2>
+<p>첫 줄에 VIP 기간을 연속하여 최대한 오래 유지했을 때, 유지 가능한 일수를 출력한다.</p>
+<h2 id="입력-예제-1">입력 예제 1</h2>
+<pre><code>3
+11 11
+1 10
+10 19</code></pre><h2 id="출력-예제-1">출력 예제 1</h2>
+<pre><code>21</code></pre><h2 id="입력-예제-2">입력 예제 2</h2>
+<pre><code>3
+12 11
+1 10
+10 11</code></pre><h2 id="출력-예제-2">출력 예제 2</h2>
+<pre><code>22</code></pre><h2 id="채점-방식">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li>종류 1 (17점): N ≤ 10; E<sub>i</sub>, D<sub>i</sub> ≤ 100,000,000</li>
+<li>종류 2 (41점): N ≤ 20; E<sub>i</sub>, D<sub>i</sub> ≤ 100,000,000</li>
+<li>종류 3 (42점): N ≤ 1,000; E<sub>i</sub>, D<sub>i</sub> ≤ 100,000</li>
+</ul>
+
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+사용할 쿠폰들을 미리 정했다고 했을 때, 쿠폰의 만료시한(유효기간 + 효과기간)이 짧은 것부터 먼저 쓰는 것이 항상 좋다는 것을 알아야 문제를 해결할 수 있다. N이 매우 작으면서 기간 값이 적당히 큰 경우와, N이 작지 않으면서 기간이 적당히 작은 경우 두 가지에 대해 다른 알고리즘을 작성해야 이 문제에서 만점을 받을 수 있다. N이 20이하로 작은 경우는 쿠폰 사용 조합으로 2^N가지 경우의 수가 있는데, 각 경우에 대해 처음 언급한 쿠폰 사용 순서에 따라 실제로 그렇게 쿠폰을 사용할 수 있는지 판단하여 VIP 유지기간을 계산해서 최대값을 찾으면 된다. N이 1000이하고, 유효기간과 효과기간이 크지 않은 경우는 0/1 knapsack DP를 이용해서 해결할 수 있다.
+</div> 
+</body>
+</html>
