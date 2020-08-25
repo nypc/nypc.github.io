@@ -17,12 +17,12 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 
 | 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 | 실행 옵션 |
 |---|---|---|---|
-| C | GNU C: gcc 7.4.0 | `-O2 -static -DNYPC_GRADING` | |
-| C 11 | GNU C: gcc 7.4.0 | `-O2 -static --std=c11 -DNYPC_GRADING` | |
-| C++ | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++03 -DNYPC_GRADING` | |
-| C++ 11 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++11 -DNYPC_GRADING` | |
-| C++ 14 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++14 -DNYPC_GRADING` | |
-| C++ 17 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++17 -DNYPC_GRADING` | |
+| C | GNU C: gcc 7.4.0 | `-O2 -static` | |
+| C 11 | GNU C: gcc 7.4.0 | `-O2 -static --std=c11` | |
+| C++ | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++03` | |
+| C++ 11 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++11` | |
+| C++ 14 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++14` | |
+| C++ 17 | GNU C++: g++ 7.4.0 | `-O2 -static --std=c++17` | |
 | C# | Mono C# 4.6.2.0 | `-codepage:utf8 -warn:0 -optimize+ -clscheck- -reference:System.Numerics.dll` | `--optimize=all` |
 | Java | OpenJDK 1.8.0 | | |
 | Python 2 | CPython 2.7.15 | | |
@@ -120,34 +120,6 @@ int main()
 	cout << a * b << endl;
 	return 0;
 }
-```
-
-### C++ (표준입출력을 input.txt의 내용으로 받아오고, 표준출력을 output.txt으로 내보내는 예제)
-
-```
-#include <iostream>
-
-#ifndef NYPC_GRADING
-    #define REDIRECT_STDIN() freopen("input.txt","r",stdin)
-    #define REDIRECT_STDOUT() freopen("ouput.txt","w",stdout)
-#else
-    #define REDIRECT_STDIN()
-    #define REDIRECT_STDOUT()
-#endif
-
-using namespace std;
-
-int main()
-{
-    REDIRECT_STDIN();
-    REDIRECT_STDOUT();
-
-    int a, b;
-    cin >> a >> b;
-    cout << a * b << endl;
-    return 0;
-}
-
 ```
 
 ### C&#35;
