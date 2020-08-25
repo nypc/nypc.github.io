@@ -55,21 +55,11 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
 * MinGW - http://www.mingw.org/
 * Code::Blocks - http://www.codeblocks.org/
 
-
-### MinGW에서 GNU C/C++ 컴파일러(GCC) 설치하기
-
-<div id="MinGW_Install_Guide"></div>
-<script>
-	let videoTag_MinGW = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kRMELNEE2zk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let dom_MinGW = document.getElementById("MinGW_Install_Guide");
-    dom_MinGW.insertAdjacentHTML('beforeend', videoTag_MinGW);
-</script>
-
-### Code::Blocks IDE 설치하기
+### Code::Blocks IDE와 MinGW 설치하기
 
 <div id="Code_Blocks_Install_Guide"></div>
 <script>
-	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/or8wDAhS840?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/IUp4re9_iGw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_CodeBlocks = document.getElementById("Code_Blocks_Install_Guide");
     dom_CodeBlocks.insertAdjacentHTML('beforeend', videoTag_CodeBlocks);
 </script>
@@ -178,15 +168,13 @@ print(a*b)
 작성된 프로그램은 프로그램의 종료 코드가 항상 0 (정상종료)이 되어야합니다. 0으로 종료되지 않는 경우 맞는 답을 출력하는 프로그램을 제출하였더라도 채점이 되지 않을 수 있습니다.
 특히 종료 코드를 0으로 하는 코드를 제출하였더라도 작성한 프로그램의 런타임 에러 여부에 따라 0이 아닌 코드로 종료될 수 있습니다.
 
-## 문제풀이 튜토리얼 (소스제출/결과제출)
-
-한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
+## 문제풀이 튜토리얼 (소스코드제출/실행결과제출)
 
 <div id="Tutorial_Source"></div>
 <div id="Tutorial_Output"></div>
 <script>
-	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/9I4PMuT-8qs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/J1LfZHij63M?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 	let dom_Tutorial_Source = document.getElementById("Tutorial_Source");
 	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
     dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
