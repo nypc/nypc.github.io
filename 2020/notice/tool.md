@@ -26,8 +26,10 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 | C# | Mono C# 4.6.2.7 | `-codepage:utf8 -warn:0 -optimize+ -clscheck- -reference:System.Numerics.dll` | `--optimize=all` |
 | Java | OpenJDK 1.8.0 | | |
 | Python 2 | CPython 2.7.17 | | |
-| Python 3 | CPython 3.6.9 | | |
+| Python 3 | CPython 3.6.9\* | | |
 | Pypy 2 | Python 2.7.13 PyPy 5.10.0 with GCC 7.3.0 | | |
+
+> *(\*) Windows 환경에서 CPython 3.6.9가 제공되지 않는 경우 참가자는 3.6.8 버전을 사용할 수 있습니다. 3.6.8과 3.6.9의 차이는 보안취약점 수정여부이지만, 만에 하나 버전 차이로 인해 채점 결과에 차이가 발생할 경우 주최측은 책임을 지지 않는 점 양해 부탁드립니다.*
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만,
