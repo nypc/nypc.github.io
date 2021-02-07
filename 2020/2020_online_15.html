@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+	</style>
+		
+	<!-- KaTeX -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+
+<h1>사회적 거리두기</h1>
+<p>배찌가 다니고 있는 크아중학교의 교실은 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>×</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">N \times N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></eq> 크기의 격자판으로 표현할 수 있다. 각 격자 칸에는 학생이 앉을 수 있는 자리가 마련되어 있다. 학교 선생님들은 각 학생이 앉은 자리로부터 앞쪽, 뒤쪽, 왼쪽, 오른쪽, 대각선으로 인접한 자리에 다른 학생이 붙어 앉지 못하도록 자리 배치를 해야 한다. 그러나 교실의 일부 격자 칸에 놓인 책상은 망가져 있어서 학생이 앉을 수 없는 상태다. 선생님은 교실에 최대한 많은 학생을 앉히고 싶어 한다.</p>
+<figure style="text-align:center;">
+<img src="https://nypc2020.s3.ap-northeast-2.amazonaws.com/seat1.png">
+<figcaption>&lt;그림 1&gt; 교실을 나타내는 격자판</figcaption>
+</figure>
+<p>위 &lt;그림 1&gt;을 보자. 교실의 크기는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>×</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">5 \times 5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span></eq>이며, 격자 칸 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></eq>개에 놓인 책상이 망가져 있다. 이때, 최대한 많은 자리를 확보하면 아래 &lt;그림 2&gt;처럼 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span></eq>개의 자리를 확보할 수 있다.</p>
+<figure style="text-align:center;">
+<img src="https://nypc2020.s3.ap-northeast-2.amazonaws.com/seat2.png">
+<figcaption>&lt;그림 2&gt; 가장 많은 자리를 확보한 예시</figcaption>
+</figure>
+<p>선생님의 입장이 되어 교실의 크기와 망가진 책상 위치들의 정보가 주어졌을 때, 최대한 많은 자리를 확보해보자.</p>
+<h2>입력 형식</h2>
+<p>첫 줄에 교실의 크기를 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></eq>과 망가진 책상의 수를 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span></eq>가 공백으로 구분되어 주어진다. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>5</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>18</mn><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">(5 \leq N \leq 18;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mpunct">;</span></span></span></span></eq> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>K</mi><mo>≤</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">0 \leq K \leq N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></eq></p>
+<p>그 다음 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span></eq> 개의 줄에 걸쳐 망가진 책상이 놓인 격자 칸의 위치 정보를 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></eq>와 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span></eq>가 공백으로 구분되어 주어진다. 이는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></eq> 행, <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span></eq> 열의 격자 칸에 있는 책상이 망가져 학생이 앉을 수 없음을 의미한다. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>≤</mo><mi>r</mi><mo separator="true">,</mo><mi>c</mi><mo>≤</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1 \leq r, c \leq N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></eq></p>
+<p>주어지는 격자 칸의 위치는 서로 겹치지 않는다.</p>
+<h2>출력 형식</h2>
+<p>첫 줄에 최대한 많이 확보한 자리의 개수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span></eq>를 출력한다.</p>
+<p>그리고 다음 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span></eq> 개의 줄에 걸처 확보한 자리의 위치 정보를 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span></eq>와 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span></eq>를 공백을 사이에 두고 출력한다.</p>
+<p>만약, 가능한 답이 여러 가지인 경우 그중 아무거나 하나 출력한다.</p>
+<h2>입력 예제</h2>
+<pre><code data-line="36" class="code-line"><code><div>5 4
+2 2
+2 5
+4 3
+5 1
+</div></code></code></pre>
+<h2>출력 예제</h2>
+<pre><code data-line="46" class="code-line"><code><div>8
+1 1
+1 3
+1 5
+3 1
+3 3
+3 5
+5 3
+5 5
+</div></code></code></pre>
+<h2>채점 방식</h2>
+<p>이 문제는 풀이 소스 코드를 제출하지 않고, 각 테스트 케이스의 입력 데이터를 다운받아 알맞은 출력 파일을 만들어 출력 파일만을 제출하는 문제다.</p>
+<p>문제 해결을 도와주는 시뮬레이터가 아래 미션에 대해 제공된다. 제공되는 시뮬레이터는 최신 버전의 크롬 브라우저에서 여는 것을 권장한다.</p>
+<ul>
+<li data-line="64" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=1" target="_blank">미션 1 시뮬레이터 열기</a></li>
+<li data-line="65" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=2" target="_blank">미션 2 시뮬레이터 열기</a></li>
+<li data-line="66" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=3" target="_blank">미션 3 시뮬레이터 열기</a></li>
+<li data-line="67" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=4" target="_blank">미션 4 시뮬레이터 열기</a></li>
+<li data-line="68" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=5" target="_blank">미션 5 시뮬레이터 열기</a></li>
+<li data-line="69" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=6" target="_blank">미션 6 시뮬레이터 열기</a></li>
+<li data-line="70" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=7" target="_blank">미션 7 시뮬레이터 열기</a></li>
+<li data-line="71" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=8" target="_blank">미션 8 시뮬레이터 열기</a></li>
+<li data-line="72" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=9" target="_blank">미션 9 시뮬레이터 열기</a></li>
+<li data-line="73" class="code-line"><a href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=10" target="_blank">미션 10 시뮬레이터 열기</a></li>
+</ul>
+<!--------------->
+<hr>
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+    Bit DP를 이용하여 문제를 해결할 수 있다. 맨 위-왼쪽 칸부터 차례대로 학생이 앉을지 결정하며, 가장 최근 N+1개의 칸에 대해 선택한 여부를 bit로 가지고 있으면, 현재 칸에 학생을 앉힐 수 있는지 판단할 수 있다.
+</div> 
+</body>
+</html>
+

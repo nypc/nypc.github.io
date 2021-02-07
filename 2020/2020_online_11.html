@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+	</style>
+		
+	<!-- KaTeX -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+
+<h1>이어달리기</h1>
+<p>카트라이더에서 각 유저는 동시에 시작점에서 출발해서
+정해진 트랙을 주행한다.</p>
+<p>올해 한국에 출시된 카트라이더 러쉬플러스에는
+이어달리기 모드가 있다.
+이 모드는 두 명의 유저가 한 팀이 되어
+각 유저가 한 번씩, 팀 당 총 두 번 주행하는 모드이다.
+팀의 기록은 팀에 속한 두 유저의 기록의 합이다.</p>
+<p>모든 유저가 모든 게임에 최선을 다해서
+항상 최고 기록으로 주행할 수 있다고 가정하자.
+<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></eq> 명의 유저의 최고 기록이 입력으로 주어질 때,
+두 명씩 팀을 짜서 이어달리기 모드를 주행하려고 한다.
+카트라이더 규칙 상 1등 팀의 기록과
+10초 미만으로 차이가 나는 팀만 보상을 받을 수 있다.
+물론, 1등 팀도 보상을 받는다.</p>
+<p>최대한 많은 팀이 보상을 받을 수 있도록
+균형있게 팀을 만들고 싶다.
+한 유저가 두 팀에 동시에 속할 수 없고,
+어느 팀에도 속하지 않은 유저가 있어도 된다.
+어느 팀에도 속하지 않은 유저는 게임에 참가하지 않은 것으로 생각한다.
+최대 몇 팀이 보상을 받을 수 있을까?</p>
+<h2>입력 형식</h2>
+<p>첫 줄에 유저의 수를 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></eq>이 주어진다.
+<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>400</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1 \leq N \leq 400)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span></span></span></span></eq></p>
+<p>다음 이어지는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></eq> 개의 줄에 한 줄에 하나씩 유저의 최고 기록이 주어진다.</p>
+<p>단, 유저의 최고 기록은 <code>a:b:c</code>의 형식으로 주어진다. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>≤</mo><mi>a</mi><mo separator="true">,</mo><mi>c</mi><mo>≤</mo><mn>99</mn><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">(0 \leq a,c \leq 99;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">9</span><span class="mord">9</span><span class="mpunct">;</span></span></span></span></eq> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>b</mi><mo>≤</mo><mn>59</mn><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">0 \leq b \leq 59;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">9</span><span class="mpunct">;</span></span></span></span></eq> <code>a:b:c</code> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo mathvariant="normal">≠</mo></mrow><annotation encoding="application/x-tex">\neq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span></span></span></span></eq> <code>00:00:00</code><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">)</span></span></span></span></eq></p>
+<p>이때 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span></eq>, <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span></eq>, <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span></eq>는 항상 두 자릿수며 각각 <strong>분</strong>, <strong>초</strong>, <strong>백 분의 일 초</strong> 단위를 의미한다.</p>
+<h2>출력 형식</h2>
+<p>첫 줄에 보상을 받을 수 있는 최대 팀의 수를 출력한다.
+팀을 하나도 만들 수 없다면 <code>0</code>을 출력한다.</p>
+<h2>입력 예제</h2>
+<pre><code data-line="43" class="code-line"><code><div>5
+00:30:00
+00:31:00
+00:32:00
+00:33:00
+00:50:00
+</div></code></code></pre>
+<h2>출력 예제</h2>
+<pre><code data-line="54" class="code-line"><code><div>2
+</div></code></code></pre>
+<h2>채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li data-line="62" class="code-line">종류 1 (100점): 추가적인 제한 조건이 없음.</li>
+</ul>
+<!--------------->
+<hr>
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+    1등 팀의 기록은 두 유저의 기록의 합이므로 1등 팀의 기록으로 가능한 것이 최대 N*(N-1)/2 개 밖에 없습니다.<br/>
+    1등 팀의 기록을 정하고 나서, 유저들의 기록을 정렬해 두면 끝에서부터 투 포인터 기법과 탐욕 기법을 이용해 10초 미만으로 차이나는 팀을 최대로 구성할 수 있고, N*(N-1)/2 개 중 최대값을 출력하면 됩니다.
+</div> 
+</body>
+</html>
+

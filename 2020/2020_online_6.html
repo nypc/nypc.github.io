@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+	</style>
+		
+	<!-- KaTeX -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+
+<h1>스피드전 할까 아이템전 할까</h1>
+<p>배찌와 친구들은 카트라이더 게임을 즐겨한다.
+배찌와 친구들은 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span></eq>명이 모여서 카트라이더 게임에서 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></eq> 대 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></eq> 경주를 하기로 하였다.</p>
+<p>카트라이더는 대표적으로 아이템전과 스피드전 두 가지 모드가 존재한다.
+방장이 된 배찌는 방을 스피드전으로 만들지, 아이템전으로 만들지를 결정해야 한다.</p>
+<p>배찌와 친구들은 각각 실력 지표를 가지고 있는데, 스피드전은 실력의 합이 높은 팀이 승리하고, 아이템전은 실력이 가장 높은 사람이 속한 팀이 승리한다.
+비기게 되는 경우도 존재하는데, 스피드전의 경우 두 팀의 실력의 합이 같으면 비기게 되고, 아이템전의 경우 두 팀의 가장 높은 실력이 같으면 비기게 된다.</p>
+<p>승리에 목마른 배찌는 친구들의 실력에 따라 이길 수 있는 모드로 방을 만들려고 한다.
+자신을 포함한 모든 친구들의 실력을 알고 있을 때 배찌가 어떤 모드로 방을 만들어야 하는지 알려주는 프로그램을 만들어보자.</p>
+<h2>입력 형식</h2>
+<p>첫 줄에 테스트 케이스의 개수를 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span></eq>가 주어진다. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>≤</mo><mi>T</mi><mo>≤</mo><mn>1</mn><mtext> </mtext><mn>000</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1 \leq T \leq 1\ 000)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mspace"> </span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span></span></span></span></eq></p>
+<p>다음 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span></eq> 개의 줄에 대해서 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span></eq>명의 실력을 나타내는 정수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span></span></span></span></eq>개가 공백으로 구분되어 주어지며, 먼저 주어지는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></eq>개의 수는 배찌가 속한 팀의 사람의 실력을 의미하고, 나중에 주어지는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></eq>개의 수는 상대 팀에 속한 사람의 실력을 의미한다. 실력을 나타내는 정수는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></eq> 이상 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext> </mtext><mn>000</mn></mrow><annotation encoding="application/x-tex">1\ 000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace"> </span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span></eq> 이하다.</p>
+<h2>출력 형식</h2>
+<p>각 테스트 케이스에 대해 각 줄에 아이템전으로 방을 만들면 이길 수 없고, 스피드전으로 방을 만들어야만 이길 수 있는 경우는 <code>S</code>를, 스피드전으로 방을 만들면 이길 수 없고 아이템전으로 방을 만들어야만 이길 수 있는 경우는 <code>I</code>를, 그 외의 경우, 즉, 어떻게 방을 만들어도 모두 이기거나, 모두 이기지 못하는 경우는 <code>R</code>를 출력한다.
+여기서, 이기지 못한다는 것은 비기는 경우도 포함한다. 세 경우 모두 알파벳 대문자로 출력한다.</p>
+<h2>입력 예제</h2>
+<pre><code data-line="27" class="code-line"><code><div>3
+10 5 3 9 18 3 2 2
+11 3 1 1 8 7 8 7
+5 3 2 4 6 8 9 4
+</div></code></code></pre>
+<h2>출력 예제</h2>
+<pre><code data-line="36" class="code-line"><code><div>S
+I
+R
+</div></code></code></pre>
+<h2>채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li data-line="46" class="code-line">종류 1 (100점): 추가적인 제한 조건이 없음.</li>
+</ul>
+<!--------------->
+<hr>
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+문제에 주어진 대로 앞 4개 정수의 합과 최댓값, 뒤 4개 정수의 합과 최대값을 구하고 비교하면 됩니다.
+</div> 
+</body>
+</html>
+

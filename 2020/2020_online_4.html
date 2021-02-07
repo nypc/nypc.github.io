@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+	</style>
+		
+	<!-- KaTeX -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+
+<h1>S OR T</h1>
+<p>프로그래밍을 할 때 코드 이해를 돕기 위해 들여쓰기를 합니다.
+들여쓰기는 가장 왼쪽부터 빼곡하게 프로그램을 짜는 대신,
+스페이스(<code>S</code>) 또는 탭(<code>T</code>)을 이용해서 빈칸을 만들며
+프로그램을 짜는 것입니다.</p>
+<p>I자 모양을 한 커서(cursor)는 글자가 입력될 위치를 나타냅니다.
+커서는 맨 처음에 0번 칸에 있습니다.
+들여쓰기를 위해 스페이스 또는 탭을 입력하면,
+이를 <code>S</code> 또는 <code>T</code>로 구성된 문자열로 생각할 수 있습니다.</p>
+<p>이 문자열을 왼쪽에서 오른쪽으로 읽어나가면서
+다음 규칙에 따라 커서를 움직입니다.</p>
+<ul>
+<li data-line="14" class="code-line">이번에 읽은 글자가 <code>S</code>이면 커서를 오른쪽으로
+한 칸 움직입니다.</li>
+<li data-line="16" class="code-line">이번에 읽은 글자가 <code>T</code>이면 커서를 오른쪽으로
+가장 가까운 4의 배수에 해당하는 칸으로 움직입니다.</li>
+</ul>
+<p>입력이 <code>SSTT</code>라면, 커서는 다음처럼 움직입니다.</p>
+<ul>
+<li data-line="20" class="code-line"><code>S</code> : 커서를 오른쪽으로 한 칸 이동해서 1번 칸으로</li>
+<li data-line="21" class="code-line"><code>S</code> : 커서를 오른쪽으로 한 칸 이동해서 2번 칸으로</li>
+<li data-line="22" class="code-line"><code>T</code> : 커서를 현재 위치에서 오른쪽으로 가장 가까운 4의 배수인 4번 칸으로</li>
+<li data-line="23" class="code-line"><code>T</code> : 커서를 현재 위치에서 오른쪽으로 가장 가까운 4의 배수인 8번 칸으로</li>
+</ul>
+<p><code>S</code> 또는 <code>T</code>로 구성된 문자열이 입력됩니다.
+이 문자열대로 커서를 움직였을 때,
+커서가 몇 번 칸에 있을지를
+출력하는 프로그램을 작성하십시오.</p>
+<h2>입력 형식</h2>
+<p>첫 줄에 <code>S</code> 또는 <code>T</code>로 구성된 문자열이 주어집니다.
+문자열의 길이는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></eq> 이상 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mtext> </mtext><mn>000</mn></mrow><annotation encoding="application/x-tex">100\ 000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace"> </span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span></eq> 이하입니다.</p>
+<h2>출력 형식</h2>
+<p>첫 줄에 입력받은 문자열대로 커서가 움직였을 때
+커서가 몇 번 칸에 있을지를 출력합니다.</p>
+<h2>입력 예제</h2>
+<pre><code data-line="42" class="code-line"><code><div>SSTT
+</div></code></code></pre>
+<h2>출력 예제</h2>
+<pre><code data-line="48" class="code-line"><code><div>8
+</div></code></code></pre>
+<h2>채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li data-line="56" class="code-line">종류 1 (100점): 추가적인 제한 조건이 없음.</li>
+</ul>
+<!--------------->
+<hr>
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+S면 현재 위치에 1을 더하고, T면 현재 위치에 4 - (현재 위치 % 4)를 더해서 마지막에 출력하면 됩니다
+</div> 
+</body>
+</html>
+
