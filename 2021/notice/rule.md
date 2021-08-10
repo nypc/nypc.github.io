@@ -1,4 +1,4 @@
-﻿<script>
+<script>
 document.children[0].children[1].children[0].children[0].remove()
 </script>
 <!--BEGIN-->
