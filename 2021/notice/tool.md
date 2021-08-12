@@ -27,7 +27,7 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 | Java | OpenJDK 1.8.0 | | |
 | Python 2 | CPython 2.7.18 | | |
 | Python 3 | CPython 3.8.10 | | |
-| Pypy 2 | Python 2.7.13 PyPy 5.10.0 with GCC 9.3.0 | | |
+| Pypy 2 | Python 2.7.13 PyPy 7.3.1 with GCC 9.3.0 | | |
 | Pypy 3 | Python 3.6.9 PyPy 7.3.1 with GCC 9.3.0 | | |
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
