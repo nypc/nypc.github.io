@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs"
+    crossorigin="anonymous"
+  />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>꿀벌 | NYPC 2021</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="꿀벌" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://nypc.github.io/2021/2021_final_5.html" />
+<meta property="og:url" content="https://nypc.github.io/2021/2021_final_5.html" />
+<meta property="og:site_name" content="NYPC 2021" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="꿀벌" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://nypc.github.io/2021/2021_final_5.html","headline":"꿀벌","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <style>
+    h1 {
+      margin-bottom: 20pt;
+      font-size: 22pt;
+      font-weight: bold;
+    }
+    h2 {
+      margin-top: 20pt;
+      font-size: 16pt;
+      font-weight: bold;
+    }
+    h3 {
+      margin-top: 20pt;
+      font-size: 14pt;
+      font-weight: bold;
+    }
+    blockquote {
+      font-size: 11pt;
+    }
+    .highlight .hll {
+      background-color: #ffffcc;
+    }
+    .highlight .c {
+      color: #888888;
+    } /* Comment */
+    .highlight .err {
+      color: #a61717;
+      background-color: #e3d2d2;
+    } /* Error */
+    .highlight .k {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword */
+    .highlight .cm {
+      color: #888888;
+    } /* Comment.Multiline */
+    .highlight .cp {
+      color: #cc0000;
+      font-weight: bold;
+    } /* Comment.Preproc */
+    .highlight .c1 {
+      color: #888888;
+    } /* Comment.Single */
+    .highlight .cs {
+      color: #cc0000;
+      font-weight: bold;
+      background-color: #fff0f0;
+    } /* Comment.Special */
+    .highlight .gd {
+      color: #000000;
+      background-color: #ffdddd;
+    } /* Generic.Deleted */
+    .highlight .ge {
+      font-style: italic;
+    } /* Generic.Emph */
+    .highlight .gr {
+      color: #aa0000;
+    } /* Generic.Error */
+    .highlight .gh {
+      color: #303030;
+    } /* Generic.Heading */
+    .highlight .gi {
+      color: #000000;
+      background-color: #ddffdd;
+    } /* Generic.Inserted */
+    .highlight .go {
+      color: #888888;
+    } /* Generic.Output */
+    .highlight .gp {
+      color: #555555;
+    } /* Generic.Prompt */
+    .highlight .gs {
+      font-weight: bold;
+    } /* Generic.Strong */
+    .highlight .gu {
+      color: #606060;
+    } /* Generic.Subheading */
+    .highlight .gt {
+      color: #aa0000;
+    } /* Generic.Traceback */
+    .highlight .kc {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Constant */
+    .highlight .kd {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Declaration */
+    .highlight .kn {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Namespace */
+    .highlight .kp {
+      color: #008800;
+    } /* Keyword.Pseudo */
+    .highlight .kr {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Reserved */
+    .highlight .kt {
+      color: #888888;
+      font-weight: bold;
+    } /* Keyword.Type */
+    .highlight .m {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number */
+    .highlight .s {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String */
+    .highlight .na {
+      color: #336699;
+    } /* Name.Attribute */
+    .highlight .nb {
+      color: #003388;
+    } /* Name.Builtin */
+    .highlight .nc {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Class */
+    .highlight .no {
+      color: #003366;
+      font-weight: bold;
+    } /* Name.Constant */
+    .highlight .nd {
+      color: #555555;
+    } /* Name.Decorator */
+    .highlight .ne {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Exception */
+    .highlight .nf {
+      color: #0066bb;
+      font-weight: bold;
+    } /* Name.Function */
+    .highlight .nl {
+      color: #336699;
+      font-style: italic;
+    } /* Name.Label */
+    .highlight .nn {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Namespace */
+    .highlight .py {
+      color: #336699;
+      font-weight: bold;
+    } /* Name.Property */
+    .highlight .nt {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Tag */
+    .highlight .nv {
+      color: #336699;
+    } /* Name.Variable */
+    .highlight .ow {
+      color: #008800;
+    } /* Operator.Word */
+    .highlight .w {
+      color: #bbbbbb;
+    } /* Text.Whitespace */
+    .highlight .mf {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Float */
+    .highlight .mh {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Hex */
+    .highlight .mi {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Integer */
+    .highlight .mo {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Oct */
+    .highlight .sb {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Backtick */
+    .highlight .sc {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Char */
+    .highlight .sd {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Doc */
+    .highlight .s2 {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Double */
+    .highlight .se {
+      color: #0044dd;
+      background-color: #fff0f0;
+    } /* Literal.String.Escape */
+    .highlight .sh {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Heredoc */
+    .highlight .si {
+      color: #3333bb;
+      background-color: #fff0f0;
+    } /* Literal.String.Interpol */
+    .highlight .sx {
+      color: #22bb22;
+      background-color: #f0fff0;
+    } /* Literal.String.Other */
+    .highlight .sr {
+      color: #008800;
+      background-color: #fff0ff;
+    } /* Literal.String.Regex */
+    .highlight .s1 {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Single */
+    .highlight .ss {
+      color: #aa6600;
+      background-color: #fff0f0;
+    } /* Literal.String.Symbol */
+    .highlight .bp {
+      color: #003388;
+    } /* Name.Builtin.Pseudo */
+    .highlight .vc {
+      color: #336699;
+    } /* Name.Variable.Class */
+    .highlight .vg {
+      color: #dd7700;
+    } /* Name.Variable.Global */
+    .highlight .vi {
+      color: #3333bb;
+    } /* Name.Variable.Instance */
+    .highlight .il {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Integer.Long */
+    span.katex {
+      font-size: 1.08em;
+    }
+    table {
+      border: 1px solid #eee;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+    table th {
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+    table th,
+    table td {
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+
+
+  <body class="" style="padding: 20pt; font-family: 맑은 고딕">
+    <a href="./">← 목록으로</a>
+<hr>
+    <h1 id="꿀벌">꿀벌</h1>
+
+<p>좌우로 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 개의 구역이 있는 벌판이 있다. 이 벌판의 제일 왼쪽
+구역에는 벌집이 하나 있고 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span> 마리의 벌들이 살고 있다.</p>
+
+<p>여름 동안 벌들은 각자 서로 다른 주거 구역을 하나 잡아서 따로 살기로 했다.
+벌집이 있는 구역도 주거 구역으로 잡을 수 있다. 가을이 된 어느 날 벌들은 모두 집으로 
+모이기로 했다. 각 벌은 왼쪽으로 똑바로 이동해서 벌집으로 간다.</p>
+
+<p>각 구역의 꿀의 밀도를 알고 있다. 한 벌이 집으로 이동하는 과정에서
+거치는 모든 구역에서 밀도 만큼의 꿀을 따서 집으로 이동한다.
+단, 그 구역이 어떤 벌의 주거 구역이라면 꿀을 전혀 딸 수 없다. 
+한 구역을 여러 벌이 지나는 경우 모든 벌이 밀도 만큼의
+꿀을 딸 수 있다. 벌집이 있는 제일 왼쪽 구역에서도
+(그 구역이 주거 구역이 아니라면) 마찬가지이다. 
+벌의 주거 구역에서는 어떤 벌도 꿀을 딸 수 없다는 것에 주의하라.</p>
+
+<p>아래 &lt;그림 1&gt;와 같이 꿀의 밀도가 주어졌다고 하고 벌의 마릿수 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">K = 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>라고 하자.
+주거 구역을 제일 오른쪽의 두 구역으로 잡는 경우 딸 수 있는 꿀의 양은 
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">(2+3+2+1) + (2+3+2+1) = 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">16</span></span></span></span>이다. 하지만, 주거 구역을 제일 오른쪽과
+거기서 한 구역 떨어진 왼쪽 구역으로 잡는 경우 딸 수 있는 꿀의 양은
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>8</mn><mo stretchy="false">)</mo><mo>=</mo><mn>22</mn></mrow><annotation encoding="application/x-tex">(2+3+2) + (2+3+2+8) = 22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">8</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">22</span></span></span></span>이다.</p>
+
+<figure style="text-align:center;">
+<img src="https://nypc2021.s3.ap-northeast-2.amazonaws.com/bee01-dc691507.png" style="width:100%;max-width:300px" />
+<figcaption>&lt;그림 1&gt; 6개 구역이 있는 벌판 예시</figcaption>
+</figure>
+
+<p>구역들의 꿀의 밀도를 입력으로 받아 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span> 마리의 벌들이 딸 수 있는 가장
+많은 꿀의 양을 계산하는 프로그램을 작성하라.</p>
+
+<h2 id="입력-형식">입력 형식</h2>
+
+<p>첫 줄에 구역의 개수를 나타내는 정수 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>과
+벌의 수를 나타내는 정수 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>가 공백으로 구분되어 주어진다.
+(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>2</mn><mtext> </mtext><mn>000</mn><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">1 \le N \le 2\, 000;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">000</span><span class="mpunct">;</span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>K</mi><mo>≤</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">1 \le K \le N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>)</p>
+
+<p>두 번째 줄에 왼쪽 구역부터 각 구역의 꿀의 밀도를 나타내는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 개의 정수가 공백으로 구분되어 주어진다.
+꿀의 밀도 값은 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 이상 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">10^9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span> 이하이다.</p>
+
+<h2 id="출력-형식">출력 형식</h2>
+
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span> 마리의 벌들이 딸 수 있는 가장 많은 꿀의 양을 출력한다.</p>
+
+<h2 id="입력-예제">입력 예제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6 2
+2 3 2 1 8 6
+</code></pre></div></div>
+
+<h2 id="출력-예제">출력 예제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>22
+</code></pre></div></div>
+
+<h2 id="채점-방식">채점 방식</h2>
+
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.</p>
+
+<ul>
+  <li>종류 1 (21점): <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">1 \le N \le 20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">20</span></span></span></span></li>
+  <li>종류 2 (32점): <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>500</mn></mrow><annotation encoding="application/x-tex">1 \le N \le 500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">500</span></span></span></span></li>
+  <li>종류 3 (47점): 추가적인 제한 조건이 없음.</li>
+</ul>
+
+  </body>
+</html>
