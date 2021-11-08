@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+    integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs"
+    crossorigin="anonymous"
+  />
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>파스칼 삼각형 | NYPC 2021</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="파스칼 삼각형" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://nypc.github.io/2021/2021_online_14.html" />
+<meta property="og:url" content="https://nypc.github.io/2021/2021_online_14.html" />
+<meta property="og:site_name" content="NYPC 2021" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="파스칼 삼각형" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://nypc.github.io/2021/2021_online_14.html","headline":"파스칼 삼각형","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <style>
+    h1 {
+      margin-bottom: 20pt;
+      font-size: 22pt;
+      font-weight: bold;
+    }
+    h2 {
+      margin-top: 20pt;
+      font-size: 16pt;
+      font-weight: bold;
+    }
+    h3 {
+      margin-top: 20pt;
+      font-size: 14pt;
+      font-weight: bold;
+    }
+    blockquote {
+      font-size: 11pt;
+    }
+    .highlight .hll {
+      background-color: #ffffcc;
+    }
+    .highlight .c {
+      color: #888888;
+    } /* Comment */
+    .highlight .err {
+      color: #a61717;
+      background-color: #e3d2d2;
+    } /* Error */
+    .highlight .k {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword */
+    .highlight .cm {
+      color: #888888;
+    } /* Comment.Multiline */
+    .highlight .cp {
+      color: #cc0000;
+      font-weight: bold;
+    } /* Comment.Preproc */
+    .highlight .c1 {
+      color: #888888;
+    } /* Comment.Single */
+    .highlight .cs {
+      color: #cc0000;
+      font-weight: bold;
+      background-color: #fff0f0;
+    } /* Comment.Special */
+    .highlight .gd {
+      color: #000000;
+      background-color: #ffdddd;
+    } /* Generic.Deleted */
+    .highlight .ge {
+      font-style: italic;
+    } /* Generic.Emph */
+    .highlight .gr {
+      color: #aa0000;
+    } /* Generic.Error */
+    .highlight .gh {
+      color: #303030;
+    } /* Generic.Heading */
+    .highlight .gi {
+      color: #000000;
+      background-color: #ddffdd;
+    } /* Generic.Inserted */
+    .highlight .go {
+      color: #888888;
+    } /* Generic.Output */
+    .highlight .gp {
+      color: #555555;
+    } /* Generic.Prompt */
+    .highlight .gs {
+      font-weight: bold;
+    } /* Generic.Strong */
+    .highlight .gu {
+      color: #606060;
+    } /* Generic.Subheading */
+    .highlight .gt {
+      color: #aa0000;
+    } /* Generic.Traceback */
+    .highlight .kc {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Constant */
+    .highlight .kd {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Declaration */
+    .highlight .kn {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Namespace */
+    .highlight .kp {
+      color: #008800;
+    } /* Keyword.Pseudo */
+    .highlight .kr {
+      color: #008800;
+      font-weight: bold;
+    } /* Keyword.Reserved */
+    .highlight .kt {
+      color: #888888;
+      font-weight: bold;
+    } /* Keyword.Type */
+    .highlight .m {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number */
+    .highlight .s {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String */
+    .highlight .na {
+      color: #336699;
+    } /* Name.Attribute */
+    .highlight .nb {
+      color: #003388;
+    } /* Name.Builtin */
+    .highlight .nc {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Class */
+    .highlight .no {
+      color: #003366;
+      font-weight: bold;
+    } /* Name.Constant */
+    .highlight .nd {
+      color: #555555;
+    } /* Name.Decorator */
+    .highlight .ne {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Exception */
+    .highlight .nf {
+      color: #0066bb;
+      font-weight: bold;
+    } /* Name.Function */
+    .highlight .nl {
+      color: #336699;
+      font-style: italic;
+    } /* Name.Label */
+    .highlight .nn {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Namespace */
+    .highlight .py {
+      color: #336699;
+      font-weight: bold;
+    } /* Name.Property */
+    .highlight .nt {
+      color: #bb0066;
+      font-weight: bold;
+    } /* Name.Tag */
+    .highlight .nv {
+      color: #336699;
+    } /* Name.Variable */
+    .highlight .ow {
+      color: #008800;
+    } /* Operator.Word */
+    .highlight .w {
+      color: #bbbbbb;
+    } /* Text.Whitespace */
+    .highlight .mf {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Float */
+    .highlight .mh {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Hex */
+    .highlight .mi {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Integer */
+    .highlight .mo {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Oct */
+    .highlight .sb {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Backtick */
+    .highlight .sc {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Char */
+    .highlight .sd {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Doc */
+    .highlight .s2 {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Double */
+    .highlight .se {
+      color: #0044dd;
+      background-color: #fff0f0;
+    } /* Literal.String.Escape */
+    .highlight .sh {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Heredoc */
+    .highlight .si {
+      color: #3333bb;
+      background-color: #fff0f0;
+    } /* Literal.String.Interpol */
+    .highlight .sx {
+      color: #22bb22;
+      background-color: #f0fff0;
+    } /* Literal.String.Other */
+    .highlight .sr {
+      color: #008800;
+      background-color: #fff0ff;
+    } /* Literal.String.Regex */
+    .highlight .s1 {
+      color: #dd2200;
+      background-color: #fff0f0;
+    } /* Literal.String.Single */
+    .highlight .ss {
+      color: #aa6600;
+      background-color: #fff0f0;
+    } /* Literal.String.Symbol */
+    .highlight .bp {
+      color: #003388;
+    } /* Name.Builtin.Pseudo */
+    .highlight .vc {
+      color: #336699;
+    } /* Name.Variable.Class */
+    .highlight .vg {
+      color: #dd7700;
+    } /* Name.Variable.Global */
+    .highlight .vi {
+      color: #3333bb;
+    } /* Name.Variable.Instance */
+    .highlight .il {
+      color: #0000dd;
+      font-weight: bold;
+    } /* Literal.Number.Integer.Long */
+    span.katex {
+      font-size: 1.08em;
+    }
+    table {
+      border: 1px solid #eee;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+    table th {
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+    table th,
+    table td {
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+
+
+  <body class="" style="padding: 20pt; font-family: 맑은 고딕">
+    <a href="./">← 목록으로</a>
+<hr>
+    <h1 id="파스칼-삼각형">파스칼 삼각형</h1>
+
+<p>파스칼 삼각형은 다음과 같은 성질을 만족하는 수로 이루어진 정삼각형이다.</p>
+<ul>
+  <li>첫 줄에는 수가 하나, 둘째 줄에는 수가 둘, 
+셋째 줄에는 수가 셋,&#8230; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 번째 줄에는 수가 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 개 있다.</li>
+  <li>각 줄의 맨 처음 수와 맨 마지막 수는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>이다.</li>
+  <li>줄은 무한히 많이 있고, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 번째 줄의 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>i</mi><mo>&lt;</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1 \lt i \lt n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69862em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span>) 번째 수는 바로 윗 줄의 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 번째 수와 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 번째 수의 합이다.</li>
+</ul>
+
+<p>예를 들어, 파스칼 삼각형의 첫 여섯 줄을 나타내면 다음과 같다.</p>
+
+<figure style="text-align:center;">
+<img src="https://nypc2021.s3.ap-northeast-2.amazonaws.com/pascal01-ae6d1a34.png" style="width: 100%; max-width:300px" />
+<figcaption>&lt;그림 1&gt; 파스칼 삼각형의 첫 여섯 줄</figcaption>
+</figure>
+
+<p>이제 파스칼 삼각형의 특정한 위치 하나 (예를 들어, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span> 번째 수라고 하자)를 고른 다음, 이 위치의 수가 
+꼭짓점이 되는 크기가 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>인 정삼각형을 다음과 같이 정의하자.</p>
+<ul>
+  <li>삼각형의 세 꼭짓점은 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span> 번째 수, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>c</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a+c-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span> 번째 수, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>c</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a+c-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>+</mo><mi>c</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">b+c-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 번째 수이다. (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c \ge 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>)</li>
+  <li>편의상 가장 위의 꼭짓점과 삼각형의 크기로 정삼각형을 표현하기로 한다.</li>
+</ul>
+
+<figure style="text-align:center;">
+<img src="https://nypc2021.s3.ap-northeast-2.amazonaws.com/pascal02-54e555cb.png" style="width: 100%; max-width:300px" />
+<figcaption>&lt;그림 2&gt; 파스칼 삼각형 내부의 정삼각형 예</figcaption>
+</figure>
+
+<p>&lt;그림 2&gt;를 보자. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 번째 수가 한 꼭짓점인 크기 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>인 정삼각형은 파란색으로,
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 번째 수가 한 꼭짓점인 크기 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>인 정삼각형은 초록색으로, 
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 번째 수가 한 꼭짓점인 크기 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>인 정삼각형은 빨간색으로,
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 번째 줄 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 번째 수가 한 꼭짓점인 크기 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>인 정삼각형은 노란색으로 표시되어 있다.</p>
+
+<p>이제 정삼각형 안의 수들의 합은 삼각형 안에 있는 수의 합이다. 
+예를 들어 &lt;그림 2&gt;의 경우 정삼각형 안의 수의 합은 모두 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>이다.</p>
+
+<p>무한한 크기의 파스칼 삼각형에 대해 다음과 같은 질의를 하려고 한다.
+이 삼각형에 포함되는 정삼각형 중 안의 수의 합이 정확하게 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>인 경우는 모두 몇 가지인가? 
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>가 주어질 때 이 질의를 답하라.</p>
+
+<h2 id="입력-형식">입력 형식</h2>
+<p>첫 줄에 질의의 수를 나타내는 정수 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span>가 주어진다. (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>T</mi><mo>≤</mo><mn>4</mn><mtext> </mtext><mn>000</mn></mrow><annotation encoding="application/x-tex">1 \le T \le 4\,000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">000</span></span></span></span>)</p>
+
+<p>그 다음 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span> 개의 줄에 걸쳐 각 질의를 나타내는 정수 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>가 
+주어진다. (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>K</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">1 \le K \le 10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">18</span></span></span></span></span></span></span></span></span></span></span></span>)</p>
+
+<h2 id="출력-형식">출력 형식</h2>
+
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span> 개의 줄에 걸쳐, 무한한 크기의 파스칼 삼각형에서 
+정삼각형 안의 수들의 합이 정확하게 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>인 
+경우의 수를 출력한다. 만약 이러한 삼각형이 무수히 
+많다면, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>을 출력한다.</p>
+
+<h2 id="입력-예제">입력 예제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+1
+2
+3
+</code></pre></div></div>
+
+<h2 id="출력-예제">출력 예제</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-1
+1
+3
+</code></pre></div></div>
+
+<h2 id="예제-설명">예제 설명</h2>
+
+<p>잘 생각해보면 정삼각형 내부의 수의 합이 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>인 
+경우는 무수히 많음을 알 수 있고, 이 때 답은 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>이다.
+정삼각형 내부의 수의 합이 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>인 경우는 둘째 줄의 
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 하나로 이루어지는 정삼각형 뿐이다. 
+마지막으로, 정삼각형 내부의 수의 합이 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>인 경우는 
+첫 줄과 둘째 줄로 이루어지는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1, 1, 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span>로 이루어지는 삼각형 하나와, 
+네 번째 줄의 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 하나로 이루어지는 정삼각형 둘, 모두 세 가지 경우가 있다.</p>
+
+<h2 id="채점-방식">채점 방식</h2>
+
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.</p>
+
+<ul>
+  <li>종류 1 (17점): <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>≤</mo><mn>8</mn><mtext> </mtext><mn>000</mn></mrow><annotation encoding="application/x-tex">K \le 8\,000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">000</span></span></span></span></li>
+  <li>종류 2 (21점): <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>≤</mo><mn>1</mn><mtext> </mtext><mn>000</mn><mtext> </mtext><mn>000</mn></mrow><annotation encoding="application/x-tex">K \le 1\,000\,000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">000</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">000</span></span></span></span></li>
+  <li>종류 3 (25점): <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>12</mn></msup></mrow><annotation encoding="application/x-tex">K \le 10^{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12</span></span></span></span></span></span></span></span></span></span></span></span></li>
+  <li>종류 4 (37점): 추가적인 제한 조건이 없음.</li>
+</ul>
+
+  </body>
+</html>
