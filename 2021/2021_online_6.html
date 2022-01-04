@@ -366,5 +366,17 @@
   <li>종류 3 (53점): 추가적인 제한 조건이 없음.</li>
 </ul>
 
+<hr />
+
+<h2 id="해설">해설</h2>
+
+<p><button onclick="document.getElementById(&quot;hint_text&quot;).style.display=&quot;block&quot;; this.style.display=&quot;none&quot;;" class="btn btn-default">펼치기</button></p>
+
+<div id="hint_text" style="display: none;"> 
+    
+<p>가장 작은 값을 가진 폭탄은 반드시 터뜨려야 한다. 따라서, 현재 상태에서 가장 작은 값을 가진 폭탄을 골라 터뜨리는 것을 계속 반복하여 모든 폭탄을 없애는 것이 최적의 전략이다. 가장 작은 값을 가진 폭탄을 고르는 것은 우선순위 큐를 사용하거나, 처음에 모든 폭탄을 오름차순으로 정렬한 뒤 이미 제거된 폭탄은 건너뛰는 방식으로 구현할 수 있다. 폭탄을 터뜨리는 것은 터뜨릴 폭탄에서 출발하여 이미 제거된 폭탄이나 터지지 않는 폭탄을 만날 때까지 좌우로 이동하는 방식으로 구현할 수 있다. 시간복잡도는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N \log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>이다.</p>
+
+</div>
+
   </body>
 </html>
