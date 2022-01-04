@@ -391,5 +391,19 @@
   <li>종류 4 (51점): 추가적인 제한 조건이 없음.</li>
 </ul>
 
+<hr />
+
+<h2 id="해설">해설</h2>
+
+<p><button onclick="document.getElementById(&quot;hint_text&quot;).style.display=&quot;block&quot;; this.style.display=&quot;none&quot;;" class="btn btn-default">펼치기</button></p>
+
+<div id="hint_text" style="display: none;"> 
+    
+<p>모든 상점들을 위치에 대해 오름차순으로 정렬하자. 각 상점들을 순서대로 보면서, 그 상점을 왼쪽 끝으로 하면서 모든 종류의 상점을 포함하는 가장 짧은 구간을 구하자. 상점이 위치가 증가하는 순서대로 정렬되어 있으므로, 이러한 구간의 오른쪽 끝점 또한 계속 증가하기만 한다. 따라서 two pointer를 사용해 이러한 구간을 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>의 시간에 모두 구할 수 있다.</p>
+
+<p>어떤 질문의 답이 되는 구간은 모두 위에서 구한 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>개의 구간들 중 하나이다. 따라서 질문이 주어졌을 때, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>개의 구간들 중 주어진 위치를 포함하는 가장 짧은 구간을 구하면 된다. 이는 세그먼트 트리를 사용해 해결할 수 있고, 구간들의 왼쪽 끝점이 증가하면 오른쪽 끝점 또한 증가한다는 사실을 이용해 간단한 전처리와 이분 탐색으로도 해결할 수 있다. 시간복잡도는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo>+</mo><mi>Q</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N \log N + Q \log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Q</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>이다.</p>
+
+</div>
+
   </body>
 </html>
