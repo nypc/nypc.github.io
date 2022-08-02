@@ -17,12 +17,13 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 
 | 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 | 실행 옵션 |
 |---|---|---|---|
-| C | GNU C: gcc 9.3.0 | `-O2 -static` | |
-| C 11 | GNU C: gcc 9.3.0 | `-O2 -static --std=c11` | |
-| C++ | GNU C++: g++ 9.3.0 | `-O2 -static --std=c++03` | |
-| C++ 11 | GNU C++: g++ 9.3.0 | `-O2 -static --std=c++11` | |
-| C++ 14 | GNU C++: g++ 9.3.0 | `-O2 -static --std=c++14` | |
-| C++ 17 | GNU C++: g++ 9.3.0 | `-O2 -static --std=c++17` | |
+| C | GNU C 99: gcc 9.4.0 | `-O2 -static` | |
+| C 11 | GNU C 11: gcc 9.4.0 | `-O2 -static --std=c11` | |
+| C++ | GNU C++ 03: g++ 9.4.0 | `-O2 -static --std=c++03` | |
+| C++ 11 | GNU C++ 11: g++ 9.4.0 | `-O2 -static --std=c++11` | |
+| C++ 14 | GNU C++ 14: g++ 9.4.0 | `-O2 -static --std=c++14` | |
+| C++ 17 | GNU C++ 17: g++ 9.4.0 | `-O2 -static --std=c++17` | |
+| C++ 20 | GNU C++ 20: g++ 9.4.0 | `-O2 -static --std=c++2a` | |
 | C# | Mono C# 6.8.0.105 | `-codepage:utf8 -warn:0 -optimize+ -clscheck- -reference:System.Numerics.dll` | `--optimize=all` |
 | Java | OpenJDK 1.8.0 | | |
 | Python 2 | CPython 2.7.18 | | |
