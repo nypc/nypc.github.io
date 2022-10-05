@@ -6,7 +6,7 @@ import {
   solvedThemes,
   Typo
 } from "@solved-ac/ui-react";
-import { Code } from "components";
+import { Code, Enumerate, Itemize } from "components";
 import { MDXComponents } from "mdx/types";
 import type { AppProps } from "next/app";
 
@@ -19,11 +19,20 @@ const components: MDXComponents = {
   h6: ({ ref, ...props }) => <Typo h6 {...props} />,
   p: ({ ref, ...props }) => <Paragraph {...props} />,
   code: ({ ref, ...props }) => <Code {...props} />,
+  ul: ({ ref, ...props }) => <Itemize {...props} />,
+  ol: ({ ref, ...props }) => <Enumerate {...props} />,
 };
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
+      <style jsx global>
+        {`
+          span.katex {
+            font-size: 1.05em;
+          }
+        `}
+      </style>
       <MDXProvider components={components}>
         <ThemeProvider theme={solvedThemes.light}>
           <SolvedGlobalStyles />
