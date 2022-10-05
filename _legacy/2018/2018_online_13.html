@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">회전 격자판</h1>
+<p>회전 격자판은 N×N개의 정사각형이 N행 N열로 나누어져 있으며, 각 칸에 양의 정수가 저장되어 있다. i번째 행의 j번째 열에 저장된 정수를 a[i][j]라고 하자.</p>
+<p>회전 격자판은 한 번의 동작에 다음을 수행한다.</p>
+<pre><code>for (i=1;i&lt;=N;i++)
+  for (j=1;j&lt;=N-1;j++)
+    if (a[i][j] &gt; a[i][j+1])
+      a[i][j]와 a[i][j+1]의 값을 서로 바꾼다
+회전 격자판을 반시계 방향으로 90도 회전한다</code></pre><p>예를 들어, N=4일 때, 다음의 회전 격자판을 한 번 동작시키면 격자판의 값이 다음과 같이 변화한다.</p>
+<p><img src="https://s3.ap-northeast-2.amazonaws.com/nypc2018/flour.png" alt=""></p>
+<p>주어진 회전 격자판을 T번 동작하고 난 후 격자판에 저장된 값들을 출력하는 프로그램을 작성하시오.</p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 격자판의 행의 개수(=열의 개수)를 나타내는 정수 N(1 ≤ N ≤ 300)과 격자판의 동작 횟수를 나타내는 T(1 ≤ T ≤ 10<sup>9</sup>)가 주어진다.</p>
+<p>다음 이어지는 N개의 줄의 i번째 줄에는 초기 격자판의 i번째 행의 값들을 나타내는 정수 a[i][1], a[i][2], ..., a[i][N](1 ≤ a[i][j] ≤ 10<sup>9</sup>)이 공백을 사이에 두고 주어진다.</p>
+<h2 id="-">출력 형식</h2>
+<p>회전 격자판이 T번 동작 한 후, 격자판에 저장된 값들을 N개의 줄에 출력한다. N개줄의 i번째 줄에는 격자판의 i행의 값들을 나타내는 정수들을 공백 하나를 사이에 두고 출력한다.</p>
+<h2 id="-1">입력 예제 1</h2>
+<pre><code>4 1
+3 2 5 3
+5 4 6 1
+9 5 7 3
+6 8 3 4</code></pre><h2 id="-1">출력 예제 1</h2>
+<pre><code>5 6 9 8
+3 1 3 4
+3 5 7 3
+2 4 5 6</code></pre><h2 id="-2">입력 예제 2</h2>
+<pre><code>4 2
+3 2 5 3
+5 4 6 1
+9 5 7 3
+6 8 3 4</code></pre><h2 id="-2">출력 예제 2</h2>
+<pre><code>9 4 7 6
+8 3 3 5
+6 3 5 4
+5 1 3 2</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li>종류 1 (100점): T ≤ 300</li>
+<li>종류 2 (50점): 별다른 제약조건 없음.</li>
+</ul>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+복잡해 보이지만 주어진 과정을 예제로 진행해 보면 주기 4로 반복됨을 짐작할 수 있다. 동일한 패턴이 반복되는 주기가 4이므로 문제를 쉽게 해결할 수 있다.   
+</div> 
+</body>
+</html>

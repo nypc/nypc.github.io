@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<h1 id="-">줄임말</h1>
+<p>좀 놀 줄 알려면 줄임말을 잘 써야 한다.</p>
+<p>요즘은 문장에서 단어들의 첫 글자만을 따와서 줄임말을 만들곤 한다. </p>
+<p>예를 들어, '애교 빼면 시체'를 '애빼시'라고 하고 '혼자 코인 노래방'을 '혼코노'로 부른다. </p>
+<p>문제에서 주어지는 문장들은 다음을 만족한다.</p>
+<p>1) 한글과 영어로 이루어진 문장이다.</p>
+<p>2) 문장은 단어들로 이루어지고 단어들 사이에는 공백이 하나 존재한다. 단어는 한글과 영어가 혼용될 수 있다.</p>
+<p>3) 문장은 그 뜻이 명확하지 않아도 된다. 우리가 읽었을 때 그 의미를 이해할 수 없을 수도 있다.</p>
+<p>문장이 주어지면 단어들의 첫 글자를 딴 줄임말을 출력하는 프로그램을 작성하시오. </p>
+<ul>
+<li>UTF-8 한글 문자열을 해독하는 방법은 인터넷을 검색하여 알아내어 보자. </li>
+<li>언어의 표준 라이브러리 이외에 다른 사람의 코드를 복사해서 사용해서는 안된다.</li>
+</ul>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 문장의 개수를 나타내는 정수 N(1 ≤ N ≤ 1,024)이 주어진다.</p>
+<p>다음 이어지는 N개의 줄 각각에 하나의 문장이 주어진다. 하나의 문장은 16개 이하의 단어로 이루어져 있으며, 각 단어는 64자 이하이다. 단어는 한글 글자와 영어 대문자, 소문자로 이루어져 있다. 한글 글자 중에서 완전하지 않은 낱자(ㄱ,ㄴ,...,ㅎ,ㅏ,ㅑ,...,ㅣ 등)는 주어지지 않는다.</p>
+<p>주어지는 입력은 UTF-8(BOM 없음)으로 인코딩 된 입력이다.</p>
+<h2 id="-">출력 형식</h2>
+<p>N개의 줄에 걸쳐 정답을 출력한다. 출력의 i번째 줄에 입력에 주어진 i번째 문장으로 만든 줄임말을 출력한다. </p>
+<p>출력 내용을 붙여넣기로 직접 제출하는 것을 권장하며, 업로드로 파일을 제출하는 경우 파일은 UTF-8(BOM 여부 상관 없음)로 인코딩되어야 한다.</p>
+<h2 id="-1">입력 예제 1</h2>
+<pre><code>3
+상하이 스파이스 치킨버거 콤보
+NEXON Youth Programming Challenge
+별걸 다 줄인다</code></pre><h2 id="-1">출력 예제 1</h2>
+<pre><code>상스치콤
+NYPC
+별다줄</code></pre><h2 id="-2">입력 예제 2</h2>
+<pre><code>3
+Away from Keyboard
+안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕 안녕
+zl존전사 zl존법사 zl존도적 zl존궁수 zl존코더</code></pre><h2 id="-2">출력 예제 2</h2>
+<pre><code>AfK
+안안안안안안안안안안안안안안안안
+zzzzz</code></pre><h2 id="-">채점 방식</h2>
+<p>이 문제는 풀이 소스코드를 제출하지 않고, 각 테스트케이스의 입력데이터를 다운받아 알맞은 출력 파일을 만들어 <strong>출력 파일만을 제출</strong>하는 문제다. 또한 입력 케이스들 각각에 대해 동일한 점수가 배분된다.</p>
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+주어진 문장의 첫 글자들 만을 모아 줄임말을 만들어야 한다. 한글을 처리하는 것이 어려울 수 있으나 여러가지 라이브러리를 사용할 수 있다.
+</div> 
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">색종이</h1>
+<p>N×M 크기의 격자 모양의 스케치북과 다양한 크기의 색종이들을 가지고 있다. 위에서 부터 i번째 행, 왼쪽에서 부터 j번째 열에 해당하는 격자는 (i, j)번 격자라고 부른다. 예를 들어, 가장 왼쪽 위의 격자는 (1, 1), 오른쪽 아래의 격자는 (N, M) 번 격자다. </p>
+<p>당신에겐 크기와 색을 마음대로 정할 수 있는 색종이가 NM개 주어진다. 색종이의 색은 1이상 3이하의 정수로 표현된다.</p>
+<p>이 스케치북에 격자에 맞는 색종이들을 스케치북에 잘 붙여서 원하는 그림의 모양을 만들고자 한다. 각 격자의 색상은 마지막에 붙인 색종이의 색상이 된다.  단, 각 격자에 붙어있는 색종이가 반드시 있도록 붙여야한다.</p>
+<p>색종이들을 적게 사용해서 원하는 그림을 만드는 방법을 구하여라.</p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에는 세로의 길이 N, 가로의 길이 M, 사용할 수 있는 색종이의 개수 V가 공백으로 구분되어 주어진다.</p>
+<p>다음 N개의 줄에는 1이상 C이하의 정수 M개가 공백으로 구분되어 주어진다. i번째 줄의 j번째 수는 원하는 그림의 (i, j)번 격자의 색을 의미한다.</p>
+<p>C는 별도로 입력으로 주어지지 않는다. C에 관련해서는 아래 <strong>입력 데이터 및 생성 방법</strong>을 참고하자.</p>
+<h2 id="-">출력 형식</h2>
+<p>첫째 줄에 사용한 색종이의 개수 T를 출력한다.</p>
+<p>다음 T개의 줄에는 색종이를 붙인 순서대로 색종이에 대한 정보를 줄로 구분하여 출력한다. 색종이의 정보는 x, y, z, w, c를 차례로 공백으로 구분하여 출력한다. 이는 사용한 색종이의 왼쪽 위 격자가 (x, y), 오른쪽 아래 격자가 (z, w), 색이 c라는 것을 의미한다. (1 ≤ x ≤ z ≤ N, 1 ≤ y ≤ w ≤ M, 1 ≤ c ≤ 3 를 만족하게 출력해야 한다.)</p>
+<h2 id="-">입력 데이터 및 생성 방법</h2>
+<p>10개의 입력 데이터는 다음의 N, M, C, V가 주어진다.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>N</th>
+<th>M</th>
+<th>C</th>
+<th>V</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>30</td>
+<td>2</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>30</td>
+<td>3</td>
+<td>13</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>11</td>
+</tr>
+<tr>
+<td>5</td>
+<td>30</td>
+<td>30</td>
+<td>2</td>
+<td>20</td>
+</tr>
+<tr>
+<td>6</td>
+<td>30</td>
+<td>30</td>
+<td>3</td>
+<td>20</td>
+</tr>
+<tr>
+<td>7</td>
+<td>30</td>
+<td>30</td>
+<td>2</td>
+<td>450</td>
+</tr>
+<tr>
+<td>8</td>
+<td>30</td>
+<td>30</td>
+<td>3</td>
+<td>600</td>
+</tr>
+<tr>
+<td>9</td>
+<td>30</td>
+<td>30</td>
+<td>2</td>
+<td>225</td>
+</tr>
+<tr>
+<td>10</td>
+<td>30</td>
+<td>30</td>
+<td>3</td>
+<td>300</td>
+</tr>
+</tbody></table>
+<p>5, 6번 데이터를 제외하고는, 각 칸을 1이상 C이하의 수를 랜덤으로 정하여 생성되었다. 5, 6번 데이터는 첫번째 직사각형으로 전체를 덮은 후, 직사각형 V-1개를 랜덤하게 생성하여 덮는 방법으로 생성되었다.</p>
+<p>V는, 1, 2, 3, 4번 데이터의 경우에는 최소의 가능한 색종이 개수 +1로, 5번, 6번의 경우 데이터를 만들 때 사용한 직사각형의 갯수로, 7번, 8번의 경우 NM(C-1)/C로, 9번, 10번의 경우에는 NM(C-1)/2C로 결정되었다.</p>
+<h2 id="-">배점</h2>
+<p>배점은 각 테스트 데이터당 10점이다.</p>
+<p>T &gt; NM 혹은, 색종이를 붙였을 때 그림이 일치하지 않으면, 0점을 받는다.</p>
+<p>T &lt; V이면 10점, 
+V ≤ T ≤ NM 이면, T = V일때 10점, T = NM 일때 1점을 기준으로 점수가 선형으로 주어진다. 즉, 점수는 1 + 9 * (NM-T)/(NM-V) 이다. 그 후, 각 테스트케이스의 점수는 0.05단위로 버림된다.</p>
+<h2 id="-">입력 예</h2>
+<pre><code>3 3 3
+2 2 2
+2 1 2
+2 1 2</code></pre><h2 id="-">출력 예</h2>
+<pre><code>5
+1 1 2 2 3
+2 3 3 3 1
+1 1 2 3 2
+2 1 3 3 2
+2 2 3 2 1</code></pre><h2 id="-">예제 설명</h2>
+<p>이 출력에서는 5개의 색종이를 사용해서 그림을 만들었다. 그림이 일치하고, N = 3, M = 3, T = 5이기 때문에, 해당하는 점수는 1 + 9 * (9-5) / (9-3) = 7점이다.</p>
+<h2 id="-">채점 방식</h2>
+<p>이 문제는 풀이 소스코드를 제출하지 않고, 각 테스트케이스의 입력데이터를 다운받아 알맞은 출력 파일을 만들어 <strong>출력 파일만을 제출</strong>하는 문제다.</p>
+</body>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+색종이를 놓는 모든 방법을 고려하면 당연히 너무 많은 시간이 걸리게 된다. 또, 일반적인 모든 경우를 빠르게 해결할 수 있는 방법은 아직 알려져 있지 않다. 문제에서 어떤 입력이 주어지는지 알려주었으므로 각 경우에 따른 방법을 아마도 따로 구현하여야 하는 문제이다. 우선 크게 놓을 수 있는 색종이를 먼저 정하고 그 위에 다른 색종이를 놓을 수 있는지 판단해 보는 방법 등 여러가지 작전이 있을 수 있다.
+</div> 
+</body>
+</html>

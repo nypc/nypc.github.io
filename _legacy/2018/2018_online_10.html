@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">캐릭터 경험치</h1>
+<p>캐릭터가 컨텐츠를 수행하고 경험치를 얻어 성장하는 모바일 게임이 있다. 제공된 컨텐츠 마다 이를 수행하기 위해 필요한 스태미나 소모량과 이 컨텐츠를 수행할 경우 얻을 수 있는 경험치가 정해져 있다. 이 게임에서 캐릭터는 자신이 보유하고 있는 스태미나로 제공된 컨텐츠들을 수행하여 경험치를 최대로 얻으려고 한다. 다만, 같은 컨텐츠는 반복해서 수행될 수 없다.</p>
+<p>예를 들어, 캐릭터가 보유하고 있는 스태미나의 양이 100이고 제공된 3개의 컨텐츠가 (스태미나 소모량, 경험치)의 형식으로 (40,200), (50, 150), (30, 180) 와 같이 순서대로 주어져 있다고 하자. 이 상황에서 경험치를 가장 많이 얻는 방법은, 1번과 3번 컨텐츠를 각각 한번씩 수행하는 것이다. 이 경우 스태미나는 70을 소모하고 경험치는 380을 얻게 된다.</p>
+<p>캐릭터가 보유하고 있는 스태미나의 양과 컨텐츠의 개수, 그리고 각 컨텐츠마다 스태미나 소모량과 얻는 경험치가 목록으로 주어졌을 때,  캐릭터가 얻을 수 있는 경험치의 최대값을 출력하는 프로그램을 작성하라.</p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 캐릭터가 보유한 스테미나의 양을 나타내는 자연수 S가 주어진다. (1 ≤ S ≤ 10,000) 다음 줄에 제공된 컨텐츠의 개수 N이 주어진다. (1 ≤ N ≤ 1,000) 다음 N개의 줄에 각 컨텐츠마다 스태미나 소모량 U와 얻는 경험치 E가 순서대로 주어진다. (1 ≤ U ≤ 10,000, 1 ≤ E ≤ 100,000) 게임을 시작할 때, 캐릭터의 경험치는 0이다. </p>
+<h2 id="-">출력 형식</h2>
+<p>출력의 첫 줄에 캐릭터가 얻을 수 있는 경험치의 최대량을 출력한다. 다음 줄에 수행한 컨텐츠의 개수를 출력한다. 다음 줄에 수행한 컨텐츠의 번호를 중복없이 모두 출력한다. 컨텐츠들의 번호는 1이상 N이하이며, 컨텐츠 번호 출력 순서는 상관이 없다. 캐릭터가 얻을 수 있는 경험치의 최대량이 0인 경우는 없다. 답이 여러 가지인 경우 그 중 아무거나 하나 출력한다.</p>
+<h2 id="-">입력 예제</h2>
+<pre><code>100
+3
+40 200
+50 150
+30 180</code></pre><h2 id="-">출력 예제</h2>
+<pre><code>380
+2
+1 3</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들 각각에 대해 동일한 점수가 배분된다. 특이사항으로, 만약 경험치의 최대량을 출력하였지만 수행한 컨텐츠 정보를 출력하지 않을 경우에는 테스트케이스 마다 배분된 점수의 50%를 받는다. 단, 틀린 컨텐츠 정보를 출력할 경우에는 점수를 받지 못한다. </p>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+확인해야 하는 경우의 수가 많은 문제이다. 기본적으로 Knapsack과 유사한 구조를 가지고 있다. 동적 계획법을 이용해서 반복적으로 확인되는 경우들을 계산하는 양을 줄일 수 있다. 
+</div> 
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">울타리</h1>
+<p>농장에 철조망으로 울타리를 만들었다고 한다. 울타리는 단위 철조망들로 구성되는데, 한 단위 철조망은 두개의 말뚝을 똑바른 선분 모양의 철조망으로 이은 것이다. N개의 단위 철조망이 2차원 평면 상의 좌표로 주어진다. 두 단위 철조망이 중간에서 만나는 경우는 없고, 두 단위 철조망이 점을 공유한다면 한 말뚝만 공유가 가능하다. </p>
+<p>울타리나 말뚝 위에 있지 않은 두 점 S와 T가 주어진다고 하자. S에서 T로 임의의 곡선을 통해서 이동하면 울타리 위의 점을 지나는 개수를 알 수 있을 것이다. 단, 곡선이 말뚝 위를 <strong>지날 수 없다</strong>.</p>
+<p>아래 그림에서 똑바른 선분들은 울타리들이다. S와 T의 위치가 표시되어 있다. 세 개의 곡선이 그려져 있는데, 그 중 울타리 위의 점을 지나는 개수가 가장 작은 것은 위쪽 곡선이며 0개의 점을 지난다. </p>
+<p><img src="https://s3.ap-northeast-2.amazonaws.com/nypc2018/Fen1.png" alt="그림1"></p>
+<p>울타리의 모양과 S, T의 위치를 입력으로 받아 S와 T를 연결하는 곡선들 중 울타리 위의 점을 지나는 개수가 가장 작은 것을 찾는 프로그램을 작성하라. </p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에는 단위 철조망의 개수 N이 주어진다. (1 ≤ N ≤ 100,000) 다음 N개의 줄에 단위 철조망이 X<sub>1</sub>, Y<sub>1</sub>, X<sub>2</sub>, Y<sub>2</sub>의 4개의 정수로 주어진다. 서로 다른 위치 (X<sub>1</sub>, Y<sub>1</sub>)과 (X<sub>2</sub>, Y<sub>2</sub>)에 있는 말뚝을 잇는 단위 철조망이라는 의미이다. 다음 1개의 줄에 S와 T의 좌표가 각각 공백으로 구분되어 주어진다. 모든 좌표 값은 -10<sup>9</sup>에서 10<sup>9</sup>까지의 정수이다.</p>
+<h2 id="-">출력 형식</h2>
+<p>첫째 줄에 울타리 위의 점을 지나는 가장 작은 개수를 출력한다.</p>
+<h2 id="-1">입력 예제 1</h2>
+<pre><code>3
+1 1 5 1
+1 1 1 5
+5 1 5 5
+3 3 8 3</code></pre><h2 id="-1">출력 예제 1</h2>
+<pre><code>0</code></pre><h2 id="-2">입력 예제 2</h2>
+<pre><code>8
+1 1 7 1
+7 1 7 7
+7 7 1 7
+1 7 1 1
+2 2 6 2
+6 2 6 6
+6 6 2 6
+2 6 2 2
+4 4 9 4</code></pre><h2 id="-2">출력 예제 2</h2>
+<pre><code>2</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.</p>
+<ul>
+<li>종류 1 (27점): 모든 말뚝은 각 2개의 철조망에 연결되어 있다.</li>
+<li>종류 2 (42점): 모든 말뚝의 쌍은 0개 이상의 철조망을 따라 가면 연결이 되어 있다.</li>
+<li>종류 3 (31점): 별다른 제약조건 없음. </li>
+</ul>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+울타리를 구성하는 각 철조망의 왼쪽과 오른쪽 면을 따로 생각하고, 한 면에서 시작해서 왼손법칙이나 오른손법칙처럼 움직이는 것을 상상해 볼 수 있다. 이 움직임을 철조망과 말뚝의 연결 관계를 순회하는 것으로 구현할 수 있다. 이 순회들이 계산되고 나면 평면은 여러 개의 영역들로 구분되고, 이후에 남는 문제는 두 점이 어떤 영역에 포함되는 지, 영역 간을 이동하기 위해 몇 개의 철조망을 넘어야 하는지를 판단하는 문제이다. 이 문제는 영역들을 정점으로 하는 그래프를 만들어 해결이 가능하다. 철조망들이 모두 연결되어 한 덩어리인 경우는 이 방법만으로 해결이 가능하지만, 철조망들의 연결된 덩어리가 여러 개인 경우는 추가적인 아이디어가 필요하다.
+</div> 
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">피파 온라인 드리블 튜토리얼</h1>
+<p>피파 온라인 게임에서는 드리블 훈련을 하기 위한 간단한 세로 스크롤 게임을 제공한다.
+이 게임에서 사용자는 축구공을 드리블하는 주인공 선수를 조종한다.
+게임 판은 N행 M열의 격자칸으로 생각할 수 있다. 화면에 한번에 보이는 부분은 게임 판의
+일부인 K행 M열이다.</p>
+<p>게임 판의 각 격자칸은 빈칸이거나 혹은 상대 선수가 있다. 주인공 선수는 게임 판의 
+격자칸들로 움직일 수 있다.</p>
+<p>게임이 시작할 때 게임 판의 제일 아래 K행 M열이 화면에 보인다. 주인공 선수는 게임
+판의 가장 왼쪽 아래 격자에 있다.</p>
+<p>이후 다음과 같은 두가지가 계속 반복된다.</p>
+<p>1) 주인공 선수를 상하좌우로 인접한 격자칸으로 이동할 수 있다. 주인공 선수가 가만히 
+있을 수도 있다. 주인공 선수는 화면의 범위 밖으로 나갈 수 없다.</p>
+<p>2) 게임 판이 아래로 한 칸 스크롤된다. (주인공 선수는 화면 상에서 같은 위치가 유지된다.
+즉, 게임 판 기준으로는 주인공 선수가 위로 한칸 움직인다.)</p>
+<p>위 과정을 반복할 때 주인공 선수와 상대 선수가 겹치게 되면 게임에 실패한다. 화면이 끝까지 스크롤되면 게임에 성공한다. 즉, 게임 판의 제일 위 K행 M열이 화면에 나타나는 것이 성공이다.</p>
+<p>주인공 선수는 1)번 단계 직후 축구공을 정면으로 강하게 차서 상대 선수 한 명을 게임 판에서
+없어지도록 할 수 있다. 이때 없어지는 상대 선수는 주인공 선수의 정면에서 (화면 상에서 위쪽으로) 가장 가까운 선수이다. 또, 이 상대 선수는 화면에 보이는 상태라야 한다.</p>
+<p>게임 판의 상황을 입력으로 받아 주인공 선수가 게임에 성공하기 위해 축구공을 강하게 차야 
+하는 최소 횟수를 출력하는 프로그램을 작성하라.</p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 게임 판과 화면의 크기를 알려주는 N, M, K가 주어진다.
+다음 N개의 줄 각각에 게임 판의 한 행이 M개의 글자로 주어진다. 글자가 <code>.</code>(점)인 경우
+빈 칸이며, 글자가 <code>#</code>인 경우 상대 선수가 있는 것이다.
+(2 ≤ K ≤ 50, 1 ≤ M ≤ 50, 2*K &lt; N ≤ 500)
+입력의 첫 K줄과 마지막 K줄은 모두 <code>.</code>(점) 문자이다.</p>
+<h2 id="-">출력 형식</h2>
+<p>주인공 선수가 게임에 성공하기 위해 축구공을 강하게 차야 
+하는 최소 횟수를 정수로 출력한다.</p>
+<h2 id="-1">입력 예제 1</h2>
+<pre><code>5 4 2 
+....
+....
+##.#
+....
+....</code></pre><h2 id="-1">출력 예제 1</h2>
+<pre><code>0</code></pre><h2 id="-2">입력 예제 2</h2>
+<pre><code>6 4 2 
+....
+....
+....
+###.
+....
+....</code></pre><h2 id="-2">출력 예제 2</h2>
+<pre><code>1</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다. </p>
+<ul>
+<li>종류 1 (35점): M=1.</li>
+<li>종류 2 (165점): 추가적 제약조건 없음. </li>
+</ul>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+위에서 아래로 스크롤되는 게임 판에서 K명의 상대 선수를 없어지게 하여 길을 열어서 게임 판의 제일 위까지 갈 수 있는지를 판단해야 한다. 선수와 게임 판이 움직이는 규칙이 간단하므로 게임 판의 각 칸들을 정점으로 하는 그래프를 만들어 해결할 수도 있다. 또, 선수가 가장 아래에서 시작한다는 점을 이용해서 제일 아래 줄부터 선수가 갈 수 있는 칸들을 계산하고 그까지 가기 위해 사용해야 하는 최소 축구공 개수를 기록하는 방법으로도 해결할 수 있다.    
+</div> 
+</body>
+</html>

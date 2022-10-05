@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+
+<h1 id="-">우물왕 김배찌</h1>
+<p>물 부족 국가의 어린이들에게 깨끗하고 신선한 물을 선물하기 위해 김배찌님은 마을에 우물을 파기로 했다. </p>
+<p>N 채의 집이 있는 한 마을에 우물 하나를 파주려고 하는데, 이 우물이 각 집들에서 너무 먼 거리에 있다면 물을 길으러 오가는데 시간과 노력이 많이 들어서 효용성이 떨어진다. 따라서, 각 집들까지 거리의 제곱이 최소가 되는 위치에 우물을 파려고 한다. </p>
+<p>즉, 우물의 좌표가 (x, y)이고 첫번째 집의 좌표가 (x<sub>1</sub>, y<sub>1</sub>) 이라면, 우물과 첫번째 집까지 거리의 제곱은 
+(x-x<sub>1</sub>)<sup>2</sup> + (y-y<sub>1</sub>)<sup>2</sup> 이 된다. 비슷한 식으로 우물로부터 각 집까지의 거리의 제곱의 합을 구하면 
+(x-x<sub>1</sub>)<sup>2</sup> + (y-y<sub>1</sub>)<sup>2</sup> + 
+(x-x<sub>2</sub>)<sup>2</sup> + (y-y<sub>2</sub>)<sup>2</sup> + ... + (x-x<sub>N</sub>)<sup>2</sup> + (y-y<sub>N</sub>)<sup>2</sup> 이 되며, 이 값이 최소가 되는 좌표 (x, y) 에 우물을 파면 된다. </p>
+<p>모든 집으로부터 거리의 제곱의 합이 최소가 되는 우물의 좌표  (x, y)를 구하는 프로그램을 작성하시오. </p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 이 마을에 있는 집의 수를 나타내는 자연수 N이 주어진다 (1 ≤ N ≤ 300,000).</p>
+<p>그 다음 N 줄에는 한 줄에 하나씩 집의 좌표 (x<sub>i</sub>, y<sub>i</sub>)를 나타내는 두 정수  x<sub>i</sub>와 y<sub>i</sub>가 주어진다 (0 ≤ x<sub>i</sub>, y<sub>i</sub> ≤ 100,000,000). </p>
+<h2 id="-">출력 형식</h2>
+<p>출력은 한 줄에 두 실수 x와 y를 출력하는데, 이는 주어진 조건을 만족하는 우물의 위치 (x, y)를 나타낸다. 출력한 두 값이 모두 정답과 차이가 0.001 이내라면  정답으로 인정된다.  </p>
+<h2 id="-">입력 예제</h2>
+<pre><code>5
+1 2
+2 6
+3 2
+4 7
+1 2</code></pre><h2 id="-">출력 예제</h2>
+<pre><code>2.2 3.8</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들 각각에 대해 동일한 점수가 배분된다.</p>
+
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'> 
+평면에 주어진 점들에서 거리의 제곱의 합이 최소가 되는 위치를 구해야 한다. 우선 x좌표와 y 좌표를 따로 다룰 수 있다는 것을 알 수 있다. x좌표에 대해서 답을 구할 때, 답 위치의 x좌표가 아주 크거나 아주 작으면 좋지 않다는 것을 짐작할 수 있어 이분 탐색을 사용할 수 있다. 좀더 생각하면 단순히 평균을 구하면 된다는 것을 알 수 있다.    
+</div> 
+</body>
+</html>

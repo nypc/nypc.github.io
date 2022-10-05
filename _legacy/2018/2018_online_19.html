@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 { margin-bottom: 20pt; font-size: 22pt; font-weight: bold; }
+        h2 { margin-top: 20pt; font-size: 16pt; font-weight: bold; }
+        h3 { margin-top: 20pt; font-size: 14pt; font-weight: bold; }
+        blockquote { font-size: 11pt; }
+        </style>
+</head>
+<body style='padding:20pt; font-family: 맑은 고딕;'>
+<a href='./'>← 목록으로</a>
+<hr>
+<!--------------->
+<h1 id="-">종이접기</h1>
+<p>크기가  N X M 인 종이를 계속 접어 크기가  1 X 1 이  될 때까지 접은 후 이를 펼치면 종이엔 줄무늬가 생긴다. 어떤 줄무늬는 위로 볼록하고, 어떤 것은 아래로 볼록한 모양을 띄게 된다. 위로 볼록한 무늬를 굵은 실선으로, 아래로 볼록한 무늬를 굵은 점선으로 나타내자. 아래 그림은  2 X 3 크기의 종이를 어떤 순서로 접었나에 따른 서로 다른 줄 무늬를 보여주고 있다. </p>
+<p><img src="https://s3.ap-northeast-2.amazonaws.com/nypc2018/paper1.png" alt="그림 1"></p>
+<p>격자의 정보를 나타내는 자연수 N과 M, 그리고 줄무늬를 나타내는 정보가 주어질 때, 그런 무늬가 실제로 종이를 접은 후 펼쳐서 얻어진 그림인지, 아니면 인위적으로 그린 그림인지를 판단하는 프로그램을 작성하시오.</p>
+<h2 id="-">입력 형식</h2>
+<p>첫째 줄에 테스트 케이스의 수 T (1 ≤ T ≤ 10)가 주어진다. 각 테스트 케이스의 첫째줄엔 종이의 세로 크기를 나타내는 정수 N(2 ≤ N ≤ 50)과 가로 크기를 나타내는 정수 M(2 ≤ M ≤ 50)이 주어진다. 이어지는 N줄 각각엔 M-1 개의 정수(0 또는 1)가 주어지는데 이는 격자의 세로방향 무늬에 대한 정보이다. 즉, i 번째 줄에 있는 M-1개 정수는 격자의 i 번째 행에 있는 M-1개의 세로 방향에 관한 무늬 정보이다. 1은 위로 볼록한 무늬를, 0은 아래로 볼록한 무늬를 의미한다. 이어지는 N-1 줄 각각엔 M 개의 정수(0 또는 1)가 주어지는데 이는 가로방향 무늬에 대한 정보이다. 즉, i 번째 줄에 있는 M 개 정수는 격자의 i 번째 행에 있는 M 개의 가로 방향에 관한 무늬 정보이다. (아래 그림 참조)</p>
+<p><img src="https://s3.ap-northeast-2.amazonaws.com/nypc2018/paper2.png" alt="그림 2"></p>
+<h2 id="-">출력 형식</h2>
+<p>한 줄로 결과를 출력한다. 주어진 무늬 정보가 실제로 종이를 접은 후 펼쳐서 얻어지는 것이면 1, 그렇지 않으면 0을 출력한다.</p>
+<h2 id="-1">입력 예제 1</h2>
+<pre><code>2
+2 3
+1 1
+1 1
+0 1 0
+4 6
+1 0 1 1 0
+0 1 0 0 1
+1 0 1 1 0
+0 1 0 0 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1</code></pre><h2 id="-1">출력 예제 1</h2>
+<pre><code>1 1</code></pre><h2 id="-2">입력 예제 2</h2>
+<pre><code>2
+2 3
+1 0
+1 0
+1 0 1
+4 6
+1 0 1 1 0
+0 1 0 0 1
+1 0 1 1 0
+0 0 0 0 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1</code></pre><h2 id="-2">출력 예제 2</h2>
+<pre><code>1 0</code></pre><h2 id="-3">입력 예제 3</h2>
+<pre><code>1
+2 4
+0 1 1
+1 1 0
+1 1 1 0</code></pre><h2 id="-3">출력 예제 3</h2>
+<pre><code>0</code></pre><h2 id="-">채점 방식</h2>
+<p>입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다. </p>
+<ul>
+<li>종류 1 (20점): N = M = 2 이다. </li>
+<li>종류 2 (55점): 세로무늬 값은 모두 1이다.(즉, 세로선은 모두 위로 볼록하다.)</li>
+<li>종류 3 (125점): 별다른 제약조건 없음. </li>
+</ul>
+<!--------------->
+<h2>해설</h2>
+<p><button onclick='document.getElementById("hint_text").style.display="block"; this.style.display="none";' class='btn btn-default'>펼치기</button></p> 
+<div id='hint_text' style='display: none;'>
+가장 마지막 접기로 가능한 것인지를 판단하는 것이 우선이다. 이 판단을 통해 가장 마지막 접기로 가능한 것들을 찾고 나면 재귀적인 문제가 정의된다. 재귀적으로 문제를 해결하면 종이의 크기가 작아지므로 적당한 시간 내에 해결하는 것이 가능해진다.    
+</div> 
+</body>
+</html>
