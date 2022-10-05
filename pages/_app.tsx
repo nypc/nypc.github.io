@@ -1,24 +1,37 @@
+import { ThemeProvider } from "@emotion/react";
 import { MDXProvider } from "@mdx-js/react";
+import {
+  Paragraph,
+  SolvedGlobalStyles,
+  solvedThemes,
+  Typo
+} from "@solved-ac/ui-react";
+import { Code } from "components";
+import { MDXComponents } from "mdx/types";
 import type { AppProps } from "next/app";
-import Head from "next/head";
-import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const components: MDXComponents = {
+  h1: ({ ref, ...props }) => <Typo h1 {...props} />,
+  h2: ({ ref, ...props }) => <Typo h2 {...props} />,
+  h3: ({ ref, ...props }) => <Typo h3 {...props} />,
+  h4: ({ ref, ...props }) => <Typo h4 {...props} />,
+  h5: ({ ref, ...props }) => <Typo h5 {...props} />,
+  h6: ({ ref, ...props }) => <Typo h6 {...props} />,
+  p: ({ ref, ...props }) => <Paragraph {...props} />,
+  code: ({ ref, ...props }) => <Code {...props} />,
+};
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"
-          integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC"
-          crossOrigin="anonymous"
-        />
-      </Head>
-      <MDXProvider>
-        <Component {...pageProps} />
+      <MDXProvider components={components}>
+        <ThemeProvider theme={solvedThemes.light}>
+          <SolvedGlobalStyles />
+          <Component {...pageProps} />
+        </ThemeProvider>
       </MDXProvider>
     </>
   );
-}
+};
 
 export default MyApp;
