@@ -6,6 +6,10 @@ export const meta = {
   stage: "예선",
 };
 
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
 옛날 옛적, 1996년에 출시된 "바람의 나라"에선 플레이어들이 이런 메세지를 외치곤 했다.
 
 <Figure src="/2016/daramg.jpg" alt="넥슨은 다람쥐를 뿌려라" />
@@ -86,7 +90,3 @@ DD...
 ## 채점 규칙
 
 **모든 숨겨진 입력 데이터에 대해** 정답이면 만점을 주고, 하나라도 틀리면 점수를 주지 않는다.
-
-export default ({ children }) => (
-  <PostLayout meta={meta}>{children}</PostLayout>
-);
