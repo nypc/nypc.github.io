@@ -29,7 +29,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <style jsx global>
         {`
           span.katex {
-            font-size: 1.05em;
+            font-size: 1.1em;
           }
         `}
       </style>
