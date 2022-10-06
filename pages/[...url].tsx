@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import path from "path";
 
 /*
     Catch-all route for *.html to allow redirection from legacy URLs
@@ -28,8 +29,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const absolutePath = path.join(process.cwd(), "./pages");
+
   const directories = fs
-    .readdirSync("./pages", { withFileTypes: true })
+    .readdirSync(absolutePath, { withFileTypes: true })
     .filter((file) => file.isDirectory());
 
   const posts: string[] = [];
@@ -39,10 +42,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
       if (file.isDirectory()) {
         dfs(
           `${dir}/${file.name}`,
-          fs.readdirSync(`./pages/${dir}/${file.name}`, { withFileTypes: true })
+          fs.readdirSync(path.join(absolutePath, dir, file.name), {
+            withFileTypes: true,
+          })
         );
       } else if (file.isFile()) {
-        posts.push(`${dir}/${file.name}`);
+        posts.push(path.join(dir, file.name));
       }
     });
   };
