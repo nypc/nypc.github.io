@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const absolutePath = path.join(process.cwd(), "./pages");
+  const absolutePath = path.join("pages");
 
   const directories = fs
     .readdirSync(absolutePath, { withFileTypes: true })
@@ -58,8 +58,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: posts.map((post) => ({
       params: {
         url: post
-          .replace(/^\//, "")
-          .replace(/\.mdx?$/, ".html")
+          .replace(/\\/g, "/")
+          .replace(/^\//g, "")
+          .replace(/\.mdx?$/g, ".html")
           .split("/"),
       },
     })),
