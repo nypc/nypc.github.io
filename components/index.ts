@@ -4,4 +4,5 @@ export * from "./Figure";
 export * from "./List";
 export * from "./PostLayout";
 export * from "./Solution";
+export * from "./Subtask";
 

@@ -1,9 +1,14 @@
-import { ThemeProvider } from "@emotion/react";
+import { css, Global, ThemeProvider } from "@emotion/react";
 import { MDXProvider } from "@mdx-js/react";
 import {
+  Cell,
   Paragraph,
+  Row,
   SolvedGlobalStyles,
   solvedThemes,
+  Table,
+  TableBody,
+  TableHead,
   Typo
 } from "@solved-ac/ui-react";
 import { Code, Enumerate, Itemize } from "components";
@@ -21,18 +26,28 @@ const components: MDXComponents = {
   code: ({ ref, ...props }) => <Code {...props} />,
   ul: ({ ref, ...props }) => <Itemize {...props} />,
   ol: ({ ref, ...props }) => <Enumerate {...props} />,
+  table: ({ ref, ...props }) => <Table {...props} />,
+  tbody: ({ ref, ...props }) => <TableBody {...props} />,
+  thead: ({ ref, ...props }) => <TableHead {...props} />,
+  tr: ({ ref, ...props }) => <Row {...props} />,
+  td: ({ ref, ...props }) => <Cell {...props} />,
+  th: ({ ref, ...props }) => <Cell header {...props} />,
 };
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <style jsx global>
-        {`
+      <Global
+        styles={css`
           span.katex {
             font-size: 1.1em;
           }
+          .katex span.hangul_fallback {
+            font-size: 90.9%;
+            font-family: ${solvedThemes.light.typography.paragraph};
+          }
         `}
-      </style>
+      />
       <MDXProvider components={components}>
         <ThemeProvider theme={solvedThemes.light}>
           <SolvedGlobalStyles />
