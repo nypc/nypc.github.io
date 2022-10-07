@@ -1,71 +1,23 @@
-import * as fs from "fs";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import path from "path";
+import type { NextPage } from "next";
+import { useEffect } from "react";
 
 /*
     Catch-all route for *.html to allow redirection from legacy URLs
 */
 
 const CatchAll: NextPage = () => {
+  // `redirect` can not be returned from getStaticProps during prerendering
+  // so we resort to useEffect redirects
+  // https://nextjs.org/docs/messages/gsp-redirect-during-prerender
+  useEffect(() => {
+    if (/[^.]+\.html$/.exec(window.location.href)) {
+      window.location.href = window.location.href.replace(/\.html$/, "");
+    } else {
+      window.location.href = "https://www.nypc.co.kr/";
+    }
+  }, []);
+
   return null;
-};
-
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const url = ctx.params?.url;
-  const urlStr = Array.isArray(url) ? url.join("/") : url;
-
-  if (urlStr && urlStr.endsWith(".html")) {
-    return {
-      redirect: {
-        destination: `/${urlStr.slice(0, -5)}`,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    notFound: true,
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const absolutePath = path.join("pages");
-
-  const directories = fs
-    .readdirSync(absolutePath, { withFileTypes: true })
-    .filter((file) => file.isDirectory());
-
-  const posts: string[] = [];
-
-  const dfs = (dir: string, files: fs.Dirent[]) => {
-    files.forEach((file) => {
-      if (file.isDirectory()) {
-        dfs(
-          `${dir}/${file.name}`,
-          fs.readdirSync(path.join(absolutePath, dir, file.name), {
-            withFileTypes: true,
-          })
-        );
-      } else if (file.isFile()) {
-        posts.push(path.join(dir, file.name));
-      }
-    });
-  };
-
-  dfs("", directories);
-
-  return {
-    paths: posts.map((post) => ({
-      params: {
-        url: post
-          .replace(/\\/g, "/")
-          .replace(/^\//g, "")
-          .replace(/\.mdx?$/g, ".html")
-          .split("/"),
-      },
-    })),
-    fallback: false,
-  };
 };
 
 export default CatchAll;
