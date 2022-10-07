@@ -1,7 +1,19 @@
 import styled from "@emotion/styled";
-import { Enumerate } from "@solved-ac/ui-react";
+import { Enumerate, Itemize, Typo } from "@solved-ac/ui-react";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
+
+const ProblemListEnumerate = styled(Enumerate)`
+  column-width: 280px;
+  column-gap: 16px;
+`;
+
+export const ProblemLink = styled.a`
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 interface Props {
   year: number;
@@ -12,17 +24,45 @@ interface Props {
 }
 
 export const ProblemList: React.FC<Props> = (props) => {
-  const { year, problems } = props;
+  const { year, problems: list } = props;
+
+  const practices = useMemo(
+    () => list.filter(([, title]) => title.startsWith("[연습문제]")),
+    [list]
+  );
+  const problems = useMemo(
+    () => list.filter(([, title]) => !title.startsWith("[연습문제]")),
+    [list]
+  );
+
   return (
-    <Enumerate>
-      {problems.map(([id, title]) => (
-        <li key={id}>
-          <Link href={`/${year}/${id}`} passHref>
-            <a>{title}</a>
-          </Link>
-        </li>
-      ))}
-    </Enumerate>
+    <>
+      {practices.length > 0 && (
+        <>
+          <Itemize>
+            {practices.map(([id, title]) => (
+              <li key={id}>
+                <Link href={`/${year}/${id}`} passHref>
+                  <ProblemLink>
+                    <Typo description>연습문제:</Typo>{" "}
+                    {title.replace(/^\[연습문제] */, "")}
+                  </ProblemLink>
+                </Link>
+              </li>
+            ))}
+          </Itemize>
+        </>
+      )}
+      <ProblemListEnumerate style={{ columnCount: 3 }}>
+        {problems.map(([id, title]) => (
+          <li key={id}>
+            <Link href={`/${year}/${id}`} passHref>
+              <ProblemLink>{title}</ProblemLink>
+            </Link>
+          </li>
+        ))}
+      </ProblemListEnumerate>
+    </>
   );
 };
 
