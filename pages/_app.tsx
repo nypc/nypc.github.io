@@ -11,7 +11,7 @@ import {
   TableHead,
   Typo
 } from "@solved-ac/ui-react";
-import { Code, Enumerate, Itemize } from "components";
+import { Blockquote, Code, Enumerate, Itemize } from "components";
 import { MDXComponents } from "mdx/types";
 import type { AppProps } from "next/app";
 
@@ -32,6 +32,7 @@ const components: MDXComponents = {
   tr: ({ ref, ...props }) => <Row {...props} />,
   td: ({ ref, ...props }) => <Cell {...props} />,
   th: ({ ref, ...props }) => <Cell header {...props} />,
+  blockquote: ({ ref, ...props }) => <Blockquote {...props} />,
 };
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -45,6 +46,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           .katex span.hangul_fallback {
             font-size: 90.9%;
             font-family: ${solvedThemes.light.typography.paragraph};
+          }
+          .math-display {
+            overflow-x: auto;
           }
         `}
       />

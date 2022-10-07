@@ -1,3 +1,4 @@
+export * from "./Blockquote";
 export * from "./Code";
 export * from "./Example";
 export * from "./Figure";

@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import styled from "@emotion/styled";
 
 export const ProblemListContainer = styled.div`
