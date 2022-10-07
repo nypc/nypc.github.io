@@ -1,5 +1,5 @@
-import { Itemize, Typo } from "@solved-ac/ui-react";
-import { Enumerate, PostLayout } from "components";
+import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
+import { Enumerate, PostLayout, ProblemListContainer } from "components";
 import type { NextPage } from "next";
 import Link from "next/link";
 
@@ -27,7 +27,20 @@ const problems = {
     ["2017_online_3-4", "개미와 보도 블록"],
     ["2017_online_3-5", "한꺼번에 길 찾기"],
   ],
-  finals: [],
+  finals1214: [
+    ["2017_final_a", "정사각형"],
+    ["2017_final_b", "모자뜨기"],
+    ["2017_final_c", "물풍선"],
+    ["2017_final_d", "선 맞춤"],
+    ["2017_final_f", "테트리스"],
+  ],
+  finals1519: [
+    ["2017_final_b", "모자뜨기"],
+    ["2017_final_c", "물풍선"],
+    ["2017_final_e", "돌도끼 만들기"],
+    ["2017_final_f", "테트리스"],
+    ["2017_final_g", "길드"],
+  ],
 };
 
 const List: NextPage = (props) => {
@@ -50,46 +63,78 @@ const List: NextPage = (props) => {
           <Link href="/2017/tool">개발 도구 사용 안내</Link>
         </li>
       </Itemize>
-      <Typo h2>예선 스테이지 1</Typo>
-      <Enumerate>
-        {problems.stage1.map(([id, title]) => (
-          <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </Enumerate>
-      <Typo h2>예선 스테이지 2</Typo>
-      <Enumerate>
-        {problems.stage2.map(([id, title]) => (
-          <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </Enumerate>
-      <Typo h2>예선 스테이지 3</Typo>
-      <Enumerate>
-        {problems.stage3.map(([id, title]) => (
-          <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </Enumerate>
-      <Typo h2>본선</Typo>
-      <Enumerate>
-        {problems.finals.map(([id, title]) => (
-          <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </Enumerate>
+      <Divider />
+      <Typo h2 no-margin>
+        예선
+      </Typo>
+      <ProblemListContainer>
+        <div>
+          <Typo h3>예선 스테이지 1</Typo>
+          <Enumerate>
+            {problems.stage1.map(([id, title]) => (
+              <li key={id}>
+                <Link href={`/${year}/${id}`} passHref>
+                  <a>{title}</a>
+                </Link>
+              </li>
+            ))}
+          </Enumerate>
+        </div>
+        <div>
+          <Typo h3>예선 스테이지 2</Typo>
+          <Enumerate>
+            {problems.stage2.map(([id, title]) => (
+              <li key={id}>
+                <Link href={`/${year}/${id}`} passHref>
+                  <a>{title}</a>
+                </Link>
+              </li>
+            ))}
+          </Enumerate>
+        </div>
+        <div>
+          <Typo h3>예선 스테이지 3</Typo>
+          <Enumerate>
+            {problems.stage3.map(([id, title]) => (
+              <li key={id}>
+                <Link href={`/${year}/${id}`} passHref>
+                  <a>{title}</a>
+                </Link>
+              </li>
+            ))}
+          </Enumerate>
+        </div>
+      </ProblemListContainer>
+      <Divider />
+      <Typo h2 no-margin>
+        본선
+      </Typo>
+      <ProblemListContainer>
+        <div>
+          <Typo h3>본선 &mdash; 1214</Typo>
+          <Enumerate>
+            {problems.finals1214.map(([id, title]) => (
+              <li key={id}>
+                <Link href={`/${year}/${id}`} passHref>
+                  <a>{title}</a>
+                </Link>
+              </li>
+            ))}
+          </Enumerate>
+        </div>
+        <div>
+          <Typo h3>본선 &mdash; 1519</Typo>
+          <Enumerate>
+            {problems.finals1519.map(([id, title]) => (
+              <li key={id}>
+                <Link href={`/${year}/${id}`} passHref>
+                  <a>{title}</a>
+                </Link>
+              </li>
+            ))}
+          </Enumerate>
+        </div>
+      </ProblemListContainer>
     </PostLayout>
   );
 };

@@ -9,6 +9,7 @@ const withMDX = mdx({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkFrontmatter, remarkGfm, remarkMath],
+    rehypePlugins: [rehypeHighlight, rehypeKatex],
     providerImportSource: "@mdx-js/react",
   },
 });
