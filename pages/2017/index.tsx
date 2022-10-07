@@ -1,5 +1,9 @@
 import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
-import { Enumerate, PostLayout, ProblemListContainer } from "components";
+import {
+  PostLayout,
+  ProblemList,
+  ProblemListContainer
+} from "components";
 import type { NextPage } from "next";
 import Link from "next/link";
 
@@ -41,7 +45,7 @@ const problems = {
     ["2017_final_f", "테트리스"],
     ["2017_final_g", "길드"],
   ],
-};
+} as const;
 
 const List: NextPage = (props) => {
   return (
@@ -70,39 +74,15 @@ const List: NextPage = (props) => {
       <ProblemListContainer>
         <div>
           <Typo h3>예선 스테이지 1</Typo>
-          <Enumerate>
-            {problems.stage1.map(([id, title]) => (
-              <li key={id}>
-                <Link href={`/${year}/${id}`} passHref>
-                  <a>{title}</a>
-                </Link>
-              </li>
-            ))}
-          </Enumerate>
+          <ProblemList year={year} problems={problems.stage1} />
         </div>
         <div>
           <Typo h3>예선 스테이지 2</Typo>
-          <Enumerate>
-            {problems.stage2.map(([id, title]) => (
-              <li key={id}>
-                <Link href={`/${year}/${id}`} passHref>
-                  <a>{title}</a>
-                </Link>
-              </li>
-            ))}
-          </Enumerate>
+          <ProblemList year={year} problems={problems.stage2} />
         </div>
         <div>
           <Typo h3>예선 스테이지 3</Typo>
-          <Enumerate>
-            {problems.stage3.map(([id, title]) => (
-              <li key={id}>
-                <Link href={`/${year}/${id}`} passHref>
-                  <a>{title}</a>
-                </Link>
-              </li>
-            ))}
-          </Enumerate>
+          <ProblemList year={year} problems={problems.stage3} />
         </div>
       </ProblemListContainer>
       <Divider />
@@ -112,27 +92,11 @@ const List: NextPage = (props) => {
       <ProblemListContainer>
         <div>
           <Typo h3>본선 &mdash; 1214</Typo>
-          <Enumerate>
-            {problems.finals1214.map(([id, title]) => (
-              <li key={id}>
-                <Link href={`/${year}/${id}`} passHref>
-                  <a>{title}</a>
-                </Link>
-              </li>
-            ))}
-          </Enumerate>
+          <ProblemList year={year} problems={problems.finals1214} />
         </div>
         <div>
           <Typo h3>본선 &mdash; 1519</Typo>
-          <Enumerate>
-            {problems.finals1519.map(([id, title]) => (
-              <li key={id}>
-                <Link href={`/${year}/${id}`} passHref>
-                  <a>{title}</a>
-                </Link>
-              </li>
-            ))}
-          </Enumerate>
+          <ProblemList year={year} problems={problems.finals1519} />
         </div>
       </ProblemListContainer>
     </PostLayout>

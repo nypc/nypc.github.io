@@ -1,7 +1,6 @@
 import { Typo } from "@solved-ac/ui-react";
-import { Enumerate, PostLayout } from "components";
+import { PostLayout, ProblemList } from "components";
 import type { NextPage } from "next";
-import Link from "next/link";
 
 const year = 2016;
 
@@ -18,7 +17,7 @@ const problems = {
     ["farmgame1_easy", "나만의 농장 운영하기: 심고 수확하기"],
     ["farmgame2_easy", "나만의 농장 운영하기: 밭 업그레이드"],
   ],
-};
+} as const;
 
 const List: NextPage = (props) => {
   return (
@@ -32,25 +31,9 @@ const List: NextPage = (props) => {
       }}
     >
       <Typo h2>예선</Typo>
-      <Enumerate>
-        {problems.preliminaries.map(([id, title]) => (
-          <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </Enumerate>
+      <ProblemList year={year} problems={problems.preliminaries} />
       <Typo h2>본선</Typo>
-      <Enumerate>
-        {problems.finals.map(([id, title]) => (
-          <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <a>{title}</a>
-            </Link>
-          </li>
-        ))}
-      </Enumerate>
+      <ProblemList year={year} problems={problems.finals} />
     </PostLayout>
   );
 };

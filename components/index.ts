@@ -4,7 +4,7 @@ export * from "./Example";
 export * from "./Figure";
 export * from "./List";
 export * from "./PostLayout";
-export * from "./ProblemListContainer";
+export * from "./ProblemList";
 export * from "./Solution";
 export * from "./Subtask";
 
