@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import styled from "@emotion/styled";
+import { ReactNode } from "react";
 
 const FigureContainer = styled.figure`
   width: 100%;
@@ -27,7 +28,7 @@ const FigureCaption = styled.figcaption`
 interface Props {
   src: string;
   alt?: string;
-  caption?: string;
+  caption?: ReactNode;
   width?: string | number;
 }
 
@@ -39,7 +40,7 @@ export const Figure: React.FC<Props> = (props) => {
       <FigureContainer>
         <FigureImg
           src={src}
-          alt={alt || caption}
+          alt={alt || (typeof caption === "string" ? caption : undefined)}
           style={width ? { width } : undefined}
         />
         {caption && <FigureCaption>{caption}</FigureCaption>}

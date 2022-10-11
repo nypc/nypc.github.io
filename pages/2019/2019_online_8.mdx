@@ -1,0 +1,92 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "마비노기 색상표",
+  year: 2019,
+  stage: "예선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+사람이 색을 볼 때는 눈에 존재하는 원추세포의 도움을 받는다. 원추세포에는 빨간색, 파란색, 초록색의 세 가지 빛에 반응하는 종류의 세포들이 있다. 각 종류의 세포들이 얼마나 신호를 발생시키느냐에 따라 사람은 색을 구별할 수 있다. 그래서, 컴퓨터에서 색을 표현할 때는, 빨간색, 파란색, 초록색의 섞인 비율을 사용하는 경우가 많다.
+
+어떤 사람들은 원추세포 중 일부가 색을 잘 구분하지 못할 수 있다. 가장 흔한 경우는 빨간색 빛을 받아들이는 세포가 제대로 동작하지 않는 것이다. 이 경우 빨간색과 파란색이 섞여져 만들어진 보라색의 경우와 빨간색이 없이 파란색만 있는 경우를 잘 구분하지 못한다.
+
+최근에 마비노기팀은 더욱 다양한 사람들에게 다가가고자 이런 경우에 속하는 사람들을 도와주기 위한 모드를 추가하려고 한다.
+
+그리고 이 목적으로 사용될 수 있는 새로운 색상표를 만들려고 한다. 이 색상표에는 $N$개의 색이 있고, 각 색은 파란색 빛의 세기를 나타내는 $b$, 초록색 빛의 세기를 나타내는 $g$로 표현된다. 각 빛의 세기는 $0$ 이상 $K$ 미만이다. 두 색 $(b_1,g_1)$, $(b_2,g_2)$의 거리는 $\sqrt{(b_1-b_2)^2+(g_1-g_2)^2}$ 이다. 즉, 거리가 가까울수록 구분이 잘 안 되고, 거리가 멀수록 구분이 잘 된다.
+
+새로운 색상표는 모든 두 색의 거리 차이가 $C$ 이상이 되도록 만들어 색상의 구분이 잘 되게 하려고 한다. 새로운 색상표를 만들어주자!
+
+## 입력 형식
+
+첫째 줄에는 세 정수 $N$, $K$, $C$가 공백으로 구분되어 주어진다. 이는 문제에 설명된 $N$, $K$, $C$와 같으며, 데이터 별로 다음과 같이 주어진다.
+
+| 데이터 | $N$  | $K$  | $C$  |
+| ------ | ---- | ---- | ---- |
+| $1$    | $2$  | $5 $ | $5$  |
+| $2$    | $5$  | $11$ | $7$  |
+| $3$    | $9$  | $11$ | $5$  |
+| $4$    | $8$  | $16$ | $7$  |
+| $5$    | $13$ | $21$ | $7$  |
+| $6$    | $16$ | $29$ | $9$  |
+| $7$    | $3$  | $32$ | $32$ |
+| $8$    | $13$ | $15$ | $5$  |
+| $9$    | $32$ | $25$ | $5$  |
+| $10$   | $20$ | $29$ | $8$  |
+
+## 출력 형식
+
+총 $N$개의 줄을 출력한다. $i$번째 줄에는 $i$번째 색의 파란색 빛의 세기와 초록색 빛의 세기를 공백으로 구분하여 출력한다.
+
+만약 가능한 답이 여러 가지인 경우 그중 아무거나 하나 출력한다.
+
+## 예제
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+    3 3 1
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+    0 0
+    1 2
+    2 1
+  </Output>
+</Examples>
+
+## 채점 방식
+
+이 문제는 풀이 소스코드를 제출하지 않고, 각 테스트케이스의 입력데이터를 다운받아 알맞은 출력 파일을 만들어 **출력 파일만을 제출**하는 문제다.
+
+문제 해결을 도와주는 시뮬레이터가 아래 미션에 대해 제공된다. 제공되는 시뮬레이터는 최신 버전의 크롬 브라우저에서 여는 것을 권장한다.
+
+- [미션1 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=1)
+- [미션2 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=2)
+- [미션3 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=3)
+- [미션4 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=4)
+- [미션5 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=5)
+- [미션6 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=6)
+- [미션7 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=7)
+- [미션8 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=8)
+- [미션9 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=9)
+- [미션10 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/a4df256faf31c762/?subtask=10)
+
+## 해설
+
+<Solution>
+  최대한 촘촘하게 색상을 배치해야 많은 색상이 들어갈 수 있다. 이를 배치하는
+  방법은 정삼각형 모양으로 격자를 배치하거나, 정사각형 모양으로 격자를 배치하는
+  등 여러가지 전략이 있을 수 있다.
+</Solution>
