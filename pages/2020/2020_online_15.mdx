@@ -1,0 +1,148 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "사회적 거리두기",
+  year: 2020,
+  stage: "예선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+배찌가 다니고 있는 크아중학교의 교실은 $N \times N$ 크기의 격자판으로 표현할 수 있다. 각 격자 칸에는 학생이 앉을 수 있는 자리가 마련되어 있다. 학교 선생님들은 각 학생이 앉은 자리로부터 앞쪽, 뒤쪽, 왼쪽, 오른쪽, 대각선으로 인접한 자리에 다른 학생이 붙어 앉지 못하도록 자리 배치를 해야 한다. 그러나 교실의 일부 격자 칸에 놓인 책상은 망가져 있어서 학생이 앉을 수 없는 상태다. 선생님은 교실에 최대한 많은 학생을 앉히고 싶어 한다.
+
+<Figure src="/2020/seat1.png" caption="&lt;그림 1&gt; 교실을 나타내는 격자판" />
+
+위 &lt;그림 1&gt;을 보자. 교실의 크기는 $5 \times 5$이며, 격자 칸 $4$개에 놓인 책상이 망가져 있다. 이때, 최대한 많은 자리를 확보하면 아래 &lt;그림 2&gt;처럼 $8$개의 자리를 확보할 수 있다.
+
+<Figure
+  src="/2020/seat2.png"
+  caption="&lt;그림 2&gt; 가장 많은 자리를 확보한 예시"
+/>
+
+선생님의 입장이 되어 교실의 크기와 망가진 책상 위치들의 정보가 주어졌을 때, 최대한 많은 자리를 확보해보자.
+
+## 입력 형식
+
+첫 줄에 교실의 크기를 나타내는 정수 $N$과 망가진 책상의 수를 나타내는 정수 $K$가 공백으로 구분되어 주어진다. $(5 \le N \le 18;$ $0 \le K \le N^2)$
+
+그 다음 $K$ 개의 줄에 걸쳐 망가진 책상이 놓인 격자 칸의 위치 정보를 나타내는 정수 $r$와 $c$가 공백으로 구분되어 주어진다. 이는 $r$ 행, $c$ 열의 격자 칸에 있는 책상이 망가져 학생이 앉을 수 없음을 의미한다. $(1 \le r, c \le N)$
+
+주어지는 격자 칸의 위치는 서로 겹치지 않는다.
+
+## 출력 형식
+
+첫 줄에 최대한 많이 확보한 자리의 개수 $S$를 출력한다.
+
+그리고 다음 $S$ 개의 줄에 걸처 확보한 자리의 위치 정보를 나타내는 정수 $r$와 $c$를 공백을 사이에 두고 출력한다.
+
+만약, 가능한 답이 여러 가지인 경우 그중 아무거나 하나 출력한다.
+
+## 예제
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+5 4
+2 2
+2 5
+4 3
+5 1
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+8
+1 1
+1 3
+1 5
+3 1
+3 3
+3 5
+5 3
+5 5
+  </Output>
+</Examples>
+
+## 채점 방식
+
+이 문제는 풀이 소스 코드를 제출하지 않고, 각 테스트 케이스의 입력 데이터를 다운받아 알맞은 출력 파일을 만들어 출력 파일만을 제출하는 문제다.
+
+문제 해결을 도와주는 시뮬레이터가 아래 미션에 대해 제공된다. 제공되는 시뮬레이터는 최신 버전의 크롬 브라우저에서 여는 것을 권장한다.
+
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=1"
+    target="_blank"
+  >
+    미션 1 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=2"
+    target="_blank"
+  >
+    미션 2 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=3"
+    target="_blank"
+  >
+    미션 3 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=4"
+    target="_blank"
+  >
+    미션 4 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=5"
+    target="_blank"
+  >
+    미션 5 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=6"
+    target="_blank"
+  >
+    미션 6 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=7"
+    target="_blank"
+  >
+    미션 7 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=8"
+    target="_blank"
+  >
+    미션 8 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=9"
+    target="_blank"
+  >
+    미션 9 시뮬레이터 열기
+  </a>
+- <a
+    href="http://nypc2020.s3-website.ap-northeast-2.amazonaws.com/4216eb4d9ebb7a19/?subtask=10"
+    target="_blank"
+  >
+    미션 10 시뮬레이터 열기
+  </a>
+
+## 해설
+
+<Solution>
+  Bit DP를 이용하여 문제를 해결할 수 있다. 맨 위-왼쪽 칸부터 차례대로 학생이
+  앉을지 결정하며, 가장 최근 $N+1$개의 칸에 대해 선택한 여부를 bit로 가지고
+  있으면, 현재 칸에 학생을 앉힐 수 있는지 판단할 수 있다.
+</Solution>

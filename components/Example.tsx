@@ -32,6 +32,10 @@ const Preformatted = styled.pre`
   background-color: ${({ theme }) => theme.color.background.card.main};
   padding: 0 16px;
   border-radius: 8px;
+  & > pre > code {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `;
 
 const IOTitle = styled(Typo)`
