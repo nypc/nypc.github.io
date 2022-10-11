@@ -22,7 +22,7 @@ export const Subtask: React.FC<Props> = (props) => {
   return (
     <SubtaskContainer>
       <span>
-        <Paragraph>
+        <Paragraph style={{ fontFeatureSettings: "'tnum' 1" }}>
           <IoCubeOutline color={theme.color.text.secondary.main} />
           <Space w={4} as="span" />
           <b>종류 {index}</b>: {score}점

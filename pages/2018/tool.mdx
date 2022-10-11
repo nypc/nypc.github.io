@@ -1,9 +1,21 @@
-<script>
-document.children[0].children[1].children[0].children[0].remove()
-</script>
-<!--BEGIN-->
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
 
-# 개발 도구 사용 안내
+export const meta = {
+  title: "개발 도구 사용 안내",
+  year: 2018,
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
 
 코드 작성시 디버깅과 편의를 위해 로컬 컴퓨터의 개발 도구를 사용할 수 있습니다.
 
@@ -15,18 +27,18 @@ document.children[0].children[1].children[0].children[0].remove()
 
 OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다음과 같습니다:
 
-| 언어 | 버전 및 실행 환경 (ubuntu)| 컴파일러 옵션 |
-|---|---|---|
-| C | GNU C: gcc 5.4.0 | `-O2 -static -DNYPC_GRADING` |
-| C 11 | GNU C: gcc 5.4.0 | `-O2 -static --std=c11 -DNYPC_GRADING` |
-| C++ | GNU C++: g++ 5.4.0 | `-O2 -static -DNYPC_GRADING` |
-| C++ 11 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++11 -DNYPC_GRADING` |
-| C++ 14 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++14 -DNYPC_GRADING` |
-| C++ 17 | GNU C++: g++ 5.4.0 | `-O2 -static --std=c++17 -DNYPC_GRADING` |
-| C# | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics` |
-| Java | Oracle Java 8 | |
-| Python 2 | 2.7.12 | |
-| Python 3 | 3.5.2 | |
+| 언어     | 버전 및 실행 환경 (ubuntu)       | 컴파일러 옵션                            |
+| -------- | -------------------------------- | ---------------------------------------- |
+| C        | GNU C: gcc 5.4.0                 | `-O2 -static -DNYPC_GRADING`             |
+| C 11     | GNU C: gcc 5.4.0                 | `-O2 -static --std=c11 -DNYPC_GRADING`   |
+| C++      | GNU C++: g++ 5.4.0               | `-O2 -static -DNYPC_GRADING`             |
+| C++ 11   | GNU C++: g++ 5.4.0               | `-O2 -static --std=c++11 -DNYPC_GRADING` |
+| C++ 14   | GNU C++: g++ 5.4.0               | `-O2 -static --std=c++14 -DNYPC_GRADING` |
+| C++ 17   | GNU C++: g++ 5.4.0               | `-O2 -static --std=c++17 -DNYPC_GRADING` |
+| C#       | Mono C# compiler version 4.2.1.0 | `-warn:0 -optimize+ -r:System.Numerics`  |
+| Java     | Oracle Java 8                    |                                          |
+| Python 2 | 2.7.12                           |                                          |
+| Python 3 | 3.5.2                            |                                          |
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만,
@@ -35,43 +47,47 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다�
 
 아래의 예시처럼 특정 플랫폼(특히, Windows나 Visual C++)에서만 동작하는 코드를 작성하지 않도록 유의하시기 바랍니다.
 
-|사용금지 예시|비고|
-|---|---|
-|`void main()`|  표준에 따라 `int main`이어야 함|
-|`getch()`| 대신 `getchar()`를 사용|
-|`fflush(stdin)` | 비표준|
-|`GetTickCount()` | Windows API 는 사용할 수 없음|
-|`CString`| `CString` 은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용|
-|`#include <stdafx.h>`|`stdafx.h` 는 Visual C++ 전용 precompiled header 임|
+| 사용금지 예시         | 비고                                                                  |
+| --------------------- | --------------------------------------------------------------------- |
+| `void main()`         | 표준에 따라 `int main`이어야 함                                       |
+| `getch()`             | 대신 `getchar()`를 사용                                               |
+| `fflush(stdin)`       | 비표준                                                                |
+| `GetTickCount()`      | Windows API 는 사용할 수 없음                                         |
+| `CString`             | `CString` 은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용 |
+| `#include <stdafx.h>` | `stdafx.h` 는 Visual C++ 전용 precompiled header 임                   |
 
 ## Java 사용
 
 클래스 이름은 반드시 `Main` 이어야 합니다.
 
 ## GNU C/C++ 컴파일러 / Code::Blocks 사용
+
 GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks 사용을 권장합니다. 아래의 URL에서 다운로드 받을 수 있습니다.
 
-* MinGW - http://www.mingw.org/
-* Code::Blocks - http://www.codeblocks.org/
-
+- MinGW - http://www.mingw.org/
+- Code::Blocks - http://www.codeblocks.org/
 
 ### MinGW에서 GNU C/C++ 컴파일러(GCC) 설치하기
 
-<div id="MinGW_Install_Guide"></div>
-<script>
-	let videoTag_MinGW = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kRMELNEE2zk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let dom_MinGW = document.getElementById("MinGW_Install_Guide");
-    dom_MinGW.insertAdjacentHTML('beforeend', videoTag_MinGW);
-</script>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/kRMELNEE2zk?rel=0"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+/>
 
 ### Code::Blocks IDE 설치하기
 
-<div id="Code_Blocks_Install_Guide"></div>
-<script>
-	let videoTag_CodeBlocks = '<iframe width="560" height="315" src="https://www.youtube.com/embed/or8wDAhS840?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let dom_CodeBlocks = document.getElementById("Code_Blocks_Install_Guide");
-    dom_CodeBlocks.insertAdjacentHTML('beforeend', videoTag_CodeBlocks);
-</script>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/or8wDAhS840?rel=0"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+/>
 
 ## 표준 입출력 사용하기
 
@@ -93,7 +109,7 @@ GNU C/C++ 환경에서 프로그램을 작성할 경우 MinGW와 Code::Blocks �
 
 ### C
 
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -107,7 +123,7 @@ int main()
 
 ### C++
 
-```
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -123,7 +139,7 @@ int main()
 
 ### C++ (표준입출력을 input.txt의 내용으로 받아오고, 표준출력을 output.txt으로 내보내는 예제)
 
-```
+```cpp
 #include <iostream>
 
 #ifndef NYPC_GRADING
@@ -151,7 +167,7 @@ int main()
 
 ### C&#35;
 
-```
+```csharp
 using System;
 
 public class Program {
@@ -167,7 +183,7 @@ public class Program {
 
 ### Java
 
-```
+```java
 import java.util.*;
 public class Main{
     public static void main(String args[]){
@@ -182,7 +198,7 @@ public class Main{
 
 ### Python
 
-```
+```python
 s = raw_input()
 arr = split()
 a = int(arr[0])
@@ -192,7 +208,7 @@ print a*b
 
 ### Python 3
 
-```
+```python
 s = input()
 arr = s.split()
 a = int(arr[0])
@@ -208,16 +224,19 @@ print(a*b)
 
 한글 자막을 켜주세요. 자막으로 상세한 설명을 제공하고 있습니다.
 
-<div id="Tutorial_Source"></div>
-<div id="Tutorial_Output"></div>
-<script>
-	let video_source = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let video_output = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-	let dom_Tutorial_Source = document.getElementById("Tutorial_Source");
-	let dom_Tutorial_Output = document.getElementById("Tutorial_Output");
-    dom_Tutorial_Source.insertAdjacentHTML('beforeend', video_source);
-    dom_Tutorial_Output.insertAdjacentHTML('beforeend', video_output);
-</script>
-
-
-<!--END-->
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/EK_VhRZhEcc?rel=0"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+/>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/zUuLPxnl2nE?rel=0"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+/>

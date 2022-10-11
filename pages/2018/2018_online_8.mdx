@@ -1,0 +1,84 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "버튼 게임",
+  year: 2018,
+  stage: "예선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+화면에 변수 $a$의 값과 $b$의 값이 나오고, 화면 앞에는 빨간색 버튼과 파란색 버튼이 놓여있다. 변수 $a$의 초기값은 $1$이고, 변수 $b$의 초기값은 $0$이다.
+
+- 여기서, 빨간색 버튼을 누르면 변수 $b$의 값을 변수 $a$에 더한다.
+- 여기서, 파란색 버튼을 누르면 변수 $a$의 값을 변수 $b$에 더한다.
+
+문제는 빨간색 버튼과 파란색 버튼을 적절히 눌러, 변수 $a$에는 $X$라는 값을, 변수 $b$에는 $Y$라는 값을 설정할 수 있는지 판단하는 것이다.
+
+## 입력 형식
+
+첫 줄에 음이 아닌 정수 $X$와 $Y$가 공백으로 구분되어 주어진다. 여기서 $X$와 $Y$는 $10^9$보다 크지 않다.
+
+## 출력 형식
+
+빨간색 버튼과 파란색 버튼을 적절히 눌러, 변수 $a$에는 $X$라는 값을, 변수 $b$에는 $Y$라는 값을 설정할 수 있으면 `POSSIBLE`, 그렇지 않으면 `IMPOSSIBLE`을 출력한다. (모두 대문자로)
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+    2 0
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+    IMPOSSIBLE
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+    7 9
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+    POSSIBLE
+  </Output>
+</Examples>
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={10}>
+  $X, Y \le 10$
+</Subtask>
+<Subtask index={2} score={40}>
+  $X, Y \le 1\,000$
+</Subtask>
+<Subtask index={3} score={50}>
+  문제의 원래 제한조건 이외의 추가된 제한이 없음.
+</Subtask>
+
+## 해설
+
+<Solution>
+  변수 $a$를 $b$에 더하는 연산과 그 반대 연산만을 사용할 수 있을 때 주어진 값
+  $X$, $Y$를 $a$와 $b$에 저장할 수 있는지 판단하여야 한다. 변수 $a$와 $b$는
+  대칭임을 알 수 있다. 그래서 모두 $1$인 경우를 제외하면 $X>Y$임을 가정해도
+  된다. 이 경우가 만들어질 방법은 $X-Y$, $Y$가 저장된 경우 밖에 없다. 이 과정을
+  계속 반복하면 가능한지 불가능한지의 여부를 판단할 수 있다.
+</Solution>

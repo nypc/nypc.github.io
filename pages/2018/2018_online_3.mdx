@@ -1,0 +1,70 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+} from "components";
+
+export const meta = {
+  title: "아이템 구매",
+  year: 2018,
+  stage: "예선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+게임개발자 상현이가 개발 중인 게임의 상점에는 체력 물약과 마나 물약 두 종류의 아이템만 판매하고 있다. 상현이는 유저들의 판매 로그를 기록해야하는데, 실수로 그만 유저들이 상점에서 사용한 총액만 기록하고 말았다.
+
+체력 물약의 가격은 $P$원이고, 마나 물약 가격은 $Q$원이다. 그리고 한 유저가 상점에서 사용한 총액은 $W$원이다. 상현이를 도와 유저가 상점에서 구매한 아이템 개수를 구하는 프로그램을 작성하시오.
+
+## 입력 형식
+
+첫 줄에 체력 물약의 가격 $P$와 마나 물약의 가격 $Q$가 공백으로 구분되어 주어진다. ($P$와 $Q$ 모두 $1$이상 $500\,000$ 이하)
+
+그 다음 줄에 유저가 상점에서 사용한 총액 $W$가 주어진다. ($W$는 $1$이상 $1\,000\,000$이하)
+
+## 출력 형식
+
+첫 줄에 유저가 구매한 체력 물약 개수, 구매한 마나 물약 개수를 공백으로 구분하여 출력한다. 답이 여러 가지인 경우 그 중 아무거나 하나 출력한다. 답이 없는 경우는 입력으로 주어지지 않는다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+9 7 55
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+3 4
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+1 1 1
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+0 1
+  </Output>
+</Examples>
+
+## 채점 방식
+
+입력 케이스들 각각에 대해 동일한 점수가 배분된다.
+
+## 해설
+
+<Solution>
+  두가지 아이템의 각각 가격이 주어지고, 총 구매 금액이 주어진다. 각 아이템의
+  개수는 정수여야 하므로 수학을 통해 풀 수도 있으나 모든 경우를 탐색하는
+  방법으로도 답을 구할 수 있다.
+</Solution>
