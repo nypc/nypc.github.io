@@ -55,10 +55,10 @@ const List: NextPage = (props) => {
       <Typo h2>안내</Typo>
       <Itemize>
         <li>
-          <Link href="/2021/rule">대회 규칙</Link>
+          <Link href="/2021/notice/rule">대회 규칙</Link>
         </li>
         <li>
-          <Link href="/2021/tool">개발 도구 사용 안내</Link>
+          <Link href="/2021/notice/tool">개발 도구 사용 안내</Link>
         </li>
       </Itemize>
       <Divider />
