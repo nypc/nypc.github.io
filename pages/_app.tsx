@@ -8,6 +8,7 @@ import {
   solvedThemes,
   Table,
   TableBody,
+  TableContainer,
   TableHead,
   Typo
 } from "@solved-ac/ui-react";
@@ -26,7 +27,11 @@ const components: MDXComponents = {
   code: ({ ref, ...props }) => <Code {...props} />,
   ul: ({ ref, ...props }) => <Itemize {...props} />,
   ol: ({ ref, ...props }) => <Enumerate {...props} />,
-  table: ({ ref, ...props }) => <Table {...props} />,
+  table: ({ ref, ...props }) => (
+    <TableContainer>
+      <Table padding="dense" style={{ margin: "0 auto" }} {...props} />
+    </TableContainer>
+  ),
   tbody: ({ ref, ...props }) => <TableBody {...props} />,
   thead: ({ ref, ...props }) => <TableHead {...props} />,
   tr: ({ ref, ...props }) => <Row {...props} />,

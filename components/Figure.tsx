@@ -15,20 +15,34 @@ const FigureImg = styled.img`
   display: block;
 `;
 
+const FigureCaption = styled.figcaption`
+  padding: 1em;
+  &:before {
+    content: "↑";
+    margin-right: 0.5ch;
+    color: ${({ theme }) => theme.color.text.secondary.main};
+  }
+`;
+
 interface Props {
   src: string;
-  alt: string;
+  alt?: string;
   caption?: string;
+  width?: string | number;
 }
 
 export const Figure: React.FC<Props> = (props) => {
-  const { src, alt, caption } = props;
+  const { src, alt, caption, width } = props;
 
   return (
     <>
       <FigureContainer>
-        <FigureImg src={src} alt={alt} />
-        {caption && <figcaption>{caption}</figcaption>}
+        <FigureImg
+          src={src}
+          alt={alt || caption}
+          style={width ? { width } : undefined}
+        />
+        {caption && <FigureCaption>{caption}</FigureCaption>}
       </FigureContainer>
     </>
   );
