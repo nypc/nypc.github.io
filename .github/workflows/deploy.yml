@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - name: Upgrade yarn
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: set version 3.x
       - name: Install dependencies
         uses: borales/actions-yarn@v3.0.0
         with:
