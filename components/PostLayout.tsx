@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import styled from "@emotion/styled";
 import { Container, Divider, Footer, Space, Typo } from "@solved-ac/ui-react";
+import Head from "next/head";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
 import { Meta, PostTheme } from "types/post";
@@ -49,8 +50,25 @@ export const PostLayout: React.FC<Props> = (props) => {
 
   const prev = meta?.year ? `/${meta.year}` : "/";
 
+  const title = meta?.title
+    ? `${meta.title}${meta.year ? ` — NYPC ${meta.year}` : ""}`
+    : "NYPC — Nexon Youth Programming Challenge";
+
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta
+          name="description"
+          content="NEXON YOUTH PROGRAMMING CHALLENGE, 세상을 바꾸는 코딩! 세상을 더 멋지게 바꿀 당신을 만나고 싶습니다."
+        />
+        <meta property="og:title" content={title} />
+        <meta
+          property="og:descrption"
+          content="NEXON YOUTH PROGRAMMING CHALLENGE, 세상을 바꾸는 코딩! 세상을 더 멋지게 바꿀 당신을 만나고 싶습니다."
+        />
+        <meta property="og:url" content="https://www.nypc.co.kr" />
+      </Head>
       <div
         style={
           theme && {
