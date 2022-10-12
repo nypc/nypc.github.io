@@ -12,18 +12,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Upgrade yarn
-        uses: borales/actions-yarn@v3.0.0
+      - uses: actions/setup-node@v3
         with:
-          cmd: set version 3.x
-      - name: Install dependencies
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install
-      - name: Predeploy
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: predeploy
+          node-version: '14.x'
+      - run: yarn set version 3.2.4
+      - run: yarn install
+      - run: yarn predeploy
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
