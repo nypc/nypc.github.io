@@ -3,11 +3,9 @@ on:
   push:
     branches:
       - main
-      # TODO remove next line
-      - feature/next-ssg
 jobs:
   build-and-deploy:
-    # if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
