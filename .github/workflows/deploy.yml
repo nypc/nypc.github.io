@@ -1,0 +1,21 @@
+name: Build and Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    # if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Predeploy
+        run: npm run predeploy
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
