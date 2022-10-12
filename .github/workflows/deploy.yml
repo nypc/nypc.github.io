@@ -13,9 +13,13 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm install
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: install
       - name: Predeploy
-        run: npm run predeploy
+        uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: predeploy
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
