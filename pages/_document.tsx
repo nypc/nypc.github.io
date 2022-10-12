@@ -12,6 +12,12 @@ export default function Document() {
         />
         <link
           rel="stylesheet"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css"
+        />
+        <link
+          rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css"
         />
       </Head>
