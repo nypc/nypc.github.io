@@ -1,0 +1,88 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "최대구간합",
+  year: 2021,
+  stage: "예선 연습문제",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+$N$ 개의 정수로 이루어진 배열이 주어진다. 이 배열의 최대구간합을 구하는 프로그램을 작성하시오.
+
+예를 들어, 배열이 $[2, 5, -9, 7, 3, -2, 5]$인 경우, 네 번째 값부터 일곱 번째 값까지 해당하는 구간의 합은 $13$이며 구간합 중 가장 큰 값이 되므로 최대구간합은 $13$이 된다.
+
+배열의 구간이란, 배열에서 1개 이상의 이어진 칸들을 의미한다. 구간합이란 그 구간에 있는 수들을 모두 더한 값이고, 최대구간합은 배열에서 있을 수 있는 모든 구간합 중에서 가장 큰 값을 의미한다.
+
+## 입력 형식
+
+입력의 첫 줄에 배열의 크기를 나타내는 정수 $N$이 주어진다. ($1 \le N \le 1\,000\,000$)
+
+둘째 줄에 배열의 내용을 나타내는 $N$ 개의 정수가 공백으로 구분되어 주어진다. 주어지는 정수의 절대값은 $1\,000\,000\,000$보다 크지 않다.
+
+## 출력 형식
+
+첫 줄에 최대구간합을 출력한다. **출력되는 답이 32bit 정수형의 표현 범위를 넘어갈 수 있음을 주의하라.**
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+7
+2 5 -9 7 3 -2 5
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+13
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+5
+1000000000 1000000000 1000000000 1000000000 1000000000
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+5000000000
+  </Output>
+</Examples>
+
+## 예제 3
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+3
+-1 -2 -3
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+-1
+  </Output>
+</Examples>
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={30}>
+  $N \le 5\,000$
+</Subtask>
+<Subtask index={2} score={70}>
+  추가적인 제한 조건이 없음.
+</Subtask>

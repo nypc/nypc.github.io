@@ -1,0 +1,80 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "다양성이 힘이다",
+  year: 2021,
+  stage: "예선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+좌우로 늘어서 있는 $N$ 명의 사람들 중 연속인 $K$ 명을 골라 팀을 구성하려고 한다. 왼쪽에서 $i$ 번째 사람은 특성값 $X_i$를 가지고 있다. 팀을 구성했을 때 팀의 실력은 팀 구성원들의 특성값들이 얼마나 다양하고 넓게 분포하느냐에 따라 결정된다. 정확히는, 팀에 구성된 임의의 두 사람에 대해서 특성값 $X_i$와 $X_j$의 차이 $|X_i-X_j|$를 모두 더한 값이 팀의 실력이다.
+
+사람들의 특성값을 입력으로 받아 가장 큰 실력의 값을 계산하는 프로그램을
+작성하라.
+
+## 입력 형식
+
+첫 줄에 $N$과 $K$가 주어진다. ($1 \leq K \leq N \leq 200\,000$)
+
+둘째 줄에 왼쪽 사람부터 순서대로 특성값이 공백으로 구분되어 주어진다.
+($1 \leq X_i \leq 1\,000\,000$)
+
+## 출력 형식
+
+첫 줄에 가능한 최대의 실력 값을 출력한다.
+
+## 예제
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+5 3
+3 6 8 7 4
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+10
+  </Output>
+</Examples>
+
+## 예제 설명
+
+$N=5$, $K=3$이므로 팀을 고르는 방법은 $3$ 가지가 있다. 제일 왼쪽부터 $3$명을
+고르는 경우 실력은 $10$, 중간 $3$명을 고르는 경우 실력은 $4$, 제일 오른쪽 $3$명을
+고르는 경우 실력은 $8$이다. 따라서, 이 경우 답은 $10$이다.
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={8}>
+  $K \leq 10$
+</Subtask>
+<Subtask index={2} score={21}>
+  $X_i \leq 10$
+</Subtask>
+<Subtask index={3} score={17}>
+  $N \leq 5\,000$
+</Subtask>
+<Subtask index={4} score={54}>
+  추가적인 제한 조건이 없음.
+</Subtask>
+
+## 해설
+
+<Solution>
+  연속된 $K$개의 값 $A[1]$, $A[2]$, …, $A[K]$를 골랐다고 하고 모든 쌍의 차이의
+  합에서 $\vert A[i]-A[i+1] \vert$이 몇 번 더해지는지를 생각해 보면 풀이를
+  알아낼 수 있다.
+</Solution>

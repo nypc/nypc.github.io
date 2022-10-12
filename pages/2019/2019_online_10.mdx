@@ -4,6 +4,7 @@ import {
   Output,
   Figure,
   PostLayout,
+  Simulators,
   Solution,
   Subtask,
 } from "components";
@@ -94,16 +95,10 @@ export default ({ children }) => (
 
 문제 해결을 도와주는 시뮬레이터가 아래 미션에 대해 제공된다. 제공되는 시뮬레이터는 최신 버전의 크롬 브라우저에서 여는 것을 권장한다.
 
-- [미션1 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=1)
-- [미션2 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=2)
-- [미션3 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=3)
-- [미션4 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=4)
-- [미션5 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=5)
-- [미션6 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=6)
-- [미션7 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=7)
-- [미션8 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=8)
-- [미션9 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=9)
-- [미션10 시뮬레이터 열기](http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/?subtask=10)
+<Simulators
+  urlPrefix="http://nypc2019.s3-website.ap-northeast-2.amazonaws.com/50a5f6e84adcfc7d/"
+  count={10}
+/>
 
 ## 해설
 
