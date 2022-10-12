@@ -1,6 +1,22 @@
-# 대회 규칙
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Solution,
+  Subtask,
+} from "components";
+import { MdChangeHistory, MdDone } from "react-icons/md";
 
-## 진행
+export const meta = {
+  title: "대회 규칙",
+  year: 2022,
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
 
 NYPC 2022부터는 대회 방식이 변경되어 아래와 같이 3개의 대회로 구성됩니다. Round 1, Round 2, 본선 대회로 나뉘어 열립니다.
 
@@ -55,7 +71,7 @@ Round 2-B 시작 전에 Round 2-A 통과자를 발표할 예정입니다.
 
 문제의 답안으로는 문제에서 요구하는 코드를 작성하여 제출하여야 합니다. 이러한 문제는 문제에서 요구하는 바에 대한 설명, 입력과 출력 형식, 입력과 출력 예시, 채점 규칙으로 구성됩니다.
 
-모든 입력과 출력은 표준입출력 (standard input, standard output)으로 이루어집니다. 언어별로 표준 입력/출력을 처리하는 방법에 대해서는 <a href='https://nypc.github.io/2022/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
+모든 입력과 출력은 표준입출력 (standard input, standard output)으로 이루어집니다. 언어별로 표준 입력/출력을 처리하는 방법에 대해서는 <a href='/2022/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
 
 코드 작성을 마무리했다면, `제출` 버튼을 눌러 문제를 제출할 수 있습니다.
 
@@ -65,7 +81,7 @@ Round 2-B 시작 전에 Round 2-A 통과자를 발표할 예정입니다.
 
 소스 코드 제출 문제에 제출된 모든 코드의 실행과 채점은 이 사이트의 환경 위에서 이루어집니다. 해당 환경에서 동작하지 않는 코드는 채점이 되지 않습니다.
 
-OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러와 구체적인 개발 환경에 대해서는 <a href='https://nypc.github.io/2022/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
+OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러와 구체적인 개발 환경에 대해서는 <a href='/2022/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 참고하시기 바랍니다.
 
 시간 및 메모리 제한 초과 여부는 참가자가 제출한 소스 코드가 실행된 프로세스가 사용하는 자원을 가지고 판단합니다.
 
@@ -86,10 +102,12 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러와 구�
 - `WTLE` - Wall Clock Time Limit Exceeded. 제출한 소스 코드의 실행 시간이 시간 제한을 초과한 또 다른 경우입니다. 프로세스가 CPU를 점유한 시간이 아닌, 실행된 실제 시간이 정해진 제한 시간을 상당히 초과한 경우에 해당합니다. 실행 중 오류가 발생하거나, 또는 대화형(interactive) 문제에서 출력 버퍼를 flush 하지 않은 경우에 이 결과가 나올 수 있습니다. (대화형 문제에서 출력 버퍼를 flush 하는 방법은 해당 문제에 설명되어 있습니다.)
 - `RE` - Runtime Error. 실행 중에 오류가 발생한 경우입니다. 메모리 제한을 초과한 경우에도 발생할 수 있습니다.
 - `WA` - Wrong Answer. 프로그램이 정상적으로 종료하였으나, 출력한 답이 오답인 경우입니다.
-- ![PARTIAL](/image/change_history.png) - Partial Score. 프로그램이 정상적으로 종료하였고, 출력한 답이 부분 점수를 획득한 경우입니다. (부분 점수를 획득할 수 있는 문제의 경우 문제 채점 규칙 설명에 명시됩니다.)
-- ![OK](/image/done.png) - OK. 프로그램이 정상적으로 종료하였고, 출력한 답이 정답인 경우입니다.
+- <MdChangeHistory color="#FFC107" /> `PARTIAL` - Partial Score. 프로그램이 정상적으로 종료하였고, 출력한
+  답이 부분 점수를 획득한 경우입니다. (부분 점수를 획득할 수 있는 문제의 경우
+  문제 채점 규칙 설명에 명시됩니다.)
+- <MdDone color="#4CAF50" /> `OK` - OK. 프로그램이 정상적으로 종료하였고, 출력한 답이 정답인 경우입니다.
 
-만약, 같은 종류에 속하는 케이스가 서로 다른 결과를 가질 경우, 그 종류의 결과는 임의의 하나가 됩니다.
+만만약, 같은 종류에 속하는 케이스가 서로 다른 결과를 가질 경우, 그 종류의 결과는 임의의 하나가 됩니다.
 (예를 들어, 한 종류 안에 어떤 케이스는 WA이고 다른 하나의 케이스가 TLE라면 종류의 결과가 WA로도, TLE로도 표시될 수 있습니다.)
 
 ## 문제에 대한 문의
@@ -114,7 +132,7 @@ OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러와 구�
 
 > "제 컴퓨터에서는 컴파일이 잘 되는데 제출하니 컴파일 에러라고 나옵니다."
 
-- 여러분이 프로그램을 작성하는 환경과 실제로 프로그램이 컴파일되고 실행되는 채점 환경은 다를 수 있습니다. <a href='https://nypc.github.io/2022/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 반드시 읽어주세요.
+- 여러분이 프로그램을 작성하는 환경과 실제로 프로그램이 컴파일되고 실행되는 채점 환경은 다를 수 있습니다. <a href='/2022/notice/tool.html' target='_blank'>[개발 도구 사용 안내]</a> 페이지를 반드시 읽어주세요.
 
 ### 답변 유형
 
