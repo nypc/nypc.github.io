@@ -15,7 +15,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-      - run: yarn set version 3.x
       - run: yarn install
       - run: yarn predeploy
       - name: Deploy

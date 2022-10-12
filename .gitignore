@@ -4,7 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
-/.yarn
+
+# yarn berry
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
 
 # testing
 /coverage
