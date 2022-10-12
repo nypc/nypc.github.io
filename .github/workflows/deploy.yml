@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+      # TODO remove next line
+      - feature/next-ssg
 jobs:
   build-and-deploy:
     # if: ${{ github.ref == 'refs/heads/main' }}
