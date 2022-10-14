@@ -2,6 +2,7 @@ import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
 import { PostLayout, ProblemList, ProblemListContainer } from "components";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { themes } from "pages";
 
 const year = 2019;
 
@@ -52,10 +53,7 @@ const List: NextPage = (props) => {
       meta={{
         title: `NYPC ${year}`,
       }}
-      theme={{
-        background: "#7F3493",
-        color: "#7CCCC1",
-      }}
+      theme={themes[year]}
     >
       <Typo h2>안내</Typo>
       <Itemize>

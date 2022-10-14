@@ -1,6 +1,7 @@
 import { Typo } from "@solved-ac/ui-react";
 import { PostLayout, ProblemList } from "components";
 import type { NextPage } from "next";
+import { themes } from "pages";
 
 const year = 2016;
 
@@ -25,10 +26,7 @@ const List: NextPage = (props) => {
       meta={{
         title: `NYPC ${year}`,
       }}
-      theme={{
-        background: "#fff001",
-        color: "#1d1d1b",
-      }}
+      theme={themes[year]}
     >
       <Typo h2>예선</Typo>
       <ProblemList year={year} problems={problems.preliminaries} />

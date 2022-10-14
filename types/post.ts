@@ -1,5 +1,6 @@
 export interface Meta {
   title: string;
+  subtitle: string;
   year: number;
   stage: string;
 }

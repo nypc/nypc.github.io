@@ -41,12 +41,13 @@ const FooterLogo = styled.img`
 
 interface Props {
   children: React.ReactNode;
+  root?: boolean;
   meta?: Partial<Meta>;
   theme?: PostTheme;
 }
 
 export const PostLayout: React.FC<Props> = (props) => {
-  const { meta, theme, children } = props;
+  const { root, meta, theme, children } = props;
 
   const prev = meta?.year ? `/${meta.year}` : "/";
 
@@ -79,13 +80,24 @@ export const PostLayout: React.FC<Props> = (props) => {
       >
         <NavigationContainer>
           <Container>
-            <Link href={prev} passHref>
-              <MetaLink>
+            {root ? (
+              <MetaLink href="https://www.nypc.co.kr">
                 <Navigation description style={theme && { color: theme.color }}>
-                  <IoArrowBack /> 이전
+                  <IoArrowBack /> NYPC 공식 사이트
                 </Navigation>
               </MetaLink>
-            </Link>
+            ) : (
+              <Link href={prev} passHref>
+                <MetaLink>
+                  <Navigation
+                    description
+                    style={theme && { color: theme.color }}
+                  >
+                    <IoArrowBack /> 이전
+                  </Navigation>
+                </MetaLink>
+              </Link>
+            )}
           </Container>
         </NavigationContainer>
         {meta && (
@@ -93,6 +105,7 @@ export const PostLayout: React.FC<Props> = (props) => {
             <MetaContainer>
               <Container>
                 {meta.title && <Typo h1>{meta.title}</Typo>}
+                {meta.subtitle && <Typo description>{meta.subtitle}</Typo>}
                 {meta.year && (
                   <Typo description>
                     <Link href={`/${meta.year}`} passHref>
