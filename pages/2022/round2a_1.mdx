@@ -1,0 +1,102 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Simulators,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "사진작가",
+  year: 2022,
+  stage: "Round 2-A",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+$N$ 개의 구조물이 좌우로 배치되어 있다.
+왼쪽에서 $i$ 번째 구조물의 색은 $A_i$이다.
+
+사진작가 배찌는 좌우로 연속한 구조물을 사진에 담으려고 한다.
+다만, 배찌는 개성 있는 사진을 찍고 싶기 때문에
+사진에 색이 같은 구조물이 여러 개 있으면 마음에 들어 하지 않고,
+최대한 많은 구조물을 사진에 담고 싶어 한다.
+
+배찌를 도와 구조물의 색 정보가 주어졌을 때,
+한 사진에 담을 수 있는 구조물 수의 최댓값을 구하는
+프로그램을 작성하시오.
+
+## 입력 형식
+
+첫 줄에 구조물의 수를 나타내는 정수 $N$이 주어진다.
+($1 \le N \le 200\,000$)
+
+두 번째 줄에 $N$ 개의 정수
+$A_{1}$, $A_{2}$, $\cdots$, $A_{N}$이 공백으로 구분되어 주어진다.
+($1 \le A_{i} \le 1\,000\,000$)
+
+## 출력 형식
+
+첫 줄에 한 사진에 담을 수 있는 구조물 수의 최댓값을 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+7
+3 1 4 1 5 9 2
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+5
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+7
+1 1 1 1 1 1 1
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+1
+  </Output>
+</Examples>
+
+## 예제 설명
+
+예제 1에서, 왼쪽에서 $3$ 번째 구조물부터 $7$ 번째 구조물까지
+한 사진에 담을 수 있으며,
+이보다 더 많은 구조물을 한 사진에 담을 수 없다.
+
+예제 2에서, 모든 구조물의 색이 같기 때문에
+한 사진에 최대 한 개의 구조물만 담을 수 있다.
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={7}>
+  $N \le 3$
+</Subtask>
+<Subtask index={2} score={21}>
+  $N \le 100$; $A_{i} \le 1\,000$
+</Subtask>
+<Subtask index={3} score={13}>
+  $A_{i} \le 20$
+</Subtask>
+<Subtask index={4} score={25}>
+  $N \le 5\,000$
+</Subtask>
+<Subtask index={5} score={34}>
+  추가적인 제한 조건이 없음.
+</Subtask>

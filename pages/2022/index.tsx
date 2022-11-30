@@ -1,20 +1,49 @@
 import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
-import {
-  PostLayout,
-  ProblemList,
-  ProblemListContainer
-} from "components";
+import { PostLayout, ProblemList, ProblemListContainer } from "components";
 import type { NextPage } from "next";
 import Link from "next/link";
 
 const year = 2022;
 
 const problems = {
-  round1: [],
-  round2a: [],
-  round2b: [],
-  finals1214: [],
-  finals1519: [],
+  round1: [
+    ["round1_p1", "[연습문제] 레이스 기록 검증"],
+    ["round1_p2", "[연습문제] 페인트 칠하기"],
+    ["round1_1", "인류의 적 모기 퇴치"],
+    ["round1_2", "카트라이더 보드게임"],
+    ["round1_3", "뒤집기"],
+    ["round1_4", "카트 제작"],
+    ["round1_5", "달팽이"],
+    ["round1_6", "바텐더"],
+    ["round1_7", "MBTI 궁합을 이용한 조 구성"],
+    ["round1_8", "드리프트 주행"],
+  ],
+  round2a: [
+    ["round2a_1", "사진작가"],
+    ["round2a_2", "리본"],
+    ["round2a_3", "로봇청소기"],
+    ["round2a_4", "물고기 양식장"],
+  ],
+  round2b: [
+    ["round2b_1", "비트문자열"],
+    ["round2b_2", "정수 놀이"],
+    ["round2b_3", "물풍선 애널리스트"],
+    ["round2b_4", "멘토링 시스템"],
+  ],
+  finals1214: [
+    ["final_1", "조약돌 순서"],
+    ["final_2", "짝 맞는 문자열"],
+    ["final_3", "빙고"],
+    ["final_4", "야찌"],
+    ["final_5", "삼각"],
+  ],
+  finals1519: [
+    ["final_3", "빙고"],
+    ["final_4", "야찌"],
+    ["final_6", "덧셈 프로그램"],
+    ["final_7", "적절한 점"],
+    ["final_8", "지름길"],
+  ],
 } as const;
 
 const List: NextPage = (props) => {
