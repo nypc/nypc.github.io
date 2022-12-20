@@ -148,6 +148,9 @@ XOOX
 
 입력 배열 $val[r][c]$엔 `X`가 마크되어 있으면 $1$, 그렇지 않으면 $0$입니다.
 
-$For each column c (1..m)$
-	$dp[r,c] = max(val[r,c] + dp[r,c-2], dp[r-1,c-1], dp[r+1, c-1])$
+```
+For each column c (1..m):
+	dp[r, c] = max(val[r, c] + dp[r, c-2], dp[r-1, c-1], dp[r+1, c-1])
+```
+
 </Solution>
