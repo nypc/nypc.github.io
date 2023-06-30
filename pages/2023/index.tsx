@@ -5,8 +5,18 @@ import Link from "next/link";
 
 const year = 2023;
 
-const problems = {
 
+const problems = {
+  round1: [
+  ],
+  round2a: [
+  ],
+  round2b: [
+  ],
+  finals1214: [
+  ],
+  finals1519: [
+  ],
 } as const;
 
 const List: NextPage = (props) => {
@@ -23,10 +33,10 @@ const List: NextPage = (props) => {
       <Typo h2>안내</Typo>
       <Itemize>
         <li>
-          <Link href="/2022/notice/rule">대회 규칙</Link>
+          <Link href="/2023/notice/rule">대회 규칙</Link>
         </li>
         <li>
-          <Link href="/2022/notice/tool">개발 도구 사용 안내</Link>
+          <Link href="/2023/notice/tool">개발 도구 사용 안내</Link>
         </li>
       </Itemize>
       <Divider />
