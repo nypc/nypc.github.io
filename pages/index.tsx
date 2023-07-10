@@ -32,6 +32,10 @@ export const themes = {
     background: "#000000",
     color: "#0D72E6",
   },
+  2023: {
+    background: "#000000",
+    color: "#0D72E6",
+  },  
 };
 
 const YearContainer = styled.div`
