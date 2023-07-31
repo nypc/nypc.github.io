@@ -8,4 +8,5 @@ export * from "./ProblemList";
 export * from "./Simulators";
 export * from "./Solution";
 export * from "./Subtask";
+export * from "./YouTube";
 
