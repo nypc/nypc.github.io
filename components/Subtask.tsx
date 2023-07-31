@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Paragraph, Space } from "@solved-ac/ui-react";
-import { IoCubeOutline } from "react-icons/io5";
+import { IconCube } from "@tabler/icons-react";
 
 const SubtaskContainer = styled.dd`
   display: grid;
@@ -23,7 +23,7 @@ export const Subtask: React.FC<Props> = (props) => {
     <SubtaskContainer>
       <span>
         <Paragraph style={{ fontFeatureSettings: "'tnum' 1" }}>
-          <IoCubeOutline color={theme.color.text.secondary.main} />
+          <IconCube color={theme.color.text.secondary.main} />
           <Space w={4} as="span" />
           <b>종류 {index}</b>: {score}점
         </Paragraph>

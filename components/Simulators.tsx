@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Button, Centering, Space } from "@solved-ac/ui-react";
-import { IoGolf } from "react-icons/io5";
+import { IconPlayerPlay } from "@tabler/icons-react";
 
 const SimulatorButtonsGrid = styled.div`
   display: grid;
@@ -29,7 +29,7 @@ export const Simulators = (props: Props) => {
             key={index.toString()}
           >
             <Centering>
-              <IoGolf />
+              <IconPlayerPlay />
               <Space w={4} />
               미션 {index + 1}
             </Centering>

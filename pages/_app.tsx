@@ -10,7 +10,7 @@ import {
   TableBody,
   TableContainer,
   TableHead,
-  Typo
+  Typo,
 } from "@solved-ac/ui-react";
 import { Blockquote, Code, Enumerate, Itemize } from "components";
 import { MDXComponents } from "mdx/types";
@@ -54,6 +54,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           }
           .math-display {
             overflow-x: auto;
+          }
+          .tabler-icon {
+            vertical-align: middle;
+            width: 1.2em;
+            height: 1.2em;
           }
         `}
       />

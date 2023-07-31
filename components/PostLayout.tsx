@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import styled from "@emotion/styled";
 import { Container, Divider, Footer, Space, Typo } from "@solved-ac/ui-react";
+import { IconArrowLeft } from "@tabler/icons-react";
 import Head from "next/head";
 import Link from "next/link";
-import { IoArrowBack } from "react-icons/io5";
 import { Meta, PostTheme } from "types/post";
 
 const NavigationContainer = styled.div`
@@ -83,7 +83,7 @@ export const PostLayout: React.FC<Props> = (props) => {
             {root ? (
               <MetaLink href="https://www.nypc.co.kr">
                 <Navigation description style={theme && { color: theme.color }}>
-                  <IoArrowBack /> NYPC 공식 사이트
+                  <IconArrowLeft /> NYPC 공식 사이트
                 </Navigation>
               </MetaLink>
             ) : (
@@ -93,7 +93,7 @@ export const PostLayout: React.FC<Props> = (props) => {
                     description
                     style={theme && { color: theme.color }}
                   >
-                    <IoArrowBack /> 이전
+                    <IconArrowLeft /> 이전
                   </Navigation>
                 </MetaLink>
               </Link>

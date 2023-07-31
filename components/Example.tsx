@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Space, Typo } from "@solved-ac/ui-react";
+import { IconCopy } from "@tabler/icons-react";
 import { useRef } from "react";
-import { IoCopy } from "react-icons/io5";
 
 /*
     Examples container
@@ -84,7 +84,7 @@ export const IO: React.FC<IOProps> = (props) => {
         {title}
         {children && (
           <CopyButton onClick={handleCopy}>
-            <IoCopy />
+            <IconCopy />
           </CopyButton>
         )}
       </IOTitle>
