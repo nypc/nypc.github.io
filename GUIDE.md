@@ -33,10 +33,11 @@ NYPC 아카이브 레포지토리에 오신 것을 환영합니다!
 
 ### 컴포넌트
 
-만들어 둔 커스텀 컴포넌트에는 `Examples` (`Input` / `Output`), `Figure`, `Simulators`, `Solution`, `Subtask`가 있습니다.
+만들어 둔 커스텀 컴포넌트에는 `Examples` (`Input` / `Output`), `Figure`, `Simulators`, `Solution`, `Subtask`, `YouTube`가 있습니다.
 
 - `Examples` 안의 코드에 예제 입출력을 작성할 때, `\`, `` ` ``, `*` 등의 문자가 포함되어 있다면 적절히 escape해 줘야 합니다. 특수문자 앞에 `\`를 붙이거나, escape해야 하는 양이 많다면 ` ```text [개행] ... [개행] ``` `로 감싸 주세요.
 - HTML `figure` 대신 커스텀 컴포넌트 `Figure`를 사용합니다. `figcaption` 대신 `caption` 속성을 사용합니다.
+- YouTube 영상을 삽입하고자 하는 경우 `iframe` 대신 커스텀 컴포넌트 `YouTube`를 사용합니다. YouTube가 제공하는 `iframe` 코드를 복사-붙여넣기하여 사용하면 모바일 브라우저에서 글이 왼쪽으로 쏠리는 현상이 발생하게 됩니다.
 
 ## 기타 작업 / 직접 실행해 보고 싶은 경우
 
