@@ -20,6 +20,10 @@ const problems = {
     ["round1_8", "별자리 그리기"],
   ],
   round2a: [
+    ["round2a_1", "오솔길"],
+    ["round2a_2", "주사위 대체"],
+    ["round2a_3", "창수의 고민"],
+    ["round2a_4", "편지"],
   ],
   round2b: [
   ],
