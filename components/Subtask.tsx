@@ -7,6 +7,13 @@ const SubtaskContainer = styled.dd`
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 0 16px;
+  padding: 8px 0;
+  & p:first-of-type {
+    margin-top: 0;
+  }
+  & p:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 interface Props {
