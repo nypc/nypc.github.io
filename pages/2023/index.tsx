@@ -26,6 +26,10 @@ const problems = {
     ["round2a_4", "편지"],
   ],
   round2b: [
+    ["round2b_1", "괄호"],
+    ["round2b_2", "반복"],
+    ["round2b_3", "장로 스탄의 부탁"],
+    ["round2b_4", "쓸어담기"],
   ],
   finals1214: [
   ],
