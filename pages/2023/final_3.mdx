@@ -1,0 +1,92 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Simulators,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "단조",
+  year: 2023,
+  stage: "본선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+정수 $N$ 개로 이루어진 수열 $A_1, A_2, \cdots, A_N$과,
+정수 $N-1$ 개로 이루어진 수열 $X_1, X_2, \cdots, X_{N-1}$이 있다.
+
+$1$ 이상 $N-1$ 이하의 모든 $i$에 대해
+$A_{i+1} - A_i = X_i$가 되도록
+수열 $A$의 값을 수정하려고 한다.
+
+연산 한 번으로 수열 $A$의 값 하나를 $1$만큼 증가하거나 감소할 수 있다.
+목표를 달성하는 최소 연산 횟수를 계산하는 프로그램을 작성하라.
+
+## 입력 형식
+
+첫 줄에 정수 $N$이 주어진다.
+($3 \le N \le 300\,000$)
+
+두 번째 줄에 수열 $A$의 값을 나타내는
+$N$ 개의 정수 $A_1, A_2, \cdots, A_N$이
+공백으로 구분되어 주어진다.
+
+세 번째 줄에 수열 $X$의 값을 나타내는
+$N-1$ 개의 정수 $X_1, X_2, \cdots, X_{N-1}$이
+공백으로 구분되어 주어진다.
+
+주어지는 수열의 값은 모두 $-1\,000\,000$보다 작지 않으며,
+$1\,000\,000$보다 크지 않다.
+
+## 출력 형식
+
+첫 줄에 주어진 조건을 만족하기 위해 필요한
+최소 연산 횟수를 출력한다.
+
+## 예제
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+3
+2 3 6
+2 1
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+2
+  </Output>
+</Examples>
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={5}>
+  $N = 3$; 수열 $X$의 값은 모두 $1$이다.
+</Subtask>
+<Subtask index={2} score={16}>
+  $N \le 100$; 수열 $A$와 수열 $X$의 값은 모두 절댓값이 $100$을 넘지 않는다.
+</Subtask>
+<Subtask index={3} score={32}>
+  $N \le 5\,000$
+</Subtask>
+<Subtask index={4} score={28}>
+  수열 $X$의 값은 모두 $1$이다.
+</Subtask>
+<Subtask index={5} score={19}>
+  추가적인 제한 조건이 없음.
+</Subtask>
+
+## 해설
+
+<Solution>
+준비 중입니다.
+</Solution>

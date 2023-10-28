@@ -1,0 +1,113 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Simulators,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "영국 우편번호",
+  year: 2023,
+  stage: "본선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+영국 우편번호는 다음과 같은 규칙으로 이루어져 있다.
+
+| 형태  | 예시  |
+|---|---|
+| `AA9A 9AA`  | `EC1A 1BB`   |
+| `A9A 9AA`  | `W1A 0AX`  |
+| `A9 9AA`  | `M1 1AE`  |
+| `A99 9AA` | `B33 8TH` |
+| `AA9 9AA` | `CR2 6XH` |
+| `AA99 9AA` | `DN55 1PT` |
+
+
+형태에서 `A`는 `A`부터 `Z`까지 영어 대문자 한 글자를,
+`9`는 `0`부터 `9`까지 숫자 하나를 나타낸다.
+
+예시는 각 형태에 알맞은 우편번호 중 하나이다.
+
+문자열이 주어질 때,
+이 문자열이 영국 우편번호로 알맞은지 판별하는 프로그램을 작성하라.
+
+## 입력 형식
+
+첫 줄에 문자열의 수를 나타내는 정수 $T$가 주어진다.
+($1 \leq T \leq 100\,000$)
+
+이어지는 $T$ 개 줄에는 차례로 문자열이 주어진다.
+각 줄의 문자열은 알파벳 대문자, 숫자, 공백으로 이루어지며,
+공백은 정확히 한 개 존재한다.
+공백이 문자열의 맨 앞이나 맨 끝에 위치한 경우는 없다.
+공백을 제외한 문자열의 길이 합은 $100\,000$을 넘지 않는다.
+
+## 출력 형식
+
+$T$ 개의 줄에 걸쳐 답을 출력한다.
+$i$ 번째 줄에는 $i$ 번째 문자열에 대한 답을 출력한다.
+만약, 문자열이 영국 우편번호로 알맞다면 `YES`를,
+아니라면 `NO`를 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+2
+WC2B 5RL
+SW20 8RR
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+YES
+YES
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+3
+1AZ BY2
+N1 7CD
+EC1A 2BB
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+NO
+YES
+YES
+  </Output>
+</Examples>
+
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={9}>
+  문자열에 숫자가 등장하지 않는다.
+</Subtask>
+<Subtask index={2} score={22}>
+  주어지는 문자열의 길이는 $6$이며, 공백은 세 번째 칸에 있다.
+</Subtask>
+<Subtask index={3} score={69}>
+  추가적인 제한 조건이 없음.
+</Subtask>
+
+## 해설
+
+<Solution>
+준비 중입니다.
+</Solution>

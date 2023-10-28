@@ -32,8 +32,18 @@ const problems = {
     ["round2b_4", "쓸어담기"],
   ],
   finals1214: [
+    ["final_1", "영국 우편번호"],
+    ["final_2", "폭죽"],
+    ["final_3", "단조"],
+    ["final_4", "오름차순"],
+    ["final_5", "레이저"],
   ],
   finals1519: [
+    ["final_6", "포탈"],
+    ["final_3", "단조"],
+    ["final_4", "오름차순"],
+    ["final_5", "레이저"],
+    ["final_7", "도로망 건설"],
   ],
 } as const;
 
