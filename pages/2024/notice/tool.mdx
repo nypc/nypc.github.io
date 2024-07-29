@@ -32,20 +32,20 @@ export default ({ children }) => (
 
 OS는 Ubuntu가 구동되며, 각 언어별로 사용되는 컴파일러는 다음과 같습니다:
 
-| 언어     | 버전 및 실행 환경 (ubuntu)              | 컴파일러 옵션                                                                 | 실행 옵션        |
-| -------- | --------------------------------------- | ----------------------------------------------------------------------------- | ---------------- |
-| C        | GNU C 99: gcc 9.4.0                     | `-O2 -static`                                                                 |                  |
-| C 11     | GNU C 11: gcc 9.4.0                     | `-O2 -static --std=c11`                                                       |                  |
-| C++      | GNU C++ 03: g++ 9.4.0                   | `-O2 -static --std=c++03`                                                     |                  |
-| C++ 11   | GNU C++ 11: g++ 9.4.0                   | `-O2 -static --std=c++11`                                                     |                  |
-| C++ 14   | GNU C++ 14: g++ 9.4.0                   | `-O2 -static --std=c++14`                                                     |                  |
-| C++ 17   | GNU C++ 17: g++ 9.4.0                   | `-O2 -static --std=c++17`                                                     |                  |
-| C++ 20   | GNU C++ 20: g++ 9.4.0                   | `-O2 -static --std=c++2a`                                                     |                  |
-| Java     | OpenJDK 1.8.0                           |                                                                               |                  |
-| Python 2 | CPython 2.7.18                          |                                                                               |                  |
-| Python 3 | CPython 3.8.10                          |                                                                               |                  |
-| Pypy 2   | Python 2.7.13 PyPy 7.3.1 with GCC 9.3.0 |                                                                               |                  |
-| Pypy 3   | Python 3.6.9 PyPy 7.3.1 with GCC 9.3.0  |                                                                               |                  |
+| 언어      | 버전 및 실행 환경 (ubuntu)                    | 컴파일러 옵션                 | 실행 옵션 |
+|----------|-------------------------------------------|----------------------------|-------|
+| C        | GNU C 99: gcc 13.2.0                      | `-O2 -static -std=c99 -lm` |       |
+| C 11     | GNU C 11: gcc 13.2.0                      | `-O2 -static -std=c11 -lm` |       |
+| C 17     | GNU C 17: gcc 13.2.0                      | `-O2 -static -std=c17 -lm` |       |
+| C++      | GNU C++ 03: g++ 13.2.0                    | `-O2 -static -std=c++03`   |       |
+| C++ 11   | GNU C++ 11: g++ 13.2.0                    | `-O2 -static -std=c++11`   |       |
+| C++ 14   | GNU C++ 14: g++ 13.2.0                    | `-O2 -static -std=c++14`   |       |
+| C++ 17   | GNU C++ 17: g++ 13.2.0                    | `-O2 -static -std=c++17`   |       |
+| C++ 20   | GNU C++ 20: g++ 13.2.0                    | `-O2 -static -std=c++20`   |       |
+| Java     | OpenJDK 11                                |                            |       |
+| Python 3 | CPython 3.12.3                            |                            |       |
+| Pypy 3   | Python 3.9.18 PyPy 7.3.15 with GCC 13.2.0 |                            |       |
+
 
 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만,
