@@ -4,6 +4,7 @@ import { PostLayout } from "components";
 import type { NextPage } from "next";
 
 export const themes = {
+  // 아래 색은 해당 년도 NYPC 포스터를 참고한다.
   2016: {
     background: "#fff001",
     color: "#1d1d1b",
@@ -33,13 +34,13 @@ export const themes = {
     color: "#0D72E6",
   },
   2023: {
-    background: "#000000",
-    color: "#0D72E6",
-  },  
+    background: "#1A1A1A",
+    color: "#FFFFFF",
+  },
   2024: {
-    background: "#000000",
-    color: "#0D72E6",
-  },    
+    background: "#181D43",
+    color: "#FFFFFF",
+  },
 };
 
 const YearContainer = styled.div`

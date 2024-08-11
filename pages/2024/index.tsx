@@ -54,8 +54,8 @@ const List: NextPage = (props) => {
         title: `NYPC ${year}`,
       }}
       theme={{
-        background: "#000000",
-        color: "#0D72E6",
+        background: "#181D43",
+        color: "#FFFFFF",
       }}
     >
       <Typo h2>안내</Typo>
