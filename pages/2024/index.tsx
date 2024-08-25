@@ -26,12 +26,12 @@ const problems = {
     ["round2a_3", "기차 여행"],
     ["round2a_4", "트리 읽기"],
   ],
-  round2b: [ /*
-    ["round2b_1", "괄호"],
-    ["round2b_2", "반복"],
-    ["round2b_3", "장로 스탄의 부탁"],
-    ["round2b_4", "쓸어담기"],
-  */ ],
+  round2b: [
+    ["round2b_1", "순열로 고치기"],
+    ["round2b_2", "계단"],
+    ["round2b_3", "점 짝짓기"],
+    ["round2b_4", "합주 공연"],
+  ],
   finals1214: [ /*
     ["final_1", "영국 우편번호"],
     ["final_2", "폭죽"],
