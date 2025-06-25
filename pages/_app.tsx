@@ -17,8 +17,26 @@ import { MDXComponents } from "mdx/types";
 import type { AppProps } from "next/app";
 
 const components: MDXComponents = {
-  h1: ({ ref, ...props }) => <Typo h1 {...props} />,
-  h2: ({ ref, ...props }) => <Typo h2 {...props} />,
+  h1: ({ ref, ...props }) => (
+    <Typo
+      h1
+      style={{
+        padding: "0.5em 0",
+        borderBottom: solvedThemes.light.styles.border(),
+      }}
+      {...props}
+    />
+  ),
+  h2: ({ ref, ...props }) => (
+    <Typo
+      h2
+      style={{
+        padding: "0.5em 0",
+        borderBottom: solvedThemes.light.styles.border(),
+      }}
+      {...props}
+    />
+  ),
   h3: ({ ref, ...props }) => <Typo h3 {...props} />,
   h4: ({ ref, ...props }) => <Typo h4 {...props} />,
   h5: ({ ref, ...props }) => <Typo h5 {...props} />,

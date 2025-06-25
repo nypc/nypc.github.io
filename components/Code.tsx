@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Code = styled.code`
+  font-family: "IBM Plex Mono", "Pretendard", monospace;
+  tab-size: 4;
   &:not([class*="language-"]) {
     background-color: ${({ theme }) => theme.color.background.card.main};
     color: ${({ theme }) => theme.color.status.error};

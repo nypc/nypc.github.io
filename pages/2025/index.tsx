@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const year = 2025;
 
-
 const problems = {
   round1: [
   ],

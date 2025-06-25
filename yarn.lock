@@ -574,12 +574,15 @@ __metadata:
     "@next/mdx": ^12.3.1
     "@solved-ac/ui-react": ^0.5.0
     "@tabler/icons-react": ^2.30.0
+    "@types/hast": ^2.0.0
+    "@types/lowlight": ^2.0.0
     "@types/node": 18.8.2
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
     eslint: 8.24.0
     eslint-config-next: 12.3.1
     framer-motion: ^10.15.0
+    lowlight: ^2.0.0
     next: 12.3.1
     react: 18.2.0
     react-dom: 18.2.0
@@ -684,6 +687,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hast@npm:^3.0.0":
+  version: 3.0.4
+  resolution: "@types/hast@npm:3.0.4"
+  dependencies:
+    "@types/unist": "*"
+  checksum: 7a973e8d16fcdf3936090fa2280f408fb2b6a4f13b42edeb5fbd614efe042b82eac68e298e556d50f6b4ad585a3a93c353e9c826feccdc77af59de8dd400d044
+  languageName: node
+  linkType: hard
+
 "@types/json5@npm:^0.0.29":
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
@@ -695,6 +707,15 @@ __metadata:
   version: 0.11.1
   resolution: "@types/katex@npm:0.11.1"
   checksum: 1e51988b4b386a1b6fa8e22826ab4705bf3e6c9fb03461f2c91d28cb31095232bdeff491069ac9bc74bc4c26110be6a11a41e12ca77a2e4169f3afd8cd349355
+  languageName: node
+  linkType: hard
+
+"@types/lowlight@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "@types/lowlight@npm:2.0.1"
+  dependencies:
+    lowlight: "*"
+  checksum: 5ecf923060800114654b64cc0f08f283a332d32dffd8f9c1b87b108c00aafd1eff646faf3057954f1160af92e0496df8fa345ddc044e8c12c24044385ad7ec3c
   languageName: node
   linkType: hard
 
@@ -1291,6 +1312,15 @@ __metadata:
   version: 2.0.3
   resolution: "dequal@npm:2.0.3"
   checksum: 8679b850e1a3d0ebbc46ee780d5df7b478c23f335887464023a631d1b9af051ad4a6595a44220f9ff8ff95a8ddccf019b5ad778a976fd7bbf77383d36f412f90
+  languageName: node
+  linkType: hard
+
+"devlop@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "devlop@npm:1.1.0"
+  dependencies:
+    dequal: ^2.0.0
+  checksum: d2ff650bac0bb6ef08c48f3ba98640bb5fec5cce81e9957eb620408d1bab1204d382a45b785c6b3314dc867bb0684936b84c6867820da6db97cbb5d3c15dd185
   languageName: node
   linkType: hard
 
@@ -2152,6 +2182,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"highlight.js@npm:~11.11.0":
+  version: 11.11.1
+  resolution: "highlight.js@npm:11.11.1"
+  checksum: 841ddd329a92be123a61ef4051698f824c3575deef588fbb810bd638f1575ddc96b7bdd925b97c05a29276bb119dfcb8e5bcb0acb31c86249371bf046e131d72
+  languageName: node
+  linkType: hard
+
 "highlight.js@npm:~11.6.0":
   version: 11.6.0
   resolution: "highlight.js@npm:11.6.0"
@@ -2584,6 +2621,17 @@ __metadata:
   bin:
     loose-envify: cli.js
   checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
+  languageName: node
+  linkType: hard
+
+"lowlight@npm:*":
+  version: 3.3.0
+  resolution: "lowlight@npm:3.3.0"
+  dependencies:
+    "@types/hast": ^3.0.0
+    devlop: ^1.0.0
+    highlight.js: ~11.11.0
+  checksum: 0903db036d938d7bd4a7ce9b55f9e4cd02c46b932d632f512540d700fb0f61a689553231f6d15bc6ebf8a7372c58254f7efc3f18a7d4cb328ee366290a694801
   languageName: node
   linkType: hard
 
