@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 const problems = {
-  online-round: [
+  online: [
   ],
   finals: [
   ],
