@@ -4,7 +4,13 @@ import { PostLayout } from "components";
 import type { NextPage } from "next";
 import { readableColor } from "polished";
 
-export const themes = {
+interface ThemeItem {
+  background: string;
+  color: string;
+  codebattle?: boolean;
+}
+
+export const themes: Record<number, ThemeItem> = {
   // 아래 색은 해당 년도 NYPC 포스터를 참고한다.
   2016: {
     background: "#fff001",
