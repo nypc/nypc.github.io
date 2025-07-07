@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Card, Typo } from "@solved-ac/ui-react";
 import { PostLayout } from "components";
 import type { NextPage } from "next";
+import { readableColor } from "polished";
 
 export const themes = {
   // 아래 색은 해당 년도 NYPC 포스터를 참고한다.
@@ -41,17 +42,42 @@ export const themes = {
     background: "#181D43",
     color: "#FFFFFF",
   },
+  2025: {
+    background: "#0086FF",
+    color: "#FFFFFF",
+    codebattle: true,
+  },
 };
 
 const YearContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 `;
 
 const Year = styled(Card)`
-  text-align: center;
-  padding: 32px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 32px;
+  flex: 1;
+  min-width: 0;
+  @media (max-width: 540px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 16px;
+  }
+`;
+
+const Row = styled.div`
+  display: flex;
+  gap: 16px;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    gap: 4px;
+  }
 `;
 
 const Home: NextPage = () => {
@@ -69,24 +95,53 @@ const Home: NextPage = () => {
       <YearContainer>
         {Object.entries(themes)
           .sort((a, b) => b[0].localeCompare(a[0]))
-          .map(([year, { background, color }]) => (
-            <Year
-              key={year}
-              style={{
-                color,
-              }}
-              as="a"
-              clickable
-              href={`/${year}`}
-              backgroundColor={background}
-            >
-              <Typo h2 no-margin>
-                NYPC {year}
-              </Typo>
-              <Typo description>
-                제 {+year - 2015}회 넥슨 청소년 프로그래밍 챌린지
-              </Typo>
-            </Year>
+          .map(([year, { background, color, codebattle }]) => (
+            <Row key={year}>
+              <Year
+                style={{
+                  color,
+                }}
+                as="a"
+                clickable
+                href={`/${year}`}
+                backgroundColor={background}
+              >
+                <Typo h2 no-margin>
+                  NYPC {year}
+                </Typo>
+                <Typo
+                  style={{
+                    color: readableColor(background),
+                    opacity: 0.8,
+                  }}
+                >
+                  제 {+year - 2015}회 넥슨 청소년 프로그래밍 챌린지
+                </Typo>
+              </Year>
+              {codebattle && (
+                <Year
+                  style={{
+                    color,
+                  }}
+                  as="a"
+                  clickable
+                  href={`/${year}-codebattle`}
+                  backgroundColor={background}
+                >
+                  <Typo h2 no-margin>
+                    CODE BATTLE
+                  </Typo>
+                  <Typo
+                    style={{
+                      color: readableColor(background),
+                      opacity: 0.8,
+                    }}
+                  >
+                    NYPC 코드 배틀
+                  </Typo>
+                </Year>
+              )}
+            </Row>
           ))}
       </YearContainer>
     </PostLayout>

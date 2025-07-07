@@ -18,7 +18,7 @@ const List: NextPage = (props) => {
         title: `NYPC CODE BATTLE`,
       }}
       theme={{
-        background: "#181D43",
+        background: "#0086FF",
         color: "#FFFFFF",
       }}
     >
