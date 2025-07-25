@@ -29,11 +29,11 @@ export default ({ children }) => (
 
 코드 제출 문제에 제출된 모든 코드의 실행과 채점은 다음 환경에서 이루어집니다.
 
-* Amazon Web Services의 c7i.4xlarge 인스턴스
-* Intel Xeon 4세대 기반 커스텀 프로세서
-* 클럭: 3.2 GHz
-* 프로세서 아키텍쳐: 64 bit
-* OS: Ubuntu 24.04
+- Amazon Web Services의 c7i.4xlarge 인스턴스
+- Intel Xeon 4세대 기반 커스텀 프로세서
+- 클럭: 3.2 GHz
+- 프로세서 아키텍쳐: 64 bit
+- OS: Ubuntu 24.04
 
 해당 환경에서 동작하지 않는 코드는 채점이 되지 않습니다. 유념하여 개발 도구를 사용해주시기 바랍니다.
 
@@ -188,13 +188,13 @@ export default ({ children }) => (
       code: "luajit",
       version: "Lua 5.1 (LuaJIT 2.1.1748459687)",
       compilation: "luajit -O3 -b Main.lua Main.out",
-      execution: "/usr/local/bin/luajit Main.out NYPC",
+      execution: "luajit Main.out NYPC",
     },
     {
       name: "Lua 5.4",
       code: "lua",
       version: "Lua 5.4.6",
-      compilation: "/usr/bin/luac5.4 -o Main.out Main.lua",
+      compilation: "luac5.4 -o Main.out Main.lua",
       execution: "lua5.4 Main.out NYPC",
     },
     {
@@ -215,10 +215,6 @@ export default ({ children }) => (
   ]}
 />
 
-* 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
-* 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만, 모든 문제를 모든 언어로 해결할 수 있다는 보장은 없습니다.
-* 문제를 해결하는 데 계산 자원이 많이 필요하다고 판단되면 C/C++를 사용할 것을 권장합니다.
-
 ### 유의 사항
 
 아래의 예시처럼 특정 플랫폼(특히, Windows나 Visual C++)에서만 동작하는 코드를 작성하지 않도록 유의하시기 바랍니다.
@@ -227,7 +223,7 @@ export default ({ children }) => (
 | --------------------- | -------------------------------------------------------------------- |
 | `void main()`         | 표준에 따라 `int main`이어야 함                                      |
 | `getch()`             | 대신 `getchar()`를 사용                                              |
-| `fflush(stdin)`       | 비표준 함수 사용                                                      |
+| `fflush(stdin)`       | 비표준 함수 사용                                                     |
 | `GetTickCount()`      | Windows API 는 사용할 수 없음                                        |
 | `CString`             | `CString`은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용 |
 | `#include <stdafx.h>` | `stdafx.h`는 Visual C++ 전용 precompiled header임                    |
@@ -235,7 +231,6 @@ export default ({ children }) => (
 ### Java 유의 사항
 
 클래스 이름은 반드시 `Main` 이어야 합니다.
-
 
 ## 표준 입출력 사용하기
 
@@ -258,18 +253,39 @@ export default ({ children }) => (
 
 <LanguageExample name="C20" example="c" />
 <LanguageExample name="C++20" example="cpp" />
-<LanguageExample name="Python3" example="py3" />
-<LanguageExample name="Pypy3" example="py3" />
+<LanguageExample name="Python3" example="python" />
+<LanguageExample name="Pypy3" example="python" />
 <LanguageExample name="Java 21" example="java" />
 <LanguageExample name="Rust 2024" example="rust" />
-<LanguageExample name="Node.js" example="js" />
-<LanguageExample name="Typescript 5.8.3" example="js" />
+<LanguageExample name="Node.js" example="javascript" />
+<LanguageExample name="Typescript 5.8.3" example="javascript" />
 <LanguageExample name="C# 9" example="csharp" />
 <LanguageExample name="Go" example="go" />
 <LanguageExample name="LuaJIT" example="lua" />
 <LanguageExample name="Lua 5.4" example="lua" />
-<LanguageExample name="Kotlin JVM 2.1" example="kt" />
+<LanguageExample name="Kotlin JVM 2.1" example="kotlin" />
 <LanguageExample name="Kotlin/Native 2.1" example="kt" />
+
+### 바이너리 파일
+
+NYPC \<CODE BATTLE/\> 채점 환경에서는 소스코드 이외에 바이너리 파일을 추가로 제출할 수 있습니다. 바이너리 파일은 소스코드를 실행하는 디렉토리에 `data.bin` 라는 이름의 파일로 제공됩니다.
+해당 파일은 코드 실행 시에만 제공되며, 컴파일 시에는 제공되지 않습니다. <br/>
+`data.bin`의 모든 바이트를 표준 출력으로 출력하는 코드는 다음과 같습니다.
+
+<LanguageExample name="C20" example="c" type="data_bin" />
+<LanguageExample name="C++20" example="cpp" type="data_bin" />
+<LanguageExample name="Python3" example="python" type="data_bin" />
+<LanguageExample name="Pypy3" example="python" type="data_bin" />
+<LanguageExample name="Java 21" example="java" type="data_bin" />
+<LanguageExample name="Rust 2024" example="rust" type="data_bin" />
+<LanguageExample name="Node.js" example="javascript" type="data_bin" />
+<LanguageExample name="Typescript 5.8.3" example="javascript" type="data_bin" />
+<LanguageExample name="C# 9" example="csharp" type="data_bin" />
+<LanguageExample name="Go" example="go" type="data_bin" />
+<LanguageExample name="LuaJIT" example="lua" type="data_bin" />
+<LanguageExample name="Lua 5.4" example="lua" type="data_bin" />
+<LanguageExample name="Kotlin JVM 2.1" example="kotlin" type="data_bin" />
+<LanguageExample name="Kotlin/Native 2.1" example="kt" type="data_bin" />
 
 ## 프로그램의 종료 코드 (exit code)
 
