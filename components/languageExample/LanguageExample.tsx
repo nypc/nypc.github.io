@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
-import { Typo } from "@solved-ac/ui-react";
 import { PropsWithChildren } from "react";
-import { LANGUAGE_EXAMPLES } from "./examples";
-import { Code } from "components/Code";
+import { LANGUAGE_EXAMPLES, LANGUAGES } from "./examples";
 import { HighlightedCode } from "components/hilightedCode/HighligtedCode";
 
 const LanguageExampleContainer = styled.div`
@@ -22,12 +20,14 @@ const LanguageContent = styled.div`
 
 interface Props {
   name: string;
-  example: keyof typeof LANGUAGE_EXAMPLES;
+  type?: "stdin" | "data_bin";
+  example: LANGUAGES;
 }
 
 export const LanguageExample = ({
   name,
-  example,
+  type,
+  example: lang,
 }: PropsWithChildren<Props>) => {
   return (
     <LanguageExampleContainer id={`language-example-${name}`}>
@@ -36,9 +36,9 @@ export const LanguageExample = ({
       </LanguageName>
       <LanguageContent>
         <HighlightedCode
-          language={LANGUAGE_EXAMPLES[example]?.language || "text"}
+          language={lang}
         >
-          {LANGUAGE_EXAMPLES[example]?.code || ""}
+          {LANGUAGE_EXAMPLES[lang][type ?? 'stdin'] || ''}
         </HighlightedCode>
       </LanguageContent>
     </LanguageExampleContainer>
