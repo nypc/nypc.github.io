@@ -23,6 +23,11 @@ export default ({ children }) => (
   <PostLayout meta={meta}>{children}</PostLayout>
 );
 
+
+### 수정 내역
+
+- **7월 31일**: Python tensorflow, torch, C++26, Rust nightly 추가. Rust 1.85 &rarr; 1.88 업데이트
+
 코드 작성시 디버깅과 편의를 위해 로컬 컴퓨터의 개발 도구를 사용할 수 있습니다. <br/>
 이 경우 로컬 컴퓨터에서의 개발 환경과 채점에서의 개발 환경이 달라 실행이나 채점이 되지 않는 불이익이 없도록 본 안내를 꼭 읽어보시기 바랍니다 (특히 Visual Studio / Visual C++ 사용시).
 
@@ -82,6 +87,14 @@ export default ({ children }) => (
           name: "more-itertools==10.6.0",
           href: "https://pypi.org/project/more-itertools/10.6.0/",
         },
+        {
+          name: "torch==2.7.1+cpu",
+          href: "https://pypi.org/project/torch/2.7.1/",
+        },
+        {
+          name: "tensorflow==2.19.0",
+          href: "https://pypi.org/project/tensorflow/2.19.0/",
+        },
       ],
       compilation: "python3 -m py_compile main.py",
       execution: "python3 __pycache__/main.cpython-312.pyc NYPC",
@@ -115,7 +128,7 @@ export default ({ children }) => (
     {
       name: "Rust 2024",
       code: "rust2024",
-      version: "rustc 1.85.0",
+      version: "rustc 1.88.0",
       libs: [
         { name: "bitvec@1.0.1", href: "https://crates.io/crates/bitvec/1.0.1" },
         {
@@ -213,12 +226,47 @@ export default ({ children }) => (
       compilation: "konanc Main.kt -o Main -opt",
       execution: "./Main.kexe NYPC",
     },
+    {
+      name: "C++26",
+      code: "cpp-exp",
+      version: "gcc 15",
+      libs: [
+        {
+          name: "Boost 1.83.0",
+          href: "https://www.boost.org/releases/1.83.0/",
+        },
+      ],
+      compilation: "g++-15 -std=gnu++26 -O2 -DONLINE_JUDGE -DNYPC -Wall -Wextra -march=native -mtune=native -o main main.cpp -I/opt/boost/gcc/include -L/opt/boost/gcc/lib",
+      execution: "./main NYPC",
+      showExample: false,
+    },
+    {
+      name: "Rust 2024 Nightly",
+      code: "rust-exp",
+      version: "rustc >=1.90.0",
+      libs: [
+        { name: "bitvec@1.0.1", href: "https://crates.io/crates/bitvec/1.0.1" },
+        {
+          name: "itertools@0.14.0",
+          href: "https://crates.io/crates/itertools/0.14.0",
+        },
+        { name: "num@0.4.3", href: "https://crates.io/crates/num/0.4.3" },
+        { name: "rand@0.9.0", href: "https://crates.io/crates/rand/0.9.0" },
+      ],
+      compilation:
+        "cargo rustc -r -q --frozen -- -Copt-level=3 -Ctarget-cpu=native --cfg online_judge --cfg nypc",
+      execution: "./target/release/main NYPC",
+      showExample: false,
+    },
   ]}
 />
+
+
 
 * 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
 * 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만, 모든 문제를 모든 언어로 해결할 수 있다는 보장은 없습니다.
 * 문제를 해결하는 데 계산 자원이 많이 필요하다고 판단되면 C/C++를 사용할 것을 권장합니다.
+* C++26과 Rust 2024 Nightly는 실험용 언어로 채점 환경 및 컴파일 환경이 수시로 변경될 수 있으며, 정상적인 작동을 보장하지 않습니다.
 
 ### 유의 사항
 
