@@ -69,6 +69,7 @@ interface LanguageDetail {
   }[];
   compilation?: string;
   execution?: string;
+  showExample?: boolean;
 }
 
 export const LanguageDetails = ({ details }: { details: LanguageDetail[] }) => {
@@ -82,10 +83,15 @@ export const LanguageDetails = ({ details }: { details: LanguageDetail[] }) => {
             <Typo description>{detail.code}</Typo>
           </LanguageId>
           <LanguageMeta>
-            {detail.version}{" "}
-            <Typo description>
-              (<a href={`#language-example-${detail.name}`}>예시 코드</a>)
-            </Typo>
+            {detail.version}
+            {detail.showExample !== false &&
+              <>
+                {" "}
+                <Typo description>
+                  (<a href={`#language-example-${detail.name}`}>예시 코드</a>)
+                </Typo>
+              </>
+            }
             <Space h={4} />
             <LanguageMetaItem>
               <LanguageMetaCaption>
