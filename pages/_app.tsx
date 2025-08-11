@@ -1,4 +1,4 @@
-import { css, Global, ThemeProvider } from "@emotion/react";
+import { css, Global, Theme, ThemeProvider } from "@emotion/react";
 import { MDXProvider } from "@mdx-js/react";
 import {
   Cell,
@@ -15,6 +15,14 @@ import {
 import { Blockquote, Code, Enumerate, Itemize } from "components";
 import { MDXComponents } from "mdx/types";
 import type { AppProps } from "next/app";
+
+const theme: Theme = {
+  ...solvedThemes.light,
+  typography: {
+    ...solvedThemes.light.typography,
+    code: '"IBM Plex Mono", "Pretendard", monospace',
+  },
+};
 
 const components: MDXComponents = {
   h1: ({ ref, ...props }) => (
@@ -81,7 +89,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `}
       />
       <MDXProvider components={components}>
-        <ThemeProvider theme={solvedThemes.light}>
+        <ThemeProvider theme={theme}>
           <SolvedGlobalStyles />
           <Component {...pageProps} />
         </ThemeProvider>
