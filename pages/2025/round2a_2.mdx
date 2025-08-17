@@ -1,0 +1,114 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Simulators,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "완벽한 음악 연주 시각 찾기",
+  year: 2025,
+  stage: "Round 2-A",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+<div style={{ display: "flex" }}>
+  <Figure
+    src="/2025/r2a-02-7da7902d-ac41-4cd2-90f8-6f75f4744b60.png"
+    width={800}
+  />
+</div>
+
+마비노기 모바일에서 악기 연주에 흥미를 느낀 당신은, 실제 악기를 배워보고 싶다는 생각이 들었다. 연습을 위해 당신은 총 $N$개의 음표를 차례대로 연주하려고 한다.
+
+곡의 시작 시각을 $0$이라고 할 때, $i$번째 음표의 정확한 연주 시각은 $T_i$이다. 하지만 정확한 연주 시각을 맞출 수 없다면, 대신 구간 $[L_i, R_i]$안에 연주하면 된다. 다시 말해서, $i$번째 음표의 실제 연주 시각을 $P_i$라고 하면, $L_i \leq P_i \leq R_i$를 만족해야 한다. 
+
+또한, 두 음표의 실제 연주 시각 사이 간격은 $X (\geq 1)$ 이상이여야 한다. 즉, 모든 $2 \leq i \leq N$에 대해, $P_{i-1} + X \leq P_i$을 만족해야 한다. 
+
+이때, **연주 오차**는 $i$번째 음표의 정확한 연주 시각 $T_i$와 실제 연주한 시각 $P_i$와의 시각 차이의 합 $\sum_{i=1}^n \left| P_i - T_i \right|$로 정의된다.   
+
+음표마다 정확한 연주 시각과 연주 가능한 구간, 그리고 두 음표의 실제 연주 시각 사이의 최소 간격이 주어지면, 연주 오차를 최소화하면서 연주를 하는 프로그램을 작성하라.
+
+## 입력 형식
+
+첫 줄에 음표의 개수를 나타내는 정수 $N$과
+두 음표의 실제 연주 시각 사이의 최소 간격을 나타내는 정수 $X$가 주어진다.
+($1 \leq N \leq 2\,000;$ $1 \leq X \leq 1\,000\,000$)
+
+그다음 $N$개의 줄의 $i$번째 줄에는
+$i$번째 음표의 연주 가능한 구간 $[L_i, R_i]$와
+정확한 연주 시각 $T_i$를 나타내는
+세 정수가 $L_i$, $T_i$, $R_i$의 순서로 공백으로 구분되어 주어진다.
+($1 \leq L_i \leq T_i \leq R_i \leq 1\,000\,000$)
+
+## 출력 형식
+
+조건을 만족하는 연주가 불가능하다면 첫 줄에 $-1$을 출력한다.
+
+조건을 만족하는 연주가 가능하다면, 첫 줄에 연주 오차의 최솟값을 출력한다.
+그다음 줄에 연주 오차를 최소로 하는 $N$개 음표의 실제 연주 시각
+$P_1, P_2, \cdots, P_N$을 공백으로 구분하여 출력한다.
+답이 여러 개 존재한다면, 그중 하나만 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+3 1
+2 4 6
+3 4 6
+3 4 6
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+2
+3 4 5
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+3 1
+7 8 9
+4 5 6
+1 2 3
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+-1
+  </Output>
+</Examples>
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={8}>
+  $N \leq 24;$ $X \leq 24;$ $R_i \leq 24$
+</Subtask>
+<Subtask index={2} score={15}>
+  $N \leq 300;$ $X \leq 300;$ $R_i \leq 300$
+</Subtask>
+<Subtask index={3} score={46}>
+  $N \leq 500;$ $X \leq 20\,000;$ $R_i \leq 20\,000$
+</Subtask>
+<Subtask index={4} score={31}>
+  모든 입력 케이스가 주어진다.
+</Subtask>
+
+## 해설
+
+<Solution>
+준비 중입니다.
+</Solution>

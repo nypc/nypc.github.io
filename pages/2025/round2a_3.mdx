@@ -1,0 +1,127 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Simulators,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "완전한 승리",
+  year: 2025,
+  stage: "Round 2-A",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+$M \times M$ 격자에 $N$개의 돌이 놓여있다. 각 격자칸에는 최대 하나의 돌만 놓일 수 있다. 각 돌은 파란색 또는 빨간색이며, 각 색의 돌은 최소 하나씩 존재한다. 이 격자의 $r$행 $c$열 격자칸을 $(r, c)$로 나타내자.
+
+두 돌 $A$, $B$의 좌표가 각각 $(r_A, c_A)$와 $(r_B, c_B)$일 때,
+$r_A > r_B$와 $c_A > c_B$가 모두 성립하면 $A$가 $B$를 이긴다고 한다.
+
+다음 작업을 원하는 만큼 반복해 임의의 빨간 돌이 임의의 파란 돌을 이기는 **완전한 승리** 상태를 달성하고 싶다.
+- 원하는 돌 하나를 현재 격자칸에서 다른 원하는 격자칸으로 옮길 수 있다. 이때, 다른 돌이 놓여 있는 격자칸으로는 옮길 수 없다. 또한, 작업은 하나씩 실행해야 하며 $2$개 이상의 작업을 동시에 할 수는 없다.
+
+완전한 승리를 달성하기 위해 필요한 최소 작업 횟수를 계산하는 프로그램을 작성하라.
+
+## 입력 형식
+
+첫 줄에 돌의 개수를 나타내는 정수 $N$과 좌표 범위를 나타내는 정수 $M$이 주어진다.
+($2 \le N \le 300\,000;$ $2 \le M \le 1\,000\,000\,000$)
+
+그다음 $N$개의 줄에 각 돌의 좌표와 색상이 주어진다. 각 줄에는 세 개의 값이 공백으로 구분되어 주어진다.
+첫 번째와 두 번째 값은 각각 돌의 행 번호와 열 번호를 나타내는 $1$ 이상 $M$ 이하의 정수이다. 세 번째 값은 영어 대문자 `B` 또는 `R`이며, 각각 돌이 파란 색과 빨간 색임을 의미한다.
+
+모든 돌이 놓인 위치는 서로 다르며, 최소 하나의 파란 돌과 빨간 돌이 존재하는 입력만 주어진다.
+
+## 출력 형식
+
+첫 줄에 완전한 승리를 달성하는 데 필요한 최소 작업 횟수를 출력한다.
+단, 달성이 불가능한 경우에는 $-1$을 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+7 8
+1 1 R
+2 4 B
+4 1 B
+5 6 R
+6 7 R
+7 1 R
+8 2 B
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+3
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+4 2
+1 1 B
+1 2 B
+2 1 R
+2 2 R
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+-1
+  </Output>
+</Examples>
+
+## 예제 3
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+2 2
+1 1 R
+2 2 B
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+3
+  </Output>
+</Examples>
+
+## 예제 설명
+
+세 번째 예제에서 $(1, 1)$에 있는 빨간 돌을 
+ $(1, 2)$로 옮기고,  $(2, 2)$에 있는 파란 돌을  $(1, 1)$로
+옮긴 후,  $(1, 2)$에 있는 빨간 돌을 
+ $(2, 2)$로 옮기면 완전한 승리를 얻는다.
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={17}>
+  $N \le 10\,000;$ $M \le 100$
+</Subtask>
+<Subtask index={2} score={9}>
+  $M \le 5\,000$
+</Subtask>
+<Subtask index={3} score={23}>
+  $M \le 300\,000$
+</Subtask>
+<Subtask index={4} score={51}>
+  모든 입력 케이스가 주어진다.
+</Subtask>
+
+## 해설
+
+<Solution>
+준비 중입니다.
+</Solution>
