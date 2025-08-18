@@ -123,19 +123,20 @@ export default ({ children }) => (
 - **무승부**: +0.5승
 - **패배**: +0승
 
-| 배틀 번호 | 설명 |
-|-----------|------|
-| 1      | 제공된 예제 코드와 같은 동작을 수행합니다. |
-| 2      | **입찰 단계**: 주사위 그룹의 합이 높은 쪽에 (두 그룹 주사위 합의 차) $\times 1\,000$점을 입찰합니다.<br/> **점수 획득 단계**: 제일 높은 점수를 받을 수 있는 규칙과 조합을 사용합니다. |
-| 3      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 제일 높은 점수를 받을 수 있는 규칙과 조합을 사용합니다. |
-| 4      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 점수를 얻기 힘든 조합을 우선 선택합니다. |
-| 5      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. |
-| 6      | **입찰 단계**: 더 좋은 조합에 수비적으로 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. |
-| 7      | **입찰 단계**: 더 좋은 조합에 공격적으로 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. |
-| 8      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. |
-| 9      | **입찰 단계**: 더 좋은 조합에 수비적으로 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. |
-| 10      | **입찰 단계**: 더 좋은 조합에 공격적으로 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. |
+| 배틀 번호 | 설명 | 코드 | `data.bin` |
+|-----------|------|-----|-----|
+| 1      | 제공된 예제 코드와 같은 동작을 수행합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht1A.rs) |  |
+| 2      | **입찰 단계**: 주사위 그룹의 합이 높은 쪽에 (두 그룹 주사위 합의 차) $\times 1\,000$점을 입찰합니다.<br/> **점수 획득 단계**: 제일 높은 점수를 받을 수 있는 규칙과 조합을 사용합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2B.rs) |  |
+| 3      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 제일 높은 점수를 받을 수 있는 규칙과 조합을 사용합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2C.rs) |  |
+| 4      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 점수를 얻기 힘든 조합을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht3C.rs) |  |
+| 5      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.bin) |
+| 6      | **입찰 단계**: 더 좋은 조합에 수비적으로 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.bin) |
+| 7      | **입찰 단계**: 더 좋은 조합에 공격적으로 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.bin) |
+| 8      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.bin) |
+| 9      | **입찰 단계**: 더 좋은 조합에 수비적으로 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.bin) |
+| 10      | **입찰 단계**: 더 좋은 조합에 공격적으로 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.bin) |
 
+> 샘플 AI 코드와 `data.bin` 파일은 실제 대회 진행 시에는 제공되지 않았습니다.
 
 ## 테스팅 툴 (GUI)
 
