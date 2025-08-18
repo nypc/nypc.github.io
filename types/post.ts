@@ -3,6 +3,7 @@ export interface Meta {
   subtitle: string;
   year: number;
   stage: string;
+  codebattle?: boolean;
 }
 
 export interface PostTheme {

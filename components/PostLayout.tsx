@@ -49,10 +49,18 @@ interface Props {
 export const PostLayout: React.FC<Props> = (props) => {
   const { root, meta, theme, children } = props;
 
-  const prev = meta?.year ? `/${meta.year}` : "/";
+  const prev = meta?.year
+    ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}`
+    : "/";
 
   const title = meta?.title
-    ? `${meta.title}${meta.year ? ` — NYPC ${meta.year}` : ""}`
+    ? `${meta.title}${
+        meta.codebattle
+          ? " — NYPC CODE BATTLE"
+          : meta.year
+          ? ` — NYPC ${meta.year}`
+          : ""
+      }`
     : "NYPC — Nexon Youth Programming Challenge";
 
   return (
@@ -108,8 +116,10 @@ export const PostLayout: React.FC<Props> = (props) => {
                 {meta.subtitle && <Typo description>{meta.subtitle}</Typo>}
                 {meta.year && (
                   <Typo description>
-                    <Link href={`/${meta.year}`} passHref>
-                      <MetaLink>NYPC {meta.year}</MetaLink>
+                    <Link href={prev} passHref>
+                      <MetaLink>
+                        NYPC {meta.codebattle ? "CODE BATTLE" : meta.year}
+                      </MetaLink>
                     </Link>
                     {meta.stage && <> &middot; {meta.stage}</>}
                   </Typo>

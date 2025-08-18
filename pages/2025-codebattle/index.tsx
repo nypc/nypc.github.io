@@ -3,12 +3,14 @@ import { PostLayout, ProblemList, ProblemListContainer } from "components";
 import type { NextPage } from "next";
 import Link from "next/link";
 
+const year = "2025-codebattle";
 
 const problems = {
   online: [
+    ["online_p", "[연습문제] 버섯 게임"],
+    ["online_1", "Yacht Auction"],
   ],
-  finals: [
-  ],
+  finals: [],
 } as const;
 
 const List: NextPage = (props) => {
@@ -31,6 +33,11 @@ const List: NextPage = (props) => {
           <Link href="/2025-codebattle/notice/tool">개발 도구 사용 안내</Link>
         </li>
       </Itemize>
+      <Divider />
+      <Typo h2 no-margin>
+        온라인 라운드
+      </Typo>
+      <ProblemList year={year} problems={problems.online} />
       <Divider />
     </PostLayout>
   );

@@ -16,7 +16,7 @@ export const ProblemLink = styled.a`
 `;
 
 interface Props {
-  year: number;
+  year: number | string;
   problems:
     | [string, string][]
     | readonly [string, string][]
