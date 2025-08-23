@@ -30,10 +30,11 @@ interface Props {
   alt?: string;
   caption?: ReactNode;
   width?: string | number;
+  style?: React.CSSProperties;
 }
 
 export const Figure: React.FC<Props> = (props) => {
-  const { src, alt, caption, width } = props;
+  const { src, alt, caption, width, style } = props;
 
   return (
     <>
@@ -41,7 +42,7 @@ export const Figure: React.FC<Props> = (props) => {
         <FigureImg
           src={src}
           alt={alt || (typeof caption === "string" ? caption : undefined)}
-          style={width ? { width } : undefined}
+          style={{ width, ...style }}
         />
         {caption && <FigureCaption>{caption}</FigureCaption>}
       </FigureContainer>

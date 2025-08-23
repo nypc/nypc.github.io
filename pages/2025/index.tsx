@@ -26,7 +26,12 @@ const problems = {
     ["round2a_3", "완전한 승리"],
     ["round2a_4", "청소"],
   ],
-  round2b: [],
+  round2b: [
+    ["round2b_1", "버블"],
+    ["round2b_2", "트리의 모든 부분 트리의 크기 합"],
+    ["round2b_3", "로봇들의 모험"],
+    ["round2b_4", "토벤머리 용사의 스타포스 강화"],
+  ],
   finals1214: [],
   finals1519: [],
 } as const;
@@ -64,6 +69,10 @@ const List: NextPage = (props) => {
         <div>
           <Typo h3>2-A</Typo>
           <ProblemList year={year} problems={problems.round2a} />
+        </div>
+        <div>
+          <Typo h3>2-B</Typo>
+          <ProblemList year={year} problems={problems.round2b} />
         </div>
       </ProblemListContainer>
       <Divider />
