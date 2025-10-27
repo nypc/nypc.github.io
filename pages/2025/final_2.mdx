@@ -1,0 +1,233 @@
+import {
+  Examples,
+  Input,
+  Output,
+  Figure,
+  PostLayout,
+  Simulators,
+  Solution,
+  Subtask,
+} from "components";
+
+export const meta = {
+  title: "Connexion",
+  year: 2025,
+  stage: "본선",
+};
+
+export default ({ children }) => (
+  <PostLayout meta={meta}>{children}</PostLayout>
+);
+
+Connexion은 NYPC 10주년 이벤트 NYPC &lt;CODE BATTLE/&gt; 파이널 라운드 문제로 출제된 게임이다. Connexion의 현재 게임 보드 상태가 주어졌을 때, 선공과 후공의 점수를 각각 계산하는 프로그램을 작성하여라.
+
+## 게임 설명
+
+Connexion은 $2$명이서 플레이하는 턴제 게임이다. 게임은 $2$명이서 게임 보드와 게임 타일을 사용하여 진행한다.
+게임은 **준비 단계**, **배치 단계**, **점수 계산 단계**로 이루어진다.
+
+### 게임 보드
+
+<div style={{ display: "flex" }}>
+  <Figure
+    src="/2025-codebattle/connexion4-rgb-01.png"
+    width={640}
+    alt="Connexion 게임 보드 사진"
+  />
+</div>
+
+
+게임 보드는 위와 같은 모양으로, 총 $64$개의 칸으로 이루어져있다. 각 칸의 좌표는 (열, 행, 부호)의 순서쌍으로 나타낼 수 있다.
+
+- 열은 왼쪽에서 오른쪽으로 `a`, `b`, `c`, `d`, `e`, `f` 총 $6$개가 있다.
+- 행은 아래에서 위쪽으로  `1`, `2`, `3`, `4`, `5`, `6` 총 $6$개가 있다.
+- 각 열과 각 행이 만나는 곳에는 두 개의 칸 `-`와 `+`이 있다.
+
+칸을 표현할 때는 열을 나타내는 문자, 행을 나타내는 문자와 부호, 총 $3$개의 문자를 차례로 붙여서 나타낸다.
+
+열, 행, 부호의 가능한 $72$개 조합 중, 다음 $8$개는 사용하지 않는다.
+
+- `a1-`, `a4-`, `c3+`, `c6+`, `d1-`, `d4-`, `f3+`, `f6+`
+
+각 칸은 다음과 같은 방법으로 연결되어있다.
+
+- `-`칸은 (존재하는 경우) 다음 세 칸과 연결되어 있다.
+  - 같은 열, 같은 행의 `+`,
+  - 바로 왼쪽 열, 같은 행의 `+`,
+  - 같은 열, 바로 아랫쪽 행의 `+`.
+- `+`칸은 (존재하는 경우) 다음 세 칸과 연결되어 있다.
+  - 같은 열, 같은 행의 `-`,
+  - 바로 오른쪽 열, 같은 행의 `-`,
+  - 같은 열, 바로 위쪽 행의 `-`.
+
+예를 들어, `c5-`은 `c5+`, `b5+`, `c4+`과 연결되어 있고, `f4+`은 `f4-`, `f5-`와 연결되어있다.
+
+### 게임 타일
+
+Connexion의 게임 타일에는 색과 문양이 있다. 색은 <span style={{color:"#D94470",fontWeight:"bold"}}>R (<img src="/2025-codebattle/tile-r0%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="빨간색 타일"/>)</span>,
+<span style={{color:"#009B87",fontWeight:"bold"}}>G (<img src="/2025-codebattle/tile-g0%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="초록색 타일"/>)</span>,
+<span style={{color:"#2C7EC1",fontWeight:"bold"}}>B (<img src="/2025-codebattle/tile-b0%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="파란색 타일"/>)</span>,
+<span style={{color:"#F5C33F",fontWeight:"bold"}}>Y (<img src="/2025-codebattle/tile-y0%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="노란색 타일"/>)</span>의 $4$종류가 있으며, 문양은 <span style={{fontWeight:"bold"}}>1 (<img src="/2025-codebattle/tile-x1%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="1번 문양"/>)</span>,
+<span style={{fontWeight:"bold"}}>2 (<img src="/2025-codebattle/tile-x2%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="2번 문양"/>)</span>,
+<span style={{fontWeight:"bold"}}>3 (<img src="/2025-codebattle/tile-x3%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="3번 문양"/>)</span>,
+<span style={{fontWeight:"bold"}}>4 (<img src="/2025-codebattle/tile-x4%402x.png" style={{width:"100%",maxWidth:"25px",verticalAlign:"middle"}} alt="4번 문양"/>)</span>의 $4$종류가 있다. 색과 문양의 서로 다른 $16$가지 조합에 대해, 해당 조합의 타일이 $4$개씩, 총 $64$개가 있다. 타일은 색을 표현하는 문자와 문양을 표현하는 문자, 총 $2$개의 문자를 차례로 붙여서 나타낸다.
+
+
+<div style={{ display: "flex" }}>
+  <Figure
+    src="/2025-codebattle/connexion4-rgb-01.png"
+    width={640}
+    alt="Connexion 게임 타일 사진"
+  />
+</div>
+
+
+### 준비 단계
+
+선공과 후공을 정한다. 각 사람은 색과 문양의 서로 다른 $16$가지 조합의 타일을 각 $2$개씩 총 $32$개를 나눠가진 뒤 잘 섞은 이후 주머니에 넣는다. 그 이후 주머니에서 타일을 $5$개 뽑아서 모두가 볼 수 있도록 자기 앞에 놓는다.
+
+### 배치 단계
+
+배치 단계는 선공부터 번갈아가면서 각 사람이 $32$번씩 총 $64$번 진행한다.
+
+1. 자기 앞에 놓인 타일 중 하나를 게임보드의 칸 중 하나에 배치한다.
+2. 주머니에 남은 타일이 있을 경우, 주머니에서 타일을 하나 뽑아와서 자기 앞에 놓는다. 마지막 $5$번의 배치 단계에서는 주머니에 타일이 존재하지 않고, 이 경우 주머니에서 타일을 가져오는 과정은 생략한다.
+
+### 점수 계산
+
+인접한 두 칸에 놓인 타일이 같은 색이면 두 타일은 **색으로 직접 연결**, 같은 문양이면 **문양으로 직접 연결**되어 있다. 다음 조건을 만족하는 타일들을 간접 연결되었다고 말한다.
+
+- A타일은 자기 자신인 A타일과 간접 연결되어 있다.
+- A타일과 B타일이 직접 연결되어 있으면, A타일과 B타일은 간접 연결되어 있다.
+- A타일과 B타일이 간접 연결되어 있고, B타일과 C타일이 간접 연결되어 있으면, A타일과 C타일도 간접 연결되어 있다.
+- 위 3가지 방법에 해당하지 않는 두 타일은 간접 연결되어있지 않다.
+
+
+선공과 후공은 각자 다른 방법으로 타일의 점수를 계산한다. 각 타일의 점수는
+
+- 선공: 같은 문양으로 간접 연결된 타일의 개수
+- 후공: 같은 색으로 간접 연결된 타일의 개수
+
+이다. 각 사람의 점수는 모든 타일 점수의 합이다. 점수가 더 높은 사람이 승리한다.
+
+## 문제
+
+Connexion의 현재 게임 보드 상태가 주어졌을 때 선공과 후공의 점수를 각각 계산하는 프로그램을 작성하여라.
+
+
+## 입력 형식
+
+첫 줄에 테스트 케이스의 수를 나타내는 정수 $T$가 주어진다. $(1 \le T \le 1\,000)$
+
+각 테스트 케이스의 첫 줄에는 정수 $N$이 주어진다. 이는 현재 게임 보드에 놓여 있는 타일의 개수이다. $(1 \le N \le 64)$
+
+다음 $N$개의 줄의 각 줄에는 칸과 해당 칸에 놓인 타일의 좌표가 공백으로 구분되어 주어진다.
+
+주어지는 입력은 올바르다. 즉, 한 테스트 케이스 내에서 칸은 올바른 칸만이 주어지며, 중복해서 주어지지 않는다. 또한, 한 테스트 케이스 안에서 같은 타일은 $4$개 초과로 주어지지 않는다.
+
+
+## 출력 형식
+
+각 테스트 케이스마다 한 줄에 하나씩, 선공의 점수와 후공의 점수를 공백으로 구분하여 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+1
+10
+b5+ R4
+c5- R2
+c5+ Y2
+a4+ G2
+b6- B4
+a5- G1
+b5- Y4
+c4+ R3
+b4- B2
+b4+ Y2
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+24 20
+  </Output>
+</Examples>
+
+<Figure
+  src="/2025-codebattle/example_board.png"
+  width={480}
+  alt="점수계산 예시"
+  style={{ textAlign: "center", verticalAlign: "middle", margin: "0 auto" }}
+/>
+
+
+위 그림은 예제 1에 해당한다.
+
+#### 선공
+- **1 (<img src="/2025-codebattle/tile-x1%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="1번 문양"/>)**: $1\textrm{점} \times 1\textrm{개} = 1\textrm{점}$
+- **2 (<img src="/2025-codebattle/tile-x2%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="2번 문양"/>)**: $3\textrm{점} \times 3\textrm{개} + 2\textrm{점} \times 2\textrm{개} = 13\textrm{점}$
+- **3 (<img src="/2025-codebattle/tile-x3%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="3번 문양"/>)**: $1\textrm{점} \times 1\textrm{개} = 1\textrm{점}$
+- **4 (<img src="/2025-codebattle/tile-x4%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="4번 문양"/>)**: $3\textrm{점} \times 3\textrm{개} = 9\textrm{점}$
+
+총점: $1\textrm{점}+13\textrm{점}+1\textrm{점}+9\textrm{점} = 24\textrm{점}$
+
+
+
+#### 후공
+- <span style={{ color: "#D94470", fontWeight: "bold" }}>R (<img src="/2025-codebattle/tile-r0%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="빨간색 타일"/>)</span>: $3\textrm{점} \times 3\textrm{개} = 9\textrm{점}$
+- <span style={{ color: "#F5C33F", fontWeight: "bold" }}>Y (<img src="/2025-codebattle/tile-y0%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="초록색 타일"/>)</span>: $2\textrm{점} \times 2\textrm{개} + 1\textrm{점} \times 1\textrm{개} = 5\textrm{점}$
+- <span style={{ color: "#009B87", fontWeight: "bold" }}>G (<img src="/2025-codebattle/tile-g0%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="파란색 타일"/>)</span>: $2\textrm{점} \times 2\textrm{개} = 4\textrm{점}$
+- <span style={{ color: "#2C7EC1", fontWeight: "bold" }}>B (<img src="/2025-codebattle/tile-b0%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="노란색 타일"/>)</span>: $1\textrm{점} \times 1\textrm{개} + 1\textrm{점} \times 1\textrm{개} = 2\textrm{점}$
+
+
+총점: $9\textrm{점}+5\textrm{점}+4\textrm{점}+2\textrm{점} = 20\textrm{점}$
+
+
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+2
+2
+c3- R1
+e5- R1
+2
+f4- R1
+e4+ R1
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+2 2
+4 4
+  </Output>
+</Examples>
+
+
+예제 2는 아래 채점 방식의 종류 1, 종류 2, 종류 3 모두에 해당된다.
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={17}>
+  $N = 2$
+</Subtask>
+<Subtask index={2} score={29}>
+  주어지는 타일은 모두 `R1`이다.
+</Subtask>
+<Subtask index={3} score={54}>
+  모든 입력 케이스가 주어진다.
+</Subtask>
+
+## 해설
+
+<Solution>
+직간접적으로 연결된 타일의 수를 계산하는 데에는 Warshall Algorithm을 사용할 수 있습니다. Warshall Algorithm을 이용해서 간접 연결 관계를 구한 뒤, 모든 간접 연결 관계의 수를 세어 주는 것으로 문제를 해결할 수 있습니다.
+이 경우 Warshall Algorithm의 시간 복잡도인 $O(N^3)$의 시간 복잡도가 걸리며, 이 방법으로도 만점을 받을 수 있습니다.
+
+이보다 빠르게 계산하기 위해서는 각 연결 성분의 크기가 $s$인 경우, 해당 연결 성분 안에 있는 모든 타일의 간접 연결된 타일 수는 모두 $s$라는 점을 이용합니다. 타일들을 모두 연결 성분으로 나눈 이후, 각 연결성분의 크기 제곱을 모두 더해줍니다.
+BFS, DFS, Union Find등 알고리즘에 따라 $O(N^2)$, $O(N)$ 등의 시간 복잡도가 걸립니다.
+</Solution>

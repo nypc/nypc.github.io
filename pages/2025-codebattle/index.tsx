@@ -10,7 +10,9 @@ const problems = {
     ["online_p", "[연습문제] 버섯 게임"],
     ["online_1", "Yacht Auction"],
   ],
-  finals: [],
+  finals: [
+    ["finals_1", "Connexion"],
+  ],
 } as const;
 
 const List: NextPage = (props) => {
@@ -39,6 +41,10 @@ const List: NextPage = (props) => {
       </Typo>
       <ProblemList year={year} problems={problems.online} />
       <Divider />
+      <Typo h2 no-margin>
+        파이널 라운드
+      </Typo>
+      <ProblemList year={year} problems={problems.finals} />
     </PostLayout>
   );
 };

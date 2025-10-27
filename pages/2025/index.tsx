@@ -32,8 +32,20 @@ const problems = {
     ["round2b_3", "로봇들의 모험"],
     ["round2b_4", "토벤머리 용사의 스타포스 강화"],
   ],
-  finals1214: [],
-  finals1519: [],
+  finals1214: [
+    ["final_1", "기호"],
+    ["final_2", "Connexion"],
+    ["final_3", "돌 무더기 게임"],
+    ["final_4", "개미"],
+    ["final_5", "마방진 만들기"],
+  ],
+  finals1519: [
+    ["final_2", "Connexion"],
+    ["final_4", "개미"],
+    ["final_6", "물 뿌리기"],
+    ["final_7", "거래"],
+    ["final_8", "편집 거리"],
+  ],
 } as const;
 
 const List: NextPage = (props) => {
@@ -76,6 +88,19 @@ const List: NextPage = (props) => {
         </div>
       </ProblemListContainer>
       <Divider />
+      <Typo h2 no-margin>
+        본선
+      </Typo>
+      <ProblemListContainer>
+        <div>
+          <Typo h3>본선 &mdash; 1214</Typo>
+          <ProblemList year={year} problems={problems.finals1214} />
+        </div>
+        <div>
+          <Typo h3>본선 &mdash; 1519</Typo>
+          <ProblemList year={year} problems={problems.finals1519} />
+        </div>
+      </ProblemListContainer>
     </PostLayout>
   );
 };
