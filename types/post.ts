@@ -1,4 +1,5 @@
 export interface Meta {
+  bikoId?: number;
   title: string;
   subtitle: string;
   year: number;
