@@ -18,8 +18,9 @@ const posts = defineCollection({
     z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])),
   ),
   transform: async (post) => {
+    const { _meta, ...rest } = post;
     return {
-      ...post,
+      ...rest,
       content: post.content.replace(
         /\{meta\.([^}]+)\}/g,
         (_: string, metaKey: string) => `{${JSON.stringify(Object.hasOwn(post, metaKey) ? post[metaKey] : '')}}`,
