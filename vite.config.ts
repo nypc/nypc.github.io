@@ -1,10 +1,12 @@
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { defineConfig } from "vite";
 import viteReact from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
 import contentCollections from "@content-collections/vite";
 
 export default defineConfig({
   plugins: [
+    tsconfigPaths({ projects: ["./tsconfig.json"] }),
     contentCollections(),
     tanstackStart({
       router: {
