@@ -1,10 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
-import { Link } from "@tanstack/react-router";
 import styled from "@emotion/styled";
 import { Container, Divider, Footer, Space, Typo } from "@solved-ac/ui-react";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { IconArrowLeft } from "@tabler/icons-react";
+import { createLink } from "@tanstack/react-router";
 import type { Post } from "content-collections";
-import { createLink } from '@tanstack/react-router'
 
 interface Meta {
   title: string;
@@ -52,7 +50,7 @@ const FooterLogo = styled.img`
   height: 24px;
 `;
 
-type PostMeta = Omit<Post, '_meta' | 'content'>;
+type PostMeta = Omit<Post, "_meta" | "content">;
 
 interface Props {
   children: React.ReactNode;
@@ -112,10 +110,7 @@ export const PostLayout: React.FC<Props> = (props) => {
               </MetaLinkA>
             ) : (
               <MetaLink to={prev}>
-                <Navigation
-                  description
-                  style={theme && { color: theme.color }}
-                >
+                <Navigation description style={theme && { color: theme.color }}>
                   <IconArrowLeft /> 이전
                 </Navigation>
               </MetaLink>
@@ -131,7 +126,7 @@ export const PostLayout: React.FC<Props> = (props) => {
                 {meta.year && (
                   <Typo description>
                     <MetaLink to={prev}>
-                        NYPC {meta.codebattle ? "CODE BATTLE" : meta.year}
+                      NYPC {meta.codebattle ? "CODE BATTLE" : meta.year}
                     </MetaLink>
                     {meta.stage && <> &middot; {meta.stage}</>}
                   </Typo>
