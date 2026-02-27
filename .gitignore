@@ -13,12 +13,15 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
 # production
-/build
+/build/
+/dist/
+.output
+.content-collections
+
+# tanstack
+routeTree.gen.ts
+.tanstack
 
 # misc
 .DS_Store

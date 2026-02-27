@@ -1,0 +1,95 @@
+---
+title: 짝 맞는 문자열
+year: 2022
+stage: 본선
+---
+
+
+알파벳 `A`, `B`, `C`로 구성된 문자열 $X$가 있을 때, $X$가 `AA`, `BB`, `CC`만을 이어 붙여서 
+만들어진 경우 $X$를 **짝 맞는 문자열**이라고 부른다. 예를 들어, `AACCAA`, `BBCCBB`
+등은 짝 맞는 문자열이다. 하지만 `AAA`, `BABA` 등은 짝 맞는 문자열이 아니다.
+특별히, 길이가 $0$인 문자열은 짝 맞는 문자열이다.
+
+알파벳 `A`, `B`, `C`로 구성된 길이 $N$인 문자열이 주어질 때, 문자열의 일부 문자들을
+제거해서 만들 수 있는 가장 긴 짝 맞는 문자열을 찾는 프로그램을 작성하시오.
+
+예를 들어, 주어진 문자열이 `ABACA`라고 하면, 이 문자열에서 `B`와 `C`를
+제거하고 `A`들 중 하나를 제거하면 문자열 `AA`가 된다. 이 경우가 가장 긴
+짝 맞는 문자열을 만드는 방법이다.
+
+## 입력 형식
+
+첫 줄에 알파벳 `A`, `B`, `C`로 구성된 길이 $N$인 문자열이 주어진다.
+($1 \le N \le 100\,000$)
+
+## 출력 형식
+
+주어진 문자열의 일부 문자들을 제거해서 만들 수 있는 가장 긴 짝 맞는 문자열의
+길이를 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+ABACA
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+2
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+CAB
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+0
+  </Output>
+</Examples>
+
+## 예제 3
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+ABBACBCCABCCBAB
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+8
+  </Output>
+</Examples>
+
+## 예제 설명
+
+예제 1에서, 중간의 `BAC`를 제거하면 `AA`가 남는다.
+
+예제 2에서, 모든 문자를 제거해서 길이가 0인 문자열을 만드는 방법밖에 없다.
+
+예제 3에서, 만들 수 있는 가장 긴 짝 맞는 문자열은 `BBCCCCBB`이다.
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={31}>
+  입력 문자열은 `A`로만 구성된다.
+</Subtask>
+<Subtask index={2} score={27}>
+  입력 문자열은 `A`와 `B`로만 구성된다.
+</Subtask>
+<Subtask index={3} score={42}>
+  추가적인 제한 조건이 없음.
+</Subtask>
+
+## 해설
+
+<Solution>
+그리디하게, 앞에서부터 보면서 같은 문자가 두 번 등장하는 순간 해당 문자를 선택하는 것을 반복합니다.
+</Solution>

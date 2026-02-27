@@ -1,0 +1,195 @@
+---
+title: Yacht Auction
+year: 2025
+stage: 온라인 라운드
+codebattle: true
+---
+
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <YouTube videoId="VMbpVmJfBk8" />
+</div>
+
+## 문제 설명
+
+버섯 게임을 끝낸 예티와 핑크빈은 이제 그란디스로 넘어와, 럭키 다이스 스킬을 쓰며 주사위를 던지던 과거를 회상하며 Yacht Auction이라는 보드게임을 하기로 했습니다. 
+
+## 경기 규칙
+
+- 한 경기는 $13$번의 라운드로 이루어집니다.
+- 각 라운드는 **입찰** 단계와 **점수 획득** 단계로 이루어집니다.
+  - 예외적으로, 첫번째 라운드에서는 **점수 획득** 단계를 진행하지 않고, 마지막인 $13$번째 라운드에서는 **입찰** 단계를 진행하지 않습니다.
+
+### 입찰 단계
+
+입찰 단계는 다음과 같이 진행됩니다.
+
+1. $A$묶음 주사위 $5$개와 $B$묶음 주사위 $5$개를 굴립니다. 각 주사위는 $1$ 이상 $6$ 이하의 정수가 동일한 확률로 서로 독립적으로 나오는 주사위입니다.
+2. 각 사람은 자신이 가져가고 싶은 주사위 묶음 $A$ 혹은 $B$와 입찰에 사용할 $0$ 이상 $100\,000$ 이하의 입찰 점수를 제출합니다.
+3. 제출한 주사위 묶음과 입찰 점수를 통해 다음 규칙에 따라 주사위를 가져갑니다.
+  - 서로 가져가고 싶은 주사위 묶음이 다른 경우 각자가 원하는 주사위 묶음을 가져갑니다.
+  - 서로 가져가고 싶은 주사위 묶음이 같은 경우 더 높은 점수를 제출한 사람이 해당 묶음을 가져갑니다.
+  - 만약 제출한 묶음과 입찰 점수가 모두 같다면 주사위를 가져가는 사람을 무작위로 정합니다. 각 사람이 선택될 확률은 같으며, 매 시행은 독립입니다.
+4. 이후 다음 규칙에 따라 점수를 계산합니다.
+  - 자신이 가져가고 싶은 주사위 묶음을 가져간 경우, 입찰 점수만큼 **점수를 잃습니다**.
+  - 자신이 가져가고 싶은 주사위 묶음을 가져가지 못한 경우, 입찰 점수만큼 **점수를 얻습니다**.
+
+### 점수 획득 단계
+
+가지고 있는 주사위 $10$개(단, 마지막 점수 획득 단계에서는 $5$개)의 주사위 중 원하는 주사위를 $5$개 선택합니다. 이후, 다음 **점수 규칙**중 하나를 정해서 점수를 얻습니다. 한 경기에서 한 종류의 점수 규칙은 최대 한 번만 사용할 수 있습니다.
+
+### 기본 점수 규칙
+
+- `ONE`: $1\text{이 나온 주사위에 적힌 수의 합} \times \mathbf{1\,000}$**점**
+- `TWO`: $2\text{가 나온 주사위에 적힌 수의 합} \times \mathbf{1\,000}$**점**
+- `THREE`: $3\text{이 나온 주사위에 적힌 수의 합} \times \mathbf{1\,000}$**점**
+- `FOUR`: $4\text{가 나온 주사위에 적힌 수의 합} \times \mathbf{1\,000}$**점**
+- `FIVE`: $5\text{가 나온 주사위에 적힌 수의 합} \times \mathbf{1\,000}$**점**
+- `SIX`: $6\text{이 나온 주사위에 적힌 수의 합} \times \mathbf{1\,000}$**점**
+
+또한, 기본 점수 규칙에서 $63\,000$점 이상을 얻은 경우 **보너스 점수** $\mathbf{35\,000}$**점**을 추가로 얻게 됩니다.
+
+### 조합 점수 규칙
+
+- `CHOICE`: $\textbf{다섯 개의 주사위에 적힌 모든 수의 합} \times \mathbf{1\,000}$**점**
+- `FOUR_OF_A_KIND`: 같은 수가 적힌 주사위가 $4$개 있다면, $\textbf{다섯 개의 주사위에 적힌 모든 수의 합} \times \mathbf{1\,000}$**점**. 없을 경우 $\mathbf{0}$**점**
+- `FULL_HOUSE`: $3$개의 주사위에 적힌 수가 서로 같고, 다른 $2$개의 주사위에 적힌 수도 서로 같으면 $\textbf{다섯 개의 주사위에 적힌 모든 수의 합} \times \mathbf{1\,000}$**점**, 아닐 경우 $\mathbf{0}$**점**
+- `SMALL_STRAIGHT`: $4$개의 주사위에 적힌 수가 $1234, 2345, 3456$중 하나로 연속되어 있을 때, $\mathbf{15\,000}$**점**, 아닐 경우 $\mathbf{0}$**점**
+- `LARGE_STRAIGHT`: $5$개의 주사위에 적힌 수가 $12345, 23456$중 하나로 연속되어 있을 때, $\mathbf{30\,000}$**점**, 아닐 경우 $\mathbf{0}$**점**
+- `YACHT`: $5$개의 주사위에 적힌 수가 모두 같을 때 $\mathbf{50\,000}$**점**, 아닐 경우 $\mathbf{0}$**점**
+
+### 최종 점수 및 승리 조건
+모든 라운드가 끝난 이후, 총점이 높은 사람이 승리합니다. 총점이 같다면 무승부입니다.
+- $\text{플레이어의 총점} = \text{기본 점수 규칙에 따른 점수} + \text{조합 점수 규칙에 따른 점수} + \text{입찰 점수}$
+
+## 입/출력 형식
+
+참가자의 프로그램은 한 줄씩 입력을 받아 각 명령에 따라 동작해야 합니다. 출력이 필요한 명령은 아래 표에서 <span style={{ color:"red" }}>빨간색</span>으로 **시간 제한**과 함께 표시되어 있습니다. 이 시간 제한 안에 출력을 하지 못한 경우 시간 초과 (TLE) 판정을 받게 되며, 해당 게임에서 실격패 처리됩니다.
+
+
+| 커맨드 | 입력 형식 | 설명 |
+|------|--|:------|
+| READY | `READY` | 입력 준비 완료를 의미하는 <code style={{ color:"red" }}>OK</code>를 **3초** 이내에 출력해야 합니다. |
+| ROLL | `ROLL a₁a₂a₃a₄a₅ b₁b₂b₃b₄b₅` | A그룹 주사위에 적힌 눈이 $a_1, \cdots, a_5$, B그룹 주사위에 적힌 눈이 $b_1, \cdots, b_5$임을 나타냅니다. 이후 **0.5초** 이내에 <code style={{ color:"red" }}>BID g x</code>를 출력해야 합니다. 이는 $g$ 묶음 주사위에 $x$점을 입찰한다는 의미입니다. $g$는 `A` 혹은 `B` 이며, $x$는 $0$ 이상 $100\,000$ 이하의 정수여야 합니다. |
+| GET | `GET g g₀ x₀` | 입찰 결과로 $g$ 묶음 주사위를 가져갔음을 의미합니다. 상대는 $g_0$ 묶음에 $x$ 점을 입찰했다는 의미입니다. |
+| SCORE | `SCORE` | 점수 획득 단계를 시작한다는 의미입니다. 이후 **0.5초** 이내에 <code style={{ color:"red" }}>PUT c d₁d₂d₃d₄d₅</code>를 출력해야합니다. 이는 가지고 있는 주사위 중 $d_1, \cdots, d_5$를 점수 규칙 $c$를 사용해서 점수를 획득한다는 의미입니다. |
+| SET | `SET c d₁d₂d₃d₄d₅` | 상대가 점수 획득 단계에서 가지고 있는 주사위 중 $d_1, \cdots, d_5$를 점수 규칙 $c$를 사용해서 점수를 획득했다는 의미입니다. |
+| FINISH | `FINISH` | 게임 종료를 알리는 명령입니다. 이 명령을 받으면 게임 진행 상황에 관계 없이 프로그램은 즉시 정상적으로 종료되어야 하며, 출력은 필요하지 않습니다.  |
+
+모든 명령어는 한 줄에 하나씩 입출력해야 하며, 출력할 때는 개행문자를 출력한 뒤 버퍼를 flush해야 합니다. 언어별로 버퍼를 flush하는 방법에 대해서는 각 언어의 공식 레퍼런스 문서와 예제 코드를 참고해 주세요.
+
+## 예제 코드
+
+다음은 각 언어별로 작성한 예제코드입니다.
+
+- C20: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.c)
+- C++20: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.cpp)
+- C# 9: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.cs)
+- OpenJDK Java 21: [sample-code.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.java)
+- Node.js: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.js)
+- Typescript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.ts)
+- PyPy3 / Python3: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.py)
+- Rust 2024: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.rs)
+- Lua 5.1/5.4: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.lua)
+- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.go)
+- Kotlin 2.1 (JVM, Native): [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.kt)
+
+예제코드는 다음과 같이 동작합니다.
+- 입찰 단계: A와 B묶음 중 합이 높은 쪽에 $\left\lfloor(\textrm{내 현재 점수} - \textrm{상대 현재 점수})/{10}\right\rfloor$을 $0$ 이상 $100\,000$ 이하로 잘라서 입찰합니다.
+- 점수 획득 단계: 먼저 획득한 $5$개의 주사위를 사용하지 않은 가장 첫 점수 규칙에 배치합니다.
+
+
+## 샘플 AI와의 대결
+
+제출된 코드가 **컴파일에 성공**하면, 총 **10개의 샘플 AI**와 대결을 진행하게 됩니다.  
+각 샘플 AI와 한 번씩 대결을 치릅니다. 승패에 따른 점수는 다음과 같습니다.
+
+- **승리**: +1승
+- **무승부**: +0.5승
+- **패배**: +0승
+
+| 배틀 번호 | 설명 | 코드 | `data.bin` |
+|-----------|------|-----|-----|
+| 1      | 제공된 예제 코드와 같은 동작을 수행합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht1A.rs) |  |
+| 2      | **입찰 단계**: 주사위 그룹의 합이 높은 쪽에 (두 그룹 주사위 합의 차) $\times 1\,000$점을 입찰합니다.<br/> **점수 획득 단계**: 제일 높은 점수를 받을 수 있는 규칙과 조합을 사용합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2B.rs) |  |
+| 3      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 제일 높은 점수를 받을 수 있는 규칙과 조합을 사용합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2C.rs) |  |
+| 4      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 점수를 얻기 힘든 조합을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht3C.rs) |  |
+| 5      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.bin) |
+| 6      | **입찰 단계**: 더 좋은 조합에 수비적으로 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.bin) |
+| 7      | **입찰 단계**: 더 좋은 조합에 공격적으로 입찰합니다.<br/> **점수 획득 단계**: 기본 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.bin) |
+| 8      | **입찰 단계**: A와 B중 한 그룹을 골라 무작위로 $0$점을 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.bin) |
+| 9      | **입찰 단계**: 더 좋은 조합에 수비적으로 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.bin) |
+| 10      | **입찰 단계**: 더 좋은 조합에 공격적으로 입찰합니다.<br/> **점수 획득 단계**: 조합 점수 규칙을 우선 선택합니다. | [코드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.bin) |
+
+> 샘플 AI 코드와 `data.bin` 파일은 실제 대회 진행 시에는 제공되지 않았습니다.
+
+## 테스팅 툴 (GUI)
+
+참가자가 작성한 프로그램을 테스팅하기 위한 테스팅 툴인 `testing-tool-yacht`가 제공됩니다. 참가자의 환경에서 컴파일한 실행 파일 혹은 참가자의 실행 환경의 `python`, `java`, `node`, `lua` 환경과 스크립트를 이용하여 로컬에서 문제를 테스트해 볼 수 있습니다.
+
+- 64비트 Windows (x86-64) ([다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-1.0.0.exe))
+  - 다운로드받은 `.exe` 파일을 실행합니다.
+- MacOS Universal ([다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht_1.0.0_universal.dmg))
+  - `.dmg` 파일을 더블 클릭한 이후 `testing-tool-yacht` 파일을 `Applications` 폴더에 드래그해서 복사합니다. 그 이후 `testing-tool-yacht` 앱을 실행합니다.
+  - 사용자의 보안 설정은 App Store에서 다운로드한 응용 프로그램의 설치만 허용합니다. 라는 안내가 나오는 경우, "설정 > 개인정보 및 보안"에서 앱의 정보를 확인합니다.
+- deb (Ubuntu/Debian AMD64) ([다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht_1.0.0_amd64.deb))
+  - `apt` 혹은 `dpkg`을 이용해 `.deb` 파일을 설치한 이후 `testing-tool-yacht`을 실행합니다.  
+- rpm (Fedora/RHEL x86-64) ([다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-1.0.0-1.x86_64.rpm))
+  - `rpm` 혹은 `yum`을 이용해 `.rpm` 파일을 설치한 이후 `testing-tool-yacht`을 실행합니다.
+
+## 테스팅 툴 (CLI)
+
+참가자가 작성한 프로그램을 테스팅하기 위한 테스팅 툴 패키지인 `testing-tool-yacht-cli.zip` ([다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-cli.zip)) 가 주어집니다. 자세한 내용은 파일 안에 있는 `README.md`를 참고하세요.
+
+CLI 테스팅 툴을 수정하는 것은 자유이며, 실행 방법과 관련해서는 다른 사람과 자유롭게 토론할 수 있습니다. 하지만 수정된 테스팅 툴 혹은 테스팅 툴이 출력한 로그 파일 등을 팀원 이외의 사람과 공유하거나, 이와 관해 토론해서는 안됩니다.
+
+채점 결과에서는 테스팅 툴이 출력한 로그와 같은 형식의 로그 파일을 받아볼 수 있습니다. 단, 실제 채점 프로그램은 테스팅 툴과 다르게 구현되어 있으므로, 테스팅 툴에서의 정상 작동이 실제 채점에서의 정상 작동을 항상 의미하지는 않습니다.
+
+## 시각화 도구 
+
+- <a href='https://d1wbymyp6gas71.cloudfront.net/1p' target='_blank'>[게임 시뮬레이터]</a>
+- <a href='https://d1wbymyp6gas71.cloudfront.net/2p' target='_blank'>[번갈아 플레이하기]</a>
+- <a href='https://d1wbymyp6gas71.cloudfront.net/log' target='_blank'>[로그 시각화 도구]</a>
+
+샘플 AI의 대결에서 각 배틀의 로그 파일을 다운받을 수 있습니다. 로그 시각화 도구를 활용하여 게임이 어떻게 진행되었는지 살펴보고 전략을 수정하세요. 
+
+## 예시 
+
+### 예시 입력 (테스팅 툴에서 사용됨)
+
+```
+35561 15336 0
+31452 33164 0
+21464 46146 0
+51211 45446 1
+62612 34411 1
+12421 36431 0
+54344 36225 1
+13653 32122 0
+53644 61453 0
+64215 15142 1
+35522 44162 1
+54111 55424 1
+```
+
+
+
+### 예시 인터랙션
+| 선공 입력              | 선공 출력           | 후공 입력            | 후공 출력              | 로그                                                                                              |
+|------------------------|---------------------|------------------------|------------------------|---------------------------------------------------------------------------------------------------|
+| `READY`                | `OK`                | `READY`                | `OK`                   |                                                                                                   |
+| `ROLL 35561 15336`     |                     | `ROLL 35561 15336`     |                        | <p>`ROUND 1`</p><p>`ROLL 35561 15336`</p>                                                           |
+|                        | `BID A 123`         |                        | `BID A 456`            | <p>`BID FIRST A 123`</p><p>`BID SECOND A 456`</p>                                                  |
+| `GET B A 456`          |                     | `GET A A 123`          |                        | <p>`GET FIRST B`</p><p>`GET SECOND A`</p>                                                          |
+| `ROLL 31452 33164`     |                     | `ROLL 31452 33164`     |                        | <p>`ROUND 2`</p><p>`ROLL 31452 33164`</p>                                                           |
+|                        | `BID A 99`          |                        | `BID B 11`             | <p>`BID FIRST A 99`</p><p>`BID SECOND B 11`</p>                                                    |
+| `GET A B 11`           |                     | `GET B A 99`           |                        | <p>`GET FIRST A`</p><p>`GET SECOND B`</p>                                                          |
+| `SCORE`                |                     | `SCORE`                |                        |                                                                                                   |
+|                        | `PUT ONE 35561`     |                        | `PUT THREE 13356`      | <p>`PUT FIRST ONE 35561`</p><p>`PUT SECOND THREE 13356`</p>                                       |
+| `SET THREE 13356`      |                     | `SET ONE 35561`        |                        |                                                                                                   |
+|                        |                     | **(라운드 3-12 생략)**         |                        |                                                                                                   |
+| `SCORE`                |                     | `SCORE`                |                        | <p>`ROUND 13`</p>                                                                                   |
+|                        | `PUT YACHT 12556`   |                        | `PUT FULL_HOUSE 42533` | <p>`PUT FIRST YACHT 12556`</p><p>`PUT SECOND FULL_HOUSE 42533`</p>                                 |
+| `SET FULL_HOUSE 42533` |                     | `SET YACHT 12556`      |                        |                                                                                                   |
+| `FINISH`               | (프로그램 종료)     | `FINISH`               | (프로그램 종료)        | <p>`FINISH`</p>                                                                                    |
+|                        |                     |                        |                        | <p>`SCOREFIRST 19000`</p><p>`SCORESECOND 30372`</p>                                                |
