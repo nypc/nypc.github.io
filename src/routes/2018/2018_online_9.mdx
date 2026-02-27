@@ -1,0 +1,86 @@
+---
+title: 이진트리
+year: 2018
+stage: 예선
+---
+
+
+이진트리 $T$ 가 있을 때, $T$의 왼쪽서브트리를 $T_l$, 오른쪽 서브트리를 $T_r$로 두면 $T$의 높이 $h(T)$는 다음과 같이 정의된다.
+
+- $T$가 공백트리(정점의 개수가 $0$인 트리)이면 $h(T) = 0$이다.
+- $T$가 공백트리가 아니면 $h(T) = \max \left\{ h(T_l) , h(T_r) \right\} + 1$ 이다.
+
+음수가 아닌 두 정수 $N$과 $k$가 주어질 때, 정점의 개수가 $N$이고 높이가 $k$인 이진트리는 모두 몇개인지를 결정하는 프로그램을 작성하시오. 예를 들어, 정점의 개수가 $4$이고 높이가 $3$인 이진트리는 아래 보인 그림에서처럼 모두 $6$개가 있다.
+
+<Figure src="/2018/online_Images/BT1.png" alt="" />
+
+## 입력 형식
+
+첫째 줄에 이진트리 $T$의 정점 개수를 나타내는 정수 $N$($1\le N \le 500$)과 높이를 나타내는 정수 $k$($0 \le k \le N$)가 주어진다.
+
+## 출력 형식
+
+한 줄로 결과를 출력한다. 정점의 개수가 $N$이고 높이가 $k$인 서로 다른 이진트리 갯수를 찾아 그 값을 $1\,000\,000\,007$로 나눈 나머지를 출력한다.
+
+## 예제 1
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+    3 2
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+    1
+  </Output>
+</Examples>
+
+## 예제 2
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+    4 3
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+    6
+  </Output>
+</Examples>
+
+## 예제 3
+
+<Examples>
+  {/* prettier-ignore */}
+  <Input>
+    4 2
+  </Input>
+  {/* prettier-ignore */}
+  <Output>
+    0
+  </Output>
+</Examples>
+
+## 채점 방식
+
+입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞추어야 그 종류에 배정된 점수를 받을 수 있다.
+
+<Subtask index={1} score={20}>
+  $N=k$
+</Subtask>
+<Subtask index={2} score={35}>
+  $N \le 10$
+</Subtask>
+<Subtask index={3} score={45}>
+  별다른 제약조건 없음.
+</Subtask>
+
+## 해설
+
+<Solution>
+  정점의 개수가 $N$개인 이진 트리의 개수는 정점의 개수가 각각 $x$, $N-x-1$개인
+  이진트리의 개수들을 알고 있다고 가정하면 계산할 수 있다. 이 아이디어를 통해서
+  간단한 동적계획법 알고리즘을 만들 수 있다. 이 문제에서는 트리의 높이가 $k$로
+  고정되어 있으므로 높이가 $1$, $2$, …, $k-1$인 경우들을 모두 고려하는 방식으로
+  계산이 가능하다.
+</Solution>
