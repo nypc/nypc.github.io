@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.tsx", "vite.config.ts", "uno.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
@@ -29,7 +29,6 @@
     "declaration": true,
     "declarationMap": true,
     "isolatedDeclarations": false,
-    // "erasableSyntaxOnly": true, // No JSX, enums, constructor parameter properties, namespaces
     "verbatimModuleSyntax": true, // Enforce keyword `type` for type imports etc. implies "isolatedModules"
 
     "noFallthroughCasesInSwitch": true,
