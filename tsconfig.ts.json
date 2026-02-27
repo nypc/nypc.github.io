@@ -1,6 +1,6 @@
 {
   "include": ["src/**/*.ts"],
-  "exclude": ["src/libs"],
+  "exclude": ["src/routeTree.gen.ts"],
   "compilerOptions": {
     "paths": { "@/*": ["./src/*"] },
     "outDir": "dist",
