@@ -20,7 +20,7 @@ export const Route = createFileRoute('/$year/$page')({
     }).parse,
   },
   loader: ({ params }) => {
-    const post = allPosts.find((p) => p._meta.directory === params.year && p._meta.fileName === `${params.page}.mdx`);
+    const post = allPosts.find((p) => p.slug === `${params.year}/${params.page}`);
     if (!post) throw notFound();
     return post;
   },
