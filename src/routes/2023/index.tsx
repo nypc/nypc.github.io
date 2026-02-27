@@ -4,7 +4,6 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 
 const year = 2023;
 
-
 export const problems = {
   round1: [
     ["round1_p1", "[연습문제] 인류의 적 모기 퇴치"],
@@ -60,10 +59,12 @@ const List = () => {
       <Typo h2>안내</Typo>
       <Itemize>
         <li>
-          <Link to="/2023/notice/rule">대회 규칙</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "rule" }}>
+            대회 규칙
+          </Link>
         </li>
         <li>
-          <Link to="/2023/notice/tool">개발 도구 사용 안내</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "tool" }}>개발 도구 사용 안내</Link>
         </li>
       </Itemize>
       <Divider />
@@ -103,6 +104,6 @@ const List = () => {
   );
 };
 
-export const Route = createFileRoute('/2023/')({
+export const Route = createFileRoute("/2023/")({
   component: List,
 });

@@ -32,6 +32,7 @@ export const mapWithDepth = (depth: number): (child: RootContent | ElementConten
     i: number
   ) => {
     if (child.type === "doctype") return null;
+    // @ts-ignore - we know this is a valid content type
     return mapChild(child, i, depth);
   };
 

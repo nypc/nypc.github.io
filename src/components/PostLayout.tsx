@@ -4,14 +4,6 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import { createLink } from "@tanstack/react-router";
 import type { Post } from "content-collections";
 
-interface Meta {
-  title: string;
-  subtitle: string;
-  year: number;
-  stage: string;
-  codebattle?: boolean;
-}
-
 const NavigationContainer = styled.div`
   padding-top: 32px;
 `;
@@ -50,12 +42,12 @@ const FooterLogo = styled.img`
   height: 24px;
 `;
 
-type PostMeta = Omit<Post, "_meta" | "content">;
+type PostMetaLike = Omit<Post, "_meta" | "content" | "slug">;
 
 interface Props {
   children: React.ReactNode;
   root?: boolean;
-  meta?: PostMeta;
+  meta?: PostMetaLike;
   theme?: {
     background: string;
     color: string;
