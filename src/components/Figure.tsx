@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const FigureContainer = styled.figure`
   width: 100%;

@@ -1,6 +1,6 @@
-import { notFound, createFileRoute } from "@tanstack/react-router";
-import { allPosts } from "content-collections";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { MDXViewer, PostLayout } from "components";
+import { allPosts } from "content-collections";
 import { z } from "zod";
 
 const Post = () => {
@@ -12,7 +12,7 @@ const Post = () => {
   );
 };
 
-export const Route = createFileRoute('/$year/$page')({
+export const Route = createFileRoute("/$year/$page")({
   params: {
     parse: z.object({
       year: z.union([z.number(), z.string()]),
@@ -20,7 +20,9 @@ export const Route = createFileRoute('/$year/$page')({
     }).parse,
   },
   loader: ({ params }) => {
-    const post = allPosts.find((p) => p.slug === `${params.year}/${params.page}`);
+    const post = allPosts.find(
+      (p) => p.slug === `${params.year}/${params.page}`,
+    );
     if (!post) throw notFound();
     return post;
   },

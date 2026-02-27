@@ -1,4 +1,9 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Outlet,
+  Scripts,
+  createRootRoute,
+} from "@tanstack/react-router";
 import { AppProviders } from "components/AppProviders";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => (

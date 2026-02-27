@@ -1,6 +1,11 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
 import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
-import { PostLayout, ProblemList, ProblemListContainer, themes } from "components";
+import { Link, createFileRoute } from "@tanstack/react-router";
+import {
+  PostLayout,
+  ProblemList,
+  ProblemListContainer,
+  themes,
+} from "components";
 
 const year = 2019;
 
@@ -56,10 +61,14 @@ const List = () => {
       <Typo h2>안내</Typo>
       <Itemize>
         <li>
-          <Link to="/$year/notice/$page" params={{ year, page: "rule" }}>대회 규칙</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "rule" }}>
+            대회 규칙
+          </Link>
         </li>
         <li>
-          <Link to="/$year/notice/$page" params={{ year, page: "tool" }}>개발 도구 사용 안내</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "tool" }}>
+            개발 도구 사용 안내
+          </Link>
         </li>
       </Itemize>
       <Divider />
@@ -85,6 +94,6 @@ const List = () => {
   );
 };
 
-export const Route = createFileRoute('/2019/')({
+export const Route = createFileRoute("/2019/")({
   component: List,
 });
