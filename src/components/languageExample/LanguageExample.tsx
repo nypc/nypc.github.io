@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { PropsWithChildren } from "react";
-import { LANGUAGE_EXAMPLES, LANGUAGES } from "./examples";
+import { type PropsWithChildren } from "react";
+import { LANGUAGE_EXAMPLES, type LANGUAGES } from "./examples";
 import { HighlightedCode } from "components/hilightedCode/HighligtedCode";
 
 const LanguageExampleContainer = styled.div`
