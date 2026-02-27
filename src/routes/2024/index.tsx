@@ -61,10 +61,10 @@ const List = () => {
       <Typo h2>안내</Typo>
       <Itemize>
         <li>
-          <Link to="/2024/notice/rule">대회 규칙</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "rule" }}>대회 규칙</Link>
         </li>
         <li>
-          <Link to="/2024/notice/tool">개발 도구 사용 안내</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "tool" }}>개발 도구 사용 안내</Link>
         </li>
       </Itemize>
       <Divider />

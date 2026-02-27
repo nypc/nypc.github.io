@@ -1,0 +1,14 @@
+name: Lint
+on: push
+jobs:
+  lint-only:
+    if: ${{ github.ref != 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "24.x"
+      - run: yarn install
+      - run: yarn lint

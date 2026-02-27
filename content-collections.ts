@@ -13,14 +13,17 @@ const posts = defineCollection({
       year: z.optional(z.number()),
       stage: z.optional(z.string()),
       codebattle: z.optional(z.boolean()),
+      bikoId: z.optional(z.number()),
       content: z.string(),
     }),
     z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])),
   ),
   transform: async (post) => {
     const { _meta, ...rest } = post;
+    const slug = `${_meta.directory}/${_meta.fileName.replace(/\.mdx$/, '')}`;
     return {
       ...rest,
+      slug,
       content: post.content.replace(
         /\{meta\.([^}]+)\}/g,
         (_: string, metaKey: string) => `{${JSON.stringify(Object.hasOwn(post, metaKey) ? post[metaKey] : '')}}`,
