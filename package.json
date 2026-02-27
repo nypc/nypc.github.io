@@ -7,7 +7,7 @@
     "dev": "vite dev --port 3000",
     "build": "NODE_OPTIONS=--max-old-space-size=8192 vite build --mode production",
     "start": "vite preview",
-    "lint": "tsc",
+    "lint": "tsc -b --noEmit",
     "predeploy": "yarn build"
   },
   "dependencies": {
