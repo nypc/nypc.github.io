@@ -1,0 +1,1 @@
+import{j as s,P as m,T as t,a as r,m as o}from"./main-9nnY5eNx.js";import{t as a}from"./themes-olrHLD7I.js";const e=2016,l=()=>s.jsxs(m,{meta:{title:`NYPC ${e}`},theme:a[e],children:[s.jsx(t,{h2:!0,children:"예선"}),s.jsx(r,{year:e,problems:o.preliminaries}),s.jsx(t,{h2:!0,children:"본선"}),s.jsx(r,{year:e,problems:o.finals})]});export{l as component};

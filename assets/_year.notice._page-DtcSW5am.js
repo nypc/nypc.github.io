@@ -1,0 +1,1 @@
+import{n as s,j as t,P as e}from"./main-9nnY5eNx.js";import{M as r}from"./MDXViewer-CDqxdLkq.js";const m=()=>{const o=s.useLoaderData();return t.jsx(e,{meta:o,children:t.jsx(r,{code:o.content})})};export{m as component};
