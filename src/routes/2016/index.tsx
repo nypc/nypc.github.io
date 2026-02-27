@@ -1,11 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { Typo } from "@solved-ac/ui-react";
-import { PostLayout, ProblemList } from "components";
-import type { NextPage } from "next";
-import { themes } from "pages";
+import { PostLayout, ProblemList, themes } from "components";
 
 const year = 2016;
 
-const problems = {
+export const problems = {
   preliminaries: [
     ["daramg", "넥슨은 다람쥐를 뿌려라"],
     ["validdeck", "마비노기 듀얼: 올바른 덱인가요?"],
@@ -20,7 +19,7 @@ const problems = {
   ],
 } as const;
 
-const List: NextPage = (props) => {
+const List = () => {
   return (
     <PostLayout
       meta={{
@@ -36,4 +35,6 @@ const List: NextPage = (props) => {
   );
 };
 
-export default List;
+export const Route = createFileRoute('/2016/')({
+  component: List,
+});

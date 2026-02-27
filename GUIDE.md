@@ -18,8 +18,7 @@ NYPC 아카이브 레포지토리에 오신 것을 환영합니다!
 
 ### 구조
 
-- 문서 상단의 `import` / `export` 구문을 지우지 말아 주세요.
-- `export const meta` 부분에 적당한 `title`, `year`, `stage`를 적어 주세요. 여기에 적은 정보는 페이지 상단을 렌더하는 데에 쓰입니다.
+일반적인 MDX 파일과 같습니다. 헤더(Frontmatter) 부분에 적당한 `title`, `year`, `stage`를 적어 주세요. 여기에 적은 정보는 페이지 상단을 렌더하는 데에 쓰입니다.
 
 ### 문법
 
@@ -41,7 +40,7 @@ NYPC 아카이브 레포지토리에 오신 것을 환영합니다!
 
 ## 기타 작업 / 직접 실행해 보고 싶은 경우
 
-이 아카이브는 [Next.js](https://nextjs.org/)로 빌드되고, [static HTML export](https://nextjs.org/docs/advanced-features/static-html-export)를 통해 GitHub Pages에 게시됩니다.
+이 아카이브는 [TanStack Start](https://tanstack.com/start) + [Vite](https://vite.dev/) 기반으로 빌드됩니다.
 
 ### 로컬 실행
 
@@ -72,30 +71,19 @@ NYPC 아카이브 레포지토리에 오신 것을 환영합니다!
 
 사이트가 잘 빌드되는지는 아래와 같이 테스트해볼 수 있습니다.
 
-1. Next.js 프로젝트를 빌드합니다.
+1. 프로젝트를 빌드합니다.
 
    ```
    yarn build
    ```
 
-   - 빌드를 테스트하려면 아래를 실행합니다.
-     ```
-     yarn start
-     ```
-   - GitHub Pages 배포를 위해서는 빌드 메시지에 다음과 같은 메시지가 보이지 않아야 합니다.
-     ```
-     λ  (Lambda)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
-     ```
-
-2. 빌드된 프로젝트를 static HTML로 변환합니다.
-   ```
-   yarn export
-   ```
-
-   - HTML은 `/out`에 생성됩니다.
-   - `/out/index.html`을 로컬 브라우저로 열었다면 컨텐츠 내에 `/`로 시작하는 하이퍼링크가 있는 경우 제대로 동작하지 않을 수 있습니다. 이런 경우를 제대로 테스트하려면 [Serve](https://github.com/vercel/serve) 등의 방법을 사용하면 됩니다.
+    - 빌드 결과를 로컬에서 확인하려면 아래를 실행합니다.
+      ```
+      yarn start
+      ```
+    - `yarn start`는 Vite preview 서버를 실행합니다.
 
 위 과정에서 실패하는 경우 다음 문서들이 도움이 될 수 있습니다.
 
-- https://nextjs.org/docs/advanced-features/automatic-static-optimization
-- https://nextjs.org/docs/advanced-features/static-html-export: Unsupported Features 섹션에 명시된 작업을 하고 있지는 않은지 체크해 주세요.
+- https://tanstack.com/start/latest/docs/framework/react/overview
+- https://vite.dev/guide/

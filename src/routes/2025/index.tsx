@@ -1,11 +1,10 @@
 import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
 import { PostLayout, ProblemList, ProblemListContainer } from "components";
-import type { NextPage } from "next";
-import Link from "next/link";
+import { Link, createFileRoute } from "@tanstack/react-router";
 
 const year = 2025;
 
-const problems = {
+export const problems = {
   round1: [
     ["round1_p1", "[연습문제] 순열로 고치기"],
     ["round1_p2", "[연습문제] 1-2-3 퍼즐"],
@@ -48,7 +47,7 @@ const problems = {
   ],
 } as const;
 
-const List: NextPage = (props) => {
+const List = () => {
   return (
     <PostLayout
       meta={{
@@ -62,10 +61,10 @@ const List: NextPage = (props) => {
       <Typo h2>안내</Typo>
       <Itemize>
         <li>
-          <Link href="/2025/notice/rule">대회 규칙</Link>
+          <Link to="/2025/notice/rule">대회 규칙</Link>
         </li>
         <li>
-          <Link href="/2025/notice/tool">개발 도구 사용 안내</Link>
+          <Link to="/2025/notice/tool">개발 도구 사용 안내</Link>
         </li>
       </Itemize>
       <Divider />
@@ -105,4 +104,6 @@ const List: NextPage = (props) => {
   );
 };
 
-export default List;
+export const Route = createFileRoute('/2025/')({
+  component: List,
+});
