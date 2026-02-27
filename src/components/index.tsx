@@ -11,3 +11,5 @@ export * from "./Simulators";
 export * from "./Solution";
 export * from "./Subtask";
 export * from "./YouTube";
+export * from "./themes";
+export * from "./MDXViewer";

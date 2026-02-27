@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Enumerate, Itemize, Typo } from "@solved-ac/ui-react";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import React, { useMemo } from "react";
 
 const ProblemListEnumerate = styled(Enumerate)`
@@ -8,6 +8,8 @@ const ProblemListEnumerate = styled(Enumerate)`
   column-gap: 16px;
 `;
 
+// TODO: 나중에 className 기반으로 바꾸기
+// 컴포넌트 기반은 passHref를 못 써서 as={Link}로 해야 한다. to={...}로 하면 타입 오류가 있지만 작동은 한다.
 export const ProblemLink = styled.a`
   text-decoration: none;
   &:hover {
@@ -42,12 +44,10 @@ export const ProblemList: React.FC<Props> = (props) => {
           <Itemize>
             {practices.map(([id, title]) => (
               <li key={id}>
-                <Link href={`/${year}/${id}`} passHref>
-                  <ProblemLink>
-                    <Typo description>연습문제:</Typo>{" "}
-                    {title.replace(/^\[연습문제] */, "")}
-                  </ProblemLink>
-                </Link>
+                <ProblemLink to={`/${year}/${id}`} as={Link}>
+                  <Typo description>연습문제:</Typo>{" "}
+                  {title.replace(/^\[연습문제] */, "")}
+                </ProblemLink>
               </li>
             ))}
           </Itemize>
@@ -56,9 +56,7 @@ export const ProblemList: React.FC<Props> = (props) => {
       <ProblemListEnumerate style={{ columnCount: 3 }}>
         {problems.map(([id, title]) => (
           <li key={id}>
-            <Link href={`/${year}/${id}`} passHref>
-              <ProblemLink>{title}</ProblemLink>
-            </Link>
+            <ProblemLink to={`/${year}/${id}`} as={Link}>{title}</ProblemLink>
           </li>
         ))}
       </ProblemListEnumerate>

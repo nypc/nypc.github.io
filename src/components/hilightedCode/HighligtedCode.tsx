@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { lowlight } from "lowlight";
+import { common, createLowlight } from "lowlight";
 import { useMemo } from "react";
 import { Code } from "../Code";
 import { mapWithDepth } from "./utils";
@@ -13,6 +13,7 @@ export const HighlightedCode = ({ children, language }: Props) => {
   const theme = useTheme();
 
   const tree = useMemo(() => {
+    const lowlight = createLowlight(common);
     return lowlight.highlight(language || "text", children.trim());
   }, [children, language]);
 
