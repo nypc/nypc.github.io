@@ -1,6 +1,7 @@
 import { notFound, createFileRoute } from "@tanstack/react-router";
 import { allPosts } from "content-collections";
 import { MDXViewer, PostLayout } from "components";
+import { z } from "zod";
 
 const Post = () => {
   const post = Route.useLoaderData();
@@ -12,6 +13,12 @@ const Post = () => {
 };
 
 export const Route = createFileRoute('/$year/notice/$page')({
+  params: {
+    parse: z.object({
+      year: z.union([z.number(), z.string()]),
+      page: z.string(),
+    }).parse,
+  },
   loader: ({ params }) => {
     const post = allPosts.find((p) => p._meta.directory === `${params.year}/notice` && p._meta.fileName === `${params.page}.mdx`);
     if (!post) throw notFound();

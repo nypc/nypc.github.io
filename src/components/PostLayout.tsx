@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Container, Divider, Footer, Space, Typo } from "@solved-ac/ui-react";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import type { Post } from "content-collections";
+import { createLink } from '@tanstack/react-router'
 
 interface Meta {
   title: string;
@@ -28,7 +29,7 @@ const MetaContainer = styled.div`
   padding: 32px 0 16px 0;
 `;
 
-const MetaLink = styled.a`
+const MetaLinkA = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.25em;
@@ -37,6 +38,8 @@ const MetaLink = styled.a`
     text-decoration: underline;
   }
 `;
+
+const MetaLink = createLink(MetaLinkA);
 
 const FooterContainer = styled.div`
   padding: 16px 0;
@@ -102,13 +105,13 @@ export const PostLayout: React.FC<Props> = (props) => {
         <NavigationContainer>
           <Container>
             {root ? (
-              <MetaLink href="https://www.nypc.co.kr">
+              <MetaLinkA href="https://www.nypc.co.kr">
                 <Navigation description style={theme && { color: theme.color }}>
                   <IconArrowLeft /> NYPC 공식 사이트
                 </Navigation>
-              </MetaLink>
+              </MetaLinkA>
             ) : (
-              <MetaLink href={prev} as={Link}>
+              <MetaLink to={prev}>
                 <Navigation
                   description
                   style={theme && { color: theme.color }}
@@ -127,11 +130,9 @@ export const PostLayout: React.FC<Props> = (props) => {
                 {meta.subtitle && <Typo description>{meta.subtitle}</Typo>}
                 {meta.year && (
                   <Typo description>
-                    <Link to={prev}>
-                      <MetaLink>
+                    <MetaLink to={prev}>
                         NYPC {meta.codebattle ? "CODE BATTLE" : meta.year}
-                      </MetaLink>
-                    </Link>
+                    </MetaLink>
                     {meta.stage && <> &middot; {meta.stage}</>}
                   </Typo>
                 )}
