@@ -19,6 +19,8 @@ const List = () => {
     <PostLayout
       meta={{
         title: `NYPC CODE BATTLE`,
+        year: 2025,
+        codebattle: true,
       }}
       theme={{
         background: "#0086FF",

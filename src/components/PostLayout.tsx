@@ -80,6 +80,17 @@ export const PostLayout: React.FC<Props> = (props) => {
 
   return (
     <>
+      <title>{title}</title>
+      <meta property="og:title" content={title} />
+      <meta property="og:url" content="https://www.nypc.co.kr" />
+      <meta
+        name="description"
+        content="NEXON YOUTH PROGRAMMING CHALLENGE, 세상을 바꾸는 코딩! 세상을 더 멋지게 바꿀 당신을 만나고 싶습니다."
+      />
+      <meta
+        property="og:descrption"
+        content="NEXON YOUTH PROGRAMMING CHALLENGE, 세상을 바꾸는 코딩! 세상을 더 멋지게 바꿀 당신을 만나고 싶습니다."
+      />
       <div
         style={
           theme && {
