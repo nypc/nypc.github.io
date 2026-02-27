@@ -1,0 +1,36 @@
+{
+	"include": ["src/**/*.ts"],
+	"exclude": ["src/libs"],
+	"compilerOptions": {
+		"paths": { "@/*": ["./src/*"] },
+		"outDir": "dist",
+		// "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.ts.tsbuildinfo",
+
+		"module": "ES2022",
+		"moduleResolution": "bundler",
+		"target": "ES2022",
+		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		// "moduleDetection": "force",
+
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": true,
+
+		"emitDeclarationOnly": true,
+		"noEmit": true,
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+		"isolatedDeclarations": true,
+		"erasableSyntaxOnly": true, // No JSX, enums, constructor parameter properties, namespaces
+		"verbatimModuleSyntax": true, // Enforce keyword `type` for type imports etc. implies "isolatedModules"
+
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": false,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"strict": true
+	}
+}

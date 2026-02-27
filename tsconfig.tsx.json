@@ -1,0 +1,42 @@
+{
+	"include": ["src/**/*.tsx", "vite.config.ts", "uno.config.ts"],
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"],
+			"components": ["./src/components/index.tsx"],
+			"components/*": ["./src/components/*"],
+			"content-collections": ["./.content-collections/generated"]
+		},
+		"outDir": "dist",
+		// "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsx.tsbuildinfo",
+
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"target": "ES2022",
+		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"types": ["vite/client", "react", "react-dom", "mdx"],
+		"moduleDetection": "force",
+		"jsx": "react-jsx",
+
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": true,
+
+		"emitDeclarationOnly": true,
+		"noEmit": true,
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+		"isolatedDeclarations": false,
+		// "erasableSyntaxOnly": true, // No JSX, enums, constructor parameter properties, namespaces
+		"verbatimModuleSyntax": true, // Enforce keyword `type` for type imports etc. implies "isolatedModules"
+
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": false,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"strict": true
+	}
+}
