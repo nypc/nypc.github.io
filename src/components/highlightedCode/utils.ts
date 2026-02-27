@@ -1,35 +1,35 @@
+import { createElement } from "react";
 import type { ElementContent, RootContent } from "hast";
-import { createElement, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const mapChild = (
   child: ElementContent,
   i: number,
-  depth: number
+  depth: number,
 ): ReactNode | string | null => {
   if ("tagName" in child && child.tagName) {
     const props = Object.assign(
       { key: "lo-" + depth + "-" + i },
-      child.properties
+      child.properties,
     );
 
-    if (Array.isArray(props['className'])) {
-      props['className'] = props['className'].join(" ");
+    if (Array.isArray(props["className"])) {
+      props["className"] = props["className"].join(" ");
     }
 
-    const children = child.children
-      ? child.children.map(mapWithDepth(depth + 1))
-      : null;
-
+    const children = child.children.map(mapWithDepth(depth + 1));
     return createElement(child.tagName, props, children);
   }
 
-  return 'value' in child ? child.value : null;
+  return "value" in child ? child.value : null;
 };
 
-export const mapWithDepth = (depth: number): (child: RootContent | ElementContent, i: number) => ReactNode => {
+export const mapWithDepth = (
+  depth: number,
+): ((child: RootContent | ElementContent, i: number) => ReactNode) => {
   const mapChildrenWithDepth = (
     child: RootContent | ElementContent,
-    i: number
+    i: number,
   ) => {
     if (child.type === "doctype") return null;
     // @ts-ignore - we know this is a valid content type

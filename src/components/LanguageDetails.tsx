@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Code } from "./Code";
 import { Space, Typo } from "@solved-ac/ui-react";
+import { Code } from "./Code";
 
 const LanguageDetailsContainer = styled.div`
   overflow-x: auto;
@@ -63,16 +63,20 @@ interface LanguageDetail {
   name: string;
   code: string;
   version: string;
-  libs?: {
+  libs?: Array<{
     name: string;
     href: string;
-  }[];
+  }>;
   compilation?: string;
   execution?: string;
   showExample?: boolean;
 }
 
-export const LanguageDetails = ({ details }: { details: LanguageDetail[] }) => {
+export const LanguageDetails = ({
+  details,
+}: {
+  details: Array<LanguageDetail>;
+}) => {
   return (
     <LanguageDetailsContainer>
       {details.map((detail, index) => (
@@ -84,14 +88,14 @@ export const LanguageDetails = ({ details }: { details: LanguageDetail[] }) => {
           </LanguageId>
           <LanguageMeta>
             {detail.version}
-            {detail.showExample !== false &&
+            {detail.showExample !== false && (
               <>
                 {" "}
                 <Typo description>
                   (<a href={`#language-example-${detail.name}`}>예시 코드</a>)
                 </Typo>
               </>
-            }
+            )}
             <Space h={4} />
             <LanguageMetaItem>
               <LanguageMetaCaption>

@@ -7,7 +7,9 @@
     "dev": "vite dev --port 3000",
     "build": "NODE_OPTIONS=--max-old-space-size=8192 vite build --mode production",
     "start": "vite preview",
-    "lint": "yarn build && tsc -b --noEmit"
+    "lint": "yarn build && yarn check",
+    "check": "tsc -b --noEmit && eslint . --ext ts,tsx && biome check",
+    "format": "eslint . --fix --ext ts,tsx && biome check --write"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -31,15 +33,21 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.4",
     "@content-collections/core": "^0.14.1",
     "@content-collections/vite": "^0.2.9",
+    "@tanstack/eslint-config": "^0.4.0",
     "@types/hast": "^3.0.4",
     "@types/lowlight": "^2.0.1",
     "@types/node": "^25.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
+    "babel-plugin-react-compiler": "latest",
     "content-collections": "^0.2.1",
+    "eslint": "^10.0.2",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "jiti": "^2.6.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^6.1.1"

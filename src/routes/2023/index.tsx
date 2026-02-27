@@ -1,6 +1,6 @@
 import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
-import { PostLayout, ProblemList, ProblemListContainer } from "components";
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { PostLayout, ProblemList, ProblemListContainer } from "components";
 
 const year = 2023;
 
@@ -64,7 +64,9 @@ const List = () => {
           </Link>
         </li>
         <li>
-          <Link to="/$year/notice/$page" params={{ year, page: "tool" }}>개발 도구 사용 안내</Link>
+          <Link to="/$year/notice/$page" params={{ year, page: "tool" }}>
+            개발 도구 사용 안내
+          </Link>
         </li>
       </Itemize>
       <Divider />

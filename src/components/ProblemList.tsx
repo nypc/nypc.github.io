@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Enumerate, Itemize, Typo } from "@solved-ac/ui-react";
+import { createLink } from "@tanstack/react-router";
 import React, { useMemo } from "react";
-import { createLink } from '@tanstack/react-router'
 
 const ProblemListEnumerate = styled(Enumerate)`
   column-width: 280px;
@@ -20,9 +20,9 @@ export const ProblemLink = createLink(ProblemLinkStyles);
 interface Props {
   year: number | string;
   problems:
-    | [string, string][]
-    | readonly [string, string][]
-    | readonly (readonly [string, string])[];
+    | Array<[string, string]>
+    | ReadonlyArray<[string, string]>
+    | ReadonlyArray<readonly [string, string]>;
 }
 
 export const ProblemList: React.FC<Props> = (props) => {
@@ -30,11 +30,11 @@ export const ProblemList: React.FC<Props> = (props) => {
 
   const practices = useMemo(
     () => list.filter(([, title]) => title.startsWith("[연습문제]")),
-    [list]
+    [list],
   );
   const problems = useMemo(
     () => list.filter(([, title]) => !title.startsWith("[연습문제]")),
-    [list]
+    [list],
   );
 
   return (
@@ -56,7 +56,9 @@ export const ProblemList: React.FC<Props> = (props) => {
       <ProblemListEnumerate style={{ columnCount: 3 }}>
         {problems.map(([id, title]) => (
           <li key={id}>
-            <ProblemLink to="/$year/$page" params={{ year, page: id }}>{title}</ProblemLink>
+            <ProblemLink to="/$year/$page" params={{ year, page: id }}>
+              {title}
+            </ProblemLink>
           </li>
         ))}
       </ProblemListEnumerate>

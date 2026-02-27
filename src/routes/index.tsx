@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
 import styled from "@emotion/styled";
 import { Card, Typo } from "@solved-ac/ui-react";
-import { readableColor } from "polished";
+import { createFileRoute } from "@tanstack/react-router";
 import { PostLayout, themes } from "components";
+import { readableColor } from "polished";
 
 const YearContainer = styled.div`
   display: flex;
@@ -103,6 +103,6 @@ const Home = () => {
   );
 };
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: Home,
 });
