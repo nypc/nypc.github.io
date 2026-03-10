@@ -43,9 +43,7 @@ const Home = () => {
         title: `NYPC 아카이브`,
         subtitle: "역대 NYPC 문제들을 모아 두었습니다.",
       }}
-      theme={
-        Object.entries(themes).sort((a, b) => b[0].localeCompare(a[0]))[0]?.[1]
-      }
+      theme={Object.entries(themes).sort((a, b) => b[0].localeCompare(a[0]))[0]?.[1]}
     >
       <YearContainer>
         {Object.entries(themes)

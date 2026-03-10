@@ -25,11 +25,7 @@ interface Props {
   example: LANGUAGES;
 }
 
-export const LanguageExample = ({
-  name,
-  type,
-  example: lang,
-}: PropsWithChildren<Props>) => {
+export const LanguageExample = ({ name, type, example: lang }: PropsWithChildren<Props>) => {
   return (
     <LanguageExampleContainer id={`language-example-${name}`}>
       <LanguageName>

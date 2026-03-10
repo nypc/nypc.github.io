@@ -5,7 +5,6 @@ stage: Round 2-A
 bikoId: 336
 ---
 
-
 $N$ 개의 정점으로 이루어진 트리가 있다.
 트리의 정점들은 $1$번부터 $N$번까지 번호가 붙어 있다.
 트리의 루트는 $1$번 정점이고, $i$번 정점의 부모는 $P_{i}$번 정점이다.
@@ -35,7 +34,6 @@ $i$ 번째 업데이트는 $X_{i}$번 정점에 있는 편지의 개수를 $Y_{i
 트리에 적용되지 않음에 주의하라.
 즉, 모든 편지가 버려지는 데 몇 초가 필요한지는
 계산만 하는 것이며 트리의 편지 위치들을 바꾸지는 않는다.
-
 
 ## 입력 형식
 
@@ -107,28 +105,19 @@ $i$ 번째까지 업데이트가 적용된 이후의 트리에 대한 답을 출
 정점이며, 사각형 안의 점들이 편지들이다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-1.0aa952db2b993734.png"
-    width={400}
-  />
+  <Figure src="/2023/11-1.0aa952db2b993734.png" width={400} />
 </div>
 
 $1$ 초가 지나면 편지들은 아래와 같이 이동한다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-2.022dacc83d6c9d3d.png"
-    width={400}
-  />
+  <Figure src="/2023/11-2.022dacc83d6c9d3d.png" width={400} />
 </div>
 
 $1$ 초가 더 지나면 루트 정점에서 한 개의 편지가 버려지면서 아래와 같은 상황이 된다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-3.be18c60d088402e8.png"
-    width={400}
-  />
+  <Figure src="/2023/11-3.be18c60d088402e8.png" width={400} />
 </div>
 
 $1$ 초가 더 지나면 루트 정점에 한 개의 편지가 남은 상황이 된다.
@@ -136,38 +125,26 @@ $1$ 초가 더 지나면 루트 정점에 한 개의 편지가 남은 상황이 
 모든 편지가 버려지는데 $4$ 초가 걸린다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-4.63eec58e8ecb8ca1.png"
-    width={400}
-  />
+  <Figure src="/2023/11-4.63eec58e8ecb8ca1.png" width={400} />
 </div>
 
 유일한 업데이트가 초기 트리에 적용되고 나면 아래와 같은 상황이 된다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-5.3da1f36ae1ccf7f5.png"
-    width={400}
-  />
+  <Figure src="/2023/11-5.3da1f36ae1ccf7f5.png" width={400} />
 </div>
 
 $1$ 초가 지나면 아래와 같은 상황이 된다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-6.0d91d2e715b72917.png"
-    width={400}
-  />
+  <Figure src="/2023/11-6.0d91d2e715b72917.png" width={400} />
 </div>
 
 $1$ 초가 더 지나면 루트 정점에만 네 개의 편지가 있는 상황이 된다.
 따라서 이 경우에는 $6$ 초가 지난 후 모든 편지가 버려진다.
 
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2023/11-7.051da021a417f2e6.png"
-    width={400}
-  />
+  <Figure src="/2023/11-7.051da021a417f2e6.png" width={400} />
 </div>
 
 ## 채점 방식

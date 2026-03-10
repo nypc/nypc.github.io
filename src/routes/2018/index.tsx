@@ -1,11 +1,6 @@
 import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import {
-  PostLayout,
-  ProblemList,
-  ProblemListContainer,
-  themes,
-} from "components";
+import { PostLayout, ProblemList, ProblemListContainer, themes } from "components";
 
 const year = 2018;
 

@@ -57,17 +57,11 @@ interface Props {
 export const PostLayout: React.FC<Props> = (props) => {
   const { root, meta, theme, children } = props;
 
-  const prev = meta?.year
-    ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}`
-    : "/";
+  const prev = meta?.year ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}` : "/";
 
   const title = meta?.title
     ? `${meta.title}${
-        meta.codebattle
-          ? " — NYPC CODE BATTLE"
-          : meta.year
-            ? ` — NYPC ${meta.year}`
-            : ""
+        meta.codebattle ? " — NYPC CODE BATTLE" : meta.year ? ` — NYPC ${meta.year}` : ""
       }`
     : "NYPC — Nexon Youth Programming Challenge";
 

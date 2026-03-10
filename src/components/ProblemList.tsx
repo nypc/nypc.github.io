@@ -45,8 +45,7 @@ export const ProblemList: React.FC<Props> = (props) => {
             {practices.map(([id, title]) => (
               <li key={id}>
                 <ProblemLink to="/$year/$page" params={{ year, page: id }}>
-                  <Typo description>연습문제:</Typo>{" "}
-                  {title.replace(/^\[연습문제] */, "")}
+                  <Typo description>연습문제:</Typo> {title.replace(/^\[연습문제] */, "")}
                 </ProblemLink>
               </li>
             ))}

@@ -72,11 +72,7 @@ interface LanguageDetail {
   showExample?: boolean;
 }
 
-export const LanguageDetails = ({
-  details,
-}: {
-  details: Array<LanguageDetail>;
-}) => {
+export const LanguageDetails = ({ details }: { details: Array<LanguageDetail> }) => {
   return (
     <LanguageDetailsContainer>
       {details.map((detail, index) => (
@@ -98,18 +94,12 @@ export const LanguageDetails = ({
             )}
             <Space h={4} />
             <LanguageMetaItem>
-              <LanguageMetaCaption>
-                사용 가능 외부 라이브러리
-              </LanguageMetaCaption>
+              <LanguageMetaCaption>사용 가능 외부 라이브러리</LanguageMetaCaption>
               <LanguageMetaContent>
                 {detail.libs ? (
                   detail.libs.map((lib, idx) => (
                     <span key={idx}>
-                      <a
-                        href={lib.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href={lib.href} target="_blank" rel="noopener noreferrer">
                         <b>{lib.name}</b>
                       </a>
                       {idx < detail.libs!.length - 1 ? ", " : ""}

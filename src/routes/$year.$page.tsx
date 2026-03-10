@@ -20,9 +20,7 @@ export const Route = createFileRoute("/$year/$page")({
     }).parse,
   },
   loader: ({ params }) => {
-    const post = allPosts.find(
-      (p) => p.slug === `${params.year}/${params.page}`,
-    );
+    const post = allPosts.find((p) => p.slug === `${params.year}/${params.page}`);
     if (!post) throw notFound();
     return post;
   },
