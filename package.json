@@ -8,8 +8,8 @@
     "build": "NODE_OPTIONS=--max-old-space-size=8192 vite build --mode production",
     "start": "vite preview",
     "lint": "yarn build && yarn check",
-    "check": "tsc -b --noEmit && eslint . --ext ts,tsx && biome check",
-    "format": "eslint . --fix --ext ts,tsx && biome check --write"
+    "check": "tsc -b --noEmit && oxlint && oxfmt --check",
+    "format": "oxlint --fix && oxfmt"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -33,7 +33,6 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.4",
     "@content-collections/core": "^0.14.1",
     "@content-collections/vite": "^0.2.9",
     "@tanstack/eslint-config": "^0.4.0",
@@ -45,9 +44,8 @@
     "@vitejs/plugin-react": "^5.1.4",
     "babel-plugin-react-compiler": "latest",
     "content-collections": "^0.2.1",
-    "eslint": "^10.0.2",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "jiti": "^2.6.1",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^6.1.1"

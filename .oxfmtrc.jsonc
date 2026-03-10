@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    ".content-collections/**/*",
+    ".tanstack/**/*",
+    ".yarn/**/*",
+    "dist/**/*",
+    "node_modules/**/*",
+    "**/src/routeTree.gen.ts",
+    "**/src/styles.css",
+  ],
+}
