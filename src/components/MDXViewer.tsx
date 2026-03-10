@@ -1,4 +1,4 @@
-import { evaluateSync, nodeTypes } from "@mdx-js/mdx";
+import { evaluateSync } from "@mdx-js/mdx";
 import { useMemo } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import rehypeKatex from "rehype-katex";
