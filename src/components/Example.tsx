@@ -73,7 +73,7 @@ export const IO: React.FC<IOProps> = (props) => {
       },
       () => {
         alert("클립보드에 복사하지 못했습니다.");
-      }
+      },
     );
   };
 

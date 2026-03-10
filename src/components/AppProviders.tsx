@@ -1,9 +1,7 @@
-import { css, Global, ThemeProvider, type Theme } from "@emotion/react";
-import {
-  SolvedGlobalStyles,
-  solvedThemes,
-} from "@solved-ac/ui-react";
+import { Global, ThemeProvider, css } from "@emotion/react";
+import { SolvedGlobalStyles, solvedThemes } from "@solved-ac/ui-react";
 import React from "react";
+import type { Theme } from "@emotion/react";
 
 const theme: Theme = {
   ...solvedThemes.light,

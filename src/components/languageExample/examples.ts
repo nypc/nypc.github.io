@@ -1,16 +1,16 @@
 export const Languages = {
-  c: 'c',
-  cpp: 'cpp',
-  python: 'python',
-  java: 'java',
-  rust: 'rust',
-  javascript: 'javascript',
-  csharp: 'csharp',
-  go: 'go',
-  lua: 'lua',
-  kotlin: 'kotlin',
-  kt: 'kt',
-}
+  c: "c",
+  cpp: "cpp",
+  python: "python",
+  java: "java",
+  rust: "rust",
+  javascript: "javascript",
+  csharp: "csharp",
+  go: "go",
+  lua: "lua",
+  kotlin: "kotlin",
+  kt: "kt",
+};
 export type LANGUAGES = keyof typeof Languages;
 
 const stdin_examples: Record<LANGUAGES, string> = {
@@ -272,13 +272,12 @@ fun main() {
   `,
 };
 
-
 export const LANGUAGE_EXAMPLES = Object.fromEntries(
   Object.keys(Languages).map((lang: string) => [
     lang,
     {
       stdin: stdin_examples[lang as LANGUAGES],
       data_bin: data_bin_examples[lang as LANGUAGES],
-    }
-  ])
+    },
+  ]),
 ) as Record<LANGUAGES, { stdin: string; data_bin: string }>;

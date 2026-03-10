@@ -77,11 +77,11 @@ NYPC 아카이브 레포지토리에 오신 것을 환영합니다!
    yarn build
    ```
 
-    - 빌드 결과를 로컬에서 확인하려면 아래를 실행합니다.
-      ```
-      yarn start
-      ```
-    - `yarn start`는 Vite preview 서버를 실행합니다.
+   - 빌드 결과를 로컬에서 확인하려면 아래를 실행합니다.
+     ```
+     yarn start
+     ```
+   - `yarn start`는 Vite preview 서버를 실행합니다.
 
 위 과정에서 실패하는 경우 다음 문서들이 도움이 될 수 있습니다.
 

@@ -5,15 +5,11 @@ stage: Round 1
 bikoId: 5488
 ---
 
-
 <div style={{ display: "flex" }}>
-  <Figure
-    src="/2025/r1-01-c0cbd5d6-24bf-42ba-a4da-fa97f1593906.png"
-    width={800}
-  />
+  <Figure src="/2025/r1-01-c0cbd5d6-24bf-42ba-a4da-fa97f1593906.png" width={800} />
 </div>
 
-마비노기 모바일에 새 던전이 추가되었다. 
+마비노기 모바일에 새 던전이 추가되었다.
 $2N$명의 플레이어가 $2$인용 파티 던전에 도전하려고 한다.
 각 플레이어마다 플레이 가능 시간이 분 단위로 주어지며,
 $2$인 파티의 플레이 가능 시간은 두 플레이어의 플레이 가능 시간 중 작은 값이다.
@@ -134,20 +130,16 @@ $A_1, A_2, \cdots, A_{2N}$이 공백으로 구분되어 주어진다.
 입력 케이스들은 다음과 같은 종류로 구별되며, 한 종류의 케이스를 다 맞혀야 그 종류에 배정된 점수를 받을 수 있다.
 
 <Subtask index={1} score={17}>
-  $N = 1;$
-  $1 \le A_i \le 1\,000$
+  $N = 1;$ $1 \le A_i \le 1\,000$
 </Subtask>
 <Subtask index={2} score={18}>
-  $M = 1;$
-  $1 \le A_i \le 2$
+  $M = 1;$ $1 \le A_i \le 2$
 </Subtask>
 <Subtask index={3} score={23}>
-  $N \le 5;$
-  $1 \le A_i \le 1\,000$
+  $N \le 5;$ $1 \le A_i \le 1\,000$
 </Subtask>
 <Subtask index={4} score={29}>
-  $N \le 500;$
-  $1 \le A_i \le 1\,000$
+  $N \le 500;$ $1 \le A_i \le 1\,000$
 </Subtask>
 <Subtask index={5} score={13}>
   모든 입력 케이스가 주어짐.
@@ -156,15 +148,17 @@ $A_1, A_2, \cdots, A_{2N}$이 공백으로 구분되어 주어진다.
 ## 해설
 
 <Solution>
+
 두 사람으로 구성된 팀의 점수가
+
 $$
 (A_i + A_j - \vert A_i - A_j \vert) \times \left\lfloor \frac{\min(A_i,A_j)}{M} \right\rfloor
 $$
+
 로 계산될 때, 점수의 합이 최대가 되도록 $N$개의 팀을 구성하는 문제입니다.
 
-$A_i + A_j - \vert A_i - A_j \vert$는 $2\times \min(A_i,A_j)$와 같으므로,
-팀의 점수는 두 사람의 플레이 가능 시간 중 더 작은 값으로만 결정된다는 것을 알 수 있습니다.
+$A_i + A_j - \vert A_i - A_j \vert$는 $2\times \min(A_i,A_j)$와 같으므로, 팀의 점수는 두 사람의 플레이 가능 시간 중 더 작은 값으로만 결정된다는 것을 알 수 있습니다.
 
-이 경우, $2N$명의 사람을 플레이 가능 시간에 대한 오름차순으로 정렬한 뒤,
-인접한 두 명씩 묶는 것으로 팀 점수의 합을 최대화할 수 있습니다.
+이 경우, $2N$명의 사람을 플레이 가능 시간에 대한 오름차순으로 정렬한 뒤, 인접한 두 명씩 묶는 것으로 팀 점수의 합을 최대화할 수 있습니다.
+
 </Solution>

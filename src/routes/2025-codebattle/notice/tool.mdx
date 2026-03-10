@@ -4,7 +4,6 @@ tool_link: /2025-codebattle/notice/tool
 rule_link: /2025-codebattle/notice/rule
 ---
 
-
 ### 수정 내역
 
 - **7월 31일**: Python tensorflow, torch, C++26, Rust nightly 추가. Rust 1.85 &rarr; 1.88 업데이트
@@ -104,8 +103,7 @@ rule_link: /2025-codebattle/notice/rule
       version: "openjdk 21.0.7",
       compilation:
         "javac --release 21 -encoding UTF-8 Main.java -d out && jar cfe Main.jar Main -C out .",
-      execution:
-        "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
+      execution: "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
     },
     {
       name: "Rust 2024",
@@ -198,8 +196,7 @@ rule_link: /2025-codebattle/notice/rule
       code: "kotlinjvm",
       version: "kotlinc-jvm 2.1.21",
       compilation: "kotlinc -include-runtime -d Main.jar Main.kt",
-      execution:
-        "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
+      execution: "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
     },
     {
       name: "Kotlin/Native 2.1",

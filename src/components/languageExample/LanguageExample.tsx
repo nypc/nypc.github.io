@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import { type PropsWithChildren } from "react";
-import { LANGUAGE_EXAMPLES, type LANGUAGES } from "./examples";
+import { LANGUAGE_EXAMPLES } from "./examples";
+import type { PropsWithChildren } from "react";
+import type { LANGUAGES } from "./examples";
 import { HighlightedCode } from "@/components/highlightedCode/HighligtedCode";
 
 const LanguageExampleContainer = styled.div`
@@ -24,21 +25,15 @@ interface Props {
   example: LANGUAGES;
 }
 
-export const LanguageExample = ({
-  name,
-  type,
-  example: lang,
-}: PropsWithChildren<Props>) => {
+export const LanguageExample = ({ name, type, example: lang }: PropsWithChildren<Props>) => {
   return (
     <LanguageExampleContainer id={`language-example-${name}`}>
       <LanguageName>
         <b>{name}</b>
       </LanguageName>
       <LanguageContent>
-        <HighlightedCode
-          language={lang}
-        >
-          {LANGUAGE_EXAMPLES[lang][type ?? 'stdin'] || ''}
+        <HighlightedCode language={lang}>
+          {LANGUAGE_EXAMPLES[lang][type ?? "stdin"] || ""}
         </HighlightedCode>
       </LanguageContent>
     </LanguageExampleContainer>

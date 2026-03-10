@@ -1,15 +1,11 @@
 {
-  "include": ["src/**/*.ts"],
+  "include": ["*.ts"],
   "exclude": ["src/routeTree.gen.ts"],
   "compilerOptions": {
-    "paths": { "@/*": ["./src/*"] },
-    "outDir": "dist",
-    // "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.ts.tsbuildinfo",
-
-    "module": "ES2022",
-    "moduleResolution": "bundler",
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "lib": ["ESNext"],
     // "moduleDetection": "force",
 
     "skipLibCheck": true,
@@ -22,7 +18,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "isolatedDeclarations": true,
+    "isolatedDeclarations": false,
     "erasableSyntaxOnly": true, // No JSX, enums, constructor parameter properties, namespaces
     "verbatimModuleSyntax": true, // Enforce keyword `type` for type imports etc. implies "isolatedModules"
 

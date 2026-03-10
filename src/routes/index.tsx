@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
 import styled from "@emotion/styled";
 import { Card, Typo } from "@solved-ac/ui-react";
-import { readableColor } from "polished";
+import { createFileRoute } from "@tanstack/react-router";
 import { PostLayout, themes } from "components";
+import { readableColor } from "polished";
 
 const YearContainer = styled.div`
   display: flex;
@@ -43,9 +43,7 @@ const Home = () => {
         title: `NYPC 아카이브`,
         subtitle: "역대 NYPC 문제들을 모아 두었습니다.",
       }}
-      theme={
-        Object.entries(themes).sort((a, b) => b[0].localeCompare(a[0]))[0]?.[1]
-      }
+      theme={Object.entries(themes).sort((a, b) => b[0].localeCompare(a[0]))[0]?.[1]}
     >
       <YearContainer>
         {Object.entries(themes)
@@ -103,6 +101,6 @@ const Home = () => {
   );
 };
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: Home,
 });

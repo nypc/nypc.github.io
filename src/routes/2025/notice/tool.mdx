@@ -5,7 +5,6 @@ tool_link: /2025/notice/tool
 rule_link: /2025/notice/rule
 ---
 
-
 ### 수정 내역
 
 - **7월 31일**: Python tensorflow, torch, C++26, Rust nightly 추가. Rust 1.85 &rarr; 1.88 업데이트
@@ -17,11 +16,11 @@ rule_link: /2025/notice/rule
 
 코드 제출 문제에 제출된 모든 코드의 실행과 채점은 다음 환경에서 이루어집니다.
 
-* Amazon Web Services의 c7i.4xlarge 인스턴스
-* Intel Xeon 4세대 기반 커스텀 프로세서
-* 클럭: 3.2 GHz
-* 프로세서 아키텍쳐: 64 bit
-* OS: Ubuntu 24.04
+- Amazon Web Services의 c7i.4xlarge 인스턴스
+- Intel Xeon 4세대 기반 커스텀 프로세서
+- 클럭: 3.2 GHz
+- 프로세서 아키텍쳐: 64 bit
+- OS: Ubuntu 24.04
 
 해당 환경에서 동작하지 않는 코드는 채점이 되지 않습니다. 유념하여 개발 도구를 사용해주시기 바랍니다.
 
@@ -104,8 +103,7 @@ rule_link: /2025/notice/rule
       version: "openjdk 21.0.7",
       compilation:
         "javac --release 21 -encoding UTF-8 Main.java -d out && jar cfe Main.jar Main -C out .",
-      execution:
-        "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
+      execution: "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
     },
     {
       name: "Rust 2024",
@@ -198,8 +196,7 @@ rule_link: /2025/notice/rule
       code: "kotlinjvm",
       version: "kotlinc-jvm 2.1.21",
       compilation: "kotlinc -include-runtime -d Main.jar Main.kt",
-      execution:
-        "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
+      execution: "java -Xms<memory> -XmX<memory> -DONLINE_JUDGE=1 -DNYPC=1 -jar Main.jar NYPC",
     },
     {
       name: "Kotlin/Native 2.1",
@@ -218,7 +215,8 @@ rule_link: /2025/notice/rule
           href: "https://www.boost.org/releases/1.83.0/",
         },
       ],
-      compilation: "g++-15 -std=gnu++26 -O2 -DONLINE_JUDGE -DNYPC -Wall -Wextra -march=native -mtune=native -o main main.cpp -I/opt/boost/gcc/include -L/opt/boost/gcc/lib",
+      compilation:
+        "g++-15 -std=gnu++26 -O2 -DONLINE_JUDGE -DNYPC -Wall -Wextra -march=native -mtune=native -o main main.cpp -I/opt/boost/gcc/include -L/opt/boost/gcc/lib",
       execution: "./main NYPC",
       showExample: false,
     },
@@ -243,12 +241,10 @@ rule_link: /2025/notice/rule
   ]}
 />
 
-
-
-* 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
-* 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만, 모든 문제를 모든 언어로 해결할 수 있다는 보장은 없습니다.
-* 문제를 해결하는 데 계산 자원이 많이 필요하다고 판단되면 C/C++를 사용할 것을 권장합니다.
-* C++26과 Rust 2024 Nightly는 실험용 언어로 채점 환경 및 컴파일 환경이 수시로 변경될 수 있으며, 정상적인 작동을 보장하지 않습니다.
+- 각 문제에서 시간과 메모리 제한은 C/C++ 기준으로 책정됩니다.
+- 그 이외의 언어에서는 시간과 메모리를 더 쓸 수 있도록 허용되는 경우가 있지만, 모든 문제를 모든 언어로 해결할 수 있다는 보장은 없습니다.
+- 문제를 해결하는 데 계산 자원이 많이 필요하다고 판단되면 C/C++를 사용할 것을 권장합니다.
+- C++26과 Rust 2024 Nightly는 실험용 언어로 채점 환경 및 컴파일 환경이 수시로 변경될 수 있으며, 정상적인 작동을 보장하지 않습니다.
 
 ### 유의 사항
 
@@ -258,7 +254,7 @@ rule_link: /2025/notice/rule
 | --------------------- | -------------------------------------------------------------------- |
 | `void main()`         | 표준에 따라 `int main`이어야 함                                      |
 | `getch()`             | 대신 `getchar()`를 사용                                              |
-| `fflush(stdin)`       | 비표준 함수 사용                                                      |
+| `fflush(stdin)`       | 비표준 함수 사용                                                     |
 | `GetTickCount()`      | Windows API 는 사용할 수 없음                                        |
 | `CString`             | `CString`은 표준이 아니며 사용할 수 없음. 대신 `std::string` 을 사용 |
 | `#include <stdafx.h>` | `stdafx.h`는 Visual C++ 전용 precompiled header임                    |
@@ -266,7 +262,6 @@ rule_link: /2025/notice/rule
 ### Java 유의 사항
 
 클래스 이름은 반드시 `Main` 이어야 합니다.
-
 
 ## 표준 입출력 사용하기
 

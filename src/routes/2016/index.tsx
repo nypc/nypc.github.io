@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Typo } from "@solved-ac/ui-react";
+import { createFileRoute } from "@tanstack/react-router";
 import { PostLayout, ProblemList, themes } from "components";
 
 const year = 2016;
@@ -35,6 +35,6 @@ const List = () => {
   );
 };
 
-export const Route = createFileRoute('/2016/')({
+export const Route = createFileRoute("/2016/")({
   component: List,
 });

@@ -1,4 +1,4 @@
-import { defineCollection, defineConfig } from '@content-collections/core';
+import { defineCollection, defineConfig } from "@content-collections/core";
 import { z } from "zod";
 
 const posts = defineCollection({
@@ -18,15 +18,16 @@ const posts = defineCollection({
     }),
     z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])),
   ),
-  transform: async (post) => {
+  transform: (post) => {
     const { _meta, ...rest } = post;
-    const slug = `${_meta.directory}/${_meta.fileName.replace(/\.mdx$/, '')}`;
+    const slug = `${_meta.directory}/${_meta.fileName.replace(/\.mdx$/, "")}`;
     return {
       ...rest,
       slug,
       content: post.content.replace(
         /\{meta\.([^}]+)\}/g,
-        (_: string, metaKey: string) => `{${JSON.stringify(Object.hasOwn(post, metaKey) ? post[metaKey] : '')}}`,
+        (_: string, metaKey: string) =>
+          `{${JSON.stringify(Object.hasOwn(post, metaKey) ? post[metaKey] : "")}}`,
       ),
     };
   },
