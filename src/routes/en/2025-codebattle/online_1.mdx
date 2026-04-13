@@ -11,25 +11,24 @@ codebattle: true
 
 ## Problem Description
 
-After finishing their mushroom game, Yeti and Pink Bean have moved to Grandis. Reminiscing about the past when they threw dice using the Lucky Dice skill, they decided to play a board game called Yacht Auction.
+After finishing their mushroom game, Yeti and Pink Bean have moved to Grandis. Reminiscing about the past when they threw dice using the Roll of the Dice skill, they play a board game called Yacht Auction.
 
 ## Game Rules
 
 - A single match consists of $13$ rounds.
 - Each round consists of a **Bidding** phase and a **Scoring** phase.
-  - Exceptionally, the first round does not include a **Scoring** phase, and the last ($13$th) round does not include a **Bidding** phase.
+  - Exceptionally, the first round skips **Scoring** phase, and the last, $13$th round skips a **Bidding** phase.
 
 ### Bidding Phase
 
 The bidding phase proceeds as follows:
 
-1. Two sets of dice, Set $A$ (5 dice) and Set $B$ (5 dice), are rolled. Each die is independent and has an equal probability of resulting in an integer between $1$ and $6$ inclusive.
-2. Each player submits the dice set they wish to take ($A$ or $B$) and a bid score between $0$ and $100,000$ inclusive.
-3. Dice sets are distributed based on the submitted choices and bid scores according to these rules:
-
-- If the players choose different sets, each player takes their desired set.
-- If both players choose the same set, the player who submitted the higher bid score takes that set.
-- If both the chosen set and the bid score are identical, the winner is determined randomly with equal probability ($50\%$), and each occurrence is independent.
+1. Two sets of dice, Set $A$ (5 dice) and Set $B$ (5 dice), are rolled. Each die is independent and identically distributed integer between $1$ and $6$ inclusive.
+2. Each player submits the dice set they wish to take ($A$ or $B$) and a bid score between $0$ and $100\,000$, inclusive.
+3. Each player take dice set based on following rules:
+- If the players choose different sets, each player takes their chosen set.
+- If both players choose the same set, the player who submitted the higher bid score takes the chosen set.
+- If both the chosen set and the bid score are identical, the winner is determined randomly. Every trial is independent and identical.
 
 4. Scores are then adjusted according to the following rules:
 
@@ -38,48 +37,49 @@ The bidding phase proceeds as follows:
 
 ### Scoring Phase
 
-From the $10$ dice currently in possession (note: only $5$ dice are available in the final scoring phase), the player selects $5$ dice. Then, the player chooses one of the following **Scoring Rules** to earn points. Each scoring rule can be used at most once per match.
+From the $10$ dice currently in hand (exception: only $5$ dice are available in the final scoring phase), the player selects $5$ dice. Then, the player chooses one of the following **Scoring Rules** to earn points. Each scoring rule can be used at most once per match.
 
 ### Basic Scoring Rules
 
-- `ONE`: $\text{Sum of dice showing } 1 \times \mathbf{1,000}$ **points**
-- `TWO`: $\text{Sum of dice showing } 2 \times \mathbf{1,000}$ **points**
-- `THREE`: $\text{Sum of dice showing } 3 \times \mathbf{1,000}$ **points**
-- `FOUR`: $\text{Sum of dice showing } 4 \times \mathbf{1,000}$ **points**
-- `FIVE`: $\text{Sum of dice showing } 5 \times \mathbf{1,000}$ **points**
-- `SIX`: $\text{Sum of dice showing } 6 \times \mathbf{1,000}$ **points**
+- `ONE`: $\text{Sum of dice showing } 1 \times \mathbf{1\,000}$ **points**
+- `TWO`: $\text{Sum of dice showing } 2 \times \mathbf{1\,000}$ **points**
+- `THREE`: $\text{Sum of dice showing } 3 \times \mathbf{1\,000}$ **points**
+- `FOUR`: $\text{Sum of dice showing } 4 \times \mathbf{1\,000}$ **points**
+- `FIVE`: $\text{Sum of dice showing } 5 \times \mathbf{1\,000}$ **points**
+- `SIX`: $\text{Sum of dice showing } 6 \times \mathbf{1\,000}$ **points**
 
-Additionally, if a player earns a total of $63,000$ points or more from the Basic Scoring Rules, they receive a **Bonus Score** of $\mathbf{35,000}$ **points**.
+Additionally, if a player earns a total of $63\,000$ points or more from the Basic Scoring Rules, they receive a **Bonus Score** of $\mathbf{35\,000}$ **points**.
 
 ### Combination Scoring Rules
 
-- `CHOICE`: $\textbf{Sum of all five dice} \times \mathbf{1,000}$ **points**
-- `FOUR_OF_A_KIND`: If there are at least $4$ dice with the same value, $\textbf{Sum of all five dice} \times \mathbf{1,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
-- `FULL_HOUSE`: If $3$ dice have the same value and the other $2$ dice have a different but identical value, $\textbf{Sum of all five dice} \times \mathbf{1,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
-- `SMALL_STRAIGHT`: If $4$ dice form a sequence ($1234, 2345, \text{ or } 3456$), $\mathbf{15,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
-- `LARGE_STRAIGHT`: If all $5$ dice form a sequence ($12345 \text{ or } 23456$), $\mathbf{30,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
+- `CHOICE`: $\textbf{The total number of pips in five dice} \times \mathbf{1,000}$ **points**
+- `FOUR_OF_A_KIND`: If there are $4$ or more dice of same value, $\textbf{The total number of pips in five dice} \times \mathbf{1,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
+- `FULL_HOUSE`: If there are $3$ dice of same value plus other $2$ dice of same value, $\textbf{The total number of pips in five dice} \times \mathbf{1,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
+- `SMALL_STRAIGHT`: If there are $4$ dice which form a consecutive sequence ($1234, 2345, \text{ or } 3456$), $\mathbf{15,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
+- `LARGE_STRAIGHT`: If all $5$ dice form a consecutive sequence ($12345 \text{ or } 23456$), $\mathbf{30,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
 - `YACHT`: If all $5$ dice have the same value, $\mathbf{50,000}$ **points**. Otherwise, $\mathbf{0}$ **points**.
 
 ### Final Score and Victory Condition
 
-After all rounds are completed, the player with the higher total score wins. If the total scores are equal, it is a draw.
+After all rounds are completed, the player with the higher total score wins. If the total scores are equal, the game ends with draw.
 
 - $\text{Player's Total Score} = \text{Points from Basic Rules} + \text{Points from Combination Rules} + \text{Bidding Points}$
 
 ## Input/Output Format
 
-The participant's program must read input line by line and act according to each command. Commands requiring output are marked in <span style={{ color:"red" }}>red</span> in the table below, along with their **time limits**. Failure to output within the time limit will result in a Time Limit Exceeded (TLE) verdict and disqualification from that game.
+
+Your program must read input line by line and follow the protocol of each command. Commands requiring the output are denoted with <span style={{ color: "red" }}>red color</span> with their **time limit** specified. If your program fails to output within specified time limit, you will receive Time Limit Exceeded (TLE) verdict and will result forfeiting the game.
 
 | Command | Input Format                 | Description                                                                                                                                                                                                                                                                                 |
 | :------ | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| READY   | `READY`                      | Output <code style={{ color:"red" }}>OK</code> within **3 seconds** to indicate readiness.                                                                                                                                                                                                  |
-| ROLL    | `ROLL a₁a₂a₃a₄a₅ b₁b₂b₃b₄b₅` | Indicates dice in Group A are $a_1, \cdots, a_5$ and Group B are $b_1, \cdots, b_5$. Output <code style={{ color:"red" }}>BID g x</code> within **0.5 seconds**. This means bidding $x$ points for group $g$. $g$ must be `A` or `B`, and $x$ must be an integer between $0$ and $100,000$. |
+| READY   | `READY`                      | Must output <code style={{ color:"red" }}>OK</code> within **3 seconds** as a response.                                                                                                                                                                                                  |
+| ROLL    | `ROLL a₁a₂a₃a₄a₅ b₁b₂b₃b₄b₅` | Indicates dice in Group A are $a_1, \cdots, a_5$ and Group B are $b_1, \cdots, b_5$. Output <code style={{ color:"red" }}>BID g x</code> within **0.5 seconds**. This corresponds bidding $x$ points for group $g$. $g$ must be `A` or `B`, and $x$ must be an integer between $0$ and $100\,000$. |
 | GET     | `GET g g₀ x₀`                | Indicates you took group $g$ as a result of the bidding. The opponent bid $x_0$ points for group $g_0$.                                                                                                                                                                                     |
-| SCORE   | `SCORE`                      | Indicates the start of the scoring phase. Output <code style={{ color:"red" }}>PUT c d₁d₂d₃d₄d₅</code> within **0.5 seconds**. This means using rule $c$ with dice $d_1, \cdots, d_5$ from your possession.                                                                                 |
+| SCORE   | `SCORE`                      | Indicates the start of the scoring phase. Output <code style={{ color:"red" }}>PUT c d₁d₂d₃d₄d₅</code> within **0.5 seconds**. This corresponds using rule $c$ with dice $d_1, \cdots, d_5$ from your possession.                                                                                 |
 | SET     | `SET c d₁d₂d₃d₄d₅`           | Indicates the opponent used rule $c$ with dice $d_1, \cdots, d_5$ during their scoring phase.                                                                                                                                                                                               |
-| FINISH  | `FINISH`                     | Command signaling the end of the game. Upon receiving this, the program must terminate normally immediately regardless of the game state. No output is required.                                                                                                                            |
+| FINISH  | `FINISH`                     | Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required. |
 
-All commands must be processed one line at a time. When outputting, ensure you print a newline character and then flush the buffer. Please refer to the official documentation or sample codes for your specific language on how to flush the buffer.
+All commands must be processed line by line. When you output, make sure you print a newline character and then flush the buffer. Please refer to the reference document or sample code of your programming language on how to flush the buffer.
 
 ## Sample Code
 
@@ -97,10 +97,10 @@ The following are sample codes provided for each language:
 - Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.go)
 - Kotlin 2.1 (JVM, Native): [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/sample-code/sample-code.kt)
 
-The sample code operates as follows:
+The sample code uses following strategy:
 
 - Bidding phase: Bids on the group (A or B) with the higher sum, using a bid of $\left\lfloor(\text{my current score} - \text{opponent's current score})/{10}\right\rfloor$, clamped between $0$ and $100,000$.
-- Scoring phase: Uses the first 5 dice obtained and assigns them to the first available (unused) scoring rule.
+- Scoring phase: Uses the first 5 dice obtained and assigns them to the first unused scoring rule.
 
 ## Match Against Sample AIs
 
@@ -114,8 +114,8 @@ One match is played against each sample AI. Points are awarded as follows:
 | Battle No. | Description                                                                                                                                                                          | Code                                                                                                                 | `data.bin`                                                                                                            |
 | :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | 1          | Performs the same actions as the provided sample code.                                                                                                                               | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht1A.rs) |                                                                                                                       |
-| 2          | **Bidding**: Bids (difference in group sums) $\times 1,000$ on the group with the higher sum.<br/>**Scoring**: Uses the rule and combination that yields the highest possible score. | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2B.rs) |                                                                                                                       |
-| 3          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Uses the rule and combination that yields the highest possible score.                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2C.rs) |                                                                                                                       |
+| 2          | **Bidding**: Bids (difference in group sums) $\times 1,000$ on the group with the higher sum.<br/>**Scoring**: Uses the rule and combination that yields the immediate highest possible score. | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2B.rs) |                                                                                                                       |
+| 3          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Uses the rule and combination that yields the immediate highest possible score.                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2C.rs) |                                                                                                                       |
 | 4          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes combinations that are difficult to score.                                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht3C.rs) |                                                                                                                       |
 | 5          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                            | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.bin) |
 | 6          | **Bidding**: Bids defensively on better combinations.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                              | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.bin) |
@@ -124,11 +124,12 @@ One match is played against each sample AI. Points are awarded as follows:
 | 9          | **Bidding**: Bids defensively on better combinations.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                        | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.bin) |
 | 10         | **Bidding**: Bids aggressively on better combinations.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.bin) |
 
-> Note: Sample AI codes and `data.bin` files were not provided during the actual competition.
+> Note: Sample AI codes and `data.bin` files were not provided during the actual contest.
 
 ## Testing Tool (GUI)
 
-A testing tool, `testing-tool-yacht`, is provided to test the participant's program. You can test your code locally using compiled executables or scripts in environments such as `python`, `java`, `node`, or `lua`.
+
+A testing tool, `testing-tool-yacht`, is provided to test the program. You can test your compiled executable or script locally, using `python`, `java`, `node`, or `lua` in your envinroment.
 
 - 64-bit Windows (x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-1.0.0.exe))
   - Run the downloaded `.exe` file.
@@ -142,23 +143,17 @@ A testing tool, `testing-tool-yacht`, is provided to test the participant's prog
 
 ## Testing Tool (CLI)
 
-A CLI testing tool package, `testing-tool-yacht-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-cli.zip)), is also provided. For details, refer to the `README.md` inside the file.
+A CLI testing tool package, `testing-tool-yacht-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-cli.zip)), is provided to test the program.  For details, refer to the `README.md` inside the zip file.
 
-You are free to modify the CLI testing tool and discuss its execution methods with others. However, you must not share modified tools or log files generated by the tool with anyone outside your team, nor discuss them.
+You can freely modify the CLI testing tool and discuss its execution methods with others. However, you must not share modified tools or log files generated by the tool with anyone outside your team, nor discuss them.
 
-In the grading results, you will receive log files in the same format as those output by the testing tool. However, since the actual grading program is implemented differently from the testing tool, successful operation in the testing tool does not always guarantee successful operation in the actual grading.
+You will receive log files having same format with testing tool, in the submission result dialogue. However, actual grading program is implemented differently from the testing tool, a successful execution in the testing tool does not always guarantee a successful execution in the actual grading.
 
 ## Visualization Tools
 
-- <a href="https://d1wbymyp6gas71.cloudfront.net/1p" target="_blank">
-    [Game Simulator]
-  </a>
-- <a href="https://d1wbymyp6gas71.cloudfront.net/2p" target="_blank">
-    [Play Alternately]
-  </a>
-- <a href="https://d1wbymyp6gas71.cloudfront.net/log" target="_blank">
-    [Log Visualization Tool]
-  </a>
+- <a href="https://d1wbymyp6gas71.cloudfront.net/1p" target="_blank">[Game Simulator]</a>
+- <a href="https://d1wbymyp6gas71.cloudfront.net/2p" target="_blank">[Play by Yourself]</a>
+- <a href="https://d1wbymyp6gas71.cloudfront.net/log" target="_blank">[Log Visualization Tool]</a>
 
 You can download log files for each battle from the Sample AI matches. Use the Log Visualization Tool to examine how the game progressed and refine your strategy.
 

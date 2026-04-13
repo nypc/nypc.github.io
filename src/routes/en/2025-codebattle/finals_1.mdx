@@ -12,7 +12,7 @@ bikoId: 5629
 
 ## Problem Description
 
-Yeti and Pink Bean arrived at the Mushroom Castle and saw mushrooms of various colors and patterns. Yeti wanted to collect mushrooms of the same pattern, while Pink Bean wanted to collect mushrooms of the same color.
+Yeti and Pink Bean arrived at the Mushroom Castle and saw mushrooms of various colors and patterns. Yeti wanted to gather mushrooms of the same pattern, while Pink Bean wanted to gather mushrooms of the same color.
 
 ## Game Rules
 
@@ -25,15 +25,15 @@ The game consists of a **Preparation Phase**, a **Placement Phase**, and a **Sco
   <Figure src="/2025-codebattle/connexion4-rgb-02.png" width={640} alt="Connexion game board" />
 </div>
 
-The game board is shaped as shown above, consisting of a total of $64$ cells. The coordinates of each board cell can be represented as an ordered triple (column, row, sign).
+The game board is shaped as shown above, consisting of a total of $64$ cells. The coordinates of each board cell can be represented as an ordered triplet (column, row, sign).
 
 - There are $6$ columns from left to right: `a`, `b`, `c`, `d`, `e`, `f`.
 - There are $6$ rows from bottom to top: `1`, `2`, `3`, `4`, `5`, `6`.
-- At the intersection of each column and row, there are two cells: `-` and `+`.
+- At the intersection of each column and each row, there are two cells: `-` and `+`.
 
 A cell is represented by concatenating the column character, the row character, and the sign.
 
-Out of the $72$ possible combinations of columns, rows, and signs, the following $8$ are not used:
+Out of the $72$ possible triplets of columns, rows, and signs, the following $8$ triplets are not used:
 
 - `a1-`, `a4-`, `c3+`, `c6+`, `d1-`, `d4-`, `f3+`, `f6+`
 
@@ -53,7 +53,7 @@ For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is conne
 ### Game Tiles
 
 <div className="no-block">
-  Connexion game tiles have colors and patterns. There are $4$ types of colors:
+  Connexion game tiles have colors and patterns. There are $4$ types of colors, namely
   <span style={{ color: "#D94470", fontWeight: "bold" }}>
     R (
     <img
@@ -93,7 +93,7 @@ For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is conne
     />
     )
   </span>
-  . There are $4$ types of patterns:
+  . There are $4$ types of patterns, namely 
   <span style={{ fontWeight: "bold" }}>
     1 (
     <img
@@ -133,9 +133,8 @@ For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is conne
     />
     )
   </span>
-  . For each of the $16$ different combinations of color and pattern, there are $4$ tiles, making a
-  total of $64$ tiles. A tile is represented by concatenating the color character and the pattern
-  character.
+  . There are 4 tiles each, for the $16$ different pairings of colors and patterns, making a
+  total of $64$ tiles. A tile is represented as two characters, concatenating the color and the pattern.
 </div>
 
 <div style={{ display: "flex" }}>
@@ -144,14 +143,14 @@ For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is conne
 
 ## Preparation Phase
 
-Determine the first and second players. Each person takes $2$ tiles of each of the $16$ combinations (total $32$ tiles), shuffles them, and puts them in a bag. Then, each player draws $5$ tiles from their bag and places them in front of them so everyone can see. <sup id="ref-1a"><a href="#footnote-1">1</a></sup>
+Determine the first and second players. Each player takes $32$ tiles, $2$ tiles of each pairings of colors and patterns. Each player shuffles tiles, and puts them in a bag. Finally, each player draws $5$ tiles from their bag and places them in front of them so everyone can see. <sup id="ref-1a"><a href="#footnote-1">1</a></sup>
 
 ## Placement Phase
 
-The placement phase is carried out $64$ times in total, with each person taking $32$ turns starting from the first player.
+The placement phase consists of $64$ turns in total. Each person takes $32$ turns starting from the first player.
 
-1. Place one of the tiles in front of you on one of the cells of the game board.
-2. If there are tiles left in the bag, draw one tile from the bag and place it in front of you. <sup id="ref-1b"><a href="#footnote-1">1</a></sup> In the last five placement turns, no tiles will remain in the bag, so the drawing process is omitted.
+1. Place one of the tiles in front of you on one of the empty cells of the game board.
+2. If there are tiles left in the bag, draw one tile from the bag and place it in front of you. <sup id="ref-1b"><a href="#footnote-1">1</a></sup> In the last five placement turns, drawing tile is ommitted as no tiles are left in bag.
 
 <aside id="footnote-1" style={{ fontSize: 13 }}>
   <sup>
@@ -163,33 +162,32 @@ The placement phase is carried out $64$ times in total, with each person taking 
 
 ## Scoring
 
-If tiles placed in two adjacent cells have the same color, they are **connected by color**; if they have the same pattern, they are **connected by pattern**.
+If tiles placed in two adjacent cells have the same color, they are said to be **connected by color**; if they have the same pattern, they are said to be **connected by pattern**.
 
-Scoring can be calculated using either of the following two methods. The score calculated by both methods is identical. The person with the higher score wins; if scores are equal, it is a draw.
+The scores can be calculated using either of the following two methods. The scores calculated by both methods are identical. The person with the higher score wins; if scores are equal, the game ends with draw.
 
 ### Calculation by Tile
 
-The first and second players calculate their scores differently. The score for each tile is:
+The first and second players calculate their score respectively. The score for each tile is:
 
 - First player: The number of tiles indirectly connected<sup id="ref-2a"><a href="#footnote-2">2</a></sup> by the same pattern.
 - Second player: The number of tiles indirectly connected<sup id="ref-2b"><a href="#footnote-2">2</a></sup> by the same color.
 
-Each person's total score is the sum of the scores of all tiles.
+The score of each player is the sum of the scores of all tiles.
 
 <aside id="footnote-2" style={{ fontSize: 13 }}>
   <sup>
     <a href="#ref-2">2</a>
   </sup>
-  Tiles are said to be indirectly connected if they satisfy the following: - Tile A is indirectly
-  connected to itself. - If Tile A and Tile B are connected, they are indirectly connected. - If
-  Tile A and Tile B are indirectly connected, and Tile B and Tile C are indirectly connected, then
-  Tile A and Tile C are also indirectly connected. - Two tiles not meeting the above criteria are
-  not indirectly connected.
+  Tiles are said to be indirectly connected if they satisfy the following: - Each tile is indirectly
+  connected to itself. - If tile A and tile B are connected, they are indirectly connected. - If
+  tile A and tile B are indirectly connected, and tile B and tile C are indirectly connected, then
+  tile A and tile C are also indirectly connected. - If none of these apply two tiles are not connected.
 </aside>
 
 ### Calculation by Group
 
-The first and second players group tiles differently.
+The first and second players group tiles respectively.
 
 - First player: All tiles reachable by following connections of the same pattern are grouped together.
 - Second player: All tiles reachable by following connections of the same color are grouped together.
@@ -261,30 +259,29 @@ Total Score: $1+13+1+9 = 24 \text{ points}$
 
 Total Score: $9+5+4+2 = 20 \text{ points}$
 
-## Input/Output Format
+## Input/Output Protocol
 
-The participant's program must read input line by line and act according to each command. Commands requiring output are shown in <span style={{ color: "red" }}>red</span> with their **time limits**. Failure to output within the limit results in a Time Limit Exceeded (TLE) and disqualification for that game.
+Your program must read input line by line and follow the protocol of each command. Commands requiring the output are denoted with <span style={{ color: "red" }}>red color</span> with their **time limit** specified. If your program fails to output within specified time limit, you will receive Time Limit Exceeded (TLE) verdict and will result forfeiting the game.
 
 | Command | Input Format                         | Description                                                                                                                                                                                                                                                                                                                                                                                      |
-| :------ | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| READY   | `READY (FIRST\|SECOND)`              | <span style={{ display: "block", textAlign: "left" }}>Tells the player whether they are first or second. `FIRST` is first, `SECOND` is second. Must output <code style={{ color: "red" }}>OK</code> within $\textbf{3,000}$**ms** to indicate readiness.</span>                                                                                                                                  |
-| INIT    | `INIT A₁ A₂ A₃ A₄ A₅ B₁ B₂ B₃ B₄ B₅` | <span style={{ display: "block", textAlign: "left" }}>Indicates the 5 tiles drawn by the player ($A_1 \dots A_5$) and the 5 tiles drawn by the opponent ($B_1 \dots B_5$) during preparation.</span>                                                                                                                                                                                             |
-| TIME    | `TIME t₁ t₂`                         | <span style={{ display: "block", textAlign: "left" }}>At the start of the player's turn, provides remaining time for both players. $t_1$ is your time, $t_2$ is the opponent's time (in ms). You must output <code style={{ color: "red" }}>PUT p T</code> within $t_1$ ms to place tile $T$ at position $p$. The initial $t_1, t_2$ is $10,000$ms, independent of time used for `READY`.</span> |
-| GET     | `GET T`                              | <span style={{ display: "block", textAlign: "left" }}>Indicates the player drew tile $T$ after their turn. If the bag is empty, $T$ is `X0`. No output required.</span>                                                                                                                                                                                                                          |
-| OPP     | `OPP p T₁ T₂ t`                      | <span style={{ display: "block", textAlign: "left" }}>Indicates the opponent placed $T_1$ at $p$, drew $T_2$, and took $t$ ms. If the bag was empty, $T_2$ is `X0`. No output required.</span>                                                                                                                                                                                                   |
-| FINISH  | `FINISH`                             | <span style={{ display: "block", textAlign: "left" }}>Signals the end of the game. The program must terminate normally immediately. No output required.</span>                                                                                                                                                                                                                                   |
-
-All commands must be processed line by line. When outputting, follow with a newline and flush the buffer.
+| ------- | ------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| READY   | `READY (FIRST\|SECOND)`              | <span style={{ display: "block", textAlign: "left" }}>Indicates whether your program takes first or second player. Must output <code style={{ color: "red" }}>OK</code> within $\textbf{3\,000}$**ms** as a response.</span>                                                                                                                                  |
+| INIT    | `INIT A₁ A₂ A₃ A₄ A₅ B₁ B₂ B₃ B₄ B₅` | <span style={{ display: "block", textAlign: "left" }}>Indicates the 5 tiles drawn by your program ($A_1 \dots A_5$) and the 5 tiles drawn by the opponent's program ($B_1 \dots B_5$) during a preparation phase.</span>                                                                                                                                                                                             |
+| TIME    | `TIME t₁ t₂`                         | <span style={{ display: "block", textAlign: "left" }}>Indicates it is your program's turn. Also provides remaining time for both players; $t_1$ is yours, $t_2$ is the opponent's (in ms). You must output <code style={{ color: "red" }}>PUT p T</code> within $t_1$ ms to place tile $T$ at position $p$. The initial $t_1, t_2$ is given as $10\,000$ms, regardless of time used for `READY` command.</span> |
+| GET     | `GET T`                              | <span style={{ display: "block", textAlign: "left" }}>Indicates your program drew tile $T$ after the placement of tile. If the bag is empty so drawing tile is omitted, $T$ is `X0`. Output is not required.</span>                                                                                                                                                                                                                          |
+| OPP     | `OPP p T₁ T₂ t`                      | <span style={{ display: "block", textAlign: "left" }}>Indicates the opponent placed $T_1$ at $p$, drew $T_2$, while taking $t$ ms. If the bag was empty, $T_2$ is `X0`. Output is not required.</span>                                                                                                                                                                                                   |
+| FINISH  | `FINISH`                             | <span style={{ display: "block", textAlign: "left" }}>Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.</span>                                                                                                                                                                                                                                   |
+All commands must be processed line by line. When you output, make sure you print a newline character and then flush the buffer. Please refer to the reference document or sample code of your programming language on how to flush the buffer.
 
 ## Sample Code
 
-Sample codes for each language:
+The following are sample codes provided for each language:
 
 - C20: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.c)
 - C++20: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.cpp)
 - C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.cs)
 - OpenJDK Java 21: [sample-code.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.java)
-- Node.js: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.rs)
+- Node.js: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.js)
 - Typescript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.ts)
 - PyPy3 / Python3: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.py)
 - Rust 2024: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.rs)
@@ -305,42 +302,61 @@ Two matches will be played, alternating between first and second player. Points 
 
 ## Testing Tool (GUI)
 
-A testing tool `testing-tool-connexion` is provided to test your program. You can test locally using your compiled executable or script environments like `python`, `java`, `node`, or `lua`.
+A testing tool, `testing-tool-connexion`, is provided to test the program. You can test your compiled executable or script locally, using `python`, `java`, `node`, or `lua` in your envinroment.
 
 - 64-bit Windows (x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.1.exe))
+  - Run the downloaded `.exe` file.
 - MacOS Universal ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion_1.0.1_universal.dmg))
+  - Double-click the `.dmg` file, then drag and drop the `testing-tool-connexion` file into the `Applications` folder. Then, run the app.
+  - If a security warning appears regarding apps not from the App Store, check the app info in "Settings > Privacy & Security".
 - deb (Ubuntu/Debian AMD64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion_1.0.1_amd64.deb))
+  - Install the `.deb` file using `apt` or `dpkg`, then run `testing-tool-connexion`.
 - rpm (Fedora/RHEL x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.1-1.x86_64.rpm))
+  - Install the `.rpm` file using `rpm` or `yum`, then run `testing-tool-connexion`.
+
 
 ## Testing Tool (CLI)
 
-A CLI testing tool package `testing-tool-connexion.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.0.zip)) is also provided. Refer to the `README.md` inside for details.
+A CLI testing tool package, `testing-tool-connexion-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.0.zip)), is provided to test the program.  For details, refer to the `README.md` inside the zip file.
 
-You are free to modify the CLI tool and discuss its execution. However, you must not share modified tools or logs with anyone outside your team.
+You can freely modify the CLI testing tool and discuss its execution methods with others. However, you must not share modified tools or log files generated by the tool with anyone outside your team, nor discuss them.
+
+You will receive log files having same format with testing tool, in the submission result dialogue. However, actual grading program is implemented differently from the testing tool, a successful execution in the testing tool does not always guarantee a successful execution in the actual grading.
 
 ## Visualization Tools
 
-- <a href="https://dh6l222gjj2c6.cloudfront.net/1p" target="_blank">
-    [Game Simulator]
-  </a>
-- <a href="https://dh6l222gjj2c6.cloudfront.net/2p" target="_blank">
-    [Play Alternately]
-  </a>
-- <a href="https://dh6l222gjj2c6.cloudfront.net/log" target="_blank">
-    [Log Visualization Tool]
-  </a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/1p" target="_blank">[Game Simulator]</a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/2p" target="_blank">[Play by Yourself]</a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/log" target="_blank">[Log Visualization Tool]</a>
 
-## Example Interaction
 
-| First Player Input                   | First Player Output | Second Player Input                  | Second Player Output | Log                                  |
-| :----------------------------------- | :------------------ | :----------------------------------- | :------------------- | :----------------------------------- |
-| `READY FIRST`                        | `OK`                | `READY SECOND`                       | `OK`                 |                                      |
-| `INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3` |                     | `INIT G3 Y3 R1 Y2 R3 R1 Y3 B1 G4 Y1` |                      | `INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3` |
-| `TIME 10000 10000`                   | `PUT a1+ R1`        |                                      |                      |                                      |
-| `GET B3`                             |                     | `OPP a1+ R1 B3 70`                   |                      | `FIRST a1+ R1 B3 70`                 |
-|                                      |                     | `TIME 10000 9930`                    | `PUT a2- R1`         |                                      |
-| `OPP a2- R1 R1 40`                   |                     | `GET R1`                             |                      | `SECOND a2- R1 R1 40`                |
-| `TIME 9930 9960`                     | `PUT a2+ B1`        |                                      |                      |                                      |
-| `GET Y2`                             |                     | `OPP a2+ B1 Y2 80`                   |                      | `FIRST a2+ B1 Y2 80`                 |
-|                                      |                     | (omitted)                            |                      |                                      |
-| `FINISH`                             | (Exit)              | `FINISH`                             | (Exit)               | `FINISH`                             |
+You can download log files for each battle from the Sample AI matches. Use the Log Visualization Tool to examine how the game progressed and refine your strategy.
+
+## Example
+
+### Example input
+
+```
+R1 Y3 B1 G4 Y1 B3 Y2 R3 G1 R2 G3 G1 R2 R1 B4 G4 B2 Y2 R3 Y4 B1 R4 B4 B2 Y4 G2 R4 Y3 G2 B3 G3 Y1
+G3 Y3 R1 Y2 R3 R1 Y1 B1 G1 R3 G2 Y4 Y2 Y3 B3 B2 B4 G2 R2 B4 R4 Y1 G4 R4 G3 Y4 G1 G4 B1 R2 B2 B3
+```
+
+### Example interaction
+
+| First player input                            | First player output                             | Second player input                            | Second player output                              | Log output                                            |
+| ------------------------------------ | ------------------------------------- | ------------------------------------ | -------------------------------------- | ----------------------------------------------- |
+| `READY FIRST`                        | `OK`                                  | `READY SECOND`                       | `OK`                                   |                                                 |
+| `INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3` |                                       | `INIT G3 Y3 R1 Y2 R3 R1 Y3 B1 G4 Y1` |                                        | <p>`INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3`</p>     |
+| `TIME 10000 10000`                   | <p>(Took 70ms)</p><p>`PUT a1+ R1`</p> |                                      |                                        |                                                 |
+| `GET B3`                             |                                       | `OPP a1+ R1 B3 70`                   |                                        | `FIRST a1+ R1 B3 70`                            |
+|                                      |                                       | `TIME 10000 9930`                    | <p>(Took 40ms)</p><p>`PUT a2- R1`</p>  |                                                 |
+| `OPP a2- R1 R1 40`                   |                                       | `GET R1`                             |                                        | `SECOND a2- R1 R1 40`                           |
+| `TIME 9930 9960`                     | <p>(Took 80ms)</p><p>`PUT a2+ B1`</p> |                                      |                                        |                                                 |
+| `GET Y2`                             |                                       | `OPP a2+ B1 Y2 80`                   |                                        | `FIRST a2+ B1 Y2 80`                            |
+|                                      |                                       | `TIME 9960 9850`                     | <p>(Took 50ms)</p><p>`PUT b1- R3`</p>  |                                                 |
+| `OPP b1- R3 Y1 50`                   |                                       | `GET Y1`                             |                                        | `SECOND b1- R3 Y1 50`                           |
+|                                      |                                       | (Omitted)                               |                                        |                                                 |
+|                                      |                                       | `TIME 980 1730`                      | <p>(Took 100ms)</p><p>`PUT f4+ Y1`</p> |                                                 |
+| `OPP f4+ Y1 X0 100`                  |                                       | `GET X0`                             |                                        | `SECOND f4+ Y1 X0 100`                          |
+| `FINISH`                             | (Terminate program)                       | `FINISH`                             | (Terminate program)                        | <p>`FINISH`</p>                                 |
+|                                      |                                       |                                      |                                        | <p>`SCOREFIRST 314`</p><p>`SCORESECOND 270`</p> |

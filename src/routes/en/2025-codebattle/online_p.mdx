@@ -11,46 +11,48 @@ codebattle: true
 
 ## Problem Description
 
-In the peaceful forest of Maple World, Yeti and Pink Bean were tending to their mushroom patch together as usual.  
-One day, the two friends discovered that every mushroom had a number written on it and decided to create a new game using these numbers.  
-They devised a game where they compete to occupy parts of the mushroom patch, taking turns to select areas according to the rules below.
+In the peaceful forest of Maple World, Yeti and Pink Bean were tending to their mushroom grid together as usual.  
+One day, they discovered that every mushroom had a digit written on it, so they decided to create a new game using these digits.  
+They made a game where they compete to own parts of the mushroom grid, alternating turns using following rules.
 
 ### Game Rules
 
 - **Rule 1**  
-  On their turn, a player selects a single rectangular area in the mushroom patch.
+  On their turn, a player selects a single rectangular area in the mushroom grid.
 
 - **Rule 2**  
-  If the sum of the numbers within the selected area is exactly $10$, the mushrooms in that area are removed and the player occupies that area.  
-  If the area contains cells already occupied by the opponent, the ownership of those cells is taken over.  
-  Additionally, each of the four sides of the selected rectangle must have at least one mushroom **adjacent** to the inside of the area.
+  If the sum of the digits within the selected area is exactly $10$, the mushrooms in that area are removed and the player owns that area.  
+  If the area contains cells already owned by the opponent, the ownership of those cells is taken over.  
+  Additionally, each of the four sides of the selected rectangle must have at least one mushroom **inscribed** to the rectangular area.
 
 - **Rule 3**  
-  If there are no selectable areas or if a player strategically chooses not to make a move, they may skip their turn and pass.
+  If no areas can be selected or a player strategically chooses not to make a move, they may skip their turn and pass.
 
 - **Rule 4**  
   The game ends when both players pass their turns consecutively.  
-  The player who occupies more cells at the end of the game wins.
+  The player who owns more cells at the end of the game wins.
 
-Write a program to play as either Yeti or Pink Bean and occupy as many cells as possible in the mushroom patch.
+Become a Yeti or Pink Bean and own as many cells as possible in the mushroom grid by writing a program.
 
-## Input/Output Format
+## Input/Output Protocol
 
-The participant's program must read input line by line and operate according to each command. Commands that require output are marked in <span style={{color:"red"}}>red</span> in the table below.
+Your program must read input line by line and follow the protocol of each command. Commands requiring the output are denoted with <span style={{ color: "red" }}>red color</span> with their **time limit** specified. If your program fails to output within specified time limit, you will receive Time Limit Exceeded (TLE) verdict and will result forfeiting the game.
+
 
 | Command | Input Format            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------- | ----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| READY   | `READY (FIRST\|SECOND)` | A command informing the player whether they go first or second. The program must output **<code style={{color:"red"}}>OK</code>**, indicating it is ready for input, within 3 seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| INIT    | `INIT ...`              | A command to initialize the game board information. `...` consists of $10$ strings, each composed of $17$ digits. <br/> Each digit is an integer between $1$ and $9$ inclusive, representing the number on the mushroom at that position. No output is required. <br/> Each digit is provided independently with an equal probability for integers from $1$ to $9$.                                                                                                                                                                                                                                                                                                                                           |
-| TIME    | `TIME t₁ t₂`            | A command informing the players of their remaining time. $t_1$ is your program's remaining time, and $t_2$ is the opponent's remaining time. <br/> Upon receiving this command, the player must output the coordinates of the rectangle selected for this turn in the format <span style={{color:"red"}}>$r_1$ $c_1$ $r_2$ $c_2$</span>. <br/> The top-left coordinate of the board is $(r, c) = (0, 0)$, and the bottom-right is $(9, 16)$. <br/>To pass, output $r_1 = c_1 = r_2 = c_2 = -1$. Output values must satisfy:<br/><br/>$-1 \le r_1 \le r_2 \le 9$<br/> $-1 \le c_1 \le c_2 \le 16$ <br/> The initial time given as $t_1, t_2$ is $10,000$, regardless of the time used for the `READY` command. |
-| OPP     | `OPP x₁ y₁ x₂ y₂ t`     | A command providing information about the opponent's move. It includes the coordinates $r_1$ $c_1$ $r_2$ $c_2$ selected by the opponent and the time $t$ they used during that turn. <br/> If the opponent passed, $r_1 = c_1 = r_2 = c_2 = -1$ is given. No output is required.                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| FINISH  | `FINISH`                | A command indicating the end of the game. Upon receiving this, the program must terminate normally. No output is required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| READY   | `READY (FIRST\|SECOND)` | Indicates whether your program takes first or second player. Must output <code style={{ color: "red" }}>OK</code> within 3 seconds as a response.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| INIT    | `INIT ...`              | Indicates the game board information. `...` consists of $10$ strings, each consisting of $17$ digits. <br/> Each digit is an integer between $1$ and $9$ inclusive, representing the number on the mushroom at corresponding position. Output is not required <br/> Each digit is drawn independent and identically from  digits $1$ through $9$.                                                                                                                                                                                                                                                                                                                                           |
+| TIME    | `TIME t₁ t₂`            | Indicates it is your program's turn. Also provides remaining time for both players; $t_1$ is yours, $t_2$ is the opponent's (in ms). <br/> Upon receiving this command, the player must output the coordinates of the rectangle selected for this turn in the format <span style={{color:"red"}}>$r_1$ $c_1$ $r_2$ $c_2$</span>. <br/> The top-left coordinate of the board is $(r, c) = (0, 0)$, and the bottom-right is $(9, 16)$. <br/>To pass, output $r_1 = c_1 = r_2 = c_2 = -1$. Output values must satisfy:<br/><br/>$-1 \le r_1 \le r_2 \le 9$<br/> $-1 \le c_1 \le c_2 \le 16$ <br/> The initial $t_1, t_2$ is given as $10\,000$ms, regardless of time used for `READY` command. |
+| OPP     | `OPP x₁ y₁ x₂ y₂ t`     | Indiciates the coordinates $r_1$ $c_1$ $r_2$ $c_2$ selected by the opponent, while taking $t$ ms during their turn. <br/> If the opponent passed, $r_1 = c_1 = r_2 = c_2 = -1$ is given. Output is not required.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| FINISH  | `FINISH`                | Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-The buffer must be flushed after every output. Failure to flush the buffer may result in a TLE (Time Limit Exceeded) because the output was not properly sent. Please refer to the official reference documentation and sample codes for each language on how to flush the buffer.
+All commands must be processed line by line. When you output, make sure you print a newline character and then flush the buffer. Please refer to the reference document or sample code of your programming language on how to flush the buffer.
+
 
 ## Sample Code
 
-The following are sample codes written for each language.
+The following are sample codes provided for each language:
 
 - C20: [sample_code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/sample_code/sample_code.c)
 - C++20: [sample_code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/sample_code/sample_code.cpp)
@@ -64,7 +66,7 @@ The following are sample codes written for each language.
 - Go: [sample_code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/sample_code/sample_code.go)
 - Kotlin: [sample_code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/sample_code/sample_code.kt)
 
-The sample code selects and outputs the rectangle $(r_1, c_1, r_2, c_2)$ that is lexicographically smallest among all valid rectangles—essentially the one furthest to the top-left. If no selectable rectangle exists, it passes the turn.
+The sample code selects and outputs the rectangle $(r_1, c_1, r_2, c_2)$ that is lexicographically smallest among all valid rectangles, i.e. the top-left rectangle. If no selectable rectangle exists, it passes the turn.
 
 ## Matches with Sample AIs
 
@@ -80,38 +82,32 @@ The strategies of the sample AIs are as follows:
 | Battle No. | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
 | 1 / 2      | Always "Passes" on its turn.                                  |
-| 3 / 4      | Performs the same actions as the provided sample code.        |
+| 3 / 4      | Uses the same strategy as provided in the sample code.        |
 | 5 / 6      | Uses the strategy of the game simulator sample AI, Pink Bean. |
-| 7 / 8      | Uses a medium-difficulty defensive strategy.                  |
-| 9 / 10     | Uses a medium-difficulty offensive strategy.                  |
-| 11 / 12    | Uses a high-difficulty defensive strategy.                    |
-| 13 / 14    | Uses a high-difficulty offensive strategy.                    |
+| 7 / 8      | Uses a medium-level defensive strategy.                       |
+| 9 / 10     | Uses a medium-level offensive strategy.                       |
+| 11 / 12    | Uses a high-level defensive strategy.                         |
+| 13 / 14    | Uses a high-level offensive strategy.                         |
 
 ## Visualization Tools (Sample AI / Two-Player / Log Analysis)
 
 You can play the game against sample AIs, play with two people alternating turns, and use a visualization tool to visualize logs generated by the game simulator and testing tools.
 
-- <a href="https://dzulmx7c8qxbj.cloudfront.net/1p" target="_blank">
-    [Game Simulator]
-  </a>
-- <a href="https://dzulmx7c8qxbj.cloudfront.net/2p" target="_blank">
-    [Two-Player Mode]
-  </a>
-- <a href="https://dzulmx7c8qxbj.cloudfront.net/log" target="_blank">
-    [Log Visualization Tool]
-  </a>
+- <a href="https://dzulmx7c8qxbj.cloudfront.net/1p" target="_blank">[Game Simulator]</a>
+- <a href="https://dzulmx7c8qxbj.cloudfront.net/2p" target="_blank">[Two-Player Mode]</a>
+- <a href="https://dzulmx7c8qxbj.cloudfront.net/log" target="_blank">[Log Visualization Tool]</a>
 
-You can download log files for each battle from the sample AI matches. Use the log visualization tool to examine how the game progressed and refine your strategy.
+You can download log files for each battle from the Sample AI matches. Use the Log Visualization Tool to examine how the game progressed and refine your strategy.
 
 ## Testing Tool (GUI)
 
-A testing tool, `testing-tool-mushroom`, is provided to test participant programs. You can test the problem locally using executable files compiled in your environment or scripts using `python`, `java`, `node`, or `lua` environments.
+A testing tool, `testing-tool-mushroom`, is provided to test the program. You can test your compiled executable or script locally, using `python`, `java`, `node`, or `lua` in your envinroment.
 
 - 64-bit Windows (x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/testing-tool-mushroom/testing-tool-mushroom.exe))
   - Run the downloaded `.exe` file.
 - MacOS Universal ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/testing-tool-mushroom/testing-tool-mushroom_1.0.0_universal.dmg))
-  - After double-clicking the `.dmg` file, drag and copy the `testing-tool-mushroom` file to the `Applications` folder. Then, run the `testing-tool-mushroom` app.
-  - If a message appears saying "testing-tool-mushroom-app cannot be opened because the developer cannot be verified," check the app information in "Settings > Privacy & Security."
+  - Double-click the `.dmg` file, then drag and drop the `testing-tool-mushroom` file into the `Applications` folder. Then, run the app.
+  - If a security warning appears regarding apps not from the App Store, check the app info in "Settings > Privacy & Security".
 - 64-bit Ubuntu (AMD64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/testing-tool-mushroom/testing-tool-mushroom_1.0.0_amd64.deb))
   - Install the `.deb` file using `apt` or `dpkg`, then run `testing-tool-mushroom`.
 - 64-bit RedHat (x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/testing-tool-mushroom/testing-tool-mushroom-1.0.0-1.x86_64.rpm))
@@ -119,7 +115,11 @@ A testing tool, `testing-tool-mushroom`, is provided to test participant program
 
 ## Testing Tool (Command Line, Python Script)
 
-A testing tool, `testing_tool.py` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/testing_tool.py)), is provided to test participant programs. The testing tool is a program written in Python 3.12. Regarding the execution of this program, please refer to <a href='https://docs.python.org/3.12/using/index.html' target='_blank'>[Python Setup and Usage]</a>.
+A CLI testing tool, `testing_tool.py` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/mushroom.92e824cffe84/testing_tool.py)), is provided to test the program. The testing tool is a program written in Python 3.12. Regarding the execution of this program, please refer to <a href='https://docs.python.org/3.12/using/index.html' target='_blank'>[Python Setup and Usage]</a>.
+
+You can freely modify the CLI testing tool and discuss its execution methods with others. However, you must not share modified tools or log files generated by the tool with anyone outside your team, nor discuss them.
+
+You will receive log files having same format with testing tool, in the submission result dialogue. However, actual grading program is implemented differently from the testing tool, a successful execution in the testing tool does not always guarantee a successful execution in the actual grading.
 
 To use the testing tool, create a `setting.ini` file in the same location as `testing_tool.py`. The content should be as follows:
 
@@ -202,6 +202,6 @@ INIT 52466443835422223 13254826938785712 87598398564241564 72722154162442227 439
 |                      |                     | `TIME 9960 9910`     |                      |
 |                      |                     | (Took 10ms)          | `-1 -1 -1 -1`        |                         |
 | `OPP -1 -1 -1 -1 10` |                     |                      |                      | `SECOND -1 -1 -1 -1 10` |
-| `FINISH`             | (Program ends)      | `FINISH`             | (Program ends)       | `FINISH`                |
+| `FINISH`             | (Program terminated)      | `FINISH`             | (Program terminated)       | `FINISH`                |
 |                      |                     |                      |                      | `SCOREFIRST 4`          |
 |                      |                     |                      |                      | `SCORESECOND 5`         |

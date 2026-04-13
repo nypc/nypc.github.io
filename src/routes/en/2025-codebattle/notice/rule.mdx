@@ -15,7 +15,7 @@ rule_link: /2025-codebattle/notice/rule
 - **July 14**: Added Source code size limit
 - **July 14**: Added content regarding Practice Problem discussion and sharing
 
-## Procedure Guide
+## Contest overview
 
 NYPC \<CODE BATTLE/\> is a competition where participants create a program (AI) that implements strategies according to provided game rules to compete against other participants' AIs.<br/>
 The competition consists of an Online Round and a Final Round.
@@ -34,7 +34,7 @@ The Online Round runs freely for 10 days. One problem is revealed at the start o
 
 ### Final Round
 
-At least the top 20 teams with outstanding performance in the Online Round can participate in the final competition held at the Pangyo office on October 25 (Sat).
+The top 20 (or more) teams in the Online Round can participate in the final competition held at the Pangyo office on October 25 (Sat).
 
 - **Entry and Registration**: 9:00 AM &ndash; 9:30 AM
 - **Opening and Competition OT**: 9:30 AM &ndash; 10:00 AM
@@ -50,16 +50,16 @@ At least the top 20 teams with outstanding performance in the Online Round can p
 
 Participants can check the problem description and conditions on the problem page and submit one code file and one binary file.
 
-- Code must be 1MiB (1,048,576 bytes) or less, and the binary file must be 10MiB (10,485,760 bytes) or less.
-- Grading against the Sample AI begins immediately upon submission. After grading is complete, you can check the submission history and results in the `VS: Sample AI` section.
+- Code must be 1MiB (1048576 bytes) or less, and the binary file must be 10MiB (10485760 bytes) or less.
+- Grading with the Sample AI begins immediately upon submission. After grading is complete, you can check the submission history and results in the `VS: Sample AI` section.
   - Grading results are displayed as Win/Draw/Loss.
-  - Fixed inputs are always provided.
+  - Inputs are fixed.
   - The Sample AI uses the same strategy for the same input.
-- Answers can be submitted multiple times, but only one "Final Submission" will be used.
+- Programs can be submitted multiple times, but only one "Final Submission" will be used.
 
 ### Online Round
 
-- If you submit code more than twice within 5 minutes, additional submissions are only possible 5 minutes after the first (penultimate) submission, not the second (last) submission.
+- If you submit code more than twice within 5 minutes, additional submissions are only possible 5 minutes after the first (second last) submission, not the second (last) submission.
   - Submission intervals and frequency are subject to change depending on the organizer's circumstances.
 
 ### Final Round
@@ -90,13 +90,13 @@ Time and memory limit exceedance are determined based on the resources used by t
 
 One of the following results is displayed for each submission, with details as follows:
 
-- `CE` (Compile Error) - Failed to compile the submitted source code. You can check the compile failure log by clicking the 'Compile Failed' text.
+- `CE` (Compile Error) - Failed to compile the submitted source code. You can check the compile failure log by clicking the 'Compilation Failed' text.
 - `TLE` (Time Limit Exceeded) - The execution time of the submitted source code exceeded the time limit specified in the problem.
-- `WTLE` (Wall Clock Time Limit Exceeded) - The actual execution time of the submitted source code exceeded the designated time limit. This occurs when the program does not terminate after the designated time limit, regardless of the CPU time limit written in the problem. It may occur if an error happens during execution or if the output buffer is not flushed.
+- `WTLE` (Wall Clock Time Limit Exceeded) - The actual execution time of the submitted source code exceeded the designated time limit. This occurs when the program does not terminate after the designated time limit, regardless of the time limit written in the problem. It may occur if an error happens during an execution or if the output buffer is not flushed.
 - `RE` (Runtime Error) - An error occurred during execution. This error may also occur if the memory limit is exceeded.
 - <IconX color="#F44336" /> (Wrong Answer) - The program terminated normally, but the output is
   incorrect.
-- `IE` (Internal Error) - An unknown internal error occurred. If you receive this result, please contact the organizers.
+- `IE` (Internal Error) - An unknown internal error occurred. If you have received this result, please contact the organizers.
 - `X Wins (A/B/C)` - Result of matches against Sample AIs. 1 point for a win, 0.5 points for a draw, and 0 points for a loss. The win/loss is determined by summing the results of playing as both first and second player.
 
 If cases belonging to the same category have different results, one of the results may be displayed arbitrarily.
@@ -114,7 +114,7 @@ If there is incorrect content in a problem or an unknown internal error that hin
 
 The following are representative examples of invalid question types:
 
-> "The program I wrote works well on my computer, but the results are not normal when graded."
+> "The program I wrote works well on my computer, but the results are abnormal when graded."
 
 - The provided testing tools may differ from the actual grading environment. Please double-check the problem's input/output format.
 
@@ -139,7 +139,7 @@ When the issue does not hinder the progress of the competition, the organizer's 
 
 ### Practice Problems
 
-**Mid-term Evaluation**
+**Pretest**
 
 Every day at 3:00 PM before the Online Round begins, evaluations are conducted based on the code selected as the Final Submission among the codes submitted by each team.<br/>
 At least 20 rounds are conducted in a Swiss-system tournament, and rankings are provided based on the results.
@@ -149,31 +149,31 @@ Practice problems do not undergo final evaluation and are not reflected in the f
 
 ### Online Round
 
-**Mid-term Evaluation**
+**Pretest**
 
 Every day at 3:00 PM and 9:00 PM, evaluations are conducted based on the code selected as the Final Submission among the codes submitted by each team.<br/>
 At least 20 rounds are conducted in a Swiss-system tournament, and rankings are provided based on the results.
 This can be checked in `VS: Participants Nationwide`.
 
-> Mid-term evaluations are for reference only and do not affect the final evaluation.
+> Pretests are for reference only and do not affect the final evaluation.
 
-**Final Evaluation**
+**System test**
 
 At least 50 rounds are conducted in a Swiss-system tournament to select at least the top 100 teams.<br/>
 The selected teams will play at least 5 matches against every opponent in a Round-robin format, and the final ranking will be determined based on victory points.
 
 ### Final Round
 
-**Mid-term Evaluation**
+**Pretest**
 
 Starting one hour after the competition begins, evaluations are conducted at least 10 times at designated points based on the code selected as the Final Submission. On the day of the competition, information about each mid-term evaluation can be checked at the venue.
 
 Matches are played against all opponents in a Round-robin format, and rankings are provided based on the results.
 This can be checked in `VS: Participants Nationwide`.
 
-> Mid-term evaluations are for reference only and do not affect the final evaluation.
+> Pretests are for reference only and do not affect the final evaluation.
 
-**Final Evaluation**
+**System test**
 
 Matches are played at least 5 times with every opponent to calculate the number of wins against each opponent. When deciding winners, if the difference in points between two teams is marginal (if the null hypothesis that one team's points are superior cannot be adopted at a 5% significance level), additional matches may be conducted.
 
@@ -286,4 +286,4 @@ If interference with competition operations is caused, the organizers may take l
   - However, when using chat rooms or code repositories, please be extra careful with **visibility/privacy settings**.
 - Generating or modifying code using LLMs (ChatGPT, Copilot, etc.) and other coding assistance tools.
 
-If you are curious whether an action constitutes misconduct, do not judge arbitrarily and be sure to inquire with the organizers.
+If you are unsure whether an action constitutes misconduct, do not judge arbitrarily and be sure to inquire with the organizers.
