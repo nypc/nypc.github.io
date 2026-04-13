@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 
 export const Code = styled.code`
   font-family: "IBM Plex Mono", "Pretendard", monospace;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
   tab-size: 4;
   &:not([class*="language-"]) {
     background-color: ${({ theme }) => theme.color.background.card.main};

@@ -1,0 +1,346 @@
+---
+title: Connexion
+year: 2025
+stage: Final Round
+codebattle: true
+bikoId: 5629
+---
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <YouTube videoId="BYltmdl3xUc" />
+</div>
+
+## Problem Description
+
+Yeti and Pink Bean arrived at the Mushroom Castle and saw mushrooms of various colors and patterns. Yeti wanted to collect mushrooms of the same pattern, while Pink Bean wanted to collect mushrooms of the same color.
+
+## Game Rules
+
+Connexion is a turn-based game played by two players. The game is played using a game board and game tiles.
+The game consists of a **Preparation Phase**, a **Placement Phase**, and a **Scoring Phase**.
+
+### Game Board
+
+<div style={{ display: "flex" }}>
+  <Figure src="/2025-codebattle/connexion4-rgb-02.png" width={640} alt="Connexion game board" />
+</div>
+
+The game board is shaped as shown above, consisting of a total of $64$ cells. The coordinates of each board cell can be represented as an ordered triple (column, row, sign).
+
+- There are $6$ columns from left to right: `a`, `b`, `c`, `d`, `e`, `f`.
+- There are $6$ rows from bottom to top: `1`, `2`, `3`, `4`, `5`, `6`.
+- At the intersection of each column and row, there are two cells: `-` and `+`.
+
+A cell is represented by concatenating the column character, the row character, and the sign.
+
+Out of the $72$ possible combinations of columns, rows, and signs, the following $8$ are not used:
+
+- `a1-`, `a4-`, `c3+`, `c6+`, `d1-`, `d4-`, `f3+`, `f6+`
+
+Each cell is connected in the following manner:
+
+- A `-` cell is connected to the following three cells (if they exist):
+  - The `+` cell of the same column and row,
+  - The `+` cell of the column immediately to the left and the same row,
+  - The `+` cell of the same column and the row immediately below.
+- A `+` cell is connected to the following three cells (if they exist):
+  - The `-` cell of the same column and row,
+  - The `-` cell of the column immediately to the right and the same row,
+  - The `-` cell of the same column and the row immediately above.
+
+For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is connected to `f4-` and `f5-`.
+
+### Game Tiles
+
+<div className="no-block">
+  Connexion game tiles have colors and patterns. There are $4$ types of colors:
+  <span style={{ color: "#D94470", fontWeight: "bold" }}>
+    R (
+    <img
+      src="/2025-codebattle/tile-r0%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Red tile"
+    />
+    )
+  </span>
+  ,
+  <span style={{ color: "#009B87", fontWeight: "bold" }}>
+    G (
+    <img
+      src="/2025-codebattle/tile-g0%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Green tile"
+    />
+    )
+  </span>
+  ,
+  <span style={{ color: "#2C7EC1", fontWeight: "bold" }}>
+    B (
+    <img
+      src="/2025-codebattle/tile-b0%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Blue tile"
+    />
+    )
+  </span>
+  , and
+  <span style={{ color: "#F5C33F", fontWeight: "bold" }}>
+    Y (
+    <img
+      src="/2025-codebattle/tile-y0%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Yellow tile"
+    />
+    )
+  </span>
+  . There are $4$ types of patterns:
+  <span style={{ fontWeight: "bold" }}>
+    1 (
+    <img
+      src="/2025-codebattle/tile-x1%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Pattern 1"
+    />
+    )
+  </span>
+  ,
+  <span style={{ fontWeight: "bold" }}>
+    2 (
+    <img
+      src="/2025-codebattle/tile-x2%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Pattern 2"
+    />
+    )
+  </span>
+  ,
+  <span style={{ fontWeight: "bold" }}>
+    3 (
+    <img
+      src="/2025-codebattle/tile-x3%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Pattern 3"
+    />
+    )
+  </span>
+  , and
+  <span style={{ fontWeight: "bold" }}>
+    4 (
+    <img
+      src="/2025-codebattle/tile-x4%402x.png"
+      style={{ width: "100%", maxWidth: "25px", verticalAlign: "middle" }}
+      alt="Pattern 4"
+    />
+    )
+  </span>
+  . For each of the $16$ different combinations of color and pattern, there are $4$ tiles, making a
+  total of $64$ tiles. A tile is represented by concatenating the color character and the pattern
+  character.
+</div>
+
+<div style={{ display: "flex" }}>
+  <Figure src="/2025-codebattle/connexion4-rgb-01.png" width={640} alt="Connexion game tiles" />
+</div>
+
+## Preparation Phase
+
+Determine the first and second players. Each person takes $2$ tiles of each of the $16$ combinations (total $32$ tiles), shuffles them, and puts them in a bag. Then, each player draws $5$ tiles from their bag and places them in front of them so everyone can see. <sup id="ref-1a"><a href="#footnote-1">1</a></sup>
+
+## Placement Phase
+
+The placement phase is carried out $64$ times in total, with each person taking $32$ turns starting from the first player.
+
+1. Place one of the tiles in front of you on one of the cells of the game board.
+2. If there are tiles left in the bag, draw one tile from the bag and place it in front of you. <sup id="ref-1b"><a href="#footnote-1">1</a></sup> In the last five placement turns, no tiles will remain in the bag, so the drawing process is omitted.
+
+<aside id="footnote-1" style={{ fontSize: 13 }}>
+  <sup>
+    <a href="#ref-1">1</a>
+  </sup>
+  Drawing tiles from the bag is uniform sampling without replacement. Each tile remaining in the bag
+  has an equal probability of being drawn.
+</aside>
+
+## Scoring
+
+If tiles placed in two adjacent cells have the same color, they are **connected by color**; if they have the same pattern, they are **connected by pattern**.
+
+Scoring can be calculated using either of the following two methods. The score calculated by both methods is identical. The person with the higher score wins; if scores are equal, it is a draw.
+
+### Calculation by Tile
+
+The first and second players calculate their scores differently. The score for each tile is:
+
+- First player: The number of tiles indirectly connected<sup id="ref-2a"><a href="#footnote-2">2</a></sup> by the same pattern.
+- Second player: The number of tiles indirectly connected<sup id="ref-2b"><a href="#footnote-2">2</a></sup> by the same color.
+
+Each person's total score is the sum of the scores of all tiles.
+
+<aside id="footnote-2" style={{ fontSize: 13 }}>
+  <sup>
+    <a href="#ref-2">2</a>
+  </sup>
+  Tiles are said to be indirectly connected if they satisfy the following: - Tile A is indirectly
+  connected to itself. - If Tile A and Tile B are connected, they are indirectly connected. - If
+  Tile A and Tile B are indirectly connected, and Tile B and Tile C are indirectly connected, then
+  Tile A and Tile C are also indirectly connected. - Two tiles not meeting the above criteria are
+  not indirectly connected.
+</aside>
+
+### Calculation by Group
+
+The first and second players group tiles differently.
+
+- First player: All tiles reachable by following connections of the same pattern are grouped together.
+- Second player: All tiles reachable by following connections of the same color are grouped together.
+
+The score for each group is $(\text{number of tiles in the group})^2$. The total score is the sum of the scores of all groups.
+
+### Scoring Example
+
+<Figure
+  src="/2025-codebattle/example_board.png"
+  width={480}
+  alt="Scoring Example"
+  style={{ textAlign: "center", verticalAlign: "middle", margin: "0 auto" }}
+/>
+
+The image above shows tiles placed at: (`a4+`, `G2`); (`a5-`, `G1`); (`b4-`, `B2`); (`b4+`, `Y2`); (`b5-`, `Y4`); (`b5+`, `R4`); (`b6-`, `B4`); (`c4+`, `R3`); (`c5-`, `R2`); (`c5+`, `Y2`). The scoring is as follows:
+
+#### First Player (Pattern)
+
+- **1 (<img src="/2025-codebattle/tile-x1%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="Pattern 1"/>)**: $1 \text{ point} \times 1 \text{ tile} = 1 \text{ point}$
+- **2 (<img src="/2025-codebattle/tile-x2%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="Pattern 2"/>)**: $3 \text{ points} \times 3 \text{ tiles} + 2 \text{ points} \times 2 \text{ tiles} = 13 \text{ points}$
+- **3 (<img src="/2025-codebattle/tile-x3%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="Pattern 3"/>)**: $1 \text{ point} \times 1 \text{ tile} = 1 \text{ point}$
+- **4 (<img src="/2025-codebattle/tile-x4%402x.png" style={{width:"25px",verticalAlign:"middle"}} alt="Pattern 4"/>)**: $3 \text{ points} \times 3 \text{ tiles} = 9 \text{ points}$
+
+Total Score: $1+13+1+9 = 24 \text{ points}$
+
+#### Second Player (Color)
+
+- <span style={{ color: "#D94470", fontWeight: "bold" }}>
+    R (
+    <img
+      src="/2025-codebattle/tile-r0%402x.png"
+      style={{ width: "25px", verticalAlign: "middle" }}
+      alt="Red tile"
+    />
+    )
+  </span>
+  : $3 \text{points} \times 3 \text{tiles} = 9 \text{points}$
+- <span style={{ color: "#F5C33F", fontWeight: "bold" }}>
+    Y (
+    <img
+      src="/2025-codebattle/tile-y0%402x.png"
+      style={{ width: "25px", verticalAlign: "middle" }}
+      alt="Yellow tile"
+    />
+    )
+  </span>
+  : $2 \text{points} \times 2 \text{tiles} + 1 \text{point} \times 1 \text{tile} = 5 \text{points}$
+- <span style={{ color: "#009B87", fontWeight: "bold" }}>
+    G (
+    <img
+      src="/2025-codebattle/tile-g0%402x.png"
+      style={{ width: "25px", verticalAlign: "middle" }}
+      alt="Green tile"
+    />
+    )
+  </span>
+  : $2 \text{points} \times 2 \text{tiles} = 4 \text{points}$
+- <span style={{ color: "#2C7EC1", fontWeight: "bold" }}>
+    B (
+    <img
+      src="/2025-codebattle/tile-b0%402x.png"
+      style={{ width: "25px", verticalAlign: "middle" }}
+      alt="Blue tile"
+    />
+    )
+  </span>
+  : $1 \text{point} \times 1 \text{tile} + 1 \text{point} \times 1 \text{tile} = 2 \text{points}$
+
+Total Score: $9+5+4+2 = 20 \text{ points}$
+
+## Input/Output Format
+
+The participant's program must read input line by line and act according to each command. Commands requiring output are shown in <span style={{ color: "red" }}>red</span> with their **time limits**. Failure to output within the limit results in a Time Limit Exceeded (TLE) and disqualification for that game.
+
+| Command | Input Format                         | Description                                                                                                                                                                                                                                                                                                                                                                                      |
+| :------ | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| READY   | `READY (FIRST\|SECOND)`              | <span style={{ display: "block", textAlign: "left" }}>Tells the player whether they are first or second. `FIRST` is first, `SECOND` is second. Must output <code style={{ color: "red" }}>OK</code> within $\textbf{3,000}$**ms** to indicate readiness.</span>                                                                                                                                  |
+| INIT    | `INIT A₁ A₂ A₃ A₄ A₅ B₁ B₂ B₃ B₄ B₅` | <span style={{ display: "block", textAlign: "left" }}>Indicates the 5 tiles drawn by the player ($A_1 \dots A_5$) and the 5 tiles drawn by the opponent ($B_1 \dots B_5$) during preparation.</span>                                                                                                                                                                                             |
+| TIME    | `TIME t₁ t₂`                         | <span style={{ display: "block", textAlign: "left" }}>At the start of the player's turn, provides remaining time for both players. $t_1$ is your time, $t_2$ is the opponent's time (in ms). You must output <code style={{ color: "red" }}>PUT p T</code> within $t_1$ ms to place tile $T$ at position $p$. The initial $t_1, t_2$ is $10,000$ms, independent of time used for `READY`.</span> |
+| GET     | `GET T`                              | <span style={{ display: "block", textAlign: "left" }}>Indicates the player drew tile $T$ after their turn. If the bag is empty, $T$ is `X0`. No output required.</span>                                                                                                                                                                                                                          |
+| OPP     | `OPP p T₁ T₂ t`                      | <span style={{ display: "block", textAlign: "left" }}>Indicates the opponent placed $T_1$ at $p$, drew $T_2$, and took $t$ ms. If the bag was empty, $T_2$ is `X0`. No output required.</span>                                                                                                                                                                                                   |
+| FINISH  | `FINISH`                             | <span style={{ display: "block", textAlign: "left" }}>Signals the end of the game. The program must terminate normally immediately. No output required.</span>                                                                                                                                                                                                                                   |
+
+All commands must be processed line by line. When outputting, follow with a newline and flush the buffer.
+
+## Sample Code
+
+Sample codes for each language:
+
+- C20: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.c)
+- C++20: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.cpp)
+- C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.cs)
+- OpenJDK Java 21: [sample-code.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.java)
+- Node.js: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.rs)
+- Typescript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.ts)
+- PyPy3 / Python3: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.py)
+- Rust 2024: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.rs)
+- Lua: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.lua)
+- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.go)
+- Kotlin: [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/sample-code/sample-code.kt)
+
+The sample code places a tile in a valid position that maximizes the immediate score.
+
+## Match with Sample AI
+
+If the submitted code **compiles successfully**, it will compete against the **provided sample code**.
+Two matches will be played, alternating between first and second player. Points are awarded as follows:
+
+- **Win**: +1 win
+- **Draw**: +0.5 win
+- **Loss**: +0 win
+
+## Testing Tool (GUI)
+
+A testing tool `testing-tool-connexion` is provided to test your program. You can test locally using your compiled executable or script environments like `python`, `java`, `node`, or `lua`.
+
+- 64-bit Windows (x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.1.exe))
+- MacOS Universal ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion_1.0.1_universal.dmg))
+- deb (Ubuntu/Debian AMD64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion_1.0.1_amd64.deb))
+- rpm (Fedora/RHEL x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.1-1.x86_64.rpm))
+
+## Testing Tool (CLI)
+
+A CLI testing tool package `testing-tool-connexion.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.0.zip)) is also provided. Refer to the `README.md` inside for details.
+
+You are free to modify the CLI tool and discuss its execution. However, you must not share modified tools or logs with anyone outside your team.
+
+## Visualization Tools
+
+- <a href="https://dh6l222gjj2c6.cloudfront.net/1p" target="_blank">
+    [Game Simulator]
+  </a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/2p" target="_blank">
+    [Play Alternately]
+  </a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/log" target="_blank">
+    [Log Visualization Tool]
+  </a>
+
+## Example Interaction
+
+| First Player Input                   | First Player Output | Second Player Input                  | Second Player Output | Log                                  |
+| :----------------------------------- | :------------------ | :----------------------------------- | :------------------- | :----------------------------------- |
+| `READY FIRST`                        | `OK`                | `READY SECOND`                       | `OK`                 |                                      |
+| `INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3` |                     | `INIT G3 Y3 R1 Y2 R3 R1 Y3 B1 G4 Y1` |                      | `INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3` |
+| `TIME 10000 10000`                   | `PUT a1+ R1`        |                                      |                      |                                      |
+| `GET B3`                             |                     | `OPP a1+ R1 B3 70`                   |                      | `FIRST a1+ R1 B3 70`                 |
+|                                      |                     | `TIME 10000 9930`                    | `PUT a2- R1`         |                                      |
+| `OPP a2- R1 R1 40`                   |                     | `GET R1`                             |                      | `SECOND a2- R1 R1 40`                |
+| `TIME 9930 9960`                     | `PUT a2+ B1`        |                                      |                      |                                      |
+| `GET Y2`                             |                     | `OPP a2+ B1 Y2 80`                   |                      | `FIRST a2+ B1 Y2 80`                 |
+|                                      |                     | (omitted)                            |                      |                                      |
+| `FINISH`                             | (Exit)              | `FINISH`                             | (Exit)               | `FINISH`                             |

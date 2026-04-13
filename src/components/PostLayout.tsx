@@ -3,6 +3,7 @@ import { Container, Divider, Footer, Space, Typo } from "@solved-ac/ui-react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { createLink } from "@tanstack/react-router";
 import type { Post } from "content-collections";
+import "./styles.css";
 
 const NavigationContainer = styled.div`
   padding-top: 32px;
@@ -48,6 +49,7 @@ interface Props {
   children: React.ReactNode;
   root?: boolean;
   meta?: PostMetaLike;
+  en?: boolean;
   theme?: {
     background: string;
     color: string;
@@ -55,9 +57,9 @@ interface Props {
 }
 
 export const PostLayout: React.FC<Props> = (props) => {
-  const { root, meta, theme, children } = props;
+  const { root, meta, theme, en, children } = props;
 
-  const prev = meta?.year ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}` : "/";
+  const prev = `${en ? "/en" : ""}${meta?.year ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}` : "/"}`;
 
   const title = meta?.title
     ? `${meta.title}${
@@ -91,16 +93,30 @@ export const PostLayout: React.FC<Props> = (props) => {
             {root ? (
               <MetaLinkA href="https://www.nypc.co.kr">
                 <Navigation description style={theme && { color: theme.color }}>
-                  <IconArrowLeft /> NYPC 공식 사이트
+                  <IconArrowLeft /> {en ? "NYPC Official Website" : "NYPC 공식 사이트"}
                 </Navigation>
               </MetaLinkA>
             ) : (
               <MetaLink to={prev}>
                 <Navigation description style={theme && { color: theme.color }}>
-                  <IconArrowLeft /> 이전
+                  <IconArrowLeft /> {en ? "Back" : "이전"}
                 </Navigation>
               </MetaLink>
             )}
+            {root &&
+              (en ? (
+                <MetaLink to="/" style={{ float: "right" }}>
+                  <Navigation description style={theme && { color: theme.color }}>
+                    [한국어로 보기]
+                  </Navigation>
+                </MetaLink>
+              ) : (
+                <MetaLink to="/en" style={{ float: "right" }}>
+                  <Navigation description style={theme && { color: theme.color }}>
+                    [View in English]
+                  </Navigation>
+                </MetaLink>
+              ))}
           </Container>
         </NavigationContainer>
         {meta && (
