@@ -25,6 +25,7 @@ routeTree.gen.ts
 
 # misc
 .DS_Store
+.codex
 *.pem
 
 # debug

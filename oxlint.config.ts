@@ -3,11 +3,13 @@ import { defineConfig } from "oxlint";
 export default defineConfig({
   plugins: ["react", "jsx-a11y"],
   ignorePatterns: [
-    ".content-collections/**/*",
-    ".tanstack/**/*",
-    ".yarn/**/*",
-    "dist/**/*",
-    "node_modules/**/*",
+    "node_modules/",
+    "dist/",
+    "public/",
+    ".content-collections/",
+    ".tanstack/",
+    ".yarn/",
+    "**/*.mdx",
     "**/src/routeTree.gen.ts",
     "**/src/styles.css",
   ],

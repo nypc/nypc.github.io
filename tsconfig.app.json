@@ -14,7 +14,7 @@
     "moduleResolution": "bundler",
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "react", "react-dom", "mdx"],
+    "types": ["vite/client", "react", "react-dom"],
     "moduleDetection": "force",
     "jsx": "react-jsx",
 
