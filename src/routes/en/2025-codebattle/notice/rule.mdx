@@ -1,0 +1,289 @@
+---
+title: Competition Rules
+tool_link: /2025-codebattle/notice/tool
+rule_link: /2025-codebattle/notice/rule
+---
+
+### Revision History
+
+- **September 24**: Added Final Round rules
+- **August 11**: Added Swiss System guide
+- **July 28**: Added Performance formula
+- **July 28**: Added Practice Problem mid-term evaluation
+- **July 28**: Added Final Submission selection
+- **July 28**: Added Binary file submission
+- **July 14**: Added Source code size limit
+- **July 14**: Added content regarding Practice Problem discussion and sharing
+
+## Contest overview
+
+NYPC \<CODE BATTLE/\> is a competition where participants create a program (AI) that implements strategies according to provided game rules to compete against other participants' AIs.<br/>
+The competition consists of an Online Round and a Final Round.
+
+### Online Round
+
+- **Registration**: July 7 (Mon) &ndash; August 18 (Mon)
+- **Practice Problems Open**: July 14 (Mon) 10:00 AM
+- **Online Round Start**: August 8 (Fri) 10:00 AM
+- **Online Round End**: August 18 (Mon) 11:59 PM
+
+Before the Online Round begins, you can test the environment used in the competition through the practice problems released on July 14.<br/>
+Scores from practice problems are not reflected in the total score and do not affect the final Online Round score.
+
+The Online Round runs freely for 10 days. One problem is revealed at the start of the competition, and participants can submit code until the designated deadline.
+
+### Final Round
+
+The top 20 (or more) teams in the Online Round can participate in the final competition held at the Pangyo office on October 25 (Sat).
+
+- **Entry and Registration**: 9:00 AM &ndash; 9:30 AM
+- **Opening and Competition OT**: 9:30 AM &ndash; 10:00 AM
+- **Final Competition**: 10:00 AM &ndash; 4:00 PM **(6 hours)**
+- **Awards Ceremony**: 5:30 PM &ndash;
+
+(All times are based on KST, Saturday, October 25, 2025.)
+
+- All team members must arrive at the final venue to enter.
+- The entry deadline is noon (12:00 PM), and entry is not permitted thereafter.
+
+## Problem Solving
+
+Participants can check the problem description and conditions on the problem page and submit one code file and one binary file.
+
+- Code must be 1MiB (1048576 bytes) or less, and the binary file must be 10MiB (10485760 bytes) or less.
+- Grading with the Sample AI begins immediately upon submission. After grading is complete, you can check the submission history and results in the `VS: Sample AI` section.
+  - Grading results are displayed as Win/Draw/Loss.
+  - Inputs are fixed.
+  - The Sample AI uses the same strategy for the same input.
+- Programs can be submitted multiple times, but only one "Final Submission" will be used.
+
+### Online Round
+
+- If you submit code more than twice within 5 minutes, additional submissions are only possible 5 minutes after the first (second last) submission, not the second (last) submission.
+  - Submission intervals and frequency are subject to change depending on the organizer's circumstances.
+
+### Final Round
+
+- Code can be submitted once every 10 seconds.
+
+Please check the `Evaluation Rules` below for more details.
+
+## Execution and Grading Environment
+
+Execution and grading of all submitted code take place in the following environment:
+
+- Amazon Web Services c7i.4xlarge instance
+- Custom processor based on 4th Gen Intel Xeon
+- Clock: 3.2 GHz
+- Processor Architecture: 64 bit
+- OS: Ubuntu 24.04
+
+Please note that code that does not operate normally in this environment will not be graded.<br/>
+For information on compilers and specific development environments used for each language, please refer to the <a href={meta.tool_link} target='_blank'>[Development Tool Guide]</a> page.<br/>
+Time and memory limit exceedance are determined based on the resources used by the process in which the participant's submitted source code is executed.
+
+- The time limit basically measures the time the process occupied the CPU (CPU time).
+- The memory limit measures the amount of memory used by the process. This includes memory allocated to the process by the operating system and libraries used (header files, modules, etc.) in addition to variables or arrays declared by the user.
+- It is possible to solve problems using multiple threads. However, only one CPU core is allocated to the program, and when measuring time and memory limits, the time and memory of all threads are summed.
+
+## Grading Results
+
+One of the following results is displayed for each submission, with details as follows:
+
+- `CE` (Compile Error) - Failed to compile the submitted source code. You can check the compile failure log by clicking the 'Compilation Failed' text.
+- `TLE` (Time Limit Exceeded) - The execution time of the submitted source code exceeded the time limit specified in the problem.
+- `WTLE` (Wall Clock Time Limit Exceeded) - The actual execution time of the submitted source code exceeded the designated time limit. This occurs when the program does not terminate after the designated time limit, regardless of the time limit written in the problem. It may occur if an error happens during an execution or if the output buffer is not flushed.
+- `RE` (Runtime Error) - An error occurred during execution. This error may also occur if the memory limit is exceeded.
+- <IconX color="#F44336" /> (Wrong Answer) - The program terminated normally, but the output is
+  incorrect.
+- `IE` (Internal Error) - An unknown internal error occurred. If you have received this result, please contact the organizers.
+- `X Wins (A/B/C)` - Result of matches against Sample AIs. 1 point for a win, 0.5 points for a draw, and 0 points for a loss. The win/loss is determined by summing the results of playing as both first and second player.
+
+If cases belonging to the same category have different results, one of the results may be displayed arbitrarily.
+For example, if some cases in the same category are `RE` and others are `TLE`, the result may be displayed as either `RE` or `TLE`.
+
+## Inquiries about Problems
+
+If there is incorrect content in a problem or an unknown internal error that hinders the competition, you can inquire through the "Ask a Question" feature within the problem.
+
+- Please be careful as you may be disqualified if your questions contain slang or profanity during the competition.
+- NYPC aims for a fair competition for all participants, so we cannot answer questions regarding problem-solving methods.
+- Questions that deviate significantly from the intent of Q&A may not receive an answer.
+
+### Invalid Question Types
+
+The following are representative examples of invalid question types:
+
+> "The program I wrote works well on my computer, but the results are abnormal when graded."
+
+- The provided testing tools may differ from the actual grading environment. Please double-check the problem's input/output format.
+
+> "It compiles well on my computer, but it says Compile Error when I submit it."
+
+- The development environment used by the participant and the grading environment where the program is actually compiled and executed may differ. Please be sure to check the <a href={meta.tool_link} target='_blank'>[Development Tool Guide]</a> page.
+
+### Answer Types
+
+When the issue does not hinder the progress of the competition, the organizer's typical responses are as follows:
+
+- `Only questions related to the problem are allowed.` - Applicable when the nature of the question is out of scope.
+- `The answer to your question is in the problem description.` - Applicable when it is judged that the content written in the problem sufficiently answers the question.
+- `No comment.` - Applicable when it is judged that the organizer's answer could influence the participant's problem-solving or competition progress in any way.
+
+## Evaluation Rules
+
+- You can select one submission that received a certain score or higher in `VS: Sample AI` as your **Final Submission**.
+  - If no final submission is selected, the very last submission that received a certain score or higher in `VS: Sample AI` will be selected as the final submission.
+  - The final submission can be re-selected during the competition.
+- Mid-term and final evaluations are conducted using the submission designated as the Final Submission.
+
+### Practice Problems
+
+**Pretest**
+
+Every day at 3:00 PM before the Online Round begins, evaluations are conducted based on the code selected as the Final Submission among the codes submitted by each team.<br/>
+At least 20 rounds are conducted in a Swiss-system tournament, and rankings are provided based on the results.
+This can be checked in `VS: Participants Nationwide`.
+
+Practice problems do not undergo final evaluation and are not reflected in the final grades.
+
+### Online Round
+
+**Pretest**
+
+Every day at 3:00 PM and 9:00 PM, evaluations are conducted based on the code selected as the Final Submission among the codes submitted by each team.<br/>
+At least 20 rounds are conducted in a Swiss-system tournament, and rankings are provided based on the results.
+This can be checked in `VS: Participants Nationwide`.
+
+> Pretests are for reference only and do not affect the final evaluation.
+
+**System test**
+
+At least 50 rounds are conducted in a Swiss-system tournament to select at least the top 100 teams.<br/>
+The selected teams will play at least 5 matches against every opponent in a Round-robin format, and the final ranking will be determined based on victory points.
+
+### Final Round
+
+**Pretest**
+
+Starting one hour after the competition begins, evaluations are conducted at least 10 times at designated points based on the code selected as the Final Submission. On the day of the competition, information about each mid-term evaluation can be checked at the venue.
+
+Matches are played against all opponents in a Round-robin format, and rankings are provided based on the results.
+This can be checked in `VS: Participants Nationwide`.
+
+> Pretests are for reference only and do not affect the final evaluation.
+
+**System test**
+
+Matches are played at least 5 times with every opponent to calculate the number of wins against each opponent. When deciding winners, if the difference in points between two teams is marginal (if the null hypothesis that one team's points are superior cannot be adopted at a 5% significance level), additional matches may be conducted.
+
+The evaluation proceeds as follows:
+
+1. Based on matches involving all final participants, the top 10 teams with the highest sum of wins against all other opponents are selected.
+2. Based on matches among the top 10 teams, the top 5 teams with the highest sum of wins against all other opponents are selected.
+3. Based on matches among the top 5 teams, the top 2 teams with the highest sum of wins against all other opponents are selected.
+4. Based on matches between the top 2 teams, the team that wins more against the opponent is selected as the final winner.
+
+## Tournament Progression
+
+Tournaments are conducted in either a Swiss-system or Round-robin format. The Swiss-system proceeds for a fixed number of rounds, and the Round-robin involves a fixed number of matches against every opponent within a single round.
+
+### Seed Determination
+
+- Seeds are assigned according to the **ranking of the previous evaluation**. (Lower rankings receive smaller seeds.)
+- For first-time participants, smaller seeds are assigned in the **order of earlier submission time**.
+
+### Swiss-system Matchmaking
+
+**1. Bye Processing (If the number of participants is odd)**
+
+- Selected from participants who have not yet received a bye.
+- Among participants satisfying this condition, the person with the **lowest score** is selected.
+- If still tied, the participant with the **smallest seed** is selected.
+
+**2. Opponent Matching**
+
+- Matching is done in descending order of scores, and within the same score, in **descending order of seeds**.
+- Match with an **opponent not yet played** as much as possible.
+- If there are multiple candidates, the **opponent with the highest score** is prioritized.
+- If still tied, matching is done with the **opponent with the largest seed**.
+
+### Round-robin Matchmaking
+
+- Matches are conducted against all opponents for a fixed number of times.
+
+### Match Progression
+
+- Multiple matches proceed simultaneously in each round.
+- If there is a difference based on being the first or second player, **both sides take turns being the first/second player**.
+
+### Point Allocation
+
+Points are allocated according to match results as follows:
+
+- Win - 1 point
+- Draw - 0.5 points
+- Loss / Program Error (Runtime error, wrong output, time limit exceeded, etc.) - 0 points
+
+### Final Ranking Determination
+
+The final ranking is determined according to the following criteria:
+
+1. The participant with a **higher total score** gets a lower (better) rank.
+2. If scores are equal, **tie-breaker criteria** are applied in order.
+3. If still tied, the participant with the **smaller seed** gets a lower (better) rank.
+
+### Swiss-system Tie-breaker Criteria
+
+1. The participant with more **rounds where their match points were higher than the opponent's** gets a lower rank.
+2. The participant with a higher **sum of all opponents' total scores** gets a lower rank.
+3. The participant with a higher **sum of weighted scores from early rounds** gets a lower rank.
+   (Score of the i-th round × (Total number of rounds - i + 1))
+4. The participant with a higher **sum of weighted opponent scores from early rounds** gets a lower rank.
+   (Opponent's score of the i-th round × (Total number of rounds - i + 1))
+
+### Round-robin Tie-breaker Criteria
+
+1. The participant with a higher **Sonneborn-Berger score** gets a lower rank.
+   (For all matches, the sum of [my match points in that match × opponent's total score])
+
+### Performance
+
+Performance metrics are provided to gauge the skill level of the submitted code. Performance is for reference only and is not reflected in the evaluation.
+
+- "Estimated Performance" is provided based on the number of wins obtained through matches with the Sample AI in `VS: Sample AI`.
+- Performance is calculated through match results with participants nationwide in `VS: Participants Nationwide`.
+
+For the performance calculation formula, please refer to the [Performance Calculation Formula PDF](https://github.com/nypc/nypc-perf/blob/main/docs/rating.pdf).
+
+## Misconduct
+
+**The following actions are considered misconduct, and you may face disadvantages if caught.**
+
+- Disclosing or leaking problems, problem-related algorithms, solutions, or source code for problems other than practice problems to an unspecified number of people.
+- Discussing materials related to problems other than practice problems with third parties other than team members.
+- Submitting code for which you do not have usage rights.
+  - Example 1: Code obtained through hacking, etc.
+  - Example 2: Code obtained using methods such as reversing (reverse engineering) commercial programs.
+  - Example 3: Code obtained through other illegal methods.
+  - Even if the code is publicly available to an unspecified number of people on the internet, it is considered that you do not have usage rights if the source is not indicated in comments, etc.
+- Submitting code written by someone other than a team member after the start of the competition.
+- Solving problems through proxy testing or with help from someone other than team members.
+- Sharing or disclosing personal IDs and passwords to others.
+- Duplicate participation by the same person using multiple IDs.
+- Interfering with others' participation or attacking the system.
+- Other actions that can commonly be considered misconduct.
+
+The items above are examples, and other actions may be considered misconduct at the discretion of the organizers.<br/>
+If misconduct occurs or is suspected, participation and award eligibility may be revoked at any time during the competition.<br/>
+If interference with competition operations is caused, the organizers may take legal action and claim damages.
+
+**The following actions are NOT misconduct.**
+
+- Discussing or sharing problems, problem content, solution methods, source code, etc., regarding practice problems.
+- Discussing or sharing problem content, solution methods, source code, etc., among team members.
+  - In particular, using private chat rooms or code repositories that outsiders cannot see is not misconduct.
+  - However, when using chat rooms or code repositories, please be extra careful with **visibility/privacy settings**.
+- Generating or modifying code using LLMs (ChatGPT, Copilot, etc.) and other coding assistance tools.
+
+If you are unsure whether an action constitutes misconduct, do not judge arbitrarily and be sure to inquire with the organizers.

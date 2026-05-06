@@ -23,10 +23,11 @@ interface Props {
     | Array<[string, string]>
     | ReadonlyArray<[string, string]>
     | ReadonlyArray<readonly [string, string]>;
+  en?: boolean;
 }
 
 export const ProblemList: React.FC<Props> = (props) => {
-  const { year, problems: list } = props;
+  const { year, problems: list, en } = props;
 
   const practices = useMemo(
     () => list.filter(([, title]) => title.startsWith("[연습문제]")),
@@ -44,7 +45,7 @@ export const ProblemList: React.FC<Props> = (props) => {
           <Itemize>
             {practices.map(([id, title]) => (
               <li key={id}>
-                <ProblemLink to="/$year/$page" params={{ year, page: id }}>
+                <ProblemLink to={`${en ? "/en" : ""}/$year/$page`} params={{ year, page: id }}>
                   <Typo description>연습문제:</Typo> {title.replace(/^\[연습문제] */, "")}
                 </ProblemLink>
               </li>
@@ -55,7 +56,7 @@ export const ProblemList: React.FC<Props> = (props) => {
       <ProblemListEnumerate style={{ columnCount: 3 }}>
         {problems.map(([id, title]) => (
           <li key={id}>
-            <ProblemLink to="/$year/$page" params={{ year, page: id }}>
+            <ProblemLink to={`${en ? "/en" : ""}/$year/$page`} params={{ year, page: id }}>
               {title}
             </ProblemLink>
           </li>

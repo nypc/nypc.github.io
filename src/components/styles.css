@@ -1,0 +1,5 @@
+.no-block p,
+aside p,
+span p {
+  display: inline;
+}
