@@ -26,6 +26,7 @@ The bidding phase proceeds as follows:
 1. Two sets of dice, Set $A$ (5 dice) and Set $B$ (5 dice), are rolled. Each die is independent and identically distributed integer between $1$ and $6$ inclusive.
 2. Each player submits the dice set they wish to take ($A$ or $B$) and a bid score between $0$ and $100\,000$, inclusive.
 3. Each player take dice set based on following rules:
+
 - If the players choose different sets, each player takes their chosen set.
 - If both players choose the same set, the player who submitted the higher bid score takes the chosen set.
 - If both the chosen set and the bid score are identical, the winner is determined randomly. Every trial is independent and identical.
@@ -67,17 +68,16 @@ After all rounds are completed, the player with the higher total score wins. If 
 
 ## Input/Output Format
 
-
 Your program must read input line by line and follow the protocol of each command. Commands requiring the output are denoted with <span style={{ color: "red" }}>red color</span> with their **time limit** specified. If your program fails to output within specified time limit, you will receive Time Limit Exceeded (TLE) verdict and will result forfeiting the game.
 
-| Command | Input Format                 | Description                                                                                                                                                                                                                                                                                 |
-| :------ | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| READY   | `READY`                      | Must output <code style={{ color:"red" }}>OK</code> within **3 seconds** as a response.                                                                                                                                                                                                  |
+| Command | Input Format                 | Description                                                                                                                                                                                                                                                                                        |
+| :------ | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| READY   | `READY`                      | Must output <code style={{ color:"red" }}>OK</code> within **3 seconds** as a response.                                                                                                                                                                                                            |
 | ROLL    | `ROLL a₁a₂a₃a₄a₅ b₁b₂b₃b₄b₅` | Indicates dice in Group A are $a_1, \cdots, a_5$ and Group B are $b_1, \cdots, b_5$. Output <code style={{ color:"red" }}>BID g x</code> within **0.5 seconds**. This corresponds bidding $x$ points for group $g$. $g$ must be `A` or `B`, and $x$ must be an integer between $0$ and $100\,000$. |
-| GET     | `GET g g₀ x₀`                | Indicates you took group $g$ as a result of the bidding. The opponent bid $x_0$ points for group $g_0$.                                                                                                                                                                                     |
-| SCORE   | `SCORE`                      | Indicates the start of the scoring phase. Output <code style={{ color:"red" }}>PUT c d₁d₂d₃d₄d₅</code> within **0.5 seconds**. This corresponds using rule $c$ with dice $d_1, \cdots, d_5$ from your possession.                                                                                 |
-| SET     | `SET c d₁d₂d₃d₄d₅`           | Indicates the opponent used rule $c$ with dice $d_1, \cdots, d_5$ during their scoring phase.                                                                                                                                                                                               |
-| FINISH  | `FINISH`                     | Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required. |
+| GET     | `GET g g₀ x₀`                | Indicates you took group $g$ as a result of the bidding. The opponent bid $x_0$ points for group $g_0$.                                                                                                                                                                                            |
+| SCORE   | `SCORE`                      | Indicates the start of the scoring phase. Output <code style={{ color:"red" }}>PUT c d₁d₂d₃d₄d₅</code> within **0.5 seconds**. This corresponds using rule $c$ with dice $d_1, \cdots, d_5$ from your possession.                                                                                  |
+| SET     | `SET c d₁d₂d₃d₄d₅`           | Indicates the opponent used rule $c$ with dice $d_1, \cdots, d_5$ during their scoring phase.                                                                                                                                                                                                      |
+| FINISH  | `FINISH`                     | Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.                                                                                                                                          |
 
 All commands must be processed line by line. When you output, make sure you print a newline character and then flush the buffer. Please refer to the reference document or sample code of your programming language on how to flush the buffer.
 
@@ -111,23 +111,22 @@ One match is played against each sample AI. Points are awarded as follows:
 - **Draw**: +0.5 win
 - **Loss**: +0 win
 
-| Battle No. | Description                                                                                                                                                                          | Code                                                                                                                 | `data.bin`                                                                                                            |
-| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
-| 1          | Performs the same actions as the provided sample code.                                                                                                                               | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht1A.rs) |                                                                                                                       |
+| Battle No. | Description                                                                                                                                                                                    | Code                                                                                                                 | `data.bin`                                                                                                            |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| 1          | Performs the same actions as the provided sample code.                                                                                                                                         | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht1A.rs) |                                                                                                                       |
 | 2          | **Bidding**: Bids (difference in group sums) $\times 1,000$ on the group with the higher sum.<br/>**Scoring**: Uses the rule and combination that yields the immediate highest possible score. | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2B.rs) |                                                                                                                       |
 | 3          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Uses the rule and combination that yields the immediate highest possible score.                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht2C.rs) |                                                                                                                       |
-| 4          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes combinations that are difficult to score.                                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht3C.rs) |                                                                                                                       |
-| 5          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                            | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.bin) |
-| 6          | **Bidding**: Bids defensively on better combinations.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                              | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.bin) |
-| 7          | **Bidding**: Bids aggressively on better combinations.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                             | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.bin) |
-| 8          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                      | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.bin) |
-| 9          | **Bidding**: Bids defensively on better combinations.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                        | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.bin) |
-| 10         | **Bidding**: Bids aggressively on better combinations.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.bin) |
+| 4          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes combinations that are difficult to score.                                                                 | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht3C.rs) |                                                                                                                       |
+| 5          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                                      | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4C.bin) |
+| 6          | **Bidding**: Bids defensively on better combinations.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                                        | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4D.bin) |
+| 7          | **Bidding**: Bids aggressively on better combinations.<br/>**Scoring**: Prioritizes Basic Scoring Rules.                                                                                       | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht4E.bin) |
+| 8          | **Bidding**: Randomly picks A or B and bids $0$ points.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                                | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5C.bin) |
+| 9          | **Bidding**: Bids defensively on better combinations.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                                  | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5D.bin) |
+| 10         | **Bidding**: Bids aggressively on better combinations.<br/>**Scoring**: Prioritizes Combination Scoring Rules.                                                                                 | [Code](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.rs) | [data](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/ai.ylb98uspah/yacht5E.bin) |
 
 > Note: Sample AI codes and `data.bin` files were not provided during the actual contest.
 
 ## Testing Tool (GUI)
-
 
 A testing tool, `testing-tool-yacht`, is provided to test the program. You can test your compiled executable or script locally, using `python`, `java`, `node`, or `lua` in your envinroment.
 
@@ -143,7 +142,7 @@ A testing tool, `testing-tool-yacht`, is provided to test the program. You can t
 
 ## Testing Tool (CLI)
 
-A CLI testing tool package, `testing-tool-yacht-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-cli.zip)), is provided to test the program.  For details, refer to the `README.md` inside the zip file.
+A CLI testing tool package, `testing-tool-yacht-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/yacht-auction.858aad472ce8/testing-tool-yacht/testing-tool-yacht-cli.zip)), is provided to test the program. For details, refer to the `README.md` inside the zip file.
 
 You can freely modify the CLI testing tool and discuss its execution methods with others. However, you must not share modified tools or log files generated by the tool with anyone outside your team, nor discuss them.
 
@@ -151,9 +150,15 @@ You will receive log files having same format with testing tool, in the submissi
 
 ## Visualization Tools
 
-- <a href="https://d1wbymyp6gas71.cloudfront.net/1p" target="_blank">[Game Simulator]</a>
-- <a href="https://d1wbymyp6gas71.cloudfront.net/2p" target="_blank">[Play by Yourself]</a>
-- <a href="https://d1wbymyp6gas71.cloudfront.net/log" target="_blank">[Log Visualization Tool]</a>
+- <a href="https://d1wbymyp6gas71.cloudfront.net/1p" target="_blank">
+    [Game Simulator]
+  </a>
+- <a href="https://d1wbymyp6gas71.cloudfront.net/2p" target="_blank">
+    [Play by Yourself]
+  </a>
+- <a href="https://d1wbymyp6gas71.cloudfront.net/log" target="_blank">
+    [Log Visualization Tool]
+  </a>
 
 You can download log files for each battle from the Sample AI matches. Use the Log Visualization Tool to examine how the game progressed and refine your strategy.
 

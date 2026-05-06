@@ -93,7 +93,7 @@ For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is conne
     />
     )
   </span>
-  . There are $4$ types of patterns, namely 
+  . There are $4$ types of patterns, namely
   <span style={{ fontWeight: "bold" }}>
     1 (
     <img
@@ -133,8 +133,8 @@ For example, `c5-` is connected to `c5+`, `b5+`, and `c4+`, while `f4+` is conne
     />
     )
   </span>
-  . There are 4 tiles each, for the $16$ different pairings of colors and patterns, making a
-  total of $64$ tiles. A tile is represented as two characters, concatenating the color and the pattern.
+  . There are 4 tiles each, for the $16$ different pairings of colors and patterns, making a total
+  of $64$ tiles. A tile is represented as two characters, concatenating the color and the pattern.
 </div>
 
 <div style={{ display: "flex" }}>
@@ -182,7 +182,8 @@ The score of each player is the sum of the scores of all tiles.
   Tiles are said to be indirectly connected if they satisfy the following: - Each tile is indirectly
   connected to itself. - If tile A and tile B are connected, they are indirectly connected. - If
   tile A and tile B are indirectly connected, and tile B and tile C are indirectly connected, then
-  tile A and tile C are also indirectly connected. - If none of these apply two tiles are not connected.
+  tile A and tile C are also indirectly connected. - If none of these apply two tiles are not
+  connected.
 </aside>
 
 ### Calculation by Group
@@ -263,14 +264,15 @@ Total Score: $9+5+4+2 = 20 \text{ points}$
 
 Your program must read input line by line and follow the protocol of each command. Commands requiring the output are denoted with <span style={{ color: "red" }}>red color</span> with their **time limit** specified. If your program fails to output within specified time limit, you will receive Time Limit Exceeded (TLE) verdict and will result forfeiting the game.
 
-| Command | Input Format                         | Description                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------- | ------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| READY   | `READY (FIRST\|SECOND)`              | <span style={{ display: "block", textAlign: "left" }}>Indicates whether your program takes first or second player. Must output <code style={{ color: "red" }}>OK</code> within $\textbf{3\,000}$**ms** as a response.</span>                                                                                                                                  |
-| INIT    | `INIT A₁ A₂ A₃ A₄ A₅ B₁ B₂ B₃ B₄ B₅` | <span style={{ display: "block", textAlign: "left" }}>Indicates the 5 tiles drawn by your program ($A_1 \dots A_5$) and the 5 tiles drawn by the opponent's program ($B_1 \dots B_5$) during a preparation phase.</span>                                                                                                                                                                                             |
+| Command | Input Format                         | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------- | ------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| READY   | `READY (FIRST\|SECOND)`              | <span style={{ display: "block", textAlign: "left" }}>Indicates whether your program takes first or second player. Must output <code style={{ color: "red" }}>OK</code> within $\textbf{3\,000}$**ms** as a response.</span>                                                                                                                                                                                    |
+| INIT    | `INIT A₁ A₂ A₃ A₄ A₅ B₁ B₂ B₃ B₄ B₅` | <span style={{ display: "block", textAlign: "left" }}>Indicates the 5 tiles drawn by your program ($A_1 \dots A_5$) and the 5 tiles drawn by the opponent's program ($B_1 \dots B_5$) during a preparation phase.</span>                                                                                                                                                                                        |
 | TIME    | `TIME t₁ t₂`                         | <span style={{ display: "block", textAlign: "left" }}>Indicates it is your program's turn. Also provides remaining time for both players; $t_1$ is yours, $t_2$ is the opponent's (in ms). You must output <code style={{ color: "red" }}>PUT p T</code> within $t_1$ ms to place tile $T$ at position $p$. The initial $t_1, t_2$ is given as $10\,000$ms, regardless of time used for `READY` command.</span> |
-| GET     | `GET T`                              | <span style={{ display: "block", textAlign: "left" }}>Indicates your program drew tile $T$ after the placement of tile. If the bag is empty so drawing tile is omitted, $T$ is `X0`. Output is not required.</span>                                                                                                                                                                                                                          |
-| OPP     | `OPP p T₁ T₂ t`                      | <span style={{ display: "block", textAlign: "left" }}>Indicates the opponent placed $T_1$ at $p$, drew $T_2$, while taking $t$ ms. If the bag was empty, $T_2$ is `X0`. Output is not required.</span>                                                                                                                                                                                                   |
-| FINISH  | `FINISH`                             | <span style={{ display: "block", textAlign: "left" }}>Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.</span>                                                                                                                                                                                                                                   |
+| GET     | `GET T`                              | <span style={{ display: "block", textAlign: "left" }}>Indicates your program drew tile $T$ after the placement of tile. If the bag is empty so drawing tile is omitted, $T$ is `X0`. Output is not required.</span>                                                                                                                                                                                             |
+| OPP     | `OPP p T₁ T₂ t`                      | <span style={{ display: "block", textAlign: "left" }}>Indicates the opponent placed $T_1$ at $p$, drew $T_2$, while taking $t$ ms. If the bag was empty, $T_2$ is `X0`. Output is not required.</span>                                                                                                                                                                                                          |
+| FINISH  | `FINISH`                             | <span style={{ display: "block", textAlign: "left" }}>Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.</span>                                                                                                                                                                                          |
+
 All commands must be processed line by line. When you output, make sure you print a newline character and then flush the buffer. Please refer to the reference document or sample code of your programming language on how to flush the buffer.
 
 ## Sample Code
@@ -314,10 +316,9 @@ A testing tool, `testing-tool-connexion`, is provided to test the program. You c
 - rpm (Fedora/RHEL x86-64) ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.1-1.x86_64.rpm))
   - Install the `.rpm` file using `rpm` or `yum`, then run `testing-tool-connexion`.
 
-
 ## Testing Tool (CLI)
 
-A CLI testing tool package, `testing-tool-connexion-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.0.zip)), is provided to test the program.  For details, refer to the `README.md` inside the zip file.
+A CLI testing tool package, `testing-tool-connexion-cli.zip` ([Download](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2025/connexion.8c20978b76cf/testing-tool-connexion/testing-tool-connexion-1.0.0.zip)), is provided to test the program. For details, refer to the `README.md` inside the zip file.
 
 You can freely modify the CLI testing tool and discuss its execution methods with others. However, you must not share modified tools or log files generated by the tool with anyone outside your team, nor discuss them.
 
@@ -325,10 +326,15 @@ You will receive log files having same format with testing tool, in the submissi
 
 ## Visualization Tools
 
-- <a href="https://dh6l222gjj2c6.cloudfront.net/1p" target="_blank">[Game Simulator]</a>
-- <a href="https://dh6l222gjj2c6.cloudfront.net/2p" target="_blank">[Play by Yourself]</a>
-- <a href="https://dh6l222gjj2c6.cloudfront.net/log" target="_blank">[Log Visualization Tool]</a>
-
+- <a href="https://dh6l222gjj2c6.cloudfront.net/1p" target="_blank">
+    [Game Simulator]
+  </a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/2p" target="_blank">
+    [Play by Yourself]
+  </a>
+- <a href="https://dh6l222gjj2c6.cloudfront.net/log" target="_blank">
+    [Log Visualization Tool]
+  </a>
 
 You can download log files for each battle from the Sample AI matches. Use the Log Visualization Tool to examine how the game progressed and refine your strategy.
 
@@ -343,7 +349,7 @@ G3 Y3 R1 Y2 R3 R1 Y1 B1 G1 R3 G2 Y4 Y2 Y3 B3 B2 B4 G2 R2 B4 R4 Y1 G4 R4 G3 Y4 G1
 
 ### Example interaction
 
-| First player input                            | First player output                             | Second player input                            | Second player output                              | Log output                                            |
+| First player input                   | First player output                   | Second player input                  | Second player output                   | Log output                                      |
 | ------------------------------------ | ------------------------------------- | ------------------------------------ | -------------------------------------- | ----------------------------------------------- |
 | `READY FIRST`                        | `OK`                                  | `READY SECOND`                       | `OK`                                   |                                                 |
 | `INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3` |                                       | `INIT G3 Y3 R1 Y2 R3 R1 Y3 B1 G4 Y1` |                                        | <p>`INIT R1 Y3 B1 G4 Y1 G3 Y3 R1 Y2 R3`</p>     |
@@ -355,8 +361,8 @@ G3 Y3 R1 Y2 R3 R1 Y1 B1 G1 R3 G2 Y4 Y2 Y3 B3 B2 B4 G2 R2 B4 R4 Y1 G4 R4 G3 Y4 G1
 | `GET Y2`                             |                                       | `OPP a2+ B1 Y2 80`                   |                                        | `FIRST a2+ B1 Y2 80`                            |
 |                                      |                                       | `TIME 9960 9850`                     | <p>(Took 50ms)</p><p>`PUT b1- R3`</p>  |                                                 |
 | `OPP b1- R3 Y1 50`                   |                                       | `GET Y1`                             |                                        | `SECOND b1- R3 Y1 50`                           |
-|                                      |                                       | (Omitted)                               |                                        |                                                 |
+|                                      |                                       | (Omitted)                            |                                        |                                                 |
 |                                      |                                       | `TIME 980 1730`                      | <p>(Took 100ms)</p><p>`PUT f4+ Y1`</p> |                                                 |
 | `OPP f4+ Y1 X0 100`                  |                                       | `GET X0`                             |                                        | `SECOND f4+ Y1 X0 100`                          |
-| `FINISH`                             | (Terminate program)                       | `FINISH`                             | (Terminate program)                        | <p>`FINISH`</p>                                 |
+| `FINISH`                             | (Terminate program)                   | `FINISH`                             | (Terminate program)                    | <p>`FINISH`</p>                                 |
 |                                      |                                       |                                      |                                        | <p>`SCOREFIRST 314`</p><p>`SCORESECOND 270`</p> |

@@ -38,17 +38,15 @@ Become a Yeti or Pink Bean and own as many cells as possible in the mushroom gri
 
 Your program must read input line by line and follow the protocol of each command. Commands requiring the output are denoted with <span style={{ color: "red" }}>red color</span> with their **time limit** specified. If your program fails to output within specified time limit, you will receive Time Limit Exceeded (TLE) verdict and will result forfeiting the game.
 
-
-| Command | Input Format            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------- | ----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| READY   | `READY (FIRST\|SECOND)` | Indicates whether your program takes first or second player. Must output <code style={{ color: "red" }}>OK</code> within 3 seconds as a response.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| INIT    | `INIT ...`              | Indicates the game board information. `...` consists of $10$ strings, each consisting of $17$ digits. <br/> Each digit is an integer between $1$ and $9$ inclusive, representing the number on the mushroom at corresponding position. Output is not required <br/> Each digit is drawn independent and identically from  digits $1$ through $9$.                                                                                                                                                                                                                                                                                                                                           |
+| Command | Input Format            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------- | ----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| READY   | `READY (FIRST\|SECOND)` | Indicates whether your program takes first or second player. Must output <code style={{ color: "red" }}>OK</code> within 3 seconds as a response.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| INIT    | `INIT ...`              | Indicates the game board information. `...` consists of $10$ strings, each consisting of $17$ digits. <br/> Each digit is an integer between $1$ and $9$ inclusive, representing the number on the mushroom at corresponding position. Output is not required <br/> Each digit is drawn independent and identically from digits $1$ through $9$.                                                                                                                                                                                                                                                                                                                                            |
 | TIME    | `TIME t₁ t₂`            | Indicates it is your program's turn. Also provides remaining time for both players; $t_1$ is yours, $t_2$ is the opponent's (in ms). <br/> Upon receiving this command, the player must output the coordinates of the rectangle selected for this turn in the format <span style={{color:"red"}}>$r_1$ $c_1$ $r_2$ $c_2$</span>. <br/> The top-left coordinate of the board is $(r, c) = (0, 0)$, and the bottom-right is $(9, 16)$. <br/>To pass, output $r_1 = c_1 = r_2 = c_2 = -1$. Output values must satisfy:<br/><br/>$-1 \le r_1 \le r_2 \le 9$<br/> $-1 \le c_1 \le c_2 \le 16$ <br/> The initial $t_1, t_2$ is given as $10\,000$ms, regardless of time used for `READY` command. |
-| OPP     | `OPP x₁ y₁ x₂ y₂ t`     | Indiciates the coordinates $r_1$ $c_1$ $r_2$ $c_2$ selected by the opponent, while taking $t$ ms during their turn. <br/> If the opponent passed, $r_1 = c_1 = r_2 = c_2 = -1$ is given. Output is not required.                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| FINISH  | `FINISH`                | Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| OPP     | `OPP x₁ y₁ x₂ y₂ t`     | Indiciates the coordinates $r_1$ $c_1$ $r_2$ $c_2$ selected by the opponent, while taking $t$ ms during their turn. <br/> If the opponent passed, $r_1 = c_1 = r_2 = c_2 = -1$ is given. Output is not required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| FINISH  | `FINISH`                | Indicates the end of the game. The program must terminate properly and immediately, regardless of the current status of the game. Output is not required.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 All commands must be processed line by line. When you output, make sure you print a newline character and then flush the buffer. Please refer to the reference document or sample code of your programming language on how to flush the buffer.
-
 
 ## Sample Code
 
@@ -93,9 +91,15 @@ The strategies of the sample AIs are as follows:
 
 You can play the game against sample AIs, play with two people alternating turns, and use a visualization tool to visualize logs generated by the game simulator and testing tools.
 
-- <a href="https://dzulmx7c8qxbj.cloudfront.net/1p" target="_blank">[Game Simulator]</a>
-- <a href="https://dzulmx7c8qxbj.cloudfront.net/2p" target="_blank">[Two-Player Mode]</a>
-- <a href="https://dzulmx7c8qxbj.cloudfront.net/log" target="_blank">[Log Visualization Tool]</a>
+- <a href="https://dzulmx7c8qxbj.cloudfront.net/1p" target="_blank">
+    [Game Simulator]
+  </a>
+- <a href="https://dzulmx7c8qxbj.cloudfront.net/2p" target="_blank">
+    [Two-Player Mode]
+  </a>
+- <a href="https://dzulmx7c8qxbj.cloudfront.net/log" target="_blank">
+    [Log Visualization Tool]
+  </a>
 
 You can download log files for each battle from the Sample AI matches. Use the Log Visualization Tool to examine how the game progressed and refine your strategy.
 
@@ -185,23 +189,23 @@ The string written as `INIT ...` below represents the board input and is provide
 INIT 52466443835422223 13254826938785712 87598398564241564 72722154162442227 43968227685821641 27727492381231148 56138649164249527 36281415328768234 62682694189422313 62269566965435457
 ```
 
-| First Player Input   | First Player Output | Second Player Input  | Second Player Output | Log                     |
-| -------------------- | ------------------- | -------------------- | -------------------- | ----------------------- |
-| `READY FIRST`        |                     | `READY SECOND`       |                      |                         |
-|                      | `OK`                |                      | `OK`                 |                         |
-| `INIT ...`           |                     | `INIT ...`           |                      | `INIT ...`              |
-| `TIME 10000 10000`   |                     |                      |                      |                         |
-| (Took 70ms)          | `0 11 0 14`         |                      |                      |                         |
-|                      |                     | `OPP 0 11 0 14 70`   |                      | `FIRST 0 11 0 14 70`    |
-|                      |                     | `TIME 10000 9930`    |                      |                         |
-|                      |                     | (Took 40ms)          | `1 13 5 13`          |                         |
-| `OPP 1 13 5 13 40`   |                     |                      |                      | `SECOND 1 13 5 13 40`   |
-| `TIME 9930 9960`     |                     |                      |                      |                         |
-| (Took 20ms)          | `-1 -1 -1 -1`       |                      |                      |                         |
-|                      |                     | `OPP -1 -1 -1 -1 20` |                      | `FIRST -1 -1 -1 -1 20`  |
-|                      |                     | `TIME 9960 9910`     |                      |
-|                      |                     | (Took 10ms)          | `-1 -1 -1 -1`        |                         |
-| `OPP -1 -1 -1 -1 10` |                     |                      |                      | `SECOND -1 -1 -1 -1 10` |
-| `FINISH`             | (Program terminated)      | `FINISH`             | (Program terminated)       | `FINISH`                |
-|                      |                     |                      |                      | `SCOREFIRST 4`          |
-|                      |                     |                      |                      | `SCORESECOND 5`         |
+| First Player Input   | First Player Output  | Second Player Input  | Second Player Output | Log                     |
+| -------------------- | -------------------- | -------------------- | -------------------- | ----------------------- |
+| `READY FIRST`        |                      | `READY SECOND`       |                      |                         |
+|                      | `OK`                 |                      | `OK`                 |                         |
+| `INIT ...`           |                      | `INIT ...`           |                      | `INIT ...`              |
+| `TIME 10000 10000`   |                      |                      |                      |                         |
+| (Took 70ms)          | `0 11 0 14`          |                      |                      |                         |
+|                      |                      | `OPP 0 11 0 14 70`   |                      | `FIRST 0 11 0 14 70`    |
+|                      |                      | `TIME 10000 9930`    |                      |                         |
+|                      |                      | (Took 40ms)          | `1 13 5 13`          |                         |
+| `OPP 1 13 5 13 40`   |                      |                      |                      | `SECOND 1 13 5 13 40`   |
+| `TIME 9930 9960`     |                      |                      |                      |                         |
+| (Took 20ms)          | `-1 -1 -1 -1`        |                      |                      |                         |
+|                      |                      | `OPP -1 -1 -1 -1 20` |                      | `FIRST -1 -1 -1 -1 20`  |
+|                      |                      | `TIME 9960 9910`     |                      |
+|                      |                      | (Took 10ms)          | `-1 -1 -1 -1`        |                         |
+| `OPP -1 -1 -1 -1 10` |                      |                      |                      | `SECOND -1 -1 -1 -1 10` |
+| `FINISH`             | (Program terminated) | `FINISH`             | (Program terminated) | `FINISH`                |
+|                      |                      |                      |                      | `SCOREFIRST 4`          |
+|                      |                      |                      |                      | `SCORESECOND 5`         |
