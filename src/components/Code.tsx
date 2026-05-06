@@ -6,6 +6,7 @@ export const Code = styled.code`
   max-width: 100%;
   overflow-x: auto;
   tab-size: 4;
+  vertical-align: top;
   &:not([class*="language-"]) {
     background-color: ${({ theme }) => theme.color.background.card.main};
     color: ${({ theme }) => theme.color.status.error};
