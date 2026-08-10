@@ -12,6 +12,7 @@ import {
 import { IconCheck, IconTriangle, IconX } from "@tabler/icons-react";
 import { Blockquote } from "./Blockquote";
 import { Code } from "./Code";
+import { Details } from "./Details";
 import { Examples, IO, Input, Output } from "./Example";
 import { Figure } from "./Figure";
 import { LanguageDetails } from "./LanguageDetails";
@@ -71,6 +72,7 @@ export const mdxComponents: ReturnType<UseMdxComponents> = {
   IO,
   Input,
   Output,
+  Details,
   Figure,
   LanguageDetails,
   LanguageExample,

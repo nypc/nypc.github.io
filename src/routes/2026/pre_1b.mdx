@@ -1,0 +1,182 @@
+---
+title: 대청소 (챌린지)
+year: 2026
+stage: 루키 트랙 예선 라운드
+---
+
+배찌는 봄을 맞아 대청소를 하려고 합니다.
+
+배찌의 집은 세로 $N$칸, 가로 $M$칸으로 이루어진 격자로 나타낼 수 있습니다. 각 칸은 빈 칸, 장애물, 블럭 중 하나입니다.
+배찌는 혼자서, 또는 친구 다오와 함께 물풍선으로 집에 있는 모든 블럭을 없애려고 합니다.
+
+처음에 배찌와 다오는 각자 서로 다른 빈칸 중 하나에 서 있습니다. 배찌와 다오는 **이동**과 **물폭탄 터트리기** 중 하나를 골라 행동하는 것을 반복합니다. 만약 배찌와 다오가 같이 청소를 하고 있다면, 배찌부터 시작해서 번갈아가면서 행동합니다.
+
+**이동**을 선택했다면, 배찌 또는 다오는 상하좌우 중 인접한 칸 하나를 골라 그 칸으로 움직일 수 있습니다.
+
+- 장애물 또는 블럭이 있는 칸으로 이동하거나 집 밖으로 이동하는 것은 불가능합니다.
+- 배찌 또는 다오가 서 있는 칸으로는 서로 이동할 수 있습니다.
+
+**물폭탄 터트리기**를 선택했다면, 즉시 4개의 물줄기가 상하좌우 각 방향으로 나아갑니다.
+
+- 물줄기가 블럭에 부딫힌다면 물줄기는 블럭과 같이 사라지고, 블럭은 빈 칸이 됩니다.
+- 물줄기는 최대 $K$칸 나아간 뒤 사라집니다. 즉, 물폭탄을 터트린 캐릭터와 파괴된 블럭의 거리는 $K$ 이하입니다.
+- 물줄기가 나아가는 도중 장애물이나 집 끝에 도달하면 물줄기는 멈춥니다.
+- 배찌와 다오의 물줄기의 세기 $K$는 다를 수 있습니다.
+
+배찌와 다오는 최소한의 움직임으로 모든 블럭을 터트리려고 합니다. 배찌와 다오의 청소를 도와줍시다!
+
+### 입력 형식
+
+첫째 줄에 정수 $N, M, C$가 공백으로 구분되어 주어집니다. $C = 1$이라면 배찌만, $C = 2$인 경우 배찌와 다오가 같이 움직입니다.
+
+둘째 줄에 $C = 1$이라면 $K_1$이, $C = 2$라면 $K_1, K_2$가 공백으로 구분되어 주어집니다. $K_1$은 배찌의 물줄기 세기, $K_2$는 다오의 물줄기 세기입니다.
+
+다음 $N$개의 줄에 걸쳐 집의 상태를 나타내는 길이 $M$의 문자열이 주어집니다. $i$번째 문자열의 $j$번째 문자는, 위에서 부터 $i$번째 행, 왼쪽에서부터 $j$번째 열에 해당하는 칸의 상태를 나타냅니다. 각 문자의 의미는 다음과 같습니다.
+
+- `.`: 빈 칸
+- `#`: 장애물
+- `@`: 블럭
+- `B`: 초기에 배찌가 있는 빈 칸
+- `D`: 초기에 다오가 있는 빈 칸
+
+단, 입력에 `B`는 정확히 한 개, `D`는 $C=2$인 경우에만 정확히 한 개 주어지며, 모든 블럭을 파괴할 수 있는 입력만 주어집니다.
+
+### 출력 형식
+
+배찌의 행동을 나타내는 `U`, `D`, `L`, `R`, `B`로 이루어진 길이 $1$ 이상 $100\,000$ 이하의 문자열을 출력합니다.
+
+각 문자의 의미는 다음과 같습니다.
+
+- `U`: 위로 이동
+- `D`: 아래로 이동
+- `L`: 왼쪽으로 이동
+- `R`: 오른쪽으로 이동
+- `B`: 물폭탄을 터트림
+
+$C = 1$인 경우 배찌의 행동을 차례대로, $C = 2$인 경우, 배찌와 다오의 행동을 번갈아가며 출력합니다.
+
+### 제한
+
+- $N = 50; M=50$
+- $C$는 $1$ 또는 $2$
+- $1 \le K_1, K_2 \le 5$
+
+### 예제 입출력
+
+- [예제 입력 다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/data/sample_input.txt)
+- [예제 출력 다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/data/sample_output.txt)
+
+### 채점
+
+**챌린지 문제는 전체 문제의 점수의 80% 비중을 차지합니다.**
+
+올바르지 않은 출력을 한 경우 오답이 되며 점수는 $0$점입니다. 올바르지 않은 출력의 예시는 다음과 같습니다.
+
+- 출력 형식을 맞추지 않은 경우
+- 장애물이나 블럭이 있는 칸으로 이동한 경우
+- 집 밖으로 이동한 경우
+
+**각 테스트케이스에 대한 비용 $\textrm{Cost}$는 다음과 같이 정해집니다.**
+
+- 모든 행동이 끝나고 파괴되지 않은 블럭의 수를 $X$, 출력한 문자열의 길이를 $T$라고 합시다.
+  - $X = 0$인 경우 $\textrm{Cost} = T$
+  - $X \ne 0$인 경우 $\textrm{Cost} = 100\,000 + X$
+- 비용이 낮을수록 더 좋은 결과입니다.
+
+이때의 각 테스트케이스의 점수는 다음과 같은 방법으로 정해집니다.
+
+- 전체 참가자의 수: $n_\textrm{tot}$
+- 자신보다 비용이 낮은 참가자의 수: $n_\textrm{lose}$
+- 자신과 비용이 같은 다른 참가자의 수: $n_\textrm{draw}$
+- $\textrm{Score} = \left\lfloor 10^6 \left(1 - 0.5\sqrt{\dfrac{n_\textrm{lose} + 0.5 n_\textrm{draw}}{n_\textrm{tot}}}\right) \right\rfloor$
+
+챌린지 문제의 최종 점수는 최종 평가에 사용된 각 테스트 케이스 점수의 평균이 됩니다. 비슷하게, 중간 평가의 점수는 중간 평가에 사용된 각 테스트 케이스 점수의 평균이 되며, 이 점수는 참고용으로 최종 점수에 반영되지 않습니다. 평가에는 예제 코드보다 낮은 비용을 받은 제출만 채점됩니다.
+
+문제의 점수는 각 테스트 케이스 별로 매겨지며, 최종 점수는 테스트 케이스별 점수의 평균으로 계산됩니다.
+
+### 데이터 제작 방법
+
+<Details>
+
+- $X$가 $a$ 이상 $b$ 이하에서 선택되었다는 것을 $X \sim \mathcal{U}\{a, b\}$ 으로 표현합니다.
+- 특정 범위에서 정수를 고를 때, 해당 범위에서 모든 수가 선택될 확률은 동일하며, 모든 시행은 독립입니다.
+
+데이터는 다음과 같은 방법으로 만들어집니다.
+
+- $C \sim \mathcal{U}\{1, 2\}$.
+- $K_1 \sim \mathcal{U}\{1, 5\}$.
+- $C = 2$인 경우 $K_2 \sim \mathcal{U}\{1, 5\}$.
+- 장애물의 총 개수를 $W$라 할 때, $W \sim \mathcal{U}\{250, 500\}$.
+- 블럭의 총 개수를 $B$라 할 때, $B \sim \mathcal{U}\{100, 1\,000\}$.
+- $W$번 동안 다음 시행을 반복합니다.
+  - 행, 열 번호 $r, c$에 대해 $r \sim \mathcal{U}\{1, 50\}, c \sim \mathcal{U}\{1, 50\}$
+  - 해당 위치에 장애물 설치를 시도합니다.
+    - 해당 위치에 이미 장애물이 있거나, 해당 위치에 장애물을 설치하는 것이 빈 칸 끼리 서로 연결되어있지 않은 경우, 설치는 실패합니다.
+  - 설치가 실패했다면, 시행 횟수를 차감하지 않고 $r, c$를 다시 고릅니다.
+- $B$번 동안 다음 시행을 반복합니다.
+  - 행, 열 번호 $r, c$에 대해 $r \sim \mathcal{U}\{1, 50\}, c \sim \mathcal{U}\{1, 50\}$
+  - 해당 위치에 블럭 설치를 시도합니다.
+    - 해당 위치에 이미 장애물 혹은 블럭이 있는 경우 설치는 실패합니다.
+  - 설치가 실패했다면, 시행 횟수를 차감하지 않고 $r, c$를 다시 고릅니다.
+- $C = 1$인 경우 배찌, $C = 2$인 경우 배찌와 다오에 대해 다음 시행을 합니다.
+  - 행, 열 번호 $r, c$에 대해 $r \sim \mathcal{U}\{1, 50\}, c \sim \mathcal{U}\{1, 50\}$
+  - 해당 위치에 캐릭터를 배치하는 것을 시도합니다.
+    - 해당 위치에 이미 장애물, 블럭, 혹은 캐릭터가 있는 경우 배치는 실패합니다.
+  - 배치가 실패했다면 $r, c$를 다시 고릅니다.
+
+#### 중간 평가 데이터 제작 방법
+
+각 중간 평가 별로 $18$개의 데이터가 사용됩니다. 각 데이터의 $C, W, B$를 선택하는 부분이 다음과 같이 대체됩니다.
+
+|  번호  | $C$ |         $W$ 범위          |           $B$ 범위           |
+| :----: | :-: | :-----------------------: | :--------------------------: |
+| **1**  | $1$ | $\mathcal{U}\{250, 333\}$ |  $\mathcal{U}\{100, 399\}$   |
+| **2**  | $1$ | $\mathcal{U}\{250, 333\}$ |  $\mathcal{U}\{400, 700\}$   |
+| **3**  | $1$ | $\mathcal{U}\{250, 333\}$ | $\mathcal{U}\{701, 1\,000\}$ |
+| **4**  | $1$ | $\mathcal{U}\{334, 416\}$ |  $\mathcal{U}\{100, 399\}$   |
+| **5**  | $1$ | $\mathcal{U}\{334, 416\}$ |  $\mathcal{U}\{400, 700\}$   |
+| **6**  | $1$ | $\mathcal{U}\{334, 416\}$ | $\mathcal{U}\{701, 1\,000\}$ |
+| **7**  | $1$ | $\mathcal{U}\{417, 500\}$ |  $\mathcal{U}\{100, 399\}$   |
+| **8**  | $1$ | $\mathcal{U}\{417, 500\}$ |  $\mathcal{U}\{400, 700\}$   |
+| **9**  | $1$ | $\mathcal{U}\{417, 500\}$ | $\mathcal{U}\{701, 1\,000\}$ |
+| **10** | $2$ | $\mathcal{U}\{250, 333\}$ |  $\mathcal{U}\{100, 399\}$   |
+| **11** | $2$ | $\mathcal{U}\{250, 333\}$ |  $\mathcal{U}\{400, 700\}$   |
+| **12** | $2$ | $\mathcal{U}\{250, 333\}$ | $\mathcal{U}\{701, 1\,000\}$ |
+| **13** | $2$ | $\mathcal{U}\{334, 416\}$ |  $\mathcal{U}\{100, 399\}$   |
+| **14** | $2$ | $\mathcal{U}\{334, 416\}$ |  $\mathcal{U}\{400, 700\}$   |
+| **15** | $2$ | $\mathcal{U}\{334, 416\}$ | $\mathcal{U}\{701, 1\,000\}$ |
+| **16** | $2$ | $\mathcal{U}\{417, 500\}$ |  $\mathcal{U}\{100, 399\}$   |
+| **17** | $2$ | $\mathcal{U}\{417, 500\}$ |  $\mathcal{U}\{400, 700\}$   |
+| **18** | $2$ | $\mathcal{U}\{417, 500\}$ | $\mathcal{U}\{701, 1\,000\}$ |
+
+</Details>
+
+### 시뮬레이터
+
+문제 풀이를 돕기 위해, 시뮬레이터가 제공됩니다. [바로가기](https://d89uk4296q2gf.cloudfront.net/)
+
+제출 내역에서 본인이 제출한 코드가 내놓은 답안이 실제로 어떻게 동작하는지 확인할 수 있습니다.
+
+### 예제 코드
+
+대회에서 지원하는 각 언어로 작성된 예제 코드를 아래에서 확인할 수 있습니다.
+
+- C: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.c)
+- C++: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.cpp)
+- Python: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.py)
+- Rust: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.rs)
+- Java: [sample-code.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.java)
+- JavaScript: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.js)
+- TypeScript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.ts)
+- C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.cs)
+- Kotlin: [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.kt)
+- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.go)
+- Scala: [sample-code.scala](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.scala)
+- Lua: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/cleaning-9c70899b/sample-code/sample-code.lua)
+
+주어지는 예제 코드의 동작은 다음과 같습니다.
+
+1. 배찌와 다오가 위쪽을 보도록 합니다.
+2. 각 캐릭터의 앞이 막혀있지 않으면 앞으로 한 칸 이동합니다.
+3. 각 캐릭터의 앞이 막다른 길이라면 폭탄을 설치하고 시계방향으로 90도 회전합니다.
+4. 100번 행동할 때까지 위를 반복합니다.

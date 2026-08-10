@@ -47,4 +47,8 @@ export const themes: Record<number, ThemeItem> = {
     color: "#FFFFFF",
     codebattle: true,
   },
+  2026: {
+    background: "#191716",
+    color: "#FFFFFF",
+  },
 };

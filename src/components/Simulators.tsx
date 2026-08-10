@@ -11,10 +11,11 @@ const SimulatorButtonsGrid = styled.div`
 interface Props {
   urlPrefix: string;
   count: number;
+  param?: string;
 }
 
 export const Simulators = (props: Props) => {
-  const { urlPrefix, count } = props;
+  const { urlPrefix, count, param = "subtask" } = props;
 
   return (
     <SimulatorButtonsGrid>
@@ -23,7 +24,7 @@ export const Simulators = (props: Props) => {
         .map((_, index) => (
           <Button
             as="a"
-            href={`${urlPrefix}?subtask=${index + 1}`}
+            href={`${urlPrefix}?${param}=${index + 1}`}
             target="_blank"
             rel="noreferrer"
             key={index.toString()}
