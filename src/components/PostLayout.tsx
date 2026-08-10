@@ -65,7 +65,7 @@ export const PostLayout: React.FC<Props> = (props) => {
     ? `${meta.title}${
         meta.codebattle ? " — NYPC CODE BATTLE" : meta.year ? ` — NYPC ${meta.year}` : ""
       }`
-    : "NYPC — Nexon Youth Programming Challenge";
+    : "NYPC — NEXON Young Programmers Cup";
 
   return (
     <>

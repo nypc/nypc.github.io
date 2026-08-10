@@ -48,10 +48,33 @@ const Home = () => {
     >
       <YearContainer>
         {Object.entries(themes)
-          .filter(([year]) => year === "2025")
+          .filter(([year]) => ["2025", "2026"].includes(year))
           .sort((a, b) => b[0].localeCompare(a[0]))
           .map(([year, { background, color, codebattle }]) => (
             <Row key={year}>
+              {year === "2026" && (
+                <Year
+                  style={{
+                    color,
+                  }}
+                  as="a"
+                  clickable
+                  href={`/en/${year}`}
+                  backgroundColor={background}
+                >
+                  <Typo h2 no-margin>
+                    NYPC {year}
+                  </Typo>
+                  <Typo
+                    style={{
+                      color: readableColor(background),
+                      opacity: 0.8,
+                    }}
+                  >
+                    NEXON Young Programmers Cup
+                  </Typo>
+                </Year>
+              )}
               {codebattle && (
                 <Year
                   style={{
