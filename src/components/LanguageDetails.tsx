@@ -1,63 +1,45 @@
-import styled from "@emotion/styled";
-import { Space, Typo } from "@solved-ac/ui-react";
+import { Box, Flex, Text, chakra } from "@chakra-ui/react";
 import { Code } from "./Code";
 
-const LanguageDetailsContainer = styled.div`
-  overflow-x: auto;
-`;
+const LanguageDetailItem = chakra(Flex, {
+  base: {
+    minWidth: "640px",
+    gap: "2",
+    padding: "8px 0",
+    borderBottomWidth: "1px",
+    borderBottomColor: "border",
+  },
+});
 
-const LanguageDetailItem = styled.div`
-  display: flex;
-  min-width: 640px;
-  gap: 8px;
-  padding: 8px 0;
-  border-bottom: ${({ theme }) => theme.styles.border()};
-`;
+const LanguageMetaItem = chakra(Flex, {
+  base: {
+    gap: "2",
+    fontSize: "80%",
+    padding: "2px 0",
+  },
+});
 
-const LanguageId = styled.div`
-  flex: 0 0 180px;
-`;
-
-const LanguageMeta = styled.div`
-  flex: 1;
-  min-width: 0;
-`;
-
-const LanguageMetaItem = styled.div`
-  display: flex;
-  gap: 8px;
-  font-size: 80%;
-  padding: 2px 0;
-`;
-
-const LanguageMetaCaption = styled.div`
-  color: ${({ theme }) => theme.color.text.secondary.main};
-  flex: 0 0 160px;
-`;
-
-const LanguageMetaContent = styled.div`
-  flex: 1;
-  min-width: 0;
-`;
-
-const LanguageMetaCode = styled(Code)`
-  display: block;
-  flex: 1;
-  min-width: 0;
-  font-size: 100%;
-  padding: 0;
-  color: inherit;
-  background-color: transparent;
-  letter-spacing: -0.05em;
-  &:not([class*="language-"]) {
-    color: inherit;
-    background-color: transparent;
-  }
-  &.language-text {
-    color: inherit;
-    background-color: transparent;
-  }
-`;
+const LanguageMetaCode = chakra(Code, {
+  base: {
+    display: "block",
+    flex: 1,
+    minWidth: 0,
+    fontSize: "100%",
+    paddingInline: 0,
+    paddingBlock: 0,
+    letterSpacing: "-0.05em",
+    color: "inherit",
+    bg: "transparent",
+    "&:not([class*='language-'])": {
+      color: "inherit",
+      bg: "transparent",
+    },
+    "&.language-text": {
+      color: "inherit",
+      bg: "transparent",
+    },
+  },
+});
 
 interface LanguageDetail {
   name: string;
@@ -74,28 +56,32 @@ interface LanguageDetail {
 
 export const LanguageDetails = ({ details }: { details: Array<LanguageDetail> }) => {
   return (
-    <LanguageDetailsContainer>
+    <Box overflowX="auto">
       {details.map((detail, index) => (
         <LanguageDetailItem key={index}>
-          <LanguageId>
+          <Box flex="0 0 180px">
             <b>{detail.name}</b>
             <br />
-            <Typo description>{detail.code}</Typo>
-          </LanguageId>
-          <LanguageMeta>
+            <Text as="span" color="fg.muted">
+              {detail.code}
+            </Text>
+          </Box>
+          <Box flex="1" minWidth="0">
             {detail.version}
             {detail.showExample !== false && (
               <>
                 {" "}
-                <Typo description>
+                <Text as="span" color="fg.muted">
                   (<a href={`#language-example-${detail.name}`}>예시 코드</a>)
-                </Typo>
+                </Text>
               </>
             )}
-            <Space h={4} />
+            <Box h="1" />
             <LanguageMetaItem>
-              <LanguageMetaCaption>사용 가능 외부 라이브러리</LanguageMetaCaption>
-              <LanguageMetaContent>
+              <Box flex="0 0 160px" color="fg.muted">
+                사용 가능 외부 라이브러리
+              </Box>
+              <Box flex="1" minWidth="0">
                 {detail.libs ? (
                   detail.libs.map((lib, idx) => (
                     <span key={idx}>
@@ -106,25 +92,33 @@ export const LanguageDetails = ({ details }: { details: Array<LanguageDetail> })
                     </span>
                   ))
                 ) : (
-                  <Typo description>(없음)</Typo>
+                  <Text as="span" color="fg.muted">
+                    (없음)
+                  </Text>
                 )}
-              </LanguageMetaContent>
+              </Box>
             </LanguageMetaItem>
             <LanguageMetaItem>
-              <LanguageMetaCaption>컴파일 명령어</LanguageMetaCaption>
+              <Box flex="0 0 160px" color="fg.muted">
+                컴파일 명령어
+              </Box>
               {detail.compilation ? (
                 <LanguageMetaCode>{detail.compilation}</LanguageMetaCode>
               ) : (
-                <Typo description>(컴파일하지 않음)</Typo>
+                <Text as="span" color="fg.muted">
+                  (컴파일하지 않음)
+                </Text>
               )}
             </LanguageMetaItem>
             <LanguageMetaItem>
-              <LanguageMetaCaption>실행 명령어</LanguageMetaCaption>
+              <Box flex="0 0 160px" color="fg.muted">
+                실행 명령어
+              </Box>
               <LanguageMetaCode>{detail.execution}</LanguageMetaCode>
             </LanguageMetaItem>
-          </LanguageMeta>
+          </Box>
         </LanguageDetailItem>
       ))}
-    </LanguageDetailsContainer>
+    </Box>
   );
 };

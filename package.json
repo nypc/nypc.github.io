@@ -12,11 +12,11 @@
     "format": "oxlint --fix && oxfmt"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.36.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@floating-ui/react": "^0.27.18",
     "@mdx-js/mdx": "^3.1.1",
-    "@solved-ac/ui-react": "^0.9.0",
     "@tabler/icons-react": "^3.37.1",
     "@tanstack/react-router": "^1.162.9",
     "@tanstack/react-start": "^1.163.1",

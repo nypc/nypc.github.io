@@ -1,6 +1,13 @@
-import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
+import { Separator } from "@chakra-ui/react";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { PostLayout, ProblemList, ProblemListContainer } from "components";
+import {
+  Itemize,
+  PostLayout,
+  ProblemList,
+  ProblemListContainer,
+  SectionHeading,
+  themes,
+} from "components";
 
 const year = 2024;
 
@@ -52,12 +59,11 @@ const List = () => {
       meta={{
         title: `NYPC ${year}`,
       }}
-      theme={{
-        background: "#181D43",
-        color: "#FFFFFF",
-      }}
+      theme={themes[year]}
     >
-      <Typo h2>안내</Typo>
+      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+        안내
+      </SectionHeading>
       <Itemize>
         <li>
           <Link to="/$year/notice/$page" params={{ year, page: "rule" }}>
@@ -70,36 +76,44 @@ const List = () => {
           </Link>
         </li>
       </Itemize>
-      <Divider />
-      <Typo h2 no-margin>
+      <Separator marginBlock="8" borderColor="border" />
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Round 1
-      </Typo>
+      </SectionHeading>
       <ProblemList year={year} problems={problems.round1} />
-      <Divider />
-      <Typo h2 no-margin>
+      <Separator marginBlock="8" borderColor="border" />
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Round 2
-      </Typo>
+      </SectionHeading>
       <ProblemListContainer>
         <div>
-          <Typo h3>2-A</Typo>
+          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+            2-A
+          </SectionHeading>
           <ProblemList year={year} problems={problems.round2a} />
         </div>
         <div>
-          <Typo h3>2-B</Typo>
+          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+            2-B
+          </SectionHeading>
           <ProblemList year={year} problems={problems.round2b} />
         </div>
       </ProblemListContainer>
-      <Divider />
-      <Typo h2 no-margin>
+      <Separator marginBlock="8" borderColor="border" />
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         본선
-      </Typo>
+      </SectionHeading>
       <ProblemListContainer>
         <div>
-          <Typo h3>본선 &mdash; 1214</Typo>
+          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+            본선 &mdash; 1214
+          </SectionHeading>
           <ProblemList year={year} problems={problems.finals1214} />
         </div>
         <div>
-          <Typo h3>본선 &mdash; 1519</Typo>
+          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+            본선 &mdash; 1519
+          </SectionHeading>
           <ProblemList year={year} problems={problems.finals1519} />
         </div>
       </ProblemListContainer>

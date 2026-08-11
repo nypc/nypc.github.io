@@ -1,6 +1,5 @@
-import { Typo } from "@solved-ac/ui-react";
 import { createFileRoute } from "@tanstack/react-router";
-import { PostLayout, ProblemList } from "components";
+import { PostLayout, ProblemList, SectionHeading, themes } from "components";
 
 const year = 2026;
 
@@ -15,14 +14,11 @@ const List = () => {
       meta={{
         title: `NYPC ${year}`,
       }}
-      theme={{
-        background: "#191716",
-        color: "#FFFFFF",
-      }}
+      theme={themes[year]}
     >
-      <Typo h2 no-margin>
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Master Track &mdash; Qualification Round
-      </Typo>
+      </SectionHeading>
       <ProblemList en={true} year={year} problems={problems.master} />
     </PostLayout>
   );

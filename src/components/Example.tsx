@@ -1,55 +1,66 @@
-import styled from "@emotion/styled";
-import { Space, Typo } from "@solved-ac/ui-react";
+import { Box, Grid, Heading, IconButton } from "@chakra-ui/react";
 import { IconCopy } from "@tabler/icons-react";
 import { useRef } from "react";
+import type { BoxProps } from "@chakra-ui/react";
 
 /*
     Examples container
 */
 
-const ExamplesContainer = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 16px;
-`;
-
 interface ExamplesProps {
   children?: React.ReactNode;
 }
 
-export const Examples: React.FC<ExamplesProps> = (props) => {
-  return <ExamplesContainer>{props.children}</ExamplesContainer>;
-};
+export const Examples: React.FC<ExamplesProps> = (props) => (
+  <Grid
+    width="100%"
+    templateColumns="repeat(2, minmax(0, 1fr))"
+    columnGap="4"
+    // MDX paragraphs carry bottom margin only, so without this the following
+    // sentence sits flush against the sample-I/O boxes.
+    marginBottom="4"
+  >
+    {props.children}
+  </Grid>
+);
 
 /*
     I/O
 */
 
-const Preformatted = styled.pre`
-  width: 100%;
-  overflow-x: auto;
-  background-color: ${({ theme }) => theme.color.background.card.main};
-  padding: 0 16px;
-  border-radius: 8px;
-  & > pre > code {
-    padding-left: 0;
-    padding-right: 0;
-  }
-`;
-
-const IOTitle = styled(Typo)`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const CopyButton = styled.button`
-  background: transparent;
-  font-size: 16px;
-  color: ${({ theme }) => theme.color.text.secondary.main};
-  cursor: pointer;
-`;
+/**
+ * Sample I/O arrives as MDX children, which means either a paragraph (plain
+ * text, the common case) or a nested `pre > code` (fenced block). Both bring
+ * the MDX theme's block spacing with them, which stacks on top of this box's
+ * padding and leaves it lopsided — flush at the top, gapped at the bottom.
+ *
+ * The child resets have to live in the same unlayered context as the styles
+ * they override. Chakra compiles `chakra(el, { base })` into the `recipes`
+ * cascade layer, while style props and `css` on an element are unlayered — and
+ * unlayered rules win over layered ones no matter how specific the layered
+ * selector is. A `& > p` reset written as part of a recipe would silently lose
+ * to the paragraph's own `marginBottom` style prop.
+ */
+const Preformatted = ({ ref, ...props }: BoxProps & { ref?: React.Ref<HTMLPreElement> }) => (
+  <Box
+    as="pre"
+    ref={ref}
+    width="100%"
+    overflowX="auto"
+    bg="bg.subtle"
+    color="fg"
+    borderWidth="1px"
+    borderColor="border.muted"
+    padding="4"
+    borderRadius="lg"
+    css={{
+      "& > p": { margin: 0, color: "inherit" },
+      "& > pre": { margin: 0 },
+      "& > pre > code": { paddingInline: 0, paddingBlock: 0 },
+    }}
+    {...props}
+  />
+);
 
 interface IOProps {
   children?: React.ReactNode;
@@ -78,19 +89,33 @@ export const IO: React.FC<IOProps> = (props) => {
   };
 
   return (
-    <div>
-      <Space h={8} />
-      <IOTitle h3 no-margin>
+    <Box>
+      <Box h="2" />
+      <Heading
+        as="h3"
+        size="md"
+        margin="0"
+        display="flex"
+        alignItems="center"
+        gap="2"
+        fontFamily="body"
+      >
         {title}
         {children && (
-          <CopyButton onClick={handleCopy}>
+          <IconButton
+            aria-label="클립보드에 복사"
+            variant="ghost"
+            size="xs"
+            color="fg.muted"
+            onClick={handleCopy}
+          >
             <IconCopy />
-          </CopyButton>
+          </IconButton>
         )}
-      </IOTitle>
-      <Space h={8} />
+      </Heading>
+      <Box h="2" />
       <Preformatted ref={preRef}>{children}</Preformatted>
-    </div>
+    </Box>
   );
 };
 

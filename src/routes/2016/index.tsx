@@ -1,6 +1,5 @@
-import { Typo } from "@solved-ac/ui-react";
 import { createFileRoute } from "@tanstack/react-router";
-import { PostLayout, ProblemList, themes } from "components";
+import { PostLayout, ProblemList, SectionHeading, themes } from "components";
 
 const year = 2016;
 
@@ -27,9 +26,13 @@ const List = () => {
       }}
       theme={themes[year]}
     >
-      <Typo h2>예선</Typo>
+      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+        예선
+      </SectionHeading>
       <ProblemList year={year} problems={problems.preliminaries} />
-      <Typo h2>본선</Typo>
+      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+        본선
+      </SectionHeading>
       <ProblemList year={year} problems={problems.finals} />
     </PostLayout>
   );

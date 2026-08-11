@@ -1,17 +1,22 @@
-import styled from "@emotion/styled";
+import { chakra } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 
-const DetailsContainer = styled.details`
-  margin: 16px 0;
-  padding: 8px 16px;
-  border: ${({ theme }) => theme.styles.border()};
-  border-radius: 8px;
-`;
+const DetailsContainer = chakra("details", {
+  base: {
+    margin: "16px 0",
+    padding: "8px 16px",
+    borderWidth: "1px",
+    borderColor: "border",
+    borderRadius: "lg",
+  },
+});
 
-const Summary = styled.summary`
-  cursor: pointer;
-  font-weight: bold;
-`;
+const Summary = chakra("summary", {
+  base: {
+    cursor: "pointer",
+    fontWeight: "bold",
+  },
+});
 
 export const Details = ({
   summary = "자세히 보기",

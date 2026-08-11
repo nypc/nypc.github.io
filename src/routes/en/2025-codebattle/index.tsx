@@ -1,6 +1,6 @@
-import { Divider, Itemize, Typo } from "@solved-ac/ui-react";
+import { Separator } from "@chakra-ui/react";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { PostLayout, ProblemList } from "components";
+import { Itemize, PostLayout, ProblemList, SectionHeading, themes } from "components";
 
 const year = "2025-codebattle";
 
@@ -20,12 +20,11 @@ const List = () => {
         title: `NYPC CODE BATTLE`,
         codebattle: true,
       }}
-      theme={{
-        background: "#0086FF",
-        color: "#FFFFFF",
-      }}
+      theme={themes[2025]}
     >
-      <Typo h2>Information</Typo>
+      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+        Information
+      </SectionHeading>
       <Itemize>
         <li>
           <Link to="/en/$year/notice/$page" params={{ year, page: "rule" }}>
@@ -38,15 +37,15 @@ const List = () => {
           </Link>
         </li>
       </Itemize>
-      <Divider />
-      <Typo h2 no-margin>
+      <Separator marginBlock="8" borderColor="border" />
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Online Round
-      </Typo>
+      </SectionHeading>
       <ProblemList en={true} year={year} problems={problems.online} />
-      <Divider />
-      <Typo h2 no-margin>
+      <Separator marginBlock="8" borderColor="border" />
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Final Round
-      </Typo>
+      </SectionHeading>
       <ProblemList en={true} year={year} problems={problems.finals} />
     </PostLayout>
   );

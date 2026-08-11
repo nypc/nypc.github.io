@@ -1,40 +1,30 @@
-import { Global, ThemeProvider, css } from "@emotion/react";
-import { SolvedGlobalStyles, solvedThemes } from "@solved-ac/ui-react";
+import { Global, css } from "@emotion/react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BODY_FONT } from "@/theme";
+import { system } from "@/theme";
 import React from "react";
-import type { Theme } from "@emotion/react";
 
-const theme: Theme = {
-  ...solvedThemes.light,
-  typography: {
-    ...solvedThemes.light.typography,
-    code: '"IBM Plex Mono", "Pretendard", monospace',
-  },
-};
+/**
+ * KaTeX ships its own unlayered stylesheet from a CDN, including
+ * `.katex { font-size: 1.21em }`. Chakra's `globalCss` compiles into the `base`
+ * cascade layer, and unlayered rules beat layered ones no matter how specific
+ * the layered selector is — so these overrides have to be emitted unlayered
+ * too. Emotion's `Global` does that; from there plain specificity applies and
+ * `span.katex` wins.
+ */
+const katexStyles = css`
+  span.katex {
+    font-size: 1.1em;
+  }
+  .katex span.hangul_fallback {
+    font-size: 90.9%;
+    font-family: ${BODY_FONT};
+  }
+`;
 
 export const AppProviders = ({ children }: { children: React.ReactNode }) => (
-  <>
-    <Global
-      styles={css`
-        span.katex {
-          font-size: 1.1em;
-        }
-        .katex span.hangul_fallback {
-          font-size: 90.9%;
-          font-family: ${solvedThemes.light.typography.paragraph};
-        }
-        .math-display {
-          overflow-x: auto;
-        }
-        .tabler-icon {
-          vertical-align: middle;
-          width: 1.2em;
-          height: 1.2em;
-        }
-      `}
-    />
-    <ThemeProvider theme={theme}>
-      <SolvedGlobalStyles />
-      {children}
-    </ThemeProvider>
-  </>
+  <ChakraProvider value={system}>
+    <Global styles={katexStyles} />
+    {children}
+  </ChakraProvider>
 );

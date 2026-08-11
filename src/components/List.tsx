@@ -1,21 +1,21 @@
-import styled from "@emotion/styled";
+import { chakra } from "@chakra-ui/react";
 
-export const Itemize = styled.ul`
-  padding-inline-start: 4ch;
-  margin-block: 1em;
-  margin-inline: 0px;
-  list-style-type: square;
-  & ::marker {
-    color: ${({ theme }) => theme.color.text.secondary.main};
-  }
-`;
+const listStyles = {
+  paddingInlineStart: "6",
+  marginBlockEnd: "4",
+  marginInline: "0px",
+} as const;
 
-export const Enumerate = styled.ol`
-  padding-inline-start: 4ch;
-  margin-block: 1em;
-  margin-inline: 0px;
-  list-style-type: decimal;
-  & ::marker {
-    color: ${({ theme }) => theme.color.text.secondary.main};
-  }
-`;
+export const Itemize = chakra("ul", {
+  base: {
+    ...listStyles,
+    listStyleType: "disc",
+  },
+});
+
+export const Enumerate = chakra("ol", {
+  base: {
+    ...listStyles,
+    listStyleType: "decimal",
+  },
+});

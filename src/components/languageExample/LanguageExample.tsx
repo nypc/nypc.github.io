@@ -1,23 +1,8 @@
-import styled from "@emotion/styled";
+import { Box, Flex } from "@chakra-ui/react";
 import { LANGUAGE_EXAMPLES } from "./examples";
 import type { PropsWithChildren } from "react";
 import type { LANGUAGES } from "./examples";
 import { HighlightedCode } from "@/components/highlightedCode/HighligtedCode";
-
-const LanguageExampleContainer = styled.div`
-  display: flex;
-  padding: 16px 0;
-  border-bottom: ${({ theme }) => theme.styles.border()};
-`;
-
-const LanguageName = styled.div`
-  flex: 0 0 180px;
-`;
-
-const LanguageContent = styled.div`
-  flex: 1;
-  min-width: 0;
-`;
 
 interface Props {
   name: string;
@@ -27,15 +12,20 @@ interface Props {
 
 export const LanguageExample = ({ name, type, example: lang }: PropsWithChildren<Props>) => {
   return (
-    <LanguageExampleContainer id={`language-example-${name}`}>
-      <LanguageName>
+    <Flex
+      id={`language-example-${name}`}
+      paddingBlock="4"
+      borderBottomWidth="1px"
+      borderBottomColor="border"
+    >
+      <Box flex="0 0 180px">
         <b>{name}</b>
-      </LanguageName>
-      <LanguageContent>
+      </Box>
+      <Box flex="1" minWidth="0">
         <HighlightedCode language={lang}>
           {LANGUAGE_EXAMPLES[lang][type ?? "stdin"] || ""}
         </HighlightedCode>
-      </LanguageContent>
-    </LanguageExampleContainer>
+      </Box>
+    </Flex>
   );
 };

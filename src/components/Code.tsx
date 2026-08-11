@@ -1,21 +1,26 @@
-import styled from "@emotion/styled";
+import { chakra } from "@chakra-ui/react";
 
-export const Code = styled.code`
-  font-family: "IBM Plex Mono", "Pretendard", monospace;
-  display: inline-block;
-  max-width: 100%;
-  overflow-x: auto;
-  tab-size: 4;
-  vertical-align: top;
-  &:not([class*="language-"]) {
-    background-color: ${({ theme }) => theme.color.background.card.main};
-    color: ${({ theme }) => theme.color.status.error};
-  }
-  &.language-text {
-    background-color: ${({ theme }) => theme.color.background.card.main};
-    color: inherit;
-  }
-  padding: 0 0.25em;
-  border-radius: 0.25em;
-  font-size: 95%;
-`;
+export const Code = chakra("code", {
+  base: {
+    fontFamily: "mono",
+    display: "inline-block",
+    maxWidth: "100%",
+    overflowX: "auto",
+    tabSize: 4,
+    verticalAlign: "top",
+    paddingInline: "1.5",
+    paddingBlock: "0.5",
+    borderRadius: "sm",
+    fontSize: "0.875em",
+    // `.hljs` blocks bring their own palette from the highlight.js stylesheet;
+    // only unhighlighted inline code gets the neutral chip treatment.
+    "&:not([class*='language-'])": {
+      bg: "bg.emphasized",
+      color: "fg",
+    },
+    "&.language-text": {
+      bg: "bg.emphasized",
+      color: "inherit",
+    },
+  },
+});

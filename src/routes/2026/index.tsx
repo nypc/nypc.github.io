@@ -1,6 +1,6 @@
-import { Divider, Typo } from "@solved-ac/ui-react";
+import { Separator } from "@chakra-ui/react";
 import { createFileRoute } from "@tanstack/react-router";
-import { PostLayout, ProblemList } from "components";
+import { PostLayout, ProblemList, SectionHeading, themes } from "components";
 
 const year = 2026;
 
@@ -20,19 +20,16 @@ const List = () => {
       meta={{
         title: `NYPC ${year}`,
       }}
-      theme={{
-        background: "#191716",
-        color: "#FFFFFF",
-      }}
+      theme={themes[year]}
     >
-      <Typo h2 no-margin>
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         루키 트랙 &mdash; 예선 라운드
-      </Typo>
+      </SectionHeading>
       <ProblemList year={year} problems={problems.rookie} />
-      <Divider />
-      <Typo h2 no-margin>
+      <Separator marginBlock="8" borderColor="border" />
+      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         마스터 트랙 &mdash; 예선 라운드
-      </Typo>
+      </SectionHeading>
       <ProblemList year={year} problems={problems.master} />
     </PostLayout>
   );

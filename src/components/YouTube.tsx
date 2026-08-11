@@ -1,10 +1,13 @@
-import styled from "@emotion/styled";
+import { chakra } from "@chakra-ui/react";
 
-const YouTubeIframe = styled.iframe`
-  width: 560px;
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-`;
+const YouTubeIframe = chakra("iframe", {
+  base: {
+    width: "560px",
+    maxWidth: "100%",
+    aspectRatio: "16 / 9",
+    borderRadius: "lg",
+  },
+});
 
 interface Props extends React.HTMLAttributes<HTMLIFrameElement> {
   /**
@@ -21,7 +24,6 @@ export const YouTube = (props: Props) => {
   return (
     <YouTubeIframe
       src={`https://www.youtube.com/embed/${videoId}?rel=0`}
-      frameBorder="0"
       allow="autoplay; encrypted-media"
       allowFullScreen
       {...rest}

@@ -1,8 +1,14 @@
-import styled from "@emotion/styled";
+import { chakra } from "@chakra-ui/react";
+import { accentColor } from "@/theme";
 
-export const Blockquote = styled.blockquote`
-  background-color: ${({ theme }) => theme.color.background.card.main};
-  color: ${({ theme }) => theme.color.text.secondary.main};
-  padding: 0.25em 1em;
-  border-left: 0.25em solid ${({ theme }) => theme.color.background.card.dark};
-`;
+export const Blockquote = chakra("blockquote", {
+  base: {
+    borderInlineStartWidth: "3px",
+    borderInlineStartStyle: "solid",
+    borderInlineStartColor: accentColor,
+    paddingInlineStart: "4",
+    marginBlock: "4",
+    opacity: 0.75,
+    fontStyle: "italic",
+  },
+});

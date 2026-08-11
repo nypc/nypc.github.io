@@ -1,5 +1,6 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 import { AppProviders } from "components/AppProviders";
+import { TYPEKIT_STYLESHEET_HREF } from "@/theme";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => (
   <html lang="ko">
@@ -57,6 +58,16 @@ export const Route = createRootRoute({
         crossOrigin: "anonymous",
       },
       {
+        rel: "preconnect",
+        href: "https://use.typekit.net",
+        crossOrigin: "anonymous",
+      },
+      {
+        // poster-gothic-excond-atf — the NYPC display face.
+        rel: "stylesheet",
+        href: TYPEKIT_STYLESHEET_HREF,
+      },
+      {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
       },
@@ -73,8 +84,9 @@ export const Route = createRootRoute({
         href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css",
       },
       {
+        // One Dark — the palette @nypc-home/mdx ships for highlighted code.
         rel: "stylesheet",
-        href: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css",
+        href: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css",
       },
     ],
   }),
