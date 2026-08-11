@@ -1,0 +1,1 @@
+import{c as r,j as l}from"./main-DeEzJY4P.js";import{h as a,H as m}from"./YouTube-DO9rMlD8.js";const f=n=>{const e=r.c(9);let t,s;e[0]!==n?({children:t,...s}=n,e[0]=n,e[1]=t,e[2]=s):(t=e[1],s=e[2]);let i;e[3]!==t?(i=a(t),e[3]=t,e[4]=i):i=e[4];let o;return e[5]!==t||e[6]!==s||e[7]!==i?(o=l.jsx(m,{fontFamily:i,...s,children:t}),e[5]=t,e[6]=s,e[7]=i,e[8]=o):o=e[8],o};export{f as S};
