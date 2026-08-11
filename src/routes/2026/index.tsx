@@ -17,6 +17,7 @@ export const problems = {
 const List = () => {
   return (
     <PostLayout
+      availableLocales={["ko", "en"]}
       meta={{
         title: `NYPC ${year}`,
       }}

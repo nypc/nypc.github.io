@@ -1118,6 +1118,53 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@inlang/paraglide-js@npm:^2.23.2":
+  version: 2.23.2
+  resolution: "@inlang/paraglide-js@npm:2.23.2"
+  dependencies:
+    "@inlang/recommend-sherlock": ^0.2.1
+    "@inlang/sdk": ^2.10.0
+    commander: 11.1.0
+    consola: 3.4.0
+    json5: 2.2.3
+    unplugin: ^2.1.2
+    urlpattern-polyfill: ^10.0.0
+  peerDependencies:
+    typescript: ">=5.6"
+    vite: ">=5.0.0"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+    vite:
+      optional: true
+  bin:
+    paraglide-js: bin/run.js
+  checksum: aa9456610cc13a2f98c436a08e7d68cd6d7d8285247bfd828c207d5096ed05a27a814300534aff149301e600a3b9b9d890186375449769cff104bcae015b342a
+  languageName: node
+  linkType: hard
+
+"@inlang/recommend-sherlock@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@inlang/recommend-sherlock@npm:0.2.1"
+  dependencies:
+    comment-json: ^4.2.3
+  checksum: af4f0d12c74dcb20b15858fae7c1aee2e806eb8f7b1c685d7f9b9d6c96d2e08bdbfa125762129f2eb12baf2bc25204f8c23d9ddc05abe2f358cc78464bb29c86
+  languageName: node
+  linkType: hard
+
+"@inlang/sdk@npm:^2.10.0":
+  version: 2.10.2
+  resolution: "@inlang/sdk@npm:2.10.2"
+  dependencies:
+    "@lix-js/sdk": 0.4.10
+    "@sinclair/typebox": ^0.31.17
+    kysely: ^0.28.12
+    sqlite-wasm-kysely: 0.3.0
+    uuid: ^14.0.0
+  checksum: 02ff9e4ae8da96bf8a9f624a73241d63da65e120ab79f34e7d9af79107e99840e3270d20bee4ddfcb3ef185a0a4e6c49c905b56aa2989f33dc8ee7dab2192cbc
+  languageName: node
+  linkType: hard
+
 "@inquirer/ansi@npm:^1.0.2":
   version: 1.0.2
   resolution: "@inquirer/ansi@npm:1.0.2"
@@ -1436,6 +1483,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lix-js/sdk@npm:0.4.10":
+  version: 0.4.10
+  resolution: "@lix-js/sdk@npm:0.4.10"
+  dependencies:
+    "@lix-js/server-protocol-schema": 0.1.1
+    dedent: 1.5.1
+    human-id: ^4.1.1
+    js-sha256: ^0.11.0
+    kysely: ^0.28.12
+    sqlite-wasm-kysely: 0.3.0
+    uuid: ^14.0.0
+  checksum: 48e4c756622b52a790ba4867a36599d5da3cbe99367c2a75f57566c26fd1f97964d2b99d974daf3b6e4ca7bc750a352864aa1366b1089064e8ef6f072c1028ef
+  languageName: node
+  linkType: hard
+
+"@lix-js/server-protocol-schema@npm:0.1.1":
+  version: 0.1.1
+  resolution: "@lix-js/server-protocol-schema@npm:0.1.1"
+  checksum: 69f0b38b5bec6d26f711ecf5a0aaf430801f1bed0b5683f8e8a41f93ed7efbfb3119a5f4d99a0f42b9b9b730cdd8db557a8499a3d0c965decea82310f0549d1a
+  languageName: node
+  linkType: hard
+
 "@mdx-js/mdx@npm:^3.1.1":
   version: 3.1.1
   resolution: "@mdx-js/mdx@npm:3.1.1"
@@ -1512,6 +1581,7 @@ __metadata:
     "@emotion/react": ^11.14.0
     "@emotion/styled": ^11.14.1
     "@floating-ui/react": ^0.27.18
+    "@inlang/paraglide-js": ^2.23.2
     "@mdx-js/mdx": ^3.1.1
     "@tabler/icons-react": ^3.37.1
     "@tanstack/eslint-config": ^0.4.0
@@ -2040,6 +2110,22 @@ __metadata:
   version: 4.59.0
   resolution: "@rollup/rollup-win32-x64-msvc@npm:4.59.0"
   conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@sinclair/typebox@npm:^0.31.17":
+  version: 0.31.30
+  resolution: "@sinclair/typebox@npm:0.31.30"
+  checksum: 8ac8a90f156146c21ed3227bcad8157e8a29db340feb965afc8de375694660914d1723f9dddd354ba3a9b2b8926dc4265142f81497fcc5f647789f51e9be7d8d
+  languageName: node
+  linkType: hard
+
+"@sqlite.org/sqlite-wasm@npm:^3.48.0-build2":
+  version: 3.48.0-build4
+  resolution: "@sqlite.org/sqlite-wasm@npm:3.48.0-build4"
+  bin:
+    sqlite-wasm: bin/index.js
+  checksum: cadb2238109a2e8381999d4271685f93de37485f34134529eb21ff72c362126f92a583cfdccab343391123112e88af70d7a875af78cbb1edf721ea22b53f9fde
   languageName: node
   linkType: hard
 
@@ -4249,10 +4335,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:11.1.0":
+  version: 11.1.0
+  resolution: "commander@npm:11.1.0"
+  checksum: fd1a8557c6b5b622c89ecdfde703242ab7db3b628ea5d1755784c79b8e7cb0d74d65b4a262289b533359cd58e1bfc0bf50245dfbcd2954682a6f367c828b79ef
+  languageName: node
+  linkType: hard
+
 "commander@npm:^8.3.0":
   version: 8.3.0
   resolution: "commander@npm:8.3.0"
   checksum: 0f82321821fc27b83bd409510bb9deeebcfa799ff0bf5d102128b500b7af22872c0c92cb6a0ebc5a4cf19c6b550fba9cedfa7329d18c6442a625f851377bacf0
+  languageName: node
+  linkType: hard
+
+"comment-json@npm:^4.2.3":
+  version: 4.6.2
+  resolution: "comment-json@npm:4.6.2"
+  dependencies:
+    array-timsort: ^1.0.3
+    esprima: ^4.0.1
+  checksum: d235957843363c562ce6df85dd17cabe908e515ff8d7641cc90fdda624c1d3b73a85aec1bfe6a6601c3cc6ce8132aaa5dc35f99b0404d26c0a1f119fe97534ff
   languageName: node
   linkType: hard
 
@@ -4271,6 +4374,13 @@ __metadata:
   version: 1.4.5
   resolution: "comment-parser@npm:1.4.5"
   checksum: 3627c083591d9b9be9a871f29a1a2327da7c490854ba89a59e37047941556a1d8e453191931490d45c72b924baa5743767256c52af52c74a31e608a3eb2fd805
+  languageName: node
+  linkType: hard
+
+"consola@npm:3.4.0":
+  version: 3.4.0
+  resolution: "consola@npm:3.4.0"
+  checksum: 03d9ee487a53b710f53aeff18447a242d95c080aff051389b5ee49915bebb38cb31687e144e1bb3dd6ebcfc454fef566cc5912f6150c7cfe9349947ba09a5a87
   languageName: node
   linkType: hard
 
@@ -4390,6 +4500,18 @@ __metadata:
   dependencies:
     character-entities: ^2.0.0
   checksum: 82eb1208abf59d1f1e368285b6880201a3c3f147a4d7ce74e44cd41374ef00c9a376e8595e38002031db63291f91f7f3ff56b9724f715befff8f5566593d6de0
+  languageName: node
+  linkType: hard
+
+"dedent@npm:1.5.1":
+  version: 1.5.1
+  resolution: "dedent@npm:1.5.1"
+  peerDependencies:
+    babel-plugin-macros: ^3.1.0
+  peerDependenciesMeta:
+    babel-plugin-macros:
+      optional: true
+  checksum: c3c300a14edf1bdf5a873f9e4b22e839d62490bc5c8d6169c1f15858a1a76733d06a9a56930e963d677a2ceeca4b6b0894cc5ea2f501aa382ca5b92af3413c2a
   languageName: node
   linkType: hard
 
@@ -5472,6 +5594,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"human-id@npm:^4.1.1":
+  version: 4.2.0
+  resolution: "human-id@npm:4.2.0"
+  bin:
+    human-id: dist/cli.js
+  checksum: 9eb7cf529acdf42999c3cd470e24fefad885806547420aa0f3d83e7ed3434055fe0c066040f16159e8036399d12f7073daf6ceef66b929ead32d8b3ec80ad42c
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.6.3, iconv-lite@npm:^0.6.3":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
@@ -5679,6 +5810,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-sha256@npm:^0.11.0":
+  version: 0.11.1
+  resolution: "js-sha256@npm:0.11.1"
+  checksum: c23821003bd7459d0af0a7aef8de1b93e126f378588a3fb181ee2dd7c4d2531fba19112b518f649601f34332f159efe194c0aada7b35afef030d7a5c295eb645
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -5725,7 +5863,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.2.3":
+"json5@npm:2.2.3, json5@npm:^2.2.3":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -5749,6 +5887,13 @@ __metadata:
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
   checksum: 3ab01e7b1d440b22fe4c31f23d8d38b4d9b91d9f291df683476576493d5dfd2e03848a8b05813dd0c3f0e835bc63f433007ddeceb71f05cb25c45ae1b19c6d3b
+  languageName: node
+  linkType: hard
+
+"kysely@npm:^0.28.12":
+  version: 0.28.17
+  resolution: "kysely@npm:0.28.17"
+  checksum: 85660b7429b28eaa7142a2ebaaad6f274141a184ba62d2ed2822288bd690e445ce99bc1acf48c12c326ccdb06f2706504d3a48b0593aa2a1dd5e75a44eefccbd
   languageName: node
   linkType: hard
 
@@ -7763,6 +7908,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sqlite-wasm-kysely@npm:0.3.0":
+  version: 0.3.0
+  resolution: "sqlite-wasm-kysely@npm:0.3.0"
+  dependencies:
+    "@sqlite.org/sqlite-wasm": ^3.48.0-build2
+  peerDependencies:
+    kysely: "*"
+  checksum: b1da0e236e88e506f64d0c866c6db7bcf5cd7042a9ac62ca1cfc14da73d227f814a072af313a30327188b02066dbf4f530497d34796d1acfe3e46e3956060d07
+  languageName: node
+  linkType: hard
+
 "srvx@npm:^0.11.2, srvx@npm:^0.11.7":
   version: 0.11.7
   resolution: "srvx@npm:0.11.7"
@@ -8313,12 +8469,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"urlpattern-polyfill@npm:^10.0.0":
+  version: 10.1.0
+  resolution: "urlpattern-polyfill@npm:10.1.0"
+  checksum: 81c1098493dce8789f31940a96f290754b5ee5d589fd4d0a194567f3ca99bd483c66a476e7df84bb6961e4cb44e0e8c265bcb2452f74018edcbbf8677c2fa811
+  languageName: node
+  linkType: hard
+
 "use-sync-external-store@npm:^1.6.0":
   version: 1.6.0
   resolution: "use-sync-external-store@npm:1.6.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 61a62e910713adfaf91bdb72ff2cd30e5ba83687accaf3b6e75a903b45bf635f5722e3694af30d83a03e92cb533c0a5c699298d2fef639a03ffc86b469f4eee2
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^14.0.0":
+  version: 14.0.1
+  resolution: "uuid@npm:14.0.1"
+  bin:
+    uuid: dist-node/bin/uuid
+  checksum: 8c79338151976423c5eff1292bc40efd247a666d32b0913430f130d58db76298d28f8a95d6dad7765194dcc72324849fee8866f3ca90e9c1185ac17bb7b5d97d
   languageName: node
   linkType: hard
 

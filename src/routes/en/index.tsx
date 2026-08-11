@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <PostLayout
-      en
+      availableLocales={["ko", "en"]}
       root
       meta={{
         title: `NYPC Archive`,

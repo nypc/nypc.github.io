@@ -1,5 +1,7 @@
 import { Button, Grid } from "@chakra-ui/react";
 import { IconPlayerPlay } from "@tabler/icons-react";
+import { useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 
 interface Props {
   urlPrefix: string;
@@ -9,6 +11,7 @@ interface Props {
 
 export const Simulators = (props: Props) => {
   const { urlPrefix, count, param = "subtask" } = props;
+  const locale = useLocale();
 
   return (
     <Grid
@@ -32,7 +35,7 @@ export const Simulators = (props: Props) => {
           >
             <a href={`${urlPrefix}?${param}=${index + 1}`} target="_blank" rel="noreferrer">
               <IconPlayerPlay />
-              미션 {index + 1}
+              {m.simulator_mission({ index: index + 1 }, { locale })}
             </a>
           </Button>
         ))}

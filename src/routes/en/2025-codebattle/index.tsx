@@ -15,7 +15,7 @@ export const problems = {
 const List = () => {
   return (
     <PostLayout
-      en={true}
+      availableLocales={["ko", "en"]}
       meta={{
         title: `NYPC CODE BATTLE`,
         codebattle: true,
@@ -41,12 +41,12 @@ const List = () => {
       <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Online Round
       </SectionHeading>
-      <ProblemList en={true} year={year} problems={problems.online} />
+      <ProblemList year={year} problems={problems.online} />
       <Separator marginBlock="8" borderColor="border" />
       <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Final Round
       </SectionHeading>
-      <ProblemList en={true} year={year} problems={problems.finals} />
+      <ProblemList year={year} problems={problems.finals} />
     </PostLayout>
   );
 };

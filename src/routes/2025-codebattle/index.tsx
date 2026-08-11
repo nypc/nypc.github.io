@@ -15,6 +15,7 @@ export const problems = {
 const List = () => {
   return (
     <PostLayout
+      availableLocales={["ko", "en"]}
       meta={{
         title: `NYPC CODE BATTLE`,
         year: 2025,

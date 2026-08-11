@@ -1,4 +1,6 @@
 import { chakra } from "@chakra-ui/react";
+import { useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 import type { ReactNode } from "react";
 
 const DetailsContainer = chakra("details", {
@@ -18,16 +20,12 @@ const Summary = chakra("summary", {
   },
 });
 
-export const Details = ({
-  summary = "자세히 보기",
-  children,
-}: {
-  summary?: string;
-  children?: ReactNode;
-}) => {
+export const Details = ({ summary, children }: { summary?: string; children?: ReactNode }) => {
+  const locale = useLocale();
+
   return (
     <DetailsContainer>
-      <Summary>{summary}</Summary>
+      <Summary>{summary ?? m.details_summary({}, { locale })}</Summary>
       {children}
     </DetailsContainer>
   );

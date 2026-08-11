@@ -45,3 +45,6 @@ next-env.d.ts
 
 # playwright-mcp artifacts (screenshots, snapshots, console logs)
 .playwright-mcp/
+
+# paraglide compiler output
+src/paraglide/

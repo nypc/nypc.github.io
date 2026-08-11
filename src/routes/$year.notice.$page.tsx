@@ -2,11 +2,12 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { MDXViewer, PostLayout } from "components";
 import { allPosts } from "content-collections";
 import { z } from "zod";
+import { localesWithContent } from "@/i18n/content";
 
 const Post = () => {
-  const post = Route.useLoaderData();
+  const { post, availableLocales } = Route.useLoaderData();
   return (
-    <PostLayout meta={post}>
+    <PostLayout meta={post} availableLocales={availableLocales}>
       <MDXViewer code={post.content} />
     </PostLayout>
   );
@@ -20,9 +21,10 @@ export const Route = createFileRoute("/$year/notice/$page")({
     }).parse,
   },
   loader: ({ params }) => {
-    const post = allPosts.find((p) => p.slug === `${params.year}/notice/${params.page}`);
+    const path = `${params.year}/notice/${params.page}`;
+    const post = allPosts.find((p) => p.slug === path);
     if (!post) throw notFound();
-    return post;
+    return { post, availableLocales: localesWithContent(path) };
   },
   component: Post,
 });

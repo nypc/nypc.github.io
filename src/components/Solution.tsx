@@ -1,5 +1,7 @@
 import { Box, Button, Collapsible } from "@chakra-ui/react";
 import { useState } from "react";
+import { useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 
 interface Props {
   children?: React.ReactNode;
@@ -8,6 +10,7 @@ interface Props {
 export const Solution: React.FC<Props> = (props) => {
   const { children } = props;
   const [open, setOpen] = useState(false);
+  const locale = useLocale();
 
   return (
     <Box>
@@ -15,7 +18,7 @@ export const Solution: React.FC<Props> = (props) => {
         <Collapsible.Content>{children}</Collapsible.Content>
       </Collapsible.Root>
       <Button variant="outline" onClick={() => setOpen((prevOpen) => !prevOpen)}>
-        {open ? "닫기" : "풀이 보기"}
+        {open ? m.solution_hide({}, { locale }) : m.solution_show({}, { locale })}
       </Button>
     </Box>
   );

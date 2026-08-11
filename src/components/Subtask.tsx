@@ -1,5 +1,7 @@
 import { Grid, Text, chakra } from "@chakra-ui/react";
 import { IconCube } from "@tabler/icons-react";
+import { useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 
 const SubtaskContainer = chakra(Grid, {
   base: {
@@ -23,6 +25,7 @@ interface Props {
 
 export const Subtask: React.FC<Props> = (props) => {
   const { score, index, children } = props;
+  const locale = useLocale();
 
   return (
     <SubtaskContainer as="dd">
@@ -32,7 +35,8 @@ export const Subtask: React.FC<Props> = (props) => {
             <IconCube />
           </chakra.span>
           <span>
-            <b>종류 {index}</b>: {score}점
+            <b>{m.subtask_label({ index }, { locale })}</b>:{" "}
+            {m.subtask_score({ score }, { locale })}
           </span>
         </Text>
       </chakra.span>

@@ -100,7 +100,7 @@ export const YearRow = ({ href, title, description, theme, nested }: YearRowProp
             borderRadius="full"
             style={{ background: accent }}
           />
-          <Text fontFamily={headingFont(title)} fontWeight="600" fontSize="lg" color="fg">
+          <Text fontFamily={headingFont(title)} fontWeight="600" fontSize="3xl" color="fg">
             {title}
           </Text>
         </Flex>

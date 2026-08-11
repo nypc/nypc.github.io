@@ -1,4 +1,5 @@
 import contentCollections from "@content-collections/vite";
+import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
@@ -8,6 +9,26 @@ export default defineConfig({
   plugins: [
     tsconfigPaths({ projects: ["./tsconfig.json"] }),
     contentCollections(),
+    paraglideVitePlugin({
+      project: "./project.inlang",
+      outdir: "./src/paraglide",
+      // The site is prerendered to static HTML, so the locale has to be a pure
+      // function of the URL. Cookie or storage strategies would make every
+      // locale share one HTML file and resolve only after hydration.
+      strategy: ["url", "baseLocale"],
+      urlPatterns: [
+        {
+          pattern: "/:path(.*)?",
+          localized: [
+            // Base locale last: it is the catch-all, so `/en/...` matches first
+            // and every other path falls through to Korean without a prefix.
+            ["en", "/en/:path(.*)?"],
+            ["ko", "/:path(.*)?"],
+          ],
+        },
+      ],
+      emitTsDeclarations: true,
+    }),
     tanstackStart({
       router: {
         routesDirectory: "routes",

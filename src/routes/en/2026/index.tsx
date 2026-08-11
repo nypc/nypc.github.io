@@ -10,7 +10,7 @@ export const problems = {
 const List = () => {
   return (
     <PostLayout
-      en={true}
+      availableLocales={["ko", "en"]}
       meta={{
         title: `NYPC ${year}`,
       }}
@@ -19,7 +19,7 @@ const List = () => {
       <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
         Master Track &mdash; Qualification Round
       </SectionHeading>
-      <ProblemList en={true} year={year} problems={problems.master} />
+      <ProblemList year={year} problems={problems.master} />
     </PostLayout>
   );
 };

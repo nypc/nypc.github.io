@@ -1,6 +1,8 @@
 import { Box, Grid, Heading, IconButton } from "@chakra-ui/react";
 import { IconCopy } from "@tabler/icons-react";
 import { useRef } from "react";
+import { useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 import type { BoxProps } from "@chakra-ui/react";
 
 /*
@@ -70,6 +72,7 @@ interface IOProps {
 export const IO: React.FC<IOProps> = (props) => {
   const { title, children } = props;
   const preRef = useRef<HTMLPreElement | null>(null);
+  const locale = useLocale();
 
   const handleCopy = () => {
     if (!preRef.current) return;
@@ -80,10 +83,10 @@ export const IO: React.FC<IOProps> = (props) => {
     // TODO: render this by snackbar
     navigator.clipboard.write(data).then(
       () => {
-        alert("클립보드에 복사했습니다.");
+        alert(m.example_copy_success({}, { locale }));
       },
       () => {
-        alert("클립보드에 복사하지 못했습니다.");
+        alert(m.example_copy_failure({}, { locale }));
       },
     );
   };
@@ -103,7 +106,7 @@ export const IO: React.FC<IOProps> = (props) => {
         {title}
         {children && (
           <IconButton
-            aria-label="클립보드에 복사"
+            aria-label={m.example_copy({}, { locale })}
             variant="ghost"
             size="xs"
             color="fg.muted"
@@ -120,9 +123,11 @@ export const IO: React.FC<IOProps> = (props) => {
 };
 
 export const Input = (props: IOProps) => {
-  return <IO title="입력" {...props} />;
+  const locale = useLocale();
+  return <IO title={m.example_input({}, { locale })} {...props} />;
 };
 
 export const Output = (props: IOProps) => {
-  return <IO title="출력" {...props} />;
+  const locale = useLocale();
+  return <IO title={m.example_output({}, { locale })} {...props} />;
 };

@@ -2,6 +2,8 @@ import { Grid, Text, chakra } from "@chakra-ui/react";
 import { createLink } from "@tanstack/react-router";
 import React, { useMemo } from "react";
 import { Enumerate, Itemize } from "./List";
+import { BASE_LOCALE, useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 import { accentColor } from "@/theme";
 import type { GridProps } from "@chakra-ui/react";
 
@@ -26,26 +28,31 @@ const ProblemLinkStyles = chakra("a", {
 
 export const ProblemLink = createLink(ProblemLinkStyles);
 
+/**
+ * Practice problems are marked by a bracketed tag on the title — `[연습문제]`
+ * in Korean, `[Practice]` in English. Matching the tag shape rather than one
+ * locale's literal keeps this working in every language; the tag is the only
+ * thing bracketed in the titles, so the pattern is unambiguous.
+ */
+const PRACTICE_TAG = /^\[[^\]]+\]\s*/;
+
 interface Props {
   year: number | string;
   problems:
     | Array<[string, string]>
     | ReadonlyArray<[string, string]>
     | ReadonlyArray<readonly [string, string]>;
-  en?: boolean;
 }
 
 export const ProblemList: React.FC<Props> = (props) => {
-  const { year, problems: list, en } = props;
+  const { year, problems: list } = props;
+  const locale = useLocale();
+  // Selected as a literal rather than built by concatenation, so the router's
+  // route-path union still type-checks the destination.
+  const to = locale === BASE_LOCALE ? "/$year/$page" : "/en/$year/$page";
 
-  const practices = useMemo(
-    () => list.filter(([, title]) => title.startsWith("[연습문제]")),
-    [list],
-  );
-  const problems = useMemo(
-    () => list.filter(([, title]) => !title.startsWith("[연습문제]")),
-    [list],
-  );
+  const practices = useMemo(() => list.filter(([, title]) => PRACTICE_TAG.test(title)), [list]);
+  const problems = useMemo(() => list.filter(([, title]) => !PRACTICE_TAG.test(title)), [list]);
 
   return (
     <>
@@ -53,11 +60,11 @@ export const ProblemList: React.FC<Props> = (props) => {
         <Itemize>
           {practices.map(([id, title]) => (
             <li key={id}>
-              <ProblemLink to={`${en ? "/en" : ""}/$year/$page`} params={{ year, page: id }}>
+              <ProblemLink to={to} params={{ year, page: id }}>
                 <Text as="span" color="fg.muted">
-                  연습문제:
+                  {m.problem_practice({}, { locale })}
                 </Text>{" "}
-                {title.replace(/^\[연습문제] */, "")}
+                {title.replace(PRACTICE_TAG, "")}
               </ProblemLink>
             </li>
           ))}
@@ -66,7 +73,7 @@ export const ProblemList: React.FC<Props> = (props) => {
       <ProblemListEnumerate style={{ columnCount: 3 }}>
         {problems.map(([id, title]) => (
           <li key={id}>
-            <ProblemLink to={`${en ? "/en" : ""}/$year/$page`} params={{ year, page: id }}>
+            <ProblemLink to={to} params={{ year, page: id }}>
               {title}
             </ProblemLink>
           </li>

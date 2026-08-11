@@ -1,18 +1,33 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Outlet,
+  Scripts,
+  createRootRoute,
+  useRouterState,
+} from "@tanstack/react-router";
 import { AppProviders } from "components/AppProviders";
+import { htmlLang, localeFromPathname } from "@/i18n/locale";
+import * as m from "@/paraglide/messages";
 import { TYPEKIT_STYLESHEET_HREF } from "@/theme";
 
-const RootDocument = ({ children }: { children: React.ReactNode }) => (
-  <html lang="ko">
-    <head>
-      <HeadContent />
-    </head>
-    <body>
-      {children}
-      <Scripts />
-    </body>
-  </html>
-);
+const RootDocument = ({ children }: { children: React.ReactNode }) => {
+  // Read from the router rather than a prop so the prerendered HTML for each
+  // URL is stamped with its own language — this attribute has to be correct in
+  // the served file, before any JavaScript runs.
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  return (
+    <html lang={htmlLang(localeFromPathname(pathname))}>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+};
 
 const RootComponent = () => (
   <RootDocument>
@@ -22,12 +37,18 @@ const RootComponent = () => (
   </RootDocument>
 );
 
-const NotFoundComponent = () => (
-  <main style={{ padding: "48px 16px", textAlign: "center" }}>
-    <h1>404</h1>
-    <p>페이지를 찾을 수 없습니다.</p>
-  </main>
-);
+const NotFoundComponent = () => {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const locale = localeFromPathname(pathname);
+
+  return (
+    <main style={{ padding: "48px 16px", textAlign: "center" }}>
+      <title>{`${m.not_found_title({}, { locale })} — NYPC`}</title>
+      <h1>{m.not_found_title({}, { locale })}</h1>
+      <p>{m.not_found_body({}, { locale })}</p>
+    </main>
+  );
+};
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,9 +60,11 @@ export const Route = createRootRoute({
         name: "viewport",
         content: "width=device-width, initial-scale=1",
       },
-      {
-        title: "NYPC — NEXON Young Programmers Cup",
-      },
+      // Deliberately no `title` here. `PostLayout` renders one, which React
+      // hoists into <head>; a title declared at the root as well would be
+      // emitted *first*, and browsers and crawlers honour the first <title> —
+      // so every page shipped the generic fallback until hydration replaced it.
+      // Pages outside `PostLayout` (the 404) render their own.
     ],
     links: [
       {

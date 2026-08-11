@@ -2,10 +2,13 @@ import { Box, Container, Flex, Heading, Text, chakra } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { createLink } from "@tanstack/react-router";
 import { isAsciiOnly, yearAccentVars } from "@/theme";
+import { BASE_LOCALE, useLocale } from "@/i18n";
+import * as m from "@/paraglide/messages";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { NavButton } from "./NavButton";
 import { YearAurora } from "./YearAurora";
 import { themes } from "./themes";
+import type { Locale } from "@/i18n";
 import type { ThemeItem } from "./themes";
 import type { Post } from "content-collections";
 import "./styles.css";
@@ -31,24 +34,35 @@ const MetaLinkA = chakra("a", {
 
 const MetaLink = createLink(MetaLinkA);
 
-type PostMetaLike = Omit<Post, "_meta" | "content" | "slug">;
+/**
+ * Partial because index routes synthesise a header from a title alone — they
+ * are not backed by an MDX file, so they have no year, stage or edition. Every
+ * field is already read defensively below.
+ */
+type PostMetaLike = Partial<Omit<Post, "_meta" | "content" | "slug">>;
 
 interface Props {
   children: React.ReactNode;
   root?: boolean;
   meta?: PostMetaLike;
-  en?: boolean;
   theme?: ThemeItem;
+  /**
+   * Locales this page exists in. Defaults to Korean only, which is true of
+   * every page that has not been translated.
+   */
+  availableLocales?: ReadonlyArray<Locale>;
 }
 
 export const PostLayout: React.FC<Props> = (props) => {
-  const { root, meta, theme, en, children } = props;
+  const { root, meta, theme, availableLocales, children } = props;
+  const locale = useLocale();
+  const localePrefix = locale === BASE_LOCALE ? "" : `/${locale}`;
 
   // Problem and notice pages don't pass a theme, but they know their year — so
   // each one still carries its edition's accent.
   const resolvedTheme = theme ?? (meta?.year ? themes[Number(meta.year)] : undefined);
 
-  const prev = `${en ? "/en" : ""}${meta?.year ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}` : "/"}`;
+  const prev = `${localePrefix}${meta?.year ? `/${meta.year}${meta.codebattle ? "-codebattle" : ""}` : "/"}`;
 
   const title = meta?.title
     ? `${meta.title}${
@@ -67,14 +81,8 @@ export const PostLayout: React.FC<Props> = (props) => {
       <title>{title}</title>
       <meta property="og:title" content={title} />
       <meta property="og:url" content="https://www.nypc.co.kr" />
-      <meta
-        name="description"
-        content="NEXON YOUTH PROGRAMMING CHALLENGE, 세상을 바꾸는 코딩! 세상을 더 멋지게 바꿀 당신을 만나고 싶습니다."
-      />
-      <meta
-        property="og:descrption"
-        content="NEXON YOUTH PROGRAMMING CHALLENGE, 세상을 바꾸는 코딩! 세상을 더 멋지게 바꿀 당신을 만나고 싶습니다."
-      />
+      <meta name="description" content={m.site_description({}, { locale })} />
+      <meta property="og:description" content={m.site_tagline({}, { locale })} />
 
       {resolvedTheme && <YearAurora theme={resolvedTheme} />}
 
@@ -85,16 +93,16 @@ export const PostLayout: React.FC<Props> = (props) => {
               {root ? (
                 <a href="https://www.nypc.co.kr">
                   <IconArrowLeft />
-                  {en ? "NYPC Official Website" : "NYPC 공식 사이트"}
+                  {m.nav_official_site({}, { locale })}
                 </a>
               ) : (
                 <MetaLink to={prev}>
                   <IconArrowLeft />
-                  {en ? "Back" : "이전"}
+                  {m.nav_back({}, { locale })}
                 </MetaLink>
               )}
             </NavButton>
-            {root && <LanguageSwitcher en={en} />}
+            <LanguageSwitcher availableLocales={availableLocales} />
           </Flex>
         </PageContainer>
       </Box>
