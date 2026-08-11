@@ -21,5 +21,7 @@
   "problem_practice": "Practice:",
   "not_found_title": "404",
   "not_found_body": "This page could not be found.",
-  "site_tagline": "Break, Solve, Win."
+  "site_tagline": "Break, Solve, Win.",
+  "replay_featured": "Featured replays",
+  "replay_rank": "#{rank}"
 }

@@ -7,21 +7,11 @@ import * as m from "@/paraglide/messages";
 import type { Locale } from "@/i18n";
 
 interface Props {
-  /**
-   * Locales this page exists in. Anything omitted is listed but disabled —
-   * only 6 of 288 pages are translated, so silently dropping the option would
-   * hide that the archive is mostly Korean, and linking anyway would 404.
-   */
+  /** Locales this page exists in; anything omitted is listed but disabled. */
   availableLocales?: ReadonlyArray<Locale>;
 }
 
-/**
- * Language picker.
- *
- * Entries are real anchors (`asChild` + router `Link`) so middle-click and
- * open-in-new-tab keep working, and each points at the *same page* in the
- * other locale rather than at that locale's home.
- */
+/** Real anchors, pointing at the same page in the other locale. */
 export const LanguageSwitcher = ({ availableLocales = [BASE_LOCALE] }: Props) => {
   const locale = useLocale();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -57,15 +47,10 @@ export const LanguageSwitcher = ({ availableLocales = [BASE_LOCALE] }: Props) =>
                       {current && <IconCheck />}
                     </Link>
                   ) : (
-                    // Two siblings rather than one wrapper: the item's own
-                    // `space-between` is what separates the label from the note.
+                    // Two siblings: the item's `space-between` separates them.
                     <>
                       <Span>{LOCALE_LABELS[candidate]}</Span>
-                      {/*
-                        In the row's own locale, not the page's — the row speaks
-                        for that language, which is why its label is "English"
-                        rather than "영어".
-                      */}
+                      {/* In the row's own locale, like its label. */}
                       <Span fontSize="xs" color="fg.subtle">
                         {m.language_not_translated({}, { locale: candidate })}
                       </Span>

@@ -11,9 +11,8 @@ import * as m from "@/paraglide/messages";
 import { TYPEKIT_STYLESHEET_HREF } from "@/theme";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => {
-  // Read from the router rather than a prop so the prerendered HTML for each
-  // URL is stamped with its own language — this attribute has to be correct in
-  // the served file, before any JavaScript runs.
+  // From the router, not a prop: each prerendered file must carry its own
+  // language before any JavaScript runs.
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   return (
@@ -60,11 +59,8 @@ export const Route = createRootRoute({
         name: "viewport",
         content: "width=device-width, initial-scale=1",
       },
-      // Deliberately no `title` here. `PostLayout` renders one, which React
-      // hoists into <head>; a title declared at the root as well would be
-      // emitted *first*, and browsers and crawlers honour the first <title> —
-      // so every page shipped the generic fallback until hydration replaced it.
-      // Pages outside `PostLayout` (the 404) render their own.
+      // No `title` here: `PostLayout` renders one that React hoists into <head>,
+      // and a root title would be emitted first — browsers honour the first.
     ],
     links: [
       {

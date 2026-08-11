@@ -7,15 +7,8 @@ interface Props {
 }
 
 /**
- * Subtle "aurora" wash behind the page header, tinted with the year's second
- * poster colour (see `yearAuroraColor`). A few large, heavily-blurred radial
- * blobs of the same hue at low opacity, faded out toward the bottom with a mask
- * so the content below stays on a clean background.
- *
- * Purely decorative: `aria-hidden`, non-interactive, and pinned behind the
- * content, which the layout raises into its own stacking context.
- *
- * Mirrors the problem-detail aurora in solved.ac v4.
+ * Decorative wash behind the page header, tinted with the year's second poster
+ * colour. Mirrors the problem-detail aurora in solved.ac v4.
  */
 export const YearAurora = ({ theme }: Props) => {
   const color = yearAuroraColor(theme);
@@ -38,13 +31,7 @@ export const YearAurora = ({ theme }: Props) => {
         WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
       }}
     >
-      {/*
-        Widths are a share of the viewport and overlap heavily — each blob
-        spans ~70% and they start 30% apart, so neighbours cover each other's
-        edges. Sized in pixels with gaps between them they read as three
-        separate spots rather than one wash; the blur alone is not enough to
-        close a gap, it only softens each edge.
-      */}
+      {/* Widths are relative and overlap heavily; fixed pixel sizes leave visible gaps. */}
       <Box
         position="absolute"
         top="-160px"

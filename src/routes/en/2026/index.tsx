@@ -16,7 +16,7 @@ const List = () => {
       }}
       theme={themes[year]}
     >
-      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         Master Track &mdash; Qualification Round
       </SectionHeading>
       <ProblemList year={year} problems={problems.master} />

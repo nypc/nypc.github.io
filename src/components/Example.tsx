@@ -31,17 +31,11 @@ export const Examples: React.FC<ExamplesProps> = (props) => (
 */
 
 /**
- * Sample I/O arrives as MDX children, which means either a paragraph (plain
- * text, the common case) or a nested `pre > code` (fenced block). Both bring
- * the MDX theme's block spacing with them, which stacks on top of this box's
- * padding and leaves it lopsided — flush at the top, gapped at the bottom.
+ * Sample I/O arrives as MDX children — a paragraph, or a nested `pre > code` —
+ * each bringing block spacing that would stack on this box's padding.
  *
- * The child resets have to live in the same unlayered context as the styles
- * they override. Chakra compiles `chakra(el, { base })` into the `recipes`
- * cascade layer, while style props and `css` on an element are unlayered — and
- * unlayered rules win over layered ones no matter how specific the layered
- * selector is. A `& > p` reset written as part of a recipe would silently lose
- * to the paragraph's own `marginBottom` style prop.
+ * The resets must stay unlayered: `chakra(el, { base })` compiles into the
+ * `recipes` layer, and unlayered style props beat it regardless of specificity.
  */
 const Preformatted = ({ ref, ...props }: BoxProps & { ref?: React.Ref<HTMLPreElement> }) => (
   <Box

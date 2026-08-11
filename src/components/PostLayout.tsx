@@ -34,11 +34,7 @@ const MetaLinkA = chakra("a", {
 
 const MetaLink = createLink(MetaLinkA);
 
-/**
- * Partial because index routes synthesise a header from a title alone — they
- * are not backed by an MDX file, so they have no year, stage or edition. Every
- * field is already read defensively below.
- */
+/** Partial: index routes synthesise a header from a title alone. */
 type PostMetaLike = Partial<Omit<Post, "_meta" | "content" | "slug">>;
 
 interface Props {
@@ -118,11 +114,8 @@ export const PostLayout: React.FC<Props> = (props) => {
         >
           <PageContainer>
             {meta.title &&
-              // A pure-ASCII title is set in the condensed brand face at full
-              // size. Anything else goes to Pretendard a step smaller: the
-              // brand face covers no Hangul, so a mixed title would otherwise
-              // set only its Latin run in it, and Pretendard needs slightly
-              // less size (and a little more leading) to carry the same weight.
+              // Pure-ASCII titles take the condensed brand face; anything else
+              // goes to Pretendard a step smaller, since the face has no Hangul.
               (isAsciiOnly(meta.title) ? (
                 <Heading
                   as="h1"

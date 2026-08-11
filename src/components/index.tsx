@@ -9,6 +9,7 @@ export * from "./languageExample";
 export * from "./MDXViewer";
 export * from "./PostLayout";
 export * from "./ProblemList";
+export * from "./ReplayList";
 export * from "./SectionHeading";
 export * from "./Simulators";
 export * from "./Solution";

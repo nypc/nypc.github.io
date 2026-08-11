@@ -1,4 +1,3 @@
-import { Separator } from "@chakra-ui/react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import {
   Itemize,
@@ -57,7 +56,7 @@ const List = () => {
       }}
       theme={themes[year]}
     >
-      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         안내
       </SectionHeading>
       <Itemize>
@@ -72,43 +71,41 @@ const List = () => {
           </Link>
         </li>
       </Itemize>
-      <Separator marginBlock="8" borderColor="border" />
-      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         예선
       </SectionHeading>
       <ProblemListContainer>
         <div>
-          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+          <SectionHeading as="h3" size="xl" textAlign="center" marginTop="8" marginBottom="2">
             예선 스테이지 1
           </SectionHeading>
           <ProblemList year={year} problems={problems.stage1} />
         </div>
         <div>
-          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+          <SectionHeading as="h3" size="xl" textAlign="center" marginTop="8" marginBottom="2">
             예선 스테이지 2
           </SectionHeading>
           <ProblemList year={year} problems={problems.stage2} />
         </div>
         <div>
-          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+          <SectionHeading as="h3" size="xl" textAlign="center" marginTop="8" marginBottom="2">
             예선 스테이지 3
           </SectionHeading>
           <ProblemList year={year} problems={problems.stage3} />
         </div>
       </ProblemListContainer>
-      <Separator marginBlock="8" borderColor="border" />
-      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         본선
       </SectionHeading>
       <ProblemListContainer>
         <div>
-          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+          <SectionHeading as="h3" size="xl" textAlign="center" marginTop="8" marginBottom="2">
             본선 &mdash; 1214
           </SectionHeading>
           <ProblemList year={year} problems={problems.finals1214} />
         </div>
         <div>
-          <SectionHeading as="h3" size="xl" marginTop="8" marginBottom="2">
+          <SectionHeading as="h3" size="xl" textAlign="center" marginTop="8" marginBottom="2">
             본선 &mdash; 1519
           </SectionHeading>
           <ProblemList year={year} problems={problems.finals1519} />

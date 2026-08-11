@@ -1,4 +1,3 @@
-import { Separator } from "@chakra-ui/react";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { Itemize, PostLayout, ProblemList, SectionHeading, themes } from "components";
 
@@ -18,12 +17,10 @@ const List = () => {
       availableLocales={["ko", "en"]}
       meta={{
         title: `NYPC CODE BATTLE`,
-        year: 2025,
-        codebattle: true,
       }}
       theme={themes[2025]}
     >
-      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         안내
       </SectionHeading>
       <Itemize>
@@ -38,13 +35,11 @@ const List = () => {
           </Link>
         </li>
       </Itemize>
-      <Separator marginBlock="8" borderColor="border" />
-      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         온라인 라운드
       </SectionHeading>
       <ProblemList year={year} problems={problems.online} />
-      <Separator marginBlock="8" borderColor="border" />
-      <SectionHeading as="h2" size="2xl" marginTop="0" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         파이널 라운드
       </SectionHeading>
       <ProblemList year={year} problems={problems.finals} />

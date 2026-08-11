@@ -26,11 +26,11 @@ const List = () => {
       }}
       theme={themes[year]}
     >
-      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         예선
       </SectionHeading>
       <ProblemList year={year} problems={problems.preliminaries} />
-      <SectionHeading as="h2" size="2xl" marginTop="8" marginBottom="4">
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         본선
       </SectionHeading>
       <ProblemList year={year} problems={problems.finals} />

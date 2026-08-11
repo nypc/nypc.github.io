@@ -1,35 +1,22 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 import { BODY_FONT, DISPLAY_FONT, MONO_FONT } from "./fonts";
 
-/**
- * CSS variable carrying the current year's accent colour. Set per-page by
- * `PostLayout` from `themes.tsx`; everything that tints with the year colour
- * (rules, badges, links, markers) reads this one variable.
- */
+/** Carries the current year's accent; set per page by `PostLayout`. */
 export const YEAR_ACCENT_VAR = "--nypc-year-accent";
 
 /** Neutral ink used wherever no year accent is in scope. */
 const ACCENT_FALLBACK = "#191716";
 
 /**
- * Accent colours are plain CSS values rather than semantic tokens on purpose.
- *
- * A custom property resolves its `var()` references at the element where it is
- * *declared*, and Chakra declares token variables once on `:root`. A token
- * defined as `var(--nypc-year-accent, …)` would therefore freeze at the
- * fallback on `:root` and inherit that frozen value everywhere, ignoring the
- * per-page override. Used directly in a declaration, the same expression
- * resolves against whatever is in scope at that element.
+ * Plain CSS values, not semantic tokens: Chakra declares token variables once on
+ * `:root`, where `var(--nypc-year-accent, …)` would freeze at the fallback and
+ * inherit that everywhere. Used at the point of use, it resolves per element.
  */
 export const accentColor = `var(${YEAR_ACCENT_VAR}, ${ACCENT_FALLBACK})`;
 export const accentSubtle = `color-mix(in srgb, ${accentColor} 12%, transparent)`;
 export const accentMuted = `color-mix(in srgb, ${accentColor} 40%, transparent)`;
 
-/**
- * Warm neutral ramp. 50/400/500/900 are sampled straight off new.nypc.co.kr
- * (#FAFAF9, #A6A3A0, #767270, #191716 — the last also being this repo's 2026
- * theme colour); the rest fill in the ramp between them.
- */
+/** Warm neutral ramp; 50/400/500/900 sampled from new.nypc.co.kr. */
 const stone = {
   50: { value: "#FAFAF9" },
   100: { value: "#F5F5F4" },
@@ -59,9 +46,8 @@ const config = defineConfig({
     "*::selection": {
       bg: accentSubtle,
     },
-    // Chakra's reset strips link styling; prose links need it back. Navigation
-    // and card links opt out again via `textDecoration="none"`, which sits in a
-    // higher cascade layer than this base rule.
+    // Chakra's reset strips link styling. Nav and card links opt out again via
+    // `textDecoration="none"`, which sits in a higher cascade layer.
     a: {
       color: "fg",
       textDecoration: "underline",
@@ -78,15 +64,10 @@ const config = defineConfig({
         textDecorationColor: "currentColor",
       },
     },
-    // The `span.katex` / `.hangul_fallback` sizing lives in AppProviders
-    // instead — it has to be emitted unlayered to beat KaTeX's own CDN
-    // stylesheet. See the note there.
-    /**
-     * Chakra's preflight blockifies `img`. Statements embed small glyphs — the
-     * coloured Connexion tiles, inline icons — mid-sentence, and blockifying
-     * those breaks the line apart. Restore the browser default; `Figure` opts
-     * back into `display: block` explicitly, and recipe styles outrank this.
-     */
+    // KaTeX sizing lives in AppProviders — it must be unlayered to beat KaTeX's
+    // own stylesheet. See the note there.
+    // Chakra's preflight blockifies `img`, which breaks inline glyphs mid-sentence.
+    // `Figure` opts back into `display: block`; recipe styles outrank this.
     img: {
       display: "inline",
     },
@@ -137,11 +118,7 @@ const config = defineConfig({
         },
         fg: {
           DEFAULT: { value: "{colors.stone.900}" },
-          /**
-           * Prose body copy, a step softer than headings. new.nypc.co.kr sets
-           * body text at ~7.3:1 against its dark ground while headings sit at
-           * full contrast; stone.600 reproduces that ratio on white (~7.5:1).
-           */
+          /** Prose copy, a step softer than headings — matches the official site's ~7.3:1. */
           body: { value: "{colors.stone.600}" },
           muted: { value: "{colors.stone.500}" },
           subtle: { value: "{colors.stone.400}" },

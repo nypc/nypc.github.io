@@ -4,22 +4,15 @@ import { headingFont, yearAccentColor } from "@/theme";
 import type { ThemeItem } from "./themes";
 import type { ReactNode } from "react";
 
-/**
- * The archive index, styled after the schedule and notice lists on
- * new.nypc.co.kr: an uppercase column header, then rows separated by hairlines
- * rather than standalone cards. Rows are still links — they just no longer look
- * like tiles.
- */
+/** Archive index, after the schedule and notice lists on new.nypc.co.kr. */
 export const YearList = ({ children }: { children: ReactNode }) => (
   <Box>
     <Flex
       textStyle="eyebrow"
-      // Same gap as the rows below, or the Edition label sits a gap-width left
-      // of the column it labels.
+      // Must match the rows' gap, or the label misaligns with its column.
       gap={{ base: "1", md: "4" }}
       paddingBlock="3"
-      // Flush left, so the year wordmarks line up with the rest of the page.
-      // Only the nested Code Battle row is inset, from inside its own cell.
+      // Flush left; only the nested Code Battle row is inset, from its own cell.
       paddingInlineStart="0"
       paddingInlineEnd={{ base: "2", md: "6" }}
       borderBottomWidth="1px"
@@ -65,11 +58,7 @@ export const YearRow = ({ href, title, description, theme, nested }: YearRowProp
       _hover={{ bg: `color-mix(in srgb, ${accent} 8%, transparent)` }}
     >
       <a href={href}>
-        {/*
-          The indent lives inside the year cell rather than on the row, so the
-          cell keeps its width and the Edition column stays aligned across
-          nested and top-level rows alike.
-        */}
+        {/* Indent inside the cell, so the Edition column stays aligned. */}
         <Flex
           align="center"
           gap="3"
@@ -78,8 +67,7 @@ export const YearRow = ({ href, title, description, theme, nested }: YearRowProp
           paddingInlineStart={nested ? "8" : "0"}
         >
           {nested && (
-            // Drawn rather than a glyph so it lines up with the row's baseline
-            // at any font size.
+            // Drawn, not a glyph, so it aligns at any font size.
             <Box
               aria-hidden
               flexShrink={0}
