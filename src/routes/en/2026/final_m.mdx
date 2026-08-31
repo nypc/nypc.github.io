@@ -1,15 +1,15 @@
 ---
-title: NEXT NATION
-stage: Master Track Qualification Round
+title: NEXT VISION
+stage: Master Track Final Round
 ---
 
-**NEXT NATION** is a two-player turn-based strategy game where players build buildings, train warriors, and destroy the opponent's headquarter.
-
 <center>
-  <YouTube videoId="BnExruRtP1A" />
+  <YouTube videoId="2z4MJMRTzx8" />
 </center>
 
 <br />
+
+**NEXT VISION** is a two-player turn-based strategy game where players build buildings, train warriors, and destroy the opponent's headquarter.
 
 ## Rules
 
@@ -17,9 +17,9 @@ stage: Master Track Qualification Round
 
 The game is played on the **battlefield**. The battlefield consists of $N$ areas indexed from $0$ through $N-1$, point-symmetric with respect to the origin. The leftmost area #$0$ and the rightmost area #$N-1$ each have a player's **headquarter**. Among areas without headquarter, $K$ areas are **stronghold**s, where **base**s can be built.
 
-$N$, the size of battlefield, satisfies $51 \le N \le 109$, and $K$, the number of strongholds, satisfies $\lceil 0.15N \rceil \le K \le \lfloor 0.2N \rfloor$. $N$ and $K$ are both odd numbers.
+$N$, the size of battlefield, satisfies $180 < N < 250$, and $K$, the number of strongholds, satisfies $\left\lceil \sqrt N-1 \right\rceil \le K \le \left\lfloor \sqrt N+4 \right\rfloor$. $N$ and $K$ are both odd numbers.
 
-Each player starts the game with $3$ **warriors** on their headquarter and $500$ gold. The headquarter is initially at level $1$, HP $10$, and the warriors are initially at HP $4$. If the headquarter is destroyed, the owner loses.
+Each player starts the game with $3$ **warriors** on their headquarter and $750$ gold. The headquarter is initially at level $1$, HP $10$, and the warriors are initially at HP $4$. If the headquarter is destroyed, the owner loses.
 
 Every day, a player can deliver the following commands as many times as they want:
 
@@ -38,7 +38,7 @@ The Morning consists of **Building Step** → **Moving Step** → **Training Ste
 
 - In the **Building Step**, new bases are raised and buildings already built are upgraded by spending gold.
 - In the **Moving Step**, the warriors that received Move commands on the same day or were already in moving state move up to one area according to the **Movement Rule** (Section 3).
-  - You spend $10$ golds for every warrior that recieved the move command on the current day. However you do not pay if the destination have allied building.
+  - You spend $10$ golds for every warrior that received the move command on the current day. However you do not pay if the destination have allied building.
 - In the **Training Step**, train the commanded number of warriors and spend $120$ gold for each warrior.
   - The HP of each warrior is determined by the level of the headquarter.
   - The warriors are indexed uniquely, and warriors trained earlier have smaller indices.
@@ -76,9 +76,9 @@ Each player starts with a headquarter of level $1$. Only one headquarter is allo
 | :-----------: | :-----------: | :---------------: | :----------: | :----------: | :--------------------: | :-------------: |
 |      $1$      |       -       |        $4$        |     $10$     |     $1$      |          $1$           |       $1$       |
 |      $2$      |  $600$ gold   |        $5$        |     $15$     |     $2$      |          $1$           |       $2$       |
-|      $3$      | $1\,200$ gold |        $6$        |     $20$     |     $2$      |          $2$           |       $3$       |
-|      $4$      | $2\,400$ gold |        $7$        |     $25$     |     $3$      |          $2$           |       $4$       |
-|      $5$      | $3\,600$ gold |        $8$        |     $30$     |     $3$      |          $3$           |       $5$       |
+|      $3$      | $1\,000$ gold |        $6$        |     $20$     |     $2$      |          $2$           |       $3$       |
+|      $4$      | $2\,000$ gold |        $7$        |     $25$     |     $3$      |          $2$           |       $4$       |
+|      $5$      | $3\,000$ gold |        $8$        |     $30$     |     $3$      |          $3$           |       $5$       |
 | $5+$ (Repair) | $1\,000$ gold |         -         |      -       |      -       |           -            |        -        |
 
 #### Base
@@ -87,9 +87,9 @@ Each player can build as many bases as they want. Unlike headquarter, warriors c
 
 |     Level     | Raise/Upgrade cost | Max HP | AD of turret | # of labor slot |
 | :-----------: | :----------------: | :----: | :----------: | :-------------: |
-|      $1$      |     $300$ gold     |  $6$   |     $1$      |       $1$       |
-|      $2$      |     $600$ gold     |  $12$  |     $1$      |       $2$       |
-|      $3$      |   $1\,000$ gold    |  $18$  |     $2$      |       $3$       |
+|      $1$      |     $500$ gold     |  $6$   |     $1$      |       $1$       |
+|      $2$      |     $550$ gold     |  $12$  |     $1$      |       $2$       |
+|      $3$      |     $600$ gold     |  $18$  |     $2$      |       $3$       |
 | $3+$ (Repair) |     $500$ gold     |   -    |      -       |        -        |
 
 ---
@@ -98,9 +98,9 @@ Each player can build as many bases as they want. Unlike headquarter, warriors c
 
 #### Movement Rule
 
-If there is no enemy warrior in the same area as a warrior that is performing a Move command, it moves by one area along a path whose sum of straight line distances between adjacent areas is minimum. Technical details are as follows:
+If there is no enemy in the same area as a warrior that is performing a Move command, it moves by one area along a path whose sum of straight line distances between adjacent areas is minimum. Technical details are as follows:
 
-<Details summary="Details">
+<Details>
 
 Define **straight line distance** between $(x_1, y_1)$ and $(x_2, y_2)$ as $\left \lceil \sqrt{(x_1 - x_2) ^2 + (y_1 - y_2)^2 } \right \rceil$, i.e., the ceiling of Euclidean distance. Each warrior finds a path to its target by moving only through adjacent areas, minimizing the sum of straight line distances between consecutive areas on the path, and moves to the next area on that path. If multiple such paths exist, it moves to the area with the smaller index.
 
@@ -124,31 +124,44 @@ The rule of each attack is as follows:
 
 ---
 
-### 4 | Game End
+### 4 | Vision
 
-During $200$ days from the game start, if the Headquarter is destroyed, then the player whose Headquarter is not destroyed wins.
+A player can only observe the range covered by the combined vision of all of their warriors and buildings.
 
-If two headquarters are destroyed on the same day, or both headquarters are not destroyed in $200$ days, then the side whose HQ has more HP wins.
+Headquarters, bases, and warriors can all see the area they are in and every area at most $2$ away from it.
+
+The distance between adjacent areas is $1$, and the distance between two areas is the length of the shortest path that travels between them through adjacent areas.
+
+---
+
+### 5 | Game End
+
+During $400$ days from the game start, if the Headquarter is destroyed, then the player whose Headquarter is not destroyed wins.
+
+If two headquarters are destroyed on the same day, or both headquarters are not destroyed in $400$ days, then the side whose HQ has more HP wins.
 
 If the HP of two HQ are equal, then the game ends in a draw.
 
 ---
 
-### 5 | Detailed Rules: Battlefield Generation Method
+### 6 | Detailed Rules: Battlefield Generation Method
 
 Since the structure of the battlefield is given as input, you do not need to know the generation rules to solve the problem.
 
 If you would like to know how the battlefield is generated, the details are as follows:
 
-<Details summary="Details">
+<Details>
 
 ### Battlefield
 
 The battlefield can be represented as an infinitely sized Euclidean plane.
 
 - The battlefield has exactly $N = 2N'+1$ polygonal areas.
+
 - Each area has a **center**, which is a point inside the polygon excluding the border.
+
 - Two areas are adjacent if they share at least one side.
+
 - Each player's **headquarter** is established in the leftmost area #$0$ and the rightmost area #$N-1$.
 
 The battlefield contains special areas called strongholds.
@@ -159,23 +172,27 @@ The battlefield structure is randomly generated for every game. Specific rules c
 
 #### Generation Process
 
-In the description below, $L = 10^4$, $D = 100$, and $A = 24$.
+In the description below, $L = 10^4$, $D = 800$, and $A = 24$.
 
 Each trial is independent, and when selecting a target from a specific range, all targets within that range are selected with equal probability.
 
 (1) Determine $N'$ and $K'$.
 
-- $N'$ is randomly selected from integers between $25$ and $54$ inclusive.
-- Subsequently, $K'$ is randomly selected from integers between $\left\lceil \frac{0.15(2N'+1)-1}{2} \right\rceil$ and $\left\lfloor \frac{0.2(2N'+1)-1}{2} \right\rfloor$ inclusive.
+- $N'$ is randomly selected from integers between $90$ and $124$ inclusive.
+
+- Subsequently, letting $N = 2N'+1$, $K'$ is randomly selected from integers such that $K = 2K'+1$ satisfies $\left\lceil \sqrt N-1 \right\rceil \le K \le \left\lfloor \sqrt N+4 \right\rfloor$.
 
 (2) In the Euclidean coordinate plane, let $S$ be a circle centered at the origin with radius $L$.
 
 (3) Initially, $P = \{(0, 0)\}$. Repeat the following $N'$ times.
 
 - Select a grid point on or inside the boundary of $S$ and set it as $u=(x_u, y_u)$.
+
 - If there exists a point $(x_v, y_v) = v \in P$ satisfying one of the following, select $u$ again. $\mathrm{dist}(u, v)$ is the Euclidean distance between point $u$ and $v$.
   - $x_u = x_v$
+
   - $\mathrm{dist}(u, v) < D$
+
 - Add $u$ and $u'$, which is the point reflection of $u$ across the origin $O$, to $P$.
 
 After the repetition, $|P| = 2N' + 1$. Number the points from $0$ to $N-1$ in increasing order of the $x$ coordinates.
@@ -188,9 +205,12 @@ After the repetition, $|P| = 2N' + 1$. Number the points from $0$ to $N-1$ in in
 
 (7) Initially, $R = \{N'\}$. Repeat the following $K'$ times.
 
-- Choose a random $t$ such that $t \in [0, N-1]$ and $t \not \in R$.
+- Choose a random $t$ such that $t \in [1, N-2]$ and $t \not \in R$. Areas #$0$ and #$N-1$ cannot be strongholds, since they have the headquarters.
+
 - If for one or more $r \in R$, area #$t$ or area #$N-1-t$ is adjacent to area #$r$, draw $t$ again.
+
 - If area #$t$ and area #$N-1-t$ are adjacent, draw $t$ again.
+
 - Add $t$ and $N-1-t$ to $R$.
 
 After the iteration, $|R| = 2K' + 1$. For each $r \in R$, area #$r$ is a stronghold.
@@ -277,31 +297,43 @@ C_1 a_1 h_1
 SIEGE N
 t_1 d_1 h_1
 ...
+WARRIOR W
+a_1 r_1 h_1
+...
+BUILDING B
+t_1 r_1 k_1 l_1 h_1
+...
 ```
 
-If both players finish submitting commands normally, the result is returned. If $N = 0$ in a `TRAIN`, `UPGRADE`, `MOVE`, `DAMAGE`, or `SIEGE` section, no following line is given for that section.
+If both players finish submitting commands normally, the result is returned. If $N = 0$ in an `UPGRADE`, `TRAIN`, `MOVE`, `DAMAGE`, or `SIEGE` section, no following line is given for that section.
 
 - `TURN` $T$: Indicates that information for the current day $T$ is shown.
 - `TIME` $T_x$ $R_x$ $T_y$ $R_y$:
   - $T_x$ and $T_y$ indicate how much time you and the opponent used this turn, respectively (ms).
   - $R_x$ and $R_y$ indicate how many countdown tokens remain for you and the opponent, respectively.
 - `UPGRADE` $N$:
-  - $N$, the number of buildings built, upgraded, or repaired this turn, is given.
+  - $N$, the number of **allied** buildings built, upgraded, or repaired this turn, is given.
   - The next $N$ lines give the $t_i$, `A` or `B`, the owner of the building and $d_i$, the index of area of the building in order.
 - `TRAIN` $N$:
-  - $N$, the number of warriors trained this turn, is given.
+  - $N$, the number of **allied** warriors trained this turn, is given.
   - The next line gives the indices of newly trained warriors in order. Warrior indices are assigned uniquely, increasing sequentially from 1 for each player.
   - Warrior indices are always in the form of `A` or `B` followed by an integer (e.g. `A12`, `B7`). If it starts with `A`, it is a warrior of the left player; if it starts with `B`, it is a warrior of the right player.
 - `MOVE` $N$:
-  - $N$, the number of warriors moved this turn, is given.
+  - $N$, the number of **allied** warriors moved this turn, is given.
   - The next $N$ lines give the index $a_i$ of the moved warrior and the index $d_i$ of the area it moved to in order.
 - `DAMAGE` $N$:
-  - $N$, the number of damage records for warriors this turn, is given.
+  - $N$, the number of damage records for **allied** warriors this turn, is given.
   - The next $N$ lines give the damage cause $C_i$, the index $a_i$ of the damaged warrior, and the damage amount $h_i$ in order.
   - $C_i$ is one of the following: `TURRET`(damage by building turret), `COMBAT`(damage by combat between warriors), `HUNGER`(damage by lack of food cost in Supply Step).
 - `SIEGE` $N$:
-  - $N$, the number of damage records for buildings this turn, is given.
+  - $N$, the number of damage records for **allied** buildings this turn, is given.
   - The next $N$ lines give the building owner $t_i$ ($t_i$ is `A` or `B`), area #$d_i$ of the damaged building, and the siege damage amount $h_i$ in order.
+- `WARRIOR` $W$:
+  - $W$, the number of **all** warriors currently in vision, is given.
+  - The next $W$ lines give the index $a_i$ of the warrior, the index $r_i$ of the area it is located in, and its current HP $h_i$ in order.
+- `BUILDING` $B$:
+  - $B$, the number of **all** buildings currently in vision, is given.
+  - The next $B$ lines give the building owner $t_i$ (`A` or `B`), the index $r_i$ of the area it is located in, its type $k_i$ (`HQ` or `BASE`), its level $l_i$, and its current HP $h_i$ in order.
 
 The result of each turn ends with the `END` command.
 
@@ -315,13 +347,13 @@ When the game ends for any reason, the `FINISH` command is given. **When this co
 
 ## Game Simulator
 
-[Go to Simulator](https://d3a0kd35ch7dmv.cloudfront.net/)
+[Go to Simulator](https://d1thb30t7rs13h.cloudfront.net/)
 
 You can paste logs into the simulator above to analyze game play.
 
 ## CLI Tool
 
-[Download CLI Tool](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/nation-providing.zip)
+[Download CLI Tool](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/nation-fr-providing.zip)
 
 You can use the CLI tool above to have AIs play against each other locally.
 
@@ -329,28 +361,27 @@ You can use the CLI tool above to have AIs play against each other locally.
 
 Sample code written in each supported language is available below.
 
-- C: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.c)
-- C++: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.cpp)
-- Python: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.py)
-- Rust: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.rs)
-- Java: [Main.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/Main.java)
-- JavaScript: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.js)
-- TypeScript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.ts)
-- C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.cs)
-- Kotlin: [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.kt)
-- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.go)
-- Scala: [sample-code.scala](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.scala)
-- Lua: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.lua)
+- C: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.c)
+- C++: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.cpp)
+- Python: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.py)
+- Rust: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.rs)
+- Java: [Main.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/Main.java)
+- JavaScript: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.js)
+- TypeScript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.ts)
+- C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.cs)
+- Kotlin: [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.kt)
+- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.go)
+- Scala: [sample-code.scala](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.scala)
+- Lua: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.lua)
 
 ## Sample AI
 
-| Battle Number | <div style={{ minWidth: "320px" }}>Description</div> |
-| :-----------: | :--------------------------------------------------: |
-|      $1$      |             Does not issue any commands.             |
-|      $2$      |   Performs the same operations as the sample code.   |
-|      $3$      |         Employs a basic offensive strategy.          |
-|      $4$      |      Employs a basic growth-oriented strategy.       |
-|      $5$      |      Employs an elementary offensive strategy.       |
-|      $6$      |   Employs an elementary growth-oriented strategy.    |
-|      $7$      |       Employs an adaptive offensive strategy.        |
-|      $8$      |       Employs an advanced offensive strategy.        |
+| Battle Number | Description                         | Sample AI                                                                                                                    |
+| :-----------: | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+|       1       | Employs a basic offensive strategy. | [1_rush.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/1_rush.cpp)           |
+|       2       | Employs a basic ambush strategy.    | [2_ambush.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/2_ambush.cpp)       |
+|       3       | Employs a basic balanced strategy.  | [3_deathball.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/3_deathball.cpp) |
+|       4       | Employs a basic vigilant strategy.  | [4_blockade.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/4_blockade.cpp)   |
+|       5       | Employs a basic defensive strategy. | [5_eco.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/5_eco.cpp)             |
+
+> Note: Sample AI codes were not provided during the actual contest.

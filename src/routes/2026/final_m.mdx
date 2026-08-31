@@ -1,15 +1,15 @@
 ---
-title: NEXT NATION
-stage: 마스터 트랙 예선 라운드
+title: NEXT VISION
+stage: 마스터 트랙 파이널 라운드
 ---
 
-**NEXT NATION**은 건물을 건설하고 전사들을 훈련시켜 적의 본부를 파괴하는 2인 턴제 전략 게임입니다.
-
 <center>
-  <YouTube videoId="BnExruRtP1A" />
+  <YouTube videoId="2z4MJMRTzx8" />
 </center>
 
 <br />
+
+**NEXT VISION**은 건물을 건설하고 전사들을 훈련시켜 적의 본부를 파괴하는 2인 턴제 전략 게임입니다.
 
 ## 게임 규칙
 
@@ -17,9 +17,9 @@ stage: 마스터 트랙 예선 라운드
 
 게임은 **전장** 위에서 진행됩니다. 전장은 $0$번부터 $N-1$번까지 번호가 붙은 $N$개의 **구역**으로 나뉘어 있으며, 중심을 기준으로 점대칭을 이룹니다. 가장 왼쪽($0$번)과 오른쪽($N-1$번) 구역에는 각 플레이어의 **본부**가 있습니다. 본부가 없는 구역 중 $K$개는 **기지**를 건설 가능한 **거점**입니다.
 
-전장의 크기 $N$은 $51 \le N \le 109$, 거점의 수 $K$는 $\lceil 0.15N \rceil \le K \le \lfloor 0.2N \rfloor$입니다. $N$과 $K$는 반드시 홀수입니다.
+전장의 크기 $N$은 $180 < N < 250$, 거점의 수 $K$는 $\left\lceil \sqrt N-1 \right\rceil \le K \le \left\lfloor \sqrt N+4 \right\rfloor$ 입니다. $N$과 $K$는 반드시 홀수입니다.
 
-각 플레이어는 본부에 위치한 **전사** $3$명과 **금화** $500$개로 시작합니다. 본부는 초기에 레벨 $1$, 체력 $10$이며, 전사의 초기 체력은 $4$입니다. 본부가 파괴된 플레이어는 패배합니다.
+각 플레이어는 본부에 위치한 **전사** $3$명과 **금화** $750$개로 시작합니다. 본부는 초기에 레벨 $1$, 체력 $10$이며, 전사의 초기 체력은 $4$입니다. 본부가 파괴된 플레이어는 패배합니다.
 
 플레이어는 매일 다음 명령을 원하는 만큼 내릴 수 있습니다.
 
@@ -75,9 +75,9 @@ stage: 마스터 트랙 예선 라운드
 | :---------: | :-------------: | :------------: | :------------: | :---------: | :---------------: | :---------------: |
 |     $1$     |        -        |      $4$       |      $10$      |     $1$     |        $1$        |        $1$        |
 |     $2$     |  금화 $600$개   |      $5$       |      $15$      |     $2$     |        $1$        |        $2$        |
-|     $3$     | 금화 $1\,200$개 |      $6$       |      $20$      |     $2$     |        $2$        |        $3$        |
-|     $4$     | 금화 $2\,400$개 |      $7$       |      $25$      |     $3$     |        $2$        |        $4$        |
-|     $5$     | 금화 $3\,600$개 |      $8$       |      $30$      |     $3$     |        $3$        |        $5$        |
+|     $3$     | 금화 $1\,000$개 |      $6$       |      $20$      |     $2$     |        $2$        |        $3$        |
+|     $4$     | 금화 $2\,000$개 |      $7$       |      $25$      |     $3$     |        $2$        |        $4$        |
+|     $5$     | 금화 $3\,000$개 |      $8$       |      $30$      |     $3$     |        $3$        |        $5$        |
 | $5+$ (수리) | 금화 $1\,000$개 |       -        |       -        |      -      |         -         |         -         |
 
 #### 기지
@@ -86,9 +86,9 @@ stage: 마스터 트랙 예선 라운드
 
 |    레벨     | 건설 또는 업그레이드 비용 | 최대 체력 | 포탑 공격력 | 노동 가능 전사 수 |
 | :---------: | :-----------------------: | :-------: | :---------: | :---------------: |
-|     $1$     |       금화 $300$개        |    $6$    |     $1$     |        $1$        |
-|     $2$     |       금화 $600$개        |   $12$    |     $1$     |        $2$        |
-|     $3$     |      금화 $1\,000$개      |   $18$    |     $2$     |        $3$        |
+|     $1$     |       금화 $500$개        |    $6$    |     $1$     |        $1$        |
+|     $2$     |       금화 $550$개        |   $12$    |     $1$     |        $2$        |
+|     $3$     |       금화 $600$개        |   $18$    |     $2$     |        $3$        |
 | $3+$ (수리) |       금화 $500$개        |     -     |      -      |         -         |
 
 ---
@@ -97,7 +97,7 @@ stage: 마스터 트랙 예선 라운드
 
 #### 이동 규칙
 
-이동 명령을 수행 중인 각 전사는 현재 구역에 적 전사가 없다면, 현재 위치에서 목적지까지 인접한 두 구역 사이의 직선 거리 합이 가장 짧은 경로를 따라 한 구역 이동합니다. 엄밀하게는 다음과 같습니다.
+이동 명령을 수행 중인 각 전사는 현재 구역에 적이 없다면, 현재 위치에서 목적지까지 인접한 두 구역 사이의 직선 거리 합이 가장 짧은 경로를 따라 한 구역 이동합니다. 엄밀하게는 다음과 같습니다.
 
 <Details>
 
@@ -112,7 +112,7 @@ stage: 마스터 트랙 예선 라운드
 
 #### 전투 규칙
 
-1. 건물이 있는 구역에서, 해당 건물은 포탑 공격력 횟수만큼 공격을 수행합니다.
+1. 건물이 있는 구역에서, 해당 건물은 포탑 공격 횟수만큼 공격을 수행합니다.
 2. 각 구역에서, 나와 상대 전사 수가 각각 $a$, $b$라 할 때, 상대는 $a$번, 나는 $b$번 공격당합니다. 체력이 $0$인 전사는 전투가 끝날 때까지 퇴각하지 않으므로, 포탑 공격으로 체력이 $0$이 된 전사도 $a$와 $b$에 포함됩니다.
 3. 전투가 종료되고, 체력 $0$인 전사들이 퇴각하여 전장에서 벗어납니다. 또한 체력 $0$인 건물이 파괴됩니다.
 
@@ -123,17 +123,27 @@ stage: 마스터 트랙 예선 라운드
 
 ---
 
-### 4 | 게임 종료
+### 4 | 시야
 
-게임이 시작하고 $200$일 동안 어느 한 플레이어의 본부가 파괴되었다면 파괴되지 않은 플레이어의 승리입니다.
+플레이어는 자신의 모든 전사와 건물의 시야를 합쳐서 볼 수 있는 범위만 관찰할 수 있습니다.
 
-두 본부가 동시에 파괴된 경우 혹은 게임이 시작하고 $200$일 동안 양쪽 본부가 파괴되지 않은 경우, 본부의 체력이 더 많은 쪽이 승리합니다.
+본부, 기지, 전사는 모두 자신이 있는 구역과 최대 $2$만큼 떨어져 있는 구역까지 볼 수 있습니다.
+
+인접한 구역 간의 거리는 $1$이며, 두 구역의 거리는 인접한 구역을 통해서 이동할 수 있는 경로 중 가장 짧은 것의 길이로 계산됩니다.
+
+---
+
+### 5 | 게임 종료
+
+게임이 시작하고 $400$일 동안 어느 한 플레이어의 본부가 파괴되었다면 파괴되지 않은 플레이어의 승리입니다.
+
+두 본부가 동시에 파괴된 경우 혹은 게임이 시작하고 $400$일 동안 양쪽 본부가 파괴되지 않은 경우, 본부의 체력이 더 많은 쪽이 승리합니다.
 
 만약 본부의 체력도 같다면 무승부가 됩니다.
 
 ---
 
-### 5 | 세부 규칙: 전장 생성 방식
+### 6 | 세부 규칙: 전장 생성 방식
 
 전장의 구조는 입력으로 주어지기 때문에, 생성 규칙을 알아야만 문제를 해결할 수 있는 것은 아닙니다.
 
@@ -148,6 +158,7 @@ stage: 마스터 트랙 예선 라운드
 - 전장에는 정확히 $N = 2N'+1$개의 다각형 모양 구역이 있습니다.
 - 각 구역은 다각형의 테두리를 제외한 내부에 있는 점인 **중심**을 하나씩 가집니다.
 - 두 구역이 인접하다는 것은, 두 구역이 적어도 하나의 변을 공유한다는 것입니다.
+
 - 가장 왼쪽($0$번 구역)과 오른쪽의 구역($N-1$번 구역)에는 각 플레이어의 **본부**가 세워져 있습니다.
 
 전장에는 특수한 구역인 거점이 있습니다.
@@ -158,13 +169,13 @@ stage: 마스터 트랙 예선 라운드
 
 #### 생성 과정
 
-아래 설명에서 $L = 10^4$, $D = 100$, $A = 24$입니다.
+아래 설명에서 $L = 10^4$, $D = 800$, $A = 24$입니다.
 매 시행은 독립이며, 특정한 범위에서 대상을 뽑을 때, 해당 범위 안에 있는 대상이 모두 같은 확률로 선택됩니다.
 
 (1) $N'$과 $K'$을 정합니다.
 
-- $N'$은 $25$ 이상 $54$ 이하의 정수 중에서 무작위로 정해집니다.
-- 이후에 $K'$은 $\left\lceil \frac{0.15(2N'+1)-1}{2} \right\rceil$ 이상 $\left\lfloor \frac{0.2(2N'+1)-1}{2} \right\rfloor$ 이하의 정수에서 무작위로 정해집니다.
+- $N'$은 $90$ 이상 $124$ 이하의 정수 중에서 무작위로 정해집니다.
+- 이후에 $K'$은 $N = 2N'+1$이라고 할 때 $K = 2K'+1$이 $\left\lceil \sqrt N-1 \right\rceil \le K \le \left\lfloor \sqrt N+4 \right\rfloor$를 만족하는 정수 중에서 무작위로 정해집니다.
 
 (2) 유클리드 좌표평면에서, 원점을 중심으로 삼고 반지름이 $L$인 원을 $S$라고 합시다.
 
@@ -186,7 +197,7 @@ stage: 마스터 트랙 예선 라운드
 
 (7) 처음에 $R = \{N'\}$입니다. 다음을 $K'$회 반복합니다.
 
-- $t \in [0, N-1]$이고 $t \not \in R$인 무작위 $t$를 고릅니다.
+- $t \in [1, N-2]$이고 $t \not \in R$인 무작위 $t$를 고릅니다. $0$번과 $N-1$번 구역에는 본부가 있으므로 거점이 될 수 없습니다.
 - 만약 하나 이상의 $r \in R$에 대해 $t$번 구역 또는 $N-1-t$번 구역이 $r$번 구역과 인접해 있다면, $t$를 다시 뽑습니다.
 - 만약 $t$번 구역과 $N-1-t$번 구역이 인접해 있다면, $t$를 다시 뽑습니다.
 - $R$에 $t$와 $N-1-t$를 추가합니다.
@@ -275,31 +286,43 @@ C_1 a_1 h_1
 SIEGE N
 t_1 d_1 h_1
 ...
+WARRIOR W
+a_1 r_1 h_1
+...
+BUILDING B
+t_1 r_1 k_1 l_1 h_1
+...
 ```
 
-두 플레이어가 모두 명령 제출을 정상적으로 마쳤다면, 결과가 반환됩니다. `TRAIN`, `UPGRADE`, `MOVE`, `DAMAGE`, `SIEGE` 섹션에서 $N = 0$인 경우, 해당 섹션에는 뒤따르는 줄이 주어지지 않습니다.
+두 플레이어가 모두 명령 제출을 정상적으로 마쳤다면, 결과가 반환됩니다. `UPGRADE`, `TRAIN`, `MOVE`, `DAMAGE`, `SIEGE` 섹션에서 $N = 0$인 경우, 해당 섹션에는 뒤따르는 줄이 주어지지 않습니다.
 
 - `TURN` $T$: 현재 $T$일차에 대한 정보가 표기됨을 알려줍니다.
 - `TIME` $T_x$ $R_x$ $T_y$ $R_y$:
   - $T_x$와 $T_y$는 각각 이번 턴에 자신과 상대 플레이어가 시간을 얼마나 사용했는지를 나타냅니다(ms).
   - $R_x$와 $R_y$는 자신과 상대 플레이어에게 몇 개의 초읽기가 남아있는지를 나타냅니다.
 - `UPGRADE` $N$:
-  - 이번 턴에 건설, 업그레이드 또는 수리된 건물의 수 $N$이 주어집니다.
+  - 이번 턴에 건설, 업그레이드 또는 수리된 **아군** 건물의 수 $N$이 주어집니다.
   - 이어 $N$개의 줄에 건물의 소속 $t_i$($t_i$는 `A`나 `B`), 해당 건물이 있는 구역 번호 $d_i$가 차례대로 주어집니다.
 - `TRAIN` $N$:
-  - 이번 턴에 훈련된 전사의 수 $N$이 주어집니다.
-  - 이어 다음 줄에 새롭게 훈련된 전사의 번호가 차례대로 주어집니다. 전사의 번호는 유일하게 부여되며, 각 플레이별로 1부터 차례대로 증가합니다.
+  - 이번 턴에 훈련된 **아군** 전사의 수 $N$이 주어집니다.
+  - 이어 다음 줄에 새롭게 훈련된 전사의 번호가 차례대로 주어집니다. 전사의 번호는 유일하게 부여되며, 각 플레이어별로 1부터 차례대로 증가합니다.
   - 전사의 번호는 항상 `A` 또는 `B`에 정수를 하나 이어 붙인 형태입니다(e.g. `A12`, `B7`). `A`로 시작하면 왼쪽 플레이어의 전사이고, `B`로 시작하면 오른쪽 플레이어의 전사입니다.
 - `MOVE` $N$:
-  - 이번 턴에 이동한 전사의 수 $N$이 주어집니다.
+  - 이번 턴에 이동한 **아군** 전사의 수 $N$이 주어집니다.
   - 이어 $N$개의 줄에 이동한 전사의 번호 $a_i$와 이동한 구역 번호 $d_i$가 차례대로 주어집니다.
 - `DAMAGE` $N$:
-  - 이번 턴에 전사에 발생한 피해 정보의 개수 $N$이 주어집니다.
+  - 이번 턴에 **아군** 전사에 발생한 피해 정보의 개수 $N$이 주어집니다.
   - 이어 $N$개의 줄에 피해 원인 $C_i$, 피해를 입은 전사의 번호 $a_i$, 입힌 피해량 $h_i$가 차례대로 주어집니다.
   - $C_i$는 다음 중 하나입니다: `TURRET`(건물 포탑에 의한 피해), `COMBAT`(전사 간 전투에 의한 피해), `HUNGER`(보급 단계 식비 부족에 의한 피해).
 - `SIEGE` $N$:
-  - 이번 턴에 건물에 발생한 피해 정보의 개수 $N$이 주어집니다.
-  - 이어 $N$개의 줄에 건물의 소속 $t_i$($t_i$는 `A`나 `B`), 피해를 입은 건물이 있는 구역 번호 $d_i$와 입힌 공성 피해량 $h_i$가 차례대로 주어집니다.
+  - 이번 턴에 **아군** 건물에 발생한 피해 정보의 개수 $N$이 주어집니다.
+  - 이어 $N$개의 줄에 건물의 소속 $t_i$(`A` 또는 `B`), 피해를 입은 건물이 있는 구역 번호 $d_i$와 입힌 공성 피해량 $h_i$가 차례대로 주어집니다.
+- `WARRIOR` $W$:
+  - 현재 시야 안에 있는 **모든** 전사의 수 $W$가 주어집니다.
+  - 이어 $W$개의 줄에 전사의 번호 $a_i$, 위치한 구역 번호 $r_i$, 현재 체력 $h_i$가 차례대로 주어집니다.
+- `BUILDING` $B$:
+  - 현재 시야 안에 있는 **모든** 건물의 수 $B$가 주어집니다.
+  - 이어 $B$개의 줄에 건물의 소속 $t_i$(`A` 또는 `B`), 위치한 구역 번호 $r_i$, 종류 $k_i$(`HQ` 또는 `BASE`), 레벨 $l_i$, 현재 체력 $h_i$가 차례대로 주어집니다.
 
 각 턴의 결과는 `END` 명령어로 마무리됩니다.
 
@@ -313,13 +336,13 @@ FINISH
 
 ## 게임 시뮬레이터
 
-[시뮬레이터 바로가기](https://d3a0kd35ch7dmv.cloudfront.net/)
+[시뮬레이터 바로가기](https://d1thb30t7rs13h.cloudfront.net/)
 
 위 시뮬레이터에 로그를 붙여 넣어 게임 플레이를 분석할 수 있습니다.
 
 ## CLI 툴
 
-[CLI 툴 다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/nation-providing.zip)
+[CLI 툴 다운로드](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/nation-fr-providing.zip)
 
 위 CLI 툴을 활용하여 로컬에서 AI를 대결시켜볼 수 있습니다.
 
@@ -327,28 +350,27 @@ FINISH
 
 대회에서 지원하는 각 언어로 작성된 예제 코드를 아래에서 확인할 수 있습니다.
 
-- C: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.c)
-- C++: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.cpp)
-- Python: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.py)
-- Rust: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.rs)
-- Java: [Main.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/Main.java)
-- JavaScript: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.js)
-- TypeScript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.ts)
-- C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.cs)
-- Kotlin: [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.kt)
-- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.go)
-- Scala: [sample-code.scala](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.scala)
-- Lua: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-61bnx71k/sample-code/sample-code.lua)
+- C: [sample-code.c](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.c)
+- C++: [sample-code.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.cpp)
+- Python: [sample-code.py](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.py)
+- Rust: [sample-code.rs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.rs)
+- Java: [Main.java](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/Main.java)
+- JavaScript: [sample-code.js](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.js)
+- TypeScript: [sample-code.ts](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.ts)
+- C#: [sample-code.cs](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.cs)
+- Kotlin: [sample-code.kt](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.kt)
+- Go: [sample-code.go](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.go)
+- Scala: [sample-code.scala](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.scala)
+- Lua: [sample-code.lua](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-code/sample-code.lua)
 
 ## 샘플 AI
 
-| 배틀 번호 | <div style={{ minWidth: "320px" }}>설명</div> |
-| :-------: | :-------------------------------------------: |
-|    $1$    |         아무 명령도 내리지 않습니다.          |
-|    $2$    |       샘플 코드와 동일한 동작을 합니다.       |
-|    $3$    |      기초적인 공격형 전략을 구사합니다.       |
-|    $4$    |      기초적인 성장형 전략을 구사합니다.       |
-|    $5$    |      초보적인 공격형 전략을 구사합니다.       |
-|    $6$    |      초보적인 성장형 전략을 구사합니다.       |
-|    $7$    |      적응적인 공격형 전략을 구사합니다.       |
-|    $8$    |       심화된 공격형 전략을 구사합니다.        |
+| 배틀 번호 | 설명                                 | 샘플 AI                                                                                                                      |
+| :-------: | :----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+|    $1$    | 기초적인 공격형 전략을 구사합니다.   | [1_rush.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/1_rush.cpp)           |
+|    $2$    | 기초적인 기습형 전략을 구사합니다.   | [2_ambush.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/2_ambush.cpp)       |
+|    $3$    | 기초적인 밸런스형 전략을 구사합니다. | [3_deathball.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/3_deathball.cpp) |
+|    $4$    | 기초적인 경계형 전략을 구사합니다.   | [4_blockade.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/4_blockade.cpp)   |
+|    $5$    | 기초적인 방어형 전략을 구사합니다.   | [5_eco.cpp](https://nypc-static.s3.ap-northeast-2.amazonaws.com/2026/nextnation-fr-0cxj73lq/sample-ai/5_eco.cpp)             |
+
+> 샘플 AI 코드는 실제 대회 진행 시에는 제공되지 않았습니다.
