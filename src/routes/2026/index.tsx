@@ -11,6 +11,8 @@ export const problems = {
     ["pre_2b", "씨앗 운반 (챌린지)"],
   ],
   master: [["pre_m", "NEXT NATION"]],
+  rookieFinal: [["final_r", "슈퍼루키"]],
+  masterFinal: [["final_m", "NEXT VISION"]],
 } as const;
 
 const List = () => {
@@ -30,6 +32,14 @@ const List = () => {
         마스터 트랙 &mdash; Qualification Round
       </SectionHeading>
       <ProblemList year={year} problems={problems.master} />
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
+        루키 트랙 &mdash; Final Round
+      </SectionHeading>
+      <ProblemList year={year} problems={problems.rookieFinal} />
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
+        마스터 트랙 &mdash; Final Round
+      </SectionHeading>
+      <ProblemList year={year} problems={problems.masterFinal} />
     </PostLayout>
   );
 };
