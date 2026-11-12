@@ -70,6 +70,7 @@ HQ(본부) $5$레벨 달성 후 전사를 모아 적 HQ를 공격한다.
 2. 적 기지에는 포탑이 있어 적은 수로 많은 전사를 상대할 수 있다.
 
 하지만 의문점이 생겼다.
+
 > 적이 아군보다 더 많은 기지를 건설했다면? 적이 골드를 더 많이 벌잖아.
 
 그래서 적 기지 공격 매커니즘을 다음과 같이 설계했다.
@@ -87,6 +88,7 @@ HQ(본부) $5$레벨 달성 후 전사를 모아 적 HQ를 공격한다.
 #### 방어 로직
 
 샘플 AI를 상대하며 다음과 같은 의문이 들었다.
+
 > 항상 전사를 노동 슬롯만큼 유지하는 것이 HQ $5$레벨 달성에는 최적이다. 하지만 적이 전사를 모아 공격해 오는 상황에서도 과연 최적일까?
 
 답은 ‘아니다’이다. 턴당 전사 훈련에 제한이 있기 때문에 적이 전사를 모은다면, 선제 대응해야 한다.
@@ -141,8 +143,16 @@ HQ $5$레벨 업그레이드 시 약 $20$턴 가까이 골드만 모은다는 �
 샘플 AI 상대로 $7.5$승, 중간 평가 때 $45$위까지 기록해 보며 그리디한 접근이 통한다는 것을 확인받아 이후 전략 설계의 원동력이 되었습니다. catlong이 공격형 전략을 가져오기 전까지 총 $88$번을 제출하였는데, 덕분에 매 제출마다 기대되고 재미있었습니다.
 
 <FigureRow caption="단순하게 시작해서 살을 붙여 보자.">
-  <Figure src="/2026/replay/master_cattype/images/p05_Im2.jpg" alt="Aster의 전략 메모 (전략 #1–#4)" width="240px" />
-  <Figure src="/2026/replay/master_cattype/images/p05_Im3.jpg" alt="Aster의 전략 메모 (전략 #5–#7)" width="480px" />
+  <Figure
+    src="/2026/replay/master_cattype/images/p05_Im2.jpg"
+    alt="Aster의 전략 메모 (전략 #1–#4)"
+    width="240px"
+  />
+  <Figure
+    src="/2026/replay/master_cattype/images/p05_Im3.jpg"
+    alt="Aster의 전략 메모 (전략 #5–#7)"
+    width="480px"
+  />
 </FigureRow>
 
 ## 제출 번호 #74421
@@ -236,7 +246,10 @@ $7$명에서 공격 시 $1$레벨 적 기지와 $3$레벨 병사를 대부분 �
 
 적의 목적지를 추정하여 미리 방어 전력을 갖추도록 하고 싶었다. 하지만 적절한 구현 방법이 떠오르지 않았다. 그래서 Claude Fable 5.0으로 목적지 추정 기반의 방어 로직을 요청하였지만, 만족스럽지 않았다.
 
-<Figure src="/2026/replay/master_cattype/images/p08_Im4.jpg" alt="Claude Fable 5.0에게 요청한 목적지 추정 기반 방어 로직" />
+<Figure
+  src="/2026/replay/master_cattype/images/p08_Im4.jpg"
+  alt="Claude Fable 5.0에게 요청한 목적지 추정 기반 방어 로직"
+/>
 
 ### 전략 후기
 
@@ -325,7 +338,11 @@ catlong이 만들어 둔 수많은 버그를 CLI 툴을 이용한 로컬 전투�
 
 $1$번 문제점은 이후 제출에서 일부 해결된다. 그러나 $2$번 문제점은 거의 일어나지 않을 상황으로 판단되었다. 실제로 중간 평가에서 한 번도 발생하지 않아 최종 제출까지 해결하지 않았다.
 
-<Figure src="/2026/replay/master_cattype/images/p11_Im5.jpg" alt="적 목적지 추정 로직 구현을 위해 작성한 프롬프트" caption="작성한 프롬프트" />
+<Figure
+  src="/2026/replay/master_cattype/images/p11_Im5.jpg"
+  alt="적 목적지 추정 로직 구현을 위해 작성한 프롬프트"
+  caption="작성한 프롬프트"
+/>
 
 ### 전략 후기
 
@@ -387,7 +404,11 @@ catlong의 초기 전략 설계에서 HQ 레벨은 다음과 같이 설정되었
 
 <FigureRow>
   <Figure src="/2026/replay/master_cattype/images/p13_Im6.jpg" caption="기존 전략" width="360px" />
-  <Figure src="/2026/replay/master_cattype/images/p13_Im7.jpg" caption="방어 기지 전략" width="300px" />
+  <Figure
+    src="/2026/replay/master_cattype/images/p13_Im7.jpg"
+    caption="방어 기지 전략"
+    width="300px"
+  />
 </FigureRow>
 
 ### 수정된 전략

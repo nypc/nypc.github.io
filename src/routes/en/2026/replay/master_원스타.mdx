@@ -14,23 +14,45 @@ export const StatusTable = ({ children }) => (
       .status-table td:first-child { width: 1%; padding-inline-end: 0.75rem; white-space: nowrap; font-weight: 600; }
       .status-table td > :last-child { margin-bottom: 0; }
     `}</style>
-    <table className="status-table"><tbody>{children}</tbody></table>
+    <table className="status-table">
+      <tbody>{children}</tbody>
+    </table>
   </>
 );
 
 export const StatusRow = ({ label, children }) => (
-  <tr><td>{label}</td><td>{children}</td></tr>
+  <tr>
+    <td>{label}</td>
+    <td>{children}</td>
+  </tr>
 );
 
 {/* timeline:start */}
+
 # NYPC 2026 NEXT NATION — Key Timeline
 
 2026-06-30 – 2026-07-08; click a link to jump to its details
 
 <div style={{ maxWidth: "800px", marginInline: "auto", marginBlock: "1.5em" }}>
-  <svg viewBox="72 114 523.28 606" width="100%" style={{ fontFamily: "inherit", overflow: "visible", textDecorationThickness: "0.5px", textUnderlineOffset: "1.6px" }}>
+  <svg
+    viewBox="72 114 523.28 606"
+    width="100%"
+    style={{
+      fontFamily: "inherit",
+      overflow: "visible",
+      textDecorationThickness: "0.5px",
+      textUnderlineOffset: "1.6px",
+    }}
+  >
     <title>NYPC 2026 NEXT NATION — Key Timeline</title>
-    <mask id="onestar-timeline-labels" maskUnits="userSpaceOnUse" x="72" y="114" width="523.28" height="606">
+    <mask
+      id="onestar-timeline-labels"
+      maskUnits="userSpaceOnUse"
+      x="72"
+      y="114"
+      width="523.28"
+      height="606"
+    >
       <rect x="72" y="114" width="523.28" height="606" fill="white" />
       <rect x="198.86" y="117.7" width="63.79" height="8" fill="black" />
       <rect x="528.08" y="125.02" width="53.39" height="8" fill="black" />
@@ -81,180 +103,530 @@ export const StatusRow = ({ label, children }) => (
       <rect x="382.54" y="707.84" width="30.27" height="8" fill="black" />
     </mask>
     <g mask="url(#onestar-timeline-labels)">
-    <g fill="none">
-      <line x1="317.12" y1="408.29" x2="317.12" y2="250.12" stroke="#0074d9" strokeWidth="0.8" />
-      <line x1="317.12" y1="423.6" x2="317.12" y2="408.29" stroke="#0074d9" strokeWidth="0.8" />
-      <line x1="317.12" y1="614.94" x2="317.12" y2="423.6" stroke="#0074d9" strokeWidth="0.8" />
-      <line x1="317.12" y1="632.8" x2="317.12" y2="614.94" stroke="#0074d9" strokeWidth="0.8" />
-      <line x1="317.12" y1="648.1" x2="317.12" y2="632.8" stroke="#0074d9" strokeWidth="0.8" />
-      <line x1="317.12" y1="663.41" x2="317.12" y2="648.1" stroke="#0074d9" strokeWidth="0.8" />
-      <line x1="194.67" y1="153.18" x2="194.67" y2="122.56" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="216.95" x2="102.83" y2="186.34" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="232.26" x2="102.83" y2="216.95" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="247.57" x2="102.83" y2="232.26" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="194.67" y1="280.73" x2="194.67" y2="153.18" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="225.28" y1="456.77" x2="225.28" y2="441.46" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="225.28" y1="472.07" x2="225.28" y2="456.77" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="225.28" y1="502.69" x2="225.28" y2="472.07" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="225.28" y1="517.99" x2="225.28" y2="502.69" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="533.3" x2="102.83" y2="247.57" stroke="#2ecc40" strokeWidth="0.8" strokeDasharray="1 2" />
-      <line x1="225.28" y1="533.3" x2="225.28" y2="517.99" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="569.02" x2="102.83" y2="533.3" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="584.32" x2="102.83" y2="569.02" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="102.83" y1="599.63" x2="102.83" y2="584.32" stroke="#2ecc40" strokeWidth="0.8" />
-      <line x1="91.09" y1="122.56" x2="94.15" y2="122.56" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="186.34" x2="94.15" y2="186.34" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="250.12" x2="94.15" y2="250.12" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="313.9" x2="94.15" y2="313.9" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="377.68" x2="94.15" y2="377.68" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="441.46" x2="94.15" y2="441.46" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="505.24" x2="94.15" y2="505.24" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="569.02" x2="94.15" y2="569.02" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="632.8" x2="94.15" y2="632.8" stroke="#999999" strokeWidth="0.6" />
-      <line x1="91.09" y1="696.58" x2="94.15" y2="696.58" stroke="#999999" strokeWidth="0.6" />
-      <line x1="264.17" y1="124.7" x2="264.17" y2="129.2" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="264.17" y1="129.2" x2="527.28" y2="129.2" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="141.46" y1="219.91" x2="141.46" y2="224.41" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="141.46" y1="224.41" x2="527.28" y2="224.41" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="440.35" y1="252.26" x2="440.35" y2="256.76" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="440.35" y1="256.76" x2="527.28" y2="256.76" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="438.63" y1="380.63" x2="438.63" y2="385.13" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="438.63" y1="385.13" x2="527.28" y2="385.13" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="439.58" y1="392.99" x2="439.58" y2="280.73" stroke="#aaaaaa" strokeWidth="0.8" />
-      <line x1="301.06" y1="536.25" x2="301.06" y2="540.75" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="301.06" y1="540.75" x2="527.28" y2="540.75" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="145.36" y1="587.28" x2="145.36" y2="591.78" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="145.36" y1="591.78" x2="527.28" y2="591.78" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="340.34" y1="635.75" x2="340.34" y2="640.25" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="340.34" y1="640.25" x2="527.28" y2="640.25" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="345.62" y1="651.06" x2="345.62" y2="655.56" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="345.62" y1="655.56" x2="527.28" y2="655.56" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="436.04" y1="681.67" x2="436.04" y2="686.17" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="436.04" y1="686.17" x2="527.28" y2="686.17" stroke="#aaaaaa" strokeWidth="0.8" strokeDasharray="3 3" />
-      <line x1="92.62" y1="122.56" x2="92.62" y2="696.58" stroke="#b3b3b3" strokeWidth="0.6" />
-      <line x1="133.44" y1="487.38" x2="133.44" y2="472.07" stroke="#ff4136" strokeWidth="0.8" />
-      <line x1="133.44" y1="548.61" x2="133.44" y2="487.38" stroke="#ff4136" strokeWidth="0.8" />
-      <line x1="378.35" y1="599.63" x2="378.35" y2="377.68" stroke="#ff4136" strokeWidth="0.8" />
-      <line x1="378.35" y1="648.1" x2="378.35" y2="599.63" stroke="#ff4136" strokeWidth="0.8" strokeDasharray="1 2" />
-      <line x1="378.35" y1="663.41" x2="378.35" y2="648.1" stroke="#ff4136" strokeWidth="0.8" />
-      <line x1="378.35" y1="678.72" x2="378.35" y2="663.41" stroke="#ff4136" strokeWidth="0.8" />
-      <line x1="378.35" y1="694.03" x2="378.35" y2="678.72" stroke="#ff4136" strokeWidth="0.8" />
-      <line x1="378.35" y1="711.88" x2="378.35" y2="694.03" stroke="#ff4136" strokeWidth="0.8" />
-      <path d="M194.67 153.18 C194.67 168.1 102.83 171.42 102.83 186.34" stroke="#2ecc40" strokeWidth="0.8" />
-      <path d="M225.28 456.77 C225.28 463.65 133.44 465.18 133.44 472.07" stroke="#ff4136" strokeWidth="0.8" />
-      <path d="M225.28 472.07 C225.28 478.96 133.44 480.49 133.44 487.38" stroke="#ff4136" strokeWidth="0.8" />
-      <path d="M102.83 533.3 C102.83 526.41 225.28 524.88 225.28 517.99" stroke="#2ecc40" strokeWidth="0.8" />
-      <path d="M225.28 533.3 C225.28 540.19 133.44 541.72 133.44 548.61" stroke="#ff4136" strokeWidth="0.8" />
-      <path d="M317.12 648.1 C317.12 648.1 378.35 648.1 378.35 648.1" stroke="#ff4136" strokeWidth="0.8" strokeDasharray="1 2" />
-      <path d="M317.12 648.1 C317.12 654.99 378.35 656.52 378.35 663.41" stroke="#ff4136" strokeWidth="0.8" strokeDasharray="1 2" />
-      <path d="M317.12 663.41 C317.12 670.3 378.35 671.83 378.35 678.72" stroke="#ff4136" strokeWidth="0.8" strokeDasharray="1 2" />
-      <rect x="527.28" y="123.94" width="64" height="0.26" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="217.53" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="251.5" width="64" height="0.26" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="378.25" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="533.87" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="584.9" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="630.45" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="648.65" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-      <rect x="527.28" y="679.29" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
-    </g>
-    <g>
-      <circle cx="194.67" cy="122.56" r="1.53" fill="#2ecc40" />
-      <circle cx="194.67" cy="153.18" r="1.53" fill="#2ecc40" />
-      <circle cx="102.83" cy="186.34" r="1.53" fill="#2ecc40" />
-      <circle cx="194.67" cy="280.73" r="1.53" fill="#2ecc40" />
-      <circle cx="102.83" cy="216.95" r="1.53" fill="currentColor" />
-      <circle cx="102.83" cy="232.26" r="1.53" fill="#2ecc40" />
-      <circle cx="102.83" cy="247.57" r="1.53" fill="#2ecc40" />
-      <circle cx="439.58" cy="280.73" r="1.53" fill="currentColor" />
-      <circle cx="317.12" cy="250.12" r="1.53" fill="#0074d9" />
-      <circle cx="378.35" cy="377.68" r="1.53" fill="#ff4136" />
-      <circle cx="439.58" cy="392.99" r="1.53" fill="#ff4136" />
-      <circle cx="317.12" cy="408.29" r="1.53" fill="#0074d9" />
-      <circle cx="317.12" cy="423.6" r="1.53" fill="#0074d9" />
-      <circle cx="225.28" cy="441.46" r="1.53" fill="#2ecc40" />
-      <circle cx="225.28" cy="456.77" r="1.53" fill="#2ecc40" />
-      <circle cx="133.44" cy="472.07" r="1.53" fill="#ff4136" />
-      <circle cx="225.28" cy="472.07" r="1.53" fill="#2ecc40" />
-      <circle cx="225.28" cy="502.69" r="1.53" fill="#2ecc40" />
-      <circle cx="133.44" cy="487.38" r="1.53" fill="#ff4136" />
-      <circle cx="102.83" cy="533.3" r="1.53" fill="#2ecc40" />
-      <circle cx="225.28" cy="533.3" r="1.53" fill="#2ecc40" />
-      <circle cx="225.28" cy="517.99" r="1.53" fill="#2ecc40" />
-      <circle cx="133.44" cy="548.61" r="1.53" fill="#ff4136" />
-      <circle cx="378.35" cy="599.63" r="1.53" fill="#ff4136" />
-      <circle cx="378.35" cy="648.1" r="1.53" fill="#ff4136" />
-      <circle cx="102.83" cy="569.02" r="1.53" fill="#2ecc40" />
-      <circle cx="102.83" cy="584.32" r="1.53" fill="#2ecc40" />
-      <circle cx="102.83" cy="599.63" r="1.53" fill="#2ecc40" />
-      <circle cx="317.12" cy="614.94" r="1.53" fill="#0074d9" />
-      <circle cx="317.12" cy="632.8" r="1.53" fill="#0074d9" />
-      <circle cx="317.12" cy="648.1" r="1.53" fill="#ff4136" />
-      <circle cx="317.12" cy="663.41" r="1.53" fill="#0074d9" />
-      <circle cx="378.35" cy="663.41" r="1.53" fill="#ff4136" />
-      <circle cx="378.35" cy="678.72" r="1.53" fill="#ff4136" />
-      <circle cx="378.35" cy="694.03" r="1.53" fill="#ff4136" />
-      <circle cx="378.35" cy="711.88" r="1.53" fill="#ff4136" />
-    </g>
+      <g fill="none">
+        <line x1="317.12" y1="408.29" x2="317.12" y2="250.12" stroke="#0074d9" strokeWidth="0.8" />
+        <line x1="317.12" y1="423.6" x2="317.12" y2="408.29" stroke="#0074d9" strokeWidth="0.8" />
+        <line x1="317.12" y1="614.94" x2="317.12" y2="423.6" stroke="#0074d9" strokeWidth="0.8" />
+        <line x1="317.12" y1="632.8" x2="317.12" y2="614.94" stroke="#0074d9" strokeWidth="0.8" />
+        <line x1="317.12" y1="648.1" x2="317.12" y2="632.8" stroke="#0074d9" strokeWidth="0.8" />
+        <line x1="317.12" y1="663.41" x2="317.12" y2="648.1" stroke="#0074d9" strokeWidth="0.8" />
+        <line x1="194.67" y1="153.18" x2="194.67" y2="122.56" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="102.83" y1="216.95" x2="102.83" y2="186.34" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="102.83" y1="232.26" x2="102.83" y2="216.95" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="102.83" y1="247.57" x2="102.83" y2="232.26" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="194.67" y1="280.73" x2="194.67" y2="153.18" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="225.28" y1="456.77" x2="225.28" y2="441.46" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="225.28" y1="472.07" x2="225.28" y2="456.77" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="225.28" y1="502.69" x2="225.28" y2="472.07" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="225.28" y1="517.99" x2="225.28" y2="502.69" stroke="#2ecc40" strokeWidth="0.8" />
+        <line
+          x1="102.83"
+          y1="533.3"
+          x2="102.83"
+          y2="247.57"
+          stroke="#2ecc40"
+          strokeWidth="0.8"
+          strokeDasharray="1 2"
+        />
+        <line x1="225.28" y1="533.3" x2="225.28" y2="517.99" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="102.83" y1="569.02" x2="102.83" y2="533.3" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="102.83" y1="584.32" x2="102.83" y2="569.02" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="102.83" y1="599.63" x2="102.83" y2="584.32" stroke="#2ecc40" strokeWidth="0.8" />
+        <line x1="91.09" y1="122.56" x2="94.15" y2="122.56" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="186.34" x2="94.15" y2="186.34" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="250.12" x2="94.15" y2="250.12" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="313.9" x2="94.15" y2="313.9" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="377.68" x2="94.15" y2="377.68" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="441.46" x2="94.15" y2="441.46" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="505.24" x2="94.15" y2="505.24" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="569.02" x2="94.15" y2="569.02" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="632.8" x2="94.15" y2="632.8" stroke="#999999" strokeWidth="0.6" />
+        <line x1="91.09" y1="696.58" x2="94.15" y2="696.58" stroke="#999999" strokeWidth="0.6" />
+        <line
+          x1="264.17"
+          y1="124.7"
+          x2="264.17"
+          y2="129.2"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="264.17"
+          y1="129.2"
+          x2="527.28"
+          y2="129.2"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="141.46"
+          y1="219.91"
+          x2="141.46"
+          y2="224.41"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="141.46"
+          y1="224.41"
+          x2="527.28"
+          y2="224.41"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="440.35"
+          y1="252.26"
+          x2="440.35"
+          y2="256.76"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="440.35"
+          y1="256.76"
+          x2="527.28"
+          y2="256.76"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="438.63"
+          y1="380.63"
+          x2="438.63"
+          y2="385.13"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="438.63"
+          y1="385.13"
+          x2="527.28"
+          y2="385.13"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line x1="439.58" y1="392.99" x2="439.58" y2="280.73" stroke="#aaaaaa" strokeWidth="0.8" />
+        <line
+          x1="301.06"
+          y1="536.25"
+          x2="301.06"
+          y2="540.75"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="301.06"
+          y1="540.75"
+          x2="527.28"
+          y2="540.75"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="145.36"
+          y1="587.28"
+          x2="145.36"
+          y2="591.78"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="145.36"
+          y1="591.78"
+          x2="527.28"
+          y2="591.78"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="340.34"
+          y1="635.75"
+          x2="340.34"
+          y2="640.25"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="340.34"
+          y1="640.25"
+          x2="527.28"
+          y2="640.25"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="345.62"
+          y1="651.06"
+          x2="345.62"
+          y2="655.56"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="345.62"
+          y1="655.56"
+          x2="527.28"
+          y2="655.56"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="436.04"
+          y1="681.67"
+          x2="436.04"
+          y2="686.17"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line
+          x1="436.04"
+          y1="686.17"
+          x2="527.28"
+          y2="686.17"
+          stroke="#aaaaaa"
+          strokeWidth="0.8"
+          strokeDasharray="3 3"
+        />
+        <line x1="92.62" y1="122.56" x2="92.62" y2="696.58" stroke="#b3b3b3" strokeWidth="0.6" />
+        <line x1="133.44" y1="487.38" x2="133.44" y2="472.07" stroke="#ff4136" strokeWidth="0.8" />
+        <line x1="133.44" y1="548.61" x2="133.44" y2="487.38" stroke="#ff4136" strokeWidth="0.8" />
+        <line x1="378.35" y1="599.63" x2="378.35" y2="377.68" stroke="#ff4136" strokeWidth="0.8" />
+        <line
+          x1="378.35"
+          y1="648.1"
+          x2="378.35"
+          y2="599.63"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+          strokeDasharray="1 2"
+        />
+        <line x1="378.35" y1="663.41" x2="378.35" y2="648.1" stroke="#ff4136" strokeWidth="0.8" />
+        <line x1="378.35" y1="678.72" x2="378.35" y2="663.41" stroke="#ff4136" strokeWidth="0.8" />
+        <line x1="378.35" y1="694.03" x2="378.35" y2="678.72" stroke="#ff4136" strokeWidth="0.8" />
+        <line x1="378.35" y1="711.88" x2="378.35" y2="694.03" stroke="#ff4136" strokeWidth="0.8" />
+        <path
+          d="M194.67 153.18 C194.67 168.1 102.83 171.42 102.83 186.34"
+          stroke="#2ecc40"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M225.28 456.77 C225.28 463.65 133.44 465.18 133.44 472.07"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M225.28 472.07 C225.28 478.96 133.44 480.49 133.44 487.38"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M102.83 533.3 C102.83 526.41 225.28 524.88 225.28 517.99"
+          stroke="#2ecc40"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M225.28 533.3 C225.28 540.19 133.44 541.72 133.44 548.61"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M317.12 648.1 C317.12 648.1 378.35 648.1 378.35 648.1"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+          strokeDasharray="1 2"
+        />
+        <path
+          d="M317.12 648.1 C317.12 654.99 378.35 656.52 378.35 663.41"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+          strokeDasharray="1 2"
+        />
+        <path
+          d="M317.12 663.41 C317.12 670.3 378.35 671.83 378.35 678.72"
+          stroke="#ff4136"
+          strokeWidth="0.8"
+          strokeDasharray="1 2"
+        />
+        <rect x="527.28" y="123.94" width="64" height="0.26" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="217.53" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="251.5" width="64" height="0.26" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="378.25" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="533.87" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="584.9" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="630.45" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="648.65" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+        <rect x="527.28" y="679.29" width="64" height="1.88" stroke="#aaaaaa" strokeWidth="0.5" />
+      </g>
+      <g>
+        <circle cx="194.67" cy="122.56" r="1.53" fill="#2ecc40" />
+        <circle cx="194.67" cy="153.18" r="1.53" fill="#2ecc40" />
+        <circle cx="102.83" cy="186.34" r="1.53" fill="#2ecc40" />
+        <circle cx="194.67" cy="280.73" r="1.53" fill="#2ecc40" />
+        <circle cx="102.83" cy="216.95" r="1.53" fill="currentColor" />
+        <circle cx="102.83" cy="232.26" r="1.53" fill="#2ecc40" />
+        <circle cx="102.83" cy="247.57" r="1.53" fill="#2ecc40" />
+        <circle cx="439.58" cy="280.73" r="1.53" fill="currentColor" />
+        <circle cx="317.12" cy="250.12" r="1.53" fill="#0074d9" />
+        <circle cx="378.35" cy="377.68" r="1.53" fill="#ff4136" />
+        <circle cx="439.58" cy="392.99" r="1.53" fill="#ff4136" />
+        <circle cx="317.12" cy="408.29" r="1.53" fill="#0074d9" />
+        <circle cx="317.12" cy="423.6" r="1.53" fill="#0074d9" />
+        <circle cx="225.28" cy="441.46" r="1.53" fill="#2ecc40" />
+        <circle cx="225.28" cy="456.77" r="1.53" fill="#2ecc40" />
+        <circle cx="133.44" cy="472.07" r="1.53" fill="#ff4136" />
+        <circle cx="225.28" cy="472.07" r="1.53" fill="#2ecc40" />
+        <circle cx="225.28" cy="502.69" r="1.53" fill="#2ecc40" />
+        <circle cx="133.44" cy="487.38" r="1.53" fill="#ff4136" />
+        <circle cx="102.83" cy="533.3" r="1.53" fill="#2ecc40" />
+        <circle cx="225.28" cy="533.3" r="1.53" fill="#2ecc40" />
+        <circle cx="225.28" cy="517.99" r="1.53" fill="#2ecc40" />
+        <circle cx="133.44" cy="548.61" r="1.53" fill="#ff4136" />
+        <circle cx="378.35" cy="599.63" r="1.53" fill="#ff4136" />
+        <circle cx="378.35" cy="648.1" r="1.53" fill="#ff4136" />
+        <circle cx="102.83" cy="569.02" r="1.53" fill="#2ecc40" />
+        <circle cx="102.83" cy="584.32" r="1.53" fill="#2ecc40" />
+        <circle cx="102.83" cy="599.63" r="1.53" fill="#2ecc40" />
+        <circle cx="317.12" cy="614.94" r="1.53" fill="#0074d9" />
+        <circle cx="317.12" cy="632.8" r="1.53" fill="#0074d9" />
+        <circle cx="317.12" cy="648.1" r="1.53" fill="#ff4136" />
+        <circle cx="317.12" cy="663.41" r="1.53" fill="#0074d9" />
+        <circle cx="378.35" cy="663.41" r="1.53" fill="#ff4136" />
+        <circle cx="378.35" cy="678.72" r="1.53" fill="#ff4136" />
+        <circle cx="378.35" cy="694.03" r="1.53" fill="#ff4136" />
+        <circle cx="378.35" cy="711.88" r="1.53" fill="#ff4136" />
+      </g>
     </g>
     <g style={{ fontSize: "9px" }}>
-      <text x="199.86" y="124.7" fill="currentColor">{"heuristic-agent"}</text>
-      <text x="89.43" textAnchor="end" y="124.87" style={{ fontSize: "8px" }} fill="#737373">{"6/30"}</text>
-      <text x="529.08" y="132.02" fill="currentColor">{"Join chorock"}</text>
-      <text x="199.86" y="155.32" fill="currentColor">{"heuristic-hq-sync-agent"}</text>
-      <text x="108.01" y="188.48" fill="currentColor">{"meta-hq-sync-agent"}</text>
-      <text x="89.43" textAnchor="end" y="188.65" style={{ fontSize: "8px" }} fill="#737373">{"7/1"}</text>
-      <a href="#old-lee2"><text x="108.01" y="219.91" fill="#9f0cb5" textDecoration="underline">{"old-lee2"}</text></a>
-      <text x="529.08" y="227.22" fill="currentColor">{"Join qwe7895"}</text>
-      <text x="108.01" y="234.4" fill="currentColor">{"auglee"}</text>
-      <text x="108.01" y="249.71" fill="currentColor">{"auglee11"}</text>
-      <a href="#abcd"><text x="322.31" y="252.26" fill="#9f0cb5" textDecoration="underline">{"abcd-priority-agent-v1 - v14"}</text></a>
-      <text x="89.43" textAnchor="end" y="252.43" style={{ fontSize: "8px" }} fill="#737373">{"7/2"}</text>
-      <text x="529.08" y="259.57" fill="currentColor">{"Join star"}</text>
-      <text x="199.86" y="282.88" fill="currentColor">{"rush-6-then-heuristic-agent"}</text>
-      <a href="#gui"><text x="444.77" y="283.01" fill="#9f0cb5" textDecoration="underline">{"local web GUI impl."}</text></a>
-      <text x="89.43" textAnchor="end" y="316.21" style={{ fontSize: "8px" }} fill="#737373">{"7/3"}</text>
-      <text x="89.43" textAnchor="end" y="379.99" style={{ fontSize: "8px" }} fill="#737373">{"7/4"}</text>
-      <a href="#submission-rs"><text x="383.54" y="380.63" fill="#9f0cb5" textDecoration="underline">{"submission.rs"}</text></a>
-      <text x="529.08" y="387.94" fill="currentColor">{"Join heehee"}</text>
-      <a href="#cone-algorithm"><text x="444.77" y="395.13" fill="#9f0cb5" textDecoration="underline">{"cone algorithm"}</text></a>
-      <a href="#cone"><text x="322.31" y="411.24" fill="#9f0cb5" textDecoration="underline">{"Idea: enemy path prediction"}</text></a>
-      <a href="#relay"><text x="322.31" y="426.17" fill="#9f0cb5" textDecoration="underline">{"Idea: relay (boosting)"}</text></a>
-      <text x="89.43" textAnchor="end" y="443.77" style={{ fontSize: "8px" }} fill="#737373">{"7/5"}</text>
-      <a href="#ccc"><text x="230.47" y="444.41" fill="#9f0cb5" textDecoration="underline">{"CCC"}</text></a>
-      <a href="#ccc"><text x="230.47" y="459.72" fill="#9f0cb5" textDecoration="underline">{"CCC7"}</text></a>
-      <text x="138.63" y="475.02" fill="currentColor">{"CCC-GNN7-mb"}</text>
-      <a href="#ccc"><text x="230.47" y="475.02" fill="#9f0cb5" textDecoration="underline">{"CCC13"}</text></a>
-      <text x="138.63" y="490.33" fill="currentColor">{"ccc-GNN13-mb"}</text>
-      <text x="230.47" y="505.63" fill="currentColor">{"Idea: early harass"}</text>
-      <text x="89.43" textAnchor="end" y="507.55" style={{ fontSize: "8px" }} fill="#737373">{"7/6"}</text>
-      <text x="230.47" y="520.95" fill="currentColor">{"CCC-fast-harass"}</text>
-      <text x="108.01" y="536.25" fill="currentColor">{"CFR-MLP-codex"}</text>
-      <a href="#ccc-456-harass"><text x="230.47" y="536.25" fill="#9f0cb5" textDecoration="underline">{"CCC-456-harass"}</text></a>
-      <text x="529.08" y="544.15" fill="currentColor">{"Best score 2420"}</text>
-      <text x="138.63" y="551.56" fill="currentColor">{"CCC-456-mb"}</text>
-      <text x="89.43" textAnchor="end" y="571.33" style={{ fontSize: "8px" }} fill="#737373">{"7/7"}</text>
-      <text x="108.01" y="571.72"><tspan fill="currentColor">{"Idea: subgraph,"}</tspan>{" "}<a href="#royal-road"><tspan fill="#9f0cb5" textDecoration="underline">{"royal road"}</tspan></a></text>
-      <a href="#mcccts"><text x="108.01" y="587.28" fill="#9f0cb5" textDecoration="underline">{"MCCCTS"}</text></a>
-      <text x="529.08" y="595.17" fill="currentColor">{"Best rank 15th"}</text>
-      <a href="#sgts"><text x="108.01" y="602.58" fill="#9f0cb5" textDecoration="underline">{"CCC-SGTS-MLP"}</text></a>
-      <text x="383.54" y="602.85" fill="currentColor">{"✗ ceased"}</text>
-      <a href="#escort"><text x="322.31" y="617.89" fill="#9f0cb5" textDecoration="underline">{"escort"}</text></a>
-      <text x="89.43" textAnchor="end" y="635.11" style={{ fontSize: "8px" }} fill="#737373">{"7/8"}</text>
-      <text x="322.31" y="635.75" fill="currentColor">{"v40"}</text>
-      <text x="529.08" y="640.73" fill="currentColor">{"Dominates locally"}</text>
-      <text x="383.54" y="651.05" fill="currentColor">{"Rust port begins"}</text>
-      <a href="#v40-1"><text x="322.31" y="651.06" fill="#9f0cb5" textDecoration="underline">{"v40.1"}</text></a>
-      <text x="529.08" y="658.92" fill="currentColor">{"Faster, but"}</text>
-      <text x="322.31" y="666.36" fill="currentColor">{"v40.6"}</text>
-      <text x="383.54" y="666.36" fill="currentColor">{"v40.1-rust.rs"}</text>
-      <text x="529.08" y="671.37" fill="currentColor">{"still TLE"}</text>
-      <a href="#v40-6-rust"><text x="383.54" y="681.67" fill="#9f0cb5" textDecoration="underline">{"v40.6-rust.rs"}</text></a>
-      <a href="#v40-6-rust"><text x="529.08" y="689.57" fill="#9f0cb5" textDecoration="underline">{"Port done,"}</text></a>
-      <text x="383.54" y="696.98" fill="currentColor">{"v40.7-rust-loosendeadlock"}</text>
-      <text x="89.43" textAnchor="end" y="698.89" style={{ fontSize: "8px" }} fill="#737373">{"7/9"}</text>
-      <a href="#v40-6-rust"><text x="529.08" y="702.01" fill="#9f0cb5" textDecoration="underline">{"TLE fixed"}</text></a>
-      <text x="383.54" y="714.84" fill="currentColor">{"Submit"}</text>
+      <text x="199.86" y="124.7" fill="currentColor">
+        {"heuristic-agent"}
+      </text>
+      <text x="89.43" textAnchor="end" y="124.87" style={{ fontSize: "8px" }} fill="#737373">
+        {"6/30"}
+      </text>
+      <text x="529.08" y="132.02" fill="currentColor">
+        {"Join chorock"}
+      </text>
+      <text x="199.86" y="155.32" fill="currentColor">
+        {"heuristic-hq-sync-agent"}
+      </text>
+      <text x="108.01" y="188.48" fill="currentColor">
+        {"meta-hq-sync-agent"}
+      </text>
+      <text x="89.43" textAnchor="end" y="188.65" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/1"}
+      </text>
+      <a href="#old-lee2">
+        <text x="108.01" y="219.91" fill="#9f0cb5" textDecoration="underline">
+          {"old-lee2"}
+        </text>
+      </a>
+      <text x="529.08" y="227.22" fill="currentColor">
+        {"Join qwe7895"}
+      </text>
+      <text x="108.01" y="234.4" fill="currentColor">
+        {"auglee"}
+      </text>
+      <text x="108.01" y="249.71" fill="currentColor">
+        {"auglee11"}
+      </text>
+      <a href="#abcd">
+        <text x="322.31" y="252.26" fill="#9f0cb5" textDecoration="underline">
+          {"abcd-priority-agent-v1 - v14"}
+        </text>
+      </a>
+      <text x="89.43" textAnchor="end" y="252.43" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/2"}
+      </text>
+      <text x="529.08" y="259.57" fill="currentColor">
+        {"Join star"}
+      </text>
+      <text x="199.86" y="282.88" fill="currentColor">
+        {"rush-6-then-heuristic-agent"}
+      </text>
+      <a href="#gui">
+        <text x="444.77" y="283.01" fill="#9f0cb5" textDecoration="underline">
+          {"local web GUI impl."}
+        </text>
+      </a>
+      <text x="89.43" textAnchor="end" y="316.21" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/3"}
+      </text>
+      <text x="89.43" textAnchor="end" y="379.99" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/4"}
+      </text>
+      <a href="#submission-rs">
+        <text x="383.54" y="380.63" fill="#9f0cb5" textDecoration="underline">
+          {"submission.rs"}
+        </text>
+      </a>
+      <text x="529.08" y="387.94" fill="currentColor">
+        {"Join heehee"}
+      </text>
+      <a href="#cone-algorithm">
+        <text x="444.77" y="395.13" fill="#9f0cb5" textDecoration="underline">
+          {"cone algorithm"}
+        </text>
+      </a>
+      <a href="#cone">
+        <text x="322.31" y="411.24" fill="#9f0cb5" textDecoration="underline">
+          {"Idea: enemy path prediction"}
+        </text>
+      </a>
+      <a href="#relay">
+        <text x="322.31" y="426.17" fill="#9f0cb5" textDecoration="underline">
+          {"Idea: relay (boosting)"}
+        </text>
+      </a>
+      <text x="89.43" textAnchor="end" y="443.77" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/5"}
+      </text>
+      <a href="#ccc">
+        <text x="230.47" y="444.41" fill="#9f0cb5" textDecoration="underline">
+          {"CCC"}
+        </text>
+      </a>
+      <a href="#ccc">
+        <text x="230.47" y="459.72" fill="#9f0cb5" textDecoration="underline">
+          {"CCC7"}
+        </text>
+      </a>
+      <text x="138.63" y="475.02" fill="currentColor">
+        {"CCC-GNN7-mb"}
+      </text>
+      <a href="#ccc">
+        <text x="230.47" y="475.02" fill="#9f0cb5" textDecoration="underline">
+          {"CCC13"}
+        </text>
+      </a>
+      <text x="138.63" y="490.33" fill="currentColor">
+        {"ccc-GNN13-mb"}
+      </text>
+      <text x="230.47" y="505.63" fill="currentColor">
+        {"Idea: early harass"}
+      </text>
+      <text x="89.43" textAnchor="end" y="507.55" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/6"}
+      </text>
+      <text x="230.47" y="520.95" fill="currentColor">
+        {"CCC-fast-harass"}
+      </text>
+      <text x="108.01" y="536.25" fill="currentColor">
+        {"CFR-MLP-codex"}
+      </text>
+      <a href="#ccc-456-harass">
+        <text x="230.47" y="536.25" fill="#9f0cb5" textDecoration="underline">
+          {"CCC-456-harass"}
+        </text>
+      </a>
+      <text x="529.08" y="544.15" fill="currentColor">
+        {"Best score 2420"}
+      </text>
+      <text x="138.63" y="551.56" fill="currentColor">
+        {"CCC-456-mb"}
+      </text>
+      <text x="89.43" textAnchor="end" y="571.33" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/7"}
+      </text>
+      <text x="108.01" y="571.72">
+        <tspan fill="currentColor">{"Idea: subgraph,"}</tspan>{" "}
+        <a href="#royal-road">
+          <tspan fill="#9f0cb5" textDecoration="underline">
+            {"royal road"}
+          </tspan>
+        </a>
+      </text>
+      <a href="#mcccts">
+        <text x="108.01" y="587.28" fill="#9f0cb5" textDecoration="underline">
+          {"MCCCTS"}
+        </text>
+      </a>
+      <text x="529.08" y="595.17" fill="currentColor">
+        {"Best rank 15th"}
+      </text>
+      <a href="#sgts">
+        <text x="108.01" y="602.58" fill="#9f0cb5" textDecoration="underline">
+          {"CCC-SGTS-MLP"}
+        </text>
+      </a>
+      <text x="383.54" y="602.85" fill="currentColor">
+        {"✗ ceased"}
+      </text>
+      <a href="#escort">
+        <text x="322.31" y="617.89" fill="#9f0cb5" textDecoration="underline">
+          {"escort"}
+        </text>
+      </a>
+      <text x="89.43" textAnchor="end" y="635.11" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/8"}
+      </text>
+      <text x="322.31" y="635.75" fill="currentColor">
+        {"v40"}
+      </text>
+      <text x="529.08" y="640.73" fill="currentColor">
+        {"Dominates locally"}
+      </text>
+      <text x="383.54" y="651.05" fill="currentColor">
+        {"Rust port begins"}
+      </text>
+      <a href="#v40-1">
+        <text x="322.31" y="651.06" fill="#9f0cb5" textDecoration="underline">
+          {"v40.1"}
+        </text>
+      </a>
+      <text x="529.08" y="658.92" fill="currentColor">
+        {"Faster, but"}
+      </text>
+      <text x="322.31" y="666.36" fill="currentColor">
+        {"v40.6"}
+      </text>
+      <text x="383.54" y="666.36" fill="currentColor">
+        {"v40.1-rust.rs"}
+      </text>
+      <text x="529.08" y="671.37" fill="currentColor">
+        {"still TLE"}
+      </text>
+      <a href="#v40-6-rust">
+        <text x="383.54" y="681.67" fill="#9f0cb5" textDecoration="underline">
+          {"v40.6-rust.rs"}
+        </text>
+      </a>
+      <a href="#v40-6-rust">
+        <text x="529.08" y="689.57" fill="#9f0cb5" textDecoration="underline">
+          {"Port done,"}
+        </text>
+      </a>
+      <text x="383.54" y="696.98" fill="currentColor">
+        {"v40.7-rust-loosendeadlock"}
+      </text>
+      <text x="89.43" textAnchor="end" y="698.89" style={{ fontSize: "8px" }} fill="#737373">
+        {"7/9"}
+      </text>
+      <a href="#v40-6-rust">
+        <text x="529.08" y="702.01" fill="#9f0cb5" textDecoration="underline">
+          {"TLE fixed"}
+        </text>
+      </a>
+      <text x="383.54" y="714.84" fill="currentColor">
+        {"Submit"}
+      </text>
     </g>
   </svg>
 </div>
@@ -264,18 +636,35 @@ export const StatusRow = ({ label, children }) => (
 
 <StatusTable>
   <StatusRow label="Team Name">원스타 (One Star)</StatusRow>
-  <StatusRow label="Members">A team of four: university students heehee and chorock, and general-division entrants star and qwe7895.</StatusRow>
-  <StatusRow label="LLM Provider (Plan)">Claude Max (5x), GPT Plus × 3, Claude Pro, Google AI Pro</StatusRow>
-  <StatusRow label="Used Models">Claude Sonnet 4.8, Claude Opus 4.8, GPT 5.5, Gemini 3.1 Pro</StatusRow>
+  <StatusRow label="Members">
+    A team of four: university students heehee and chorock, and general-division entrants star and
+    qwe7895.
+  </StatusRow>
+  <StatusRow label="LLM Provider (Plan)">
+    Claude Max (5x), GPT Plus × 3, Claude Pro, Google AI Pro
+  </StatusRow>
+  <StatusRow label="Used Models">
+    Claude Sonnet 4.8, Claude Opus 4.8, GPT 5.5, Gemini 3.1 Pro
+  </StatusRow>
 </StatusTable>
 
 ## Roles
 
 <StatusTable>
-  <StatusRow label="chorock">Devised and improved the game agent skeleton code (meta and CCC families); set up the code-learning structure</StatusRow>
-  <StatusRow label="heehee">Toolchain management and GUI improvements, model training support / algorithm proposals, speed-up via Rust porting</StatusRow>
-  <StatusRow label="qwe7895">Improved the code by identifying its weaknesses and proposing countermeasures</StatusRow>
-  <StatusRow label="star">Devised and improved the core game agent skeleton code (abcd family)</StatusRow>
+  <StatusRow label="chorock">
+    Devised and improved the game agent skeleton code (meta and CCC families); set up the
+    code-learning structure
+  </StatusRow>
+  <StatusRow label="heehee">
+    Toolchain management and GUI improvements, model training support / algorithm proposals,
+    speed-up via Rust porting
+  </StatusRow>
+  <StatusRow label="qwe7895">
+    Improved the code by identifying its weaknesses and proposing countermeasures
+  </StatusRow>
+  <StatusRow label="star">
+    Devised and improved the core game agent skeleton code (abcd family)
+  </StatusRow>
 </StatusTable>
 
 ## How We Collaborated
@@ -300,6 +689,7 @@ We used git to hand submissions to each other quickly and safely, and taught the
 Submission #49081, Submission Time 07-02 09:45:44[^kst]
 
 Base code: meta-hq-sync-agent
+
 - Problem: meta-hq-sync-agent's overly conservative attack policy meant it rarely committed to destroying bases.
 - Improvement: added forced attack orders triggered by turn count, lowering the chance of a draw.
   (Conditions: keep the original strategy until turn $100$; between turns $100$ and $150$, prioritize attacking enemy bases around the center; after turn 150, if ahead, gather the soldiers for a mass attack.)
@@ -307,6 +697,7 @@ Base code: meta-hq-sync-agent
   - Problems found: it lost helplessly to very early harassment ($5$ warriors after $2$ bases) and rushes ($6$ warriors with no bases).
 
 Additional code: LEE-CCC-456-harass
+
 - Base code: CCC-456-harass
   - Written after identifying that CCC-456-harass's weakness was small maps.
 - Changes: capture the hop-based central base; upgrade HQ once holding $8000$ gold or more
@@ -348,6 +739,7 @@ Change: bring the existing UI over as is and run again.
 Submission #79612, Submission Time 07-05 20:54:29
 
 #### 2.2.1.1 Problems
+
 - Judged that training was no longer working properly. Wanted to create a new heuristic code family.
 
 #### 2.2.1.2 Idea (skeleton; prompt summary)
@@ -361,25 +753,31 @@ Otherwise, expand.
 **Early game ($\bm{20}$–roughly $\bm{50}$)**
 
 Once past the very early game, use HQ boosting and base boosting to expand faster.
+
 - First, build bases on the strongholds closest to HQ.
 
 If, early on, the opponent gathers warriors at their HQ or a base after $2$ or $3$ bases,
+
 - train exactly as many warriors as they have gathered. Then, when they rush, defend at the base on the expected path.
 - After defending, keep the existing expansion policy.
 
 **Mid game (roughly $\bm{50}$–roughly $\bm{100}$): when both sides have expanded to all strongholds except $\bm{1}$ or $\bm{2}$**
 
 If there are surplus warriors gathered from the early game,
+
 - keep gathering them until there are $5$, then send them to harass or capture.
 - Surplus warriors gather at the frontmost base. This base is called the "hub".
 
 If a base gets harassed (base destroyed),
+
 - rebuild it. One warrior is appropriate.
 
 If a base gets captured (harassed + enemy base built),
+
 - retake it.
 
 Harassing and capturing
+
 - When harassing, the target base must be close and weak.
 - When capturing, the target base must be usable as a "hub".
 - When harassing or capturing, calculate how strong the base or HQ is before attempting.
@@ -387,6 +785,7 @@ Harassing and capturing
   - Multiple "squads" can be run at once — i.e., several harasses or captures can be in flight.
 
 If the opponent rushes HQ,
+
 - if the attack-path prediction above makes it certain that an HQ rush is coming, train that many warriors at HQ.
   - At the same time, harass more aggressively with the "squads", or hit the opponent's HQ.
 
@@ -395,29 +794,34 @@ If the opponent rushes HQ,
 Continue the mid-game harassing and capturing.
 
 "Hub" management
+
 - It is the center of harassing and capturing activity.
 - However, the opponent's harassment can cost it the hub conditions. If so, immediately designate a new hub.
 - If the hub cannot be defended, designate a candidate hub as the hub in advance (i.e., abandon the hub).
 
 If the opponent upgraded a base,
+
 - save money to upgrade a base too. In that case train only $1$ warrior, or none at all.
 - Since the opponent will be short on money in that situation, harass more aggressively with the existing "squads".
 
 **Very late game ($\bm{180}$–$\bm{200}$, hard-coded)**
 
 If our HQ upgrades are behind or equal to the opponent's,
+
 - if upgrading can catch up or overtake, actually do it
 - otherwise, proceed as below
   - Gather warriors at the hub.
   - On turn $185$, attack the opponent's HQ as a group. Keep sending reinforcements steadily.
 
 #### 2.2.1.3 Performance
+
 - Strong against opponents who harass after mid-to-late-game expansion.
 - In internal evaluation it fell behind abcd-v32, but still posted good results.
 - Developed further up to CCC13 and used as a benchmark and training target until late in the round.
 - In the Pretests (CCC11) it scored $2090$ points for $123$rd place, a step backward in rank.
 
 #### 2.2.1.4 Problems Found
+
 As with the earlier example, it lost helplessly to very early harassment ($5$ warriors after $2$ bases) and rushes ($6$ warriors with no bases).
 (This is when we realized early harassment was the weak point of mid-to-late-game strategies.)
 
@@ -428,24 +832,29 @@ As with the earlier example, it lost helplessly to very early harassment ($5$ wa
 Submission #87168, Submission Time 07-06 18:49:10, previous code: CCC13
 
 #### 2.2.2.1 Problems
+
 The opponents' early harassment is strong, so agents that look to the mid-to-late game like CCC13 are very vulnerable.
 
 #### 2.2.2.2 Idea
+
 What if we tried early harassment ourselves?
 
 #### 2.2.2.3 Improvements
+
 - CCC-fast-harass: build $2$ / $3$ / $4$ bases depending on map size, then go harass immediately.
 - CCC-456-harass: build $4$ / $5$ / $6$ bases depending on map size, then go harass immediately.
   Harass and capture strongholds other than the center first.
 - Everything afterward runs the same as before.
 
 #### 2.2.2.4 Performance
+
 - CCC-fast-harass: worse than CCC13 on internal metrics, but later used as the early-harassment benchmark
 - CCC-456-harass performed on par with or better than the previous models in internal evaluation.
 - Recorded $8$ wins against the sample AIs.
 - In the Pretests it recorded our best score of $2420$ points, settling at $48$th place.
 
 #### 2.2.2.5 Problems Found
+
 - Problems still appear against early harassment like CCC-fast-harass's.
 - Also, when an enemy base sits in the middle of a movement path, it sends reinforcements straight through anyway and loses troops. We called this "getting cut at the waist".
 
@@ -458,22 +867,26 @@ Submission #92651, Submission Time 07-07 09:29:41, previous code: CFR-MLP-codex 
 #### 2.2.3.1 Idea
 
 Smart search: move only up to just in front of the base to harass, and if on the next turn the enemy base is judged to have more combat power than our harassing troops, return or harass a different base.
+
 - Movement may cost $2\times$, but that beats losing every soldier.
 - Added to smart search: running a combat simulation that accounts for enemy reinforcements arriving next turn.
 - Also computed the opponent's defensive sphere of influence so that harassment stays conservative.
 
 Smart search for harassment was implemented with MCTS.
+
 - Reading begins right before reaching the harass target.
 - If it looks like we can't even destroy it, look for another target or build a base on a nearby stronghold
 - If destruction and capture are both possible, capture
 - If capture is not possible, harass
 
 #### 2.2.3.2 Performance
+
 - Outperformed most others in internal evaluation.
 - Recorded $7$ wins and $1$ loss against the sample AIs, confirming there was still something shaky in the strategy.
 - In the Pretests it recorded $2340$ points, settling at $15$th — our best rank.
 
 #### 2.2.3.3 Problems
+
 - As the sample AIs showed, it is very vulnerable to early-to-mid-game all-ins.
 - It sometimes fails to hit a harass target that could have been attacked (attributed to a very conservative harassing disposition).
 - It keeps up an unfavorable stalemate and loses on HP.
@@ -489,30 +902,36 @@ Submission #105088, Submission Time 07-08 14:55:31, previous code: MCCCTS
 #### 2.2.4.1 Idea
 
 Royal road (tree structure)
+
 - Hub chain: remember previous hubs instead of forgetting them, and connect allied bases in a tree.
 - On the subgraph, the fastest path to each outermost node is called the "royal road".
 
 Use the "royal road" via the subgraph between bases.
+
 - The base subgraph is a partial graph that breaks where strongholds are too far apart or another stronghold lies between them.
 
 Compute one turn before harassing, reading ahead so it can dodge in advance.
 
 #### 2.2.4.2 Performance
+
 - In internal evaluation it was the best result among the latest agents.
 - Against the sample AIs it went $5$ wins, $2$ draws, $1$ loss — fairly shaky.
 - In the Pretests it got hit hard by very early rushes and didn't do well at the top either, finishing at $1970$ points, $140$th place.
 
 #### 2.2.4.3 Problems
+
 - A bizarre phenomenon occurred where the untrained version performed better.
 - Extremely vulnerable to very early rushes, to the point of being unusable.
 
 ### 2.2.5 Models That Didn't Pan Out
+
 - `mcts-agent.py`: tried applying MCTS early on, but it didn't apply well. Presumably the space-explosion problem of needing
   belief states because turns are simultaneous. Settled for the weak application later in MCCCTS.
 - The HRL family: meta-HRL, CAU (Commander-and-Unit, an HRL structure in the meta family),
 
 CCCAU (an HRL structure in the CCC family), and CCC-SGTS-HRL all either didn't actually have an HRL structure, or collapsed against the existing single MLP.
 It could have been a problem with the training method, or with the structure itself. Either way, it was my ambitious project, and it ended unrealized.
+
 - As an aside, even after I'd written out the HRL structure plan, the LLM frequently reduced the heads on its own or collapsed it into a single MLP.
   That was the most annoying part.
 - PPoppoPN: Phase Policy + opponent action recognition + Positive-Negative state recognition (nickname: 뽀뽀뽕)
@@ -536,17 +955,23 @@ Submission #66190, Submission Time July 4, 04:22:38
 When I joined the team, everyone was writing Python + macro-level heuristics (+ a bit of MLP), which rubbed me the wrong way. I didn't want to read C/C++ even as LLM output (sick of it), so I chose Rust.
 
 1. Progress
-  - Problem: cramming long logic into a single file is just as hard to read for machines as for humans.
-  - Solution: referred to the sample code only for I/O, wrote the code as an ordinary Rust crate, then bundled it into `submission.rs` with a Rust bundler called `cg-bundler`.
-  - Prompt used:
-    > Referring to the documents under @docs (nypc_tools.md, nypc_rule.md, game_rule.md), let's write a bot boilerplate that satisfies the required IO interface.
-    > - A pipeline that works on an ordinary Rust crate and then bundles with cg-bundler
-    >
-    > &mdash; heehee → Claude Opus 4.8
+
+- Problem: cramming long logic into a single file is just as hard to read for machines as for humans.
+- Solution: referred to the sample code only for I/O, wrote the code as an ordinary Rust crate, then bundled it into `submission.rs` with a Rust bundler called `cg-bundler`.
+- Prompt used:
+  > Referring to the documents under @docs (nypc_tools.md, nypc_rule.md, game_rule.md), let's write a bot boilerplate that satisfies the required IO interface.
+  >
+  > - A pipeline that works on an ordinary Rust crate and then bundles with cg-bundler
+  >
+  > &mdash; heehee → Claude Opus 4.8
+
 2. Limitations
-  - Having joined the team late, I tried to implement a bot without really knowing the game rules, so I couldn't implement anything meaningful beyond boilerplate in Rust.
+
+- Having joined the team late, I tried to implement a bot without really knowing the game rules, so I couldn't implement anything meaningful beyond boilerplate in Rust.
+
 3. Significance
-  - The abcd-priority-agent-v40 variants, whose local scores were good but which hit TLE, were ported on top of this. It was also used as the final submission.
+
+- The abcd-priority-agent-v40 variants, whose local scores were good but which hit TLE, were ported on top of this. It was also used as the final submission.
 
 <div id="cone" />
 
@@ -564,11 +989,13 @@ When I joined the team, everyone was writing Python + macro-level heuristics (+ 
 **Result**
 
 Below is what came out after fleshing the idea out with the LLM and discussing it with a teammate (star); it was registered on the idea list.
+
 - Used in teammates' bots from abcd-priority-agent-v32 onward, and a feature visualizing the "field of view" of bots with this algorithm was added to qwe7895's GUI.
 
 <div id="cone-algorithm" />
 
 > Guessing each unit's destination
+>
 > - Least squares over the centers of the areas passed through? (X, turned out inefficient + inaccurate)
 > - **More generally, the expected path range can be modeled as something like a cone with the origin as its apex (O)**
 >   - **The cone D narrows as the trajectory accumulates:**
@@ -576,14 +1003,15 @@ Below is what came out after fleshing the idea out with the LLM and discussing i
 >   For each hop (u,w):
 >     D <- \{d in D | next_hop from u toward d = w}
 >   ```
-> 
+>
 > Combined strategies
+>
 > - star: if an early rush is predicted, halt construction of the $2$nd building
 > - (predicted movement) dispatch warriors in advance to our buildings contained in $D$
 > - star: (minimizing defense cost): until the attacked cases disappear, place the minimum defending troops "in the right places" according to the
 >   troop simulation table (internal team Discord link, by chorock)
 >   - If simply slamming in would win, send them into the enemy HQ
-> 
+>
 > Evaluation: (internal Discord link)
 >
 > &mdash; Claude Opus 4.8 → heehee → the team
@@ -600,8 +1028,9 @@ Submission #103106, Submission Time July 8, 10:54:42
 - Significance: judged that further optimization was pointless, and decided to use the Rust code we had already built.
 - Prompt used:
   > Analyze the cause of the TLE that occurs in `@son/abcd-priority-agent-v40.py` after the royal-road construction phase when HQ reaches level $5$
+  >
   > - Suspected cause: hop computation is set-based rather than table-based, and there are many other places that could be optimized with DP or greedily
-  > 
+  >
   > &mdash; heehee → Claude Code / Opus 4.8
 
 <div id="v40-6-rust" />
@@ -614,10 +1043,12 @@ Submission #109192, Submission Time July 8, 20:57:22
 - Solution: port it using the multi-file Rust codebase we had been building.
 - Result: TLE was resolved, and we caught up to v40.6, the final abcd agent star built.
 - Prompt used:
+
   > Continuing with `/home/heehee/.claude/projects/-home-heehee-Projects-NYPC/memory/abcd-v40-tle-fix.md` —
   > how about porting it byte-exact to Rust? I think that'd give the biggest performance boost
+  >
   > - For boilerplate, feel free to refer to the crate under kim_code
-  > 
+  >
   > &mdash; heehee → Claude Code / Opus 4.8
 
   … omitted …
@@ -626,7 +1057,7 @@ Submission #109192, Submission Time July 8, 20:57:22
   >
   > From the next session on, we'll mirror those changes starting from our ported Rust v40.1 and catch up one by one. (I'll provide natural-language descriptions of the updates.)
   > Now update the progress. Make sure it captures what's needed for the next plan (catching up to 40.6)
-  > 
+  >
   > &mdash; heehee → Claude Code / Opus 4.8
 
 #### Resolving the Deadlock (Final Submission)
@@ -643,7 +1074,7 @@ Submission #110297, Submission Time July 8, 21:59:28
     > &mdash; heehee → Claude Code / Opus 4.8
   - (dlock-hqup)
     > Add strategy: on turn 185, if 20 or more allied warriors are concentrated at one base and our total soldier count is 35 or more, unconditionally spend accumulated money on HQ upgrades (bundle as v40.8-rust-dlock-hqup)
-    > 
+    >
     > heehee → Claude Code / Opus 4.8
 - Results and limitations: we quickly ran an internal league, but couldn't confirm any meaningful change in stability or win rate. That was because no bot on our team
   induced entry into a stalemate like the one above.
@@ -702,25 +1133,28 @@ Harassment and defense are carried out around the hub's troops.
 If $\text{our bases} > \text{optimal base count}$, move to Phase D.
 
 Warrior training by optimal base count
+
 - Compare against the enemy's total warriors, excluding both sides' labor and expansion personnel.
 - $\text{optimal base count} > \text{our bases}$: train warriors to match the enemy's troops.
 - $\text{our bases} \ge \text{optimal base count}$: train $4$ more warriors than the enemy.
 
 Construction limits by optimal base count
+
 - $\text{our bases} \ge \text{optimal base count}$: stop base construction.
 - $\text{optimal base count} > \text{enemy bases}$: start base construction.
 
 Attack timing
+
 - $\text{enemy bases} > \text{our bases}$: attack, harassing so they can't gain a stronghold advantage.
 - Excluding $\text{our bases} = \text{optimal bases}$ && $\text{our bases} > \text{enemy bases}$
 - Harass if we have $4$ or more warriors than the enemy, excluding both sides' labor and expansion personnel.
-
 
 **Phase D (reinforcing staying power)**
 
 Upgrade HQ when its level is equal to or lower than the enemy's.
 
 When HQ's level is higher than the enemy's, or all upgrades are done,
+
 - Priority $1$: upgrade the central-stronghold hub first.
 - Priority $2$: upgrade the places most often passed through when moving from HQ.
 - Priority $3$: upgrade bases within 3 areas of the hub.
@@ -737,14 +1171,17 @@ When the sent warrior enters the intermediate base, move the warrior that was al
 This way personnel leave and arrive in the same turn, preserving labor while moving $1$ turn faster.
 
 #### 2.4.3.2 HQ Relay (Boosting) System
+
 On a turn when HQ is about to train troops, if there is an order for the trained troops, an HQ laborer acts instead.
 The troops produced at HQ then fill that labor slot.
 
 #### 2.4.3.3 Observation-Waypoint Defense System
+
 When the enemy has $2$ adjacent attack candidates and reinforcing after the attack path is confirmed would be too late, move the reinforcements to an intermediate "observation waypoint" off the enemy's route.
 Once the enemy's actual attack direction is confirmed on the next turn, reinforce that base.
 
 #### 2.4.3.4 Troop Preservation System
+
 When there are no reinforcements against an enemy attack, check whether the base would be destroyed within $2$ turns. If destruction within $2$ turns is certain,
 on the turn the base is attacked, move all of its troops to the hub to preserve them.
 

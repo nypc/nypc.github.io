@@ -62,18 +62,18 @@ When our HQ is safe and the enemy sends forces our way, leaving their HQ weakly 
 
 ### 👾mjyuung
 
-| Attempt | Strategy | Limit |
-| :-: | --- | --- |
-| $1$ | Take $3$ bases early and earn money. Then HQ upgrades and warrior training | Earns money fine but neither attacks nor defends. Just earns money until the end. |
-| $2$ | Secure over half the strongholds early, then train warriors. HQ upgrades and training. Send the HQ's spare warriors to the enemy HQ. | While I was taking strongholds the opponent attacked our HQ first and we lost. HQ warriors were sent $1$ per turn, so every warrior took the full turret fire. |
-| $3$ | Gather warriors at the HQ and move once they outnumber the enemy HQ's warriors. | On the way to the enemy HQ the warriors walked straight past enemy bases instead of detouring, arriving with HP already worn down. While the lead warriors attacked the HQ, ours was still training and gathering more. Meanwhile the enemy HQ surged out in huge numbers and we lost. |
-| $4$ | Sort strongholds by priority not only on distance from the HQ but on whether they lie on the path from our HQ to the enemy HQ. | Definitely good for taking more bases faster than the opponent. But the opponent does not always come by the shortest path. And there are always enemy bases on our warriors' path to their HQ too. Realized that capturing the shortest path is favorable for neither attack nor defense. |
-| $5$ | Instead of launching attackers from the HQ, rally them at the frontmost of our bases and move on the enemy HQ once a set number has gathered. | Rallying at the front base meant warriors moved more often than when launching from the HQ, which helped base defense a tiny bit. But the bigger problem was having no one to defend the HQ. We moved the HQ's warriors to the front base leaving only the minimum, and when the HQ was attacked the front base's warriors could not be used. |
-| $6$ | Tie the defenders to the HQ. | Adjusted the HQ defender count by the current enemy positions, but it could not respond to fluid situations. |
-| $7$ | Put the same number of warriors on every stronghold. | A few warriors on every stronghold. When another stronghold is attacked they just watch. |
-| $8$ | Not only move the HQ's warriors but start moving the non-labor warriors from every stronghold to other strongholds that need reinforcement. | A few warriors on every stronghold, going to help whichever is attacked. But by the time they move to help, it has already been attacked and is gone. |
-| $9$ | Remember the enemy warriors' positions from the previous turn to predict their destination. Sort our bases by highest predicted likelihood and defend. | Keeping the state of the last $3$ turns helps predict where the enemy is heading. But it never actually attacks; it only defends according to the enemy's direction. |
-| $10$ | Instead of attacking the enemy HQ from the start, sort the enemy bases by closeness to our bases. | Each stronghold's spare warriors gather in the area near the enemy base. As turns pass and the gathered count grows, attack the enemy base. Stable, but mostly ends in a draw. |
+| Attempt | Strategy                                                                                                                                               | Limit                                                                                                                                                                                                                                                                                                                                         |
+| :-----: | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   $1$   | Take $3$ bases early and earn money. Then HQ upgrades and warrior training                                                                             | Earns money fine but neither attacks nor defends. Just earns money until the end.                                                                                                                                                                                                                                                             |
+|   $2$   | Secure over half the strongholds early, then train warriors. HQ upgrades and training. Send the HQ's spare warriors to the enemy HQ.                   | While I was taking strongholds the opponent attacked our HQ first and we lost. HQ warriors were sent $1$ per turn, so every warrior took the full turret fire.                                                                                                                                                                                |
+|   $3$   | Gather warriors at the HQ and move once they outnumber the enemy HQ's warriors.                                                                        | On the way to the enemy HQ the warriors walked straight past enemy bases instead of detouring, arriving with HP already worn down. While the lead warriors attacked the HQ, ours was still training and gathering more. Meanwhile the enemy HQ surged out in huge numbers and we lost.                                                        |
+|   $4$   | Sort strongholds by priority not only on distance from the HQ but on whether they lie on the path from our HQ to the enemy HQ.                         | Definitely good for taking more bases faster than the opponent. But the opponent does not always come by the shortest path. And there are always enemy bases on our warriors' path to their HQ too. Realized that capturing the shortest path is favorable for neither attack nor defense.                                                    |
+|   $5$   | Instead of launching attackers from the HQ, rally them at the frontmost of our bases and move on the enemy HQ once a set number has gathered.          | Rallying at the front base meant warriors moved more often than when launching from the HQ, which helped base defense a tiny bit. But the bigger problem was having no one to defend the HQ. We moved the HQ's warriors to the front base leaving only the minimum, and when the HQ was attacked the front base's warriors could not be used. |
+|   $6$   | Tie the defenders to the HQ.                                                                                                                           | Adjusted the HQ defender count by the current enemy positions, but it could not respond to fluid situations.                                                                                                                                                                                                                                  |
+|   $7$   | Put the same number of warriors on every stronghold.                                                                                                   | A few warriors on every stronghold. When another stronghold is attacked they just watch.                                                                                                                                                                                                                                                      |
+|   $8$   | Not only move the HQ's warriors but start moving the non-labor warriors from every stronghold to other strongholds that need reinforcement.            | A few warriors on every stronghold, going to help whichever is attacked. But by the time they move to help, it has already been attacked and is gone.                                                                                                                                                                                         |
+|   $9$   | Remember the enemy warriors' positions from the previous turn to predict their destination. Sort our bases by highest predicted likelihood and defend. | Keeping the state of the last $3$ turns helps predict where the enemy is heading. But it never actually attacks; it only defends according to the enemy's direction.                                                                                                                                                                          |
+|  $10$   | Instead of attacking the enemy HQ from the start, sort the enemy bases by closeness to our bases.                                                      | Each stronghold's spare warriors gather in the area near the enemy base. As turns pass and the gathered count grows, attack the enemy base. Stable, but mostly ends in a draw.                                                                                                                                                                |
 
 ### 😁hyeon09
 
@@ -197,25 +197,43 @@ Asked it to interpret the sample code, then threw ideas at it and Codex turned t
 
 After $8$ wins, with the rough frame in place, gave it the Pretest logs as material and analyzed the causes of defeat. Told it the rough reason for a loss and asked it to come up with fixes
 
-<Figure src="/2026/replay/master_worKing/images/p08_X53.png" alt="Conversation with Codex in Visual Studio Code" />
+<Figure
+  src="/2026/replay/master_worKing/images/p08_X53.png"
+  alt="Conversation with Codex in Visual Studio Code"
+/>
 
 When writing the early rush, though, the early game had to be rewritten almost from scratch, so it was like the early phase: ask about ideas, settle on an idea, and Codex writes the code from it.
 
 Example:
 
-<Figure src="/2026/replay/master_worKing/images/p08_X55.png" alt="Example conversation with Codex" />
+<Figure
+  src="/2026/replay/master_worKing/images/p08_X55.png"
+  alt="Example conversation with Codex"
+/>
 
-<Figure src="/2026/replay/master_worKing/images/p08_X56.png" alt="Example conversation with Codex" />
+<Figure
+  src="/2026/replay/master_worKing/images/p08_X56.png"
+  alt="Example conversation with Codex"
+/>
 
-<Figure src="/2026/replay/master_worKing/images/p08_X57.png" alt="Example conversation with Codex" />
+<Figure
+  src="/2026/replay/master_worKing/images/p08_X57.png"
+  alt="Example conversation with Codex"
+/>
 
 After several questions, once it is settled
 
-<Figure src="/2026/replay/master_worKing/images/p09_X62.png" alt="The idea being settled in the conversation with Codex" />
+<Figure
+  src="/2026/replay/master_worKing/images/p09_X62.png"
+  alt="The idea being settled in the conversation with Codex"
+/>
 
 Ask Codex to code the settled idea. &rarr; Codex applies it
 
-<Figure src="/2026/replay/master_worKing/images/p10_X67.png" alt="Code written by Codex applying the idea" />
+<Figure
+  src="/2026/replay/master_worKing/images/p10_X67.png"
+  alt="Code written by Codex applying the idea"
+/>
 
 ## mjyuung
 

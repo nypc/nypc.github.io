@@ -27,9 +27,15 @@ The algorithm we designed was as follows.
 
 We generated the code with Google Gemini. The initial "gather three warriors and attack" algorithm came out of the following conversation.
 
-<Figure src="/2026/replay/master_태웅이와수드라들/images/p02_X53.png" alt="Conversation with Google Gemini to generate the algorithm that gathers three warriors and attacks" />
+<Figure
+  src="/2026/replay/master_태웅이와수드라들/images/p02_X53.png"
+  alt="Conversation with Google Gemini to generate the algorithm that gathers three warriors and attacks"
+/>
 
-<Figure src="/2026/replay/master_태웅이와수드라들/images/p02_X54.png" alt="Conversation with Google Gemini to generate the algorithm that gathers three warriors and attacks (continued)" />
+<Figure
+  src="/2026/replay/master_태웅이와수드라들/images/p02_X54.png"
+  alt="Conversation with Google Gemini to generate the algorithm that gathers three warriors and attacks (continued)"
+/>
 
 With just this, the bot never attacked the HQ afterward and produced only draws or losses, so we added separate HQ-attack logic; and since attacking with only three was inefficient, we added the simulation above so that only raids certain to win were carried out.
 
@@ -67,7 +73,7 @@ Using version 60916 we found the Pretest results fell broadly into three cases.
 1. Against opponents with no defense algorithm, vulnerable to raids, we snowball quickly and win comfortably.
 2. Against opponents with a defense algorithm, raids keep getting blocked and the snowball rolls the other way.
 3. Against opponents using an outpost, we keep attacking only the outpost and the raid party dies pointlessly.
-   
+
    [An "outpost" means an algorithm that gathers its forces at a base other than the HQ and fights from there. We were especially vulnerable to algorithms that used the central stronghold as an outpost.]
 
 At this point we debated "should we drop the raid algorithm and go with something new?", but rather than imitating opponents we chose to strengthen our own raid algorithm and play the game at our own pace.
@@ -376,72 +382,67 @@ We kept the broad frame of the original raid algorithm (different strategies per
    When taking an empty stronghold, bring surplus warriors from the nearest stronghold or the HQ to build it, and put them straight to work as laborers. Warriors are sent ahead to the empty stronghold on turn $k$ satisfying $300 - (\text{current total labor of all buildings}) \times 15 \times k \le 0$. If the defense signal is active, warriors are not moved to an empty stronghold even when one is found.
 
    Once no more empty strongholds can be taken, we start comparing our labor capacity with the opponent's. The comparison runs for $2$ turns, and if the conditions below hold for $3$ turns, the corresponding algorithm runs. (If not, the attack algorithm does not run and the build-up in 1. proceeds.) First, as soon as money is to spare, the build-up proceeds from the HQ level-$2$ upgrade step onward.
+   1. $\text{our total labor} > \text{opponent's total labor}$<br />
+      Run attack algorithm A, and perform the build-up in 1. when money is to spare
 
-   1) $\text{our total labor} > \text{opponent's total labor}$<br />
-   Run attack algorithm A, and perform the build-up in 1. when money is to spare
+   2. $\text{our total labor} = \text{opponent's total labor}$<br />
+      Perform the build-up in 1.
 
-   2) $\text{our total labor} = \text{opponent's total labor}$<br />
-   Perform the build-up in 1.
-
-   3) $\text{our total labor} < \text{opponent's total labor}$<br />
-   2-1) If the labor gap is $1$: perform the build-up in 1.<br />
-   2-2) If the labor gap is $2$ or more: run attack algorithm B
+   3. $\text{our total labor} < \text{opponent's total labor}$<br />
+      2-1) If the labor gap is $1$: perform the build-up in 1.<br />
+      2-2) If the labor gap is $2$ or more: run attack algorithm B
 
    Stronghold upgrade priority:
+   1. Among the outermost strongholds, upgrade the one with the lowest HP first
 
-   1) Among the outermost strongholds, upgrade the one with the lowest HP first
+   2. Strongholds marked as priority upgrade targets
 
-   2) Strongholds marked as priority upgrade targets
+   3. Strongholds where conflict has occurred $2$ or more times (if enemy forces came in once and fought, there was a turn with only our forces present, and then enemy forces came in and fought once more, that counts as $2$ conflicts)
 
-   3) Strongholds where conflict has occurred $2$ or more times (if enemy forces came in once and fought, there was a turn with only our forces present, and then enemy forces came in and fought once more, that counts as $2$ conflicts)
+   4. The stronghold closest to the opponent's core stronghold<br />
+      As an exception, if one of our strongholds is within $3$ areas of the enemy HQ and conflict has occurred $3$ or more times there, upgrade it to level $3$ (this takes precedence over the HQ level-$4$ upgrade)
 
-   4) The stronghold closest to the opponent's core stronghold<br />
-   As an exception, if one of our strongholds is within $3$ areas of the enemy HQ and conflict has occurred $3$ or more times there, upgrade it to level $3$ (this takes precedence over the HQ level-$4$ upgrade)
-
-   5) Strongholds closer to the map center first
+   5. Strongholds closer to the map center first
 
 3. Criteria for judging money to be to spare<br />
    Money is judged to be to spare if any one of the following holds.
+   1. We earn $\text{max trainable warriors} \times 120$ gold every turn
 
-   1) We earn $\text{max trainable warriors} \times 120$ gold every turn
+   2. The defense signal is not active
 
-   2) The defense signal is not active
-
-   3) $\text{opponent's total forces} - \text{our total forces} < 3$
+   3. $\text{opponent's total forces} - \text{our total forces} < 3$
 
 4. Defense algorithm
-
-   1) Algorithm to identify the opponent's central stronghold
+   1. Algorithm to identify the opponent's central stronghold
    - Among the opponent's buildings, any stronghold or HQ holding $\text{that building's labor capacity} + 2$ or more warriors is set as a candidate for their core stronghold.
    - Among the candidates, the one where forces have been gathering the longest, for $n$ turns, is estimated to be their core stronghold. Here $n$ must satisfy:<br />
      $n = (\text{turns forces were actually massing there}) - (\text{turns of conflict there}) - (\text{turns from our sending forces there until arrival}) > 2$<br />
      This logic is to avoid mistaking a spot where they gathered because of their defense algorithm for the core stronghold. Also, if we are attacking their core stronghold, it keeps being recognized as such until the conflict ends even if the formula is not satisfied.
+   2. Forces are sent ahead to our stronghold closest to the enemy gathering stronghold (or HQ), enough to satisfy $\text{opponent's forces} + 1$. There may be several enemy gathering strongholds.<br />
+      &rarr; A stronghold holding $3$ or more enemy warriors for $3$ or more turns without a conflict just before is recognized as a gathering stronghold (or HQ) (for an HQ at level $3$ or above, $5$ or more warriors for $3$ or more turns); this is treated separately from their core stronghold.<br />
+      Usually the number of enemy gathering strongholds and ours match, but if several of our strongholds must be defended against one enemy gathering stronghold, the exception is to gather forces at the stronghold that minimizes the distance between the two (or more).
 
-   2) Forces are sent ahead to our stronghold closest to the enemy gathering stronghold (or HQ), enough to satisfy $\text{opponent's forces} + 1$. There may be several enemy gathering strongholds.<br />
-   &rarr; A stronghold holding $3$ or more enemy warriors for $3$ or more turns without a conflict just before is recognized as a gathering stronghold (or HQ) (for an HQ at level $3$ or above, $5$ or more warriors for $3$ or more turns); this is treated separately from their core stronghold.<br />
-   Usually the number of enemy gathering strongholds and ours match, but if several of our strongholds must be defended against one enemy gathering stronghold, the exception is to gather forces at the stronghold that minimizes the distance between the two (or more).
+   3. If a stronghold where we pre-positioned forces drops out of the defense candidates, move the defenders to the closest remaining candidate.
 
-   3) If a stronghold where we pre-positioned forces drops out of the defense candidates, move the defenders to the closest remaining candidate.
+   4. From the moment the defense point is settled, we compute whether the defense can succeed, as follows.<br />
+      a) Compare all incoming enemy forces against our defenders (laborers at that stronghold count as defenders). If $\text{our total warriors} \ge \text{enemy total warriors}$, assume success<br />
+      b) If $\text{our total warriors} - 1 = \text{enemy total warriors}$, pull laborers from the nearest stronghold to serve temporarily as defenders (not if they cannot reach the stronghold within $3$ turns)<br />
+      c) Otherwise, treat it as a failed defense and send no more forces
 
-   4) From the moment the defense point is settled, we compute whether the defense can succeed, as follows.<br />
-   a) Compare all incoming enemy forces against our defenders (laborers at that stronghold count as defenders). If $\text{our total warriors} \ge \text{enemy total warriors}$, assume success<br />
-   b) If $\text{our total warriors} - 1 = \text{enemy total warriors}$, pull laborers from the nearest stronghold to serve temporarily as defenders (not if they cannot reach the stronghold within $3$ turns)<br />
-   c) Otherwise, treat it as a failed defense and send no more forces
+   5. After the defense is complete (all enemy forces eliminated), the force does not return immediately; it scans $1$ area around the stronghold and waits if enemies are present. After clearing the surroundings too, the stronghold becomes a defensive strongpoint for $10$ turns: $1$ more warrior than the building's labor capacity waits there and the rest return to our central stronghold — not directly, but converging on it via the strongholds in between. After $10$ turns it is recognized as an ordinary stronghold again, and warriors beyond the minimum labor return to the intermediate stronghold.
 
-   5) After the defense is complete (all enemy forces eliminated), the force does not return immediately; it scans $1$ area around the stronghold and waits if enemies are present. After clearing the surroundings too, the stronghold becomes a defensive strongpoint for $10$ turns: $1$ more warrior than the building's labor capacity waits there and the rest return to our central stronghold — not directly, but converging on it via the strongholds in between. After $10$ turns it is recognized as an ordinary stronghold again, and warriors beyond the minimum labor return to the intermediate stronghold.
+   6. In 5), if after the full defense $4$ or more warriors remain beyond the minimum labor, the stronghold is recognized as a temporary attack outpost. When the core base attacks, these forces pick the nearest target other than the one the core base is attacking (excluding the enemy HQ and strongholds that require passing through it) and attack it. If there are several temporary outposts, they must attack different enemy strongholds (if no remaining stronghold satisfies all three conditions — not the enemy HQ, not requiring passage through it, not overlapping with another temporary outpost — they attack the same target as the squad from the central stronghold). Since the squad from the central stronghold and every temporary-outpost squad must reach the enemy stronghold on the same turn, a squad with a short distance departs a set number of turns after the others so they arrive together. Right after sending its squad, the temporary outpost reverts to an ordinary stronghold.
 
-   6) In 5), if after the full defense $4$ or more warriors remain beyond the minimum labor, the stronghold is recognized as a temporary attack outpost. When the core base attacks, these forces pick the nearest target other than the one the core base is attacking (excluding the enemy HQ and strongholds that require passing through it) and attack it. If there are several temporary outposts, they must attack different enemy strongholds (if no remaining stronghold satisfies all three conditions — not the enemy HQ, not requiring passage through it, not overlapping with another temporary outpost — they attack the same target as the squad from the central stronghold). Since the squad from the central stronghold and every temporary-outpost squad must reach the enemy stronghold on the same turn, a squad with a short distance departs a set number of turns after the others so they arrive together. Right after sending its squad, the temporary outpost reverts to an ordinary stronghold.
-
-   7) If the defense is expected to succeed, the defense signal is turned off; if it is expected to fail, it is turned on.
+   7. If the defense is expected to succeed, the defense signal is turned off; if it is expected to fail, it is turned on.
    - Defense signal: activated when<br />
-     1) $(\text{enemy warriors excluding all buildings' labor}) - (\text{our warriors excluding all buildings' labor}) > 2$<br />
-     2) The defense algorithm cannot be satisfied<br />
-     &rarr; While the defense signal is active, warrior training takes top priority.
+     1. $(\text{enemy warriors excluding all buildings' labor}) - (\text{our warriors excluding all buildings' labor}) > 2$<br />
+     2. The defense algorithm cannot be satisfied<br />
+        &rarr; While the defense signal is active, warrior training takes top priority.
 
 5. Attack algorithm
    - An attack must always proceed with $2$ or more teams, so one of the following must hold.<br />
-     1) $\text{minimum force needed to attack} \times 2 + \text{core stronghold's labor capacity}$ warriors are at the core stronghold<br />
-     2) $\text{minimum force needed to attack} + \text{core stronghold's labor capacity}$ warriors are at the core stronghold, and at least $1$ temporary attack outpost exists
+     1. $\text{minimum force needed to attack} \times 2 + \text{core stronghold's labor capacity}$ warriors are at the core stronghold<br />
+     2. $\text{minimum force needed to attack} + \text{core stronghold's labor capacity}$ warriors are at the core stronghold, and at least $1$ temporary attack outpost exists
    - As mentioned under temporary outposts, attacks are timed so that every squad reaches the enemy stronghold on the same turn.
    - After a successful attack, the force does not return immediately but keeps holding the now-empty stronghold. While holding it, if an adjacent area contains enemy forces equal to or greater than what remains after the attack, move to the nearest of our strongholds reachable without passing through an enemy stronghold (without building).
    - While holding the empty stronghold after a successful attack, when money is to spare, pick the $3$ nearest bases or HQs. If among those $3$ at most $1$ is an enemy stronghold or HQ and money is to spare, build a stronghold there and mark it as a priority upgrade target; for $5$ turns after construction, every warrior that took part in the attack guards it.
@@ -449,9 +450,9 @@ We kept the broad frame of the original raid algorithm (different strategies per
 
 6. Strategy changes by phase<br />
    From turn $150$ forces are massed, and the base race at turn $180$ works just as before. Between turns $150$ and $180$, an attack is launched when either<br />
-   1) $(\text{our warriors excluding all buildings' labor}) - (\text{enemy warriors excluding all buildings' labor}) > 2 \times \text{minimum force needed to attack}$<br />
-   2) $(\text{our warriors excluding all buildings' labor}) - (\text{enemy warriors excluding all buildings' labor}) > \text{minimum force needed to attack}$ and at least $1$ temporary attack base exists<br />
-   holds.
+   1. $(\text{our warriors excluding all buildings' labor}) - (\text{enemy warriors excluding all buildings' labor}) > 2 \times \text{minimum force needed to attack}$<br />
+   2. $(\text{our warriors excluding all buildings' labor}) - (\text{enemy warriors excluding all buildings' labor}) > \text{minimum force needed to attack}$ and at least $1$ temporary attack base exists<br />
+      holds.
 
 7. Action priority across the algorithms<br />
    After laborer assignment, the highest-priority order is defense. So even while gathering a squad to attack, when the opponent's attack signal comes, the squad is immediately disbanded and treated as defenders. As an exception, a squad that has already departed is not subject to defense; it accepts no other orders until it has destroyed its target enemy stronghold.

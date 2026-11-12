@@ -133,9 +133,17 @@ smoothly follow the code the LLM had written.
 
 Still, by somehow pouring in the hours and resolving the problems one by one:
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p05_X16.png" caption="First Platinum of my life!" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p05_X16.png"
+  caption="First Platinum of my life!"
+  width="560px"
+/>
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p05_X18.png" caption="And straight on to Diamond…!" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p05_X18.png"
+  caption="And straight on to Diamond…!"
+  width="560px"
+/>
 
 we got to knock on the door of Diamond[^2], which had looked impossibly far away at first. Just two days earlier, my
 teammates and I would be trembling whenever we ran into the occasional Diamond in matchmaking… but in the end, with all
@@ -149,7 +157,11 @@ harder than during university exam season).
 
 However, even though we resolved various existing problems, I felt a great deal of frustration.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p05_X19.png" caption="A stagnating score…" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p05_X19.png"
+  caption="A stagnating score…"
+  width="560px"
+/>
 
 No matter how many problems we fixed, new errors and problems kept appearing, and as our tier rose I got the feeling
 that it would be difficult to aim any higher on the basis of our current strategy.
@@ -170,7 +182,11 @@ The initial implementation of the all-out rush strategy was as follows.
 1. Of the first 3 warriors, send 1 to the stronghold nearest our HQ, and have the remaining 1 take the base on our side
    that is nearest the map's central stronghold.
 
-   <Figure src="/2026/replay/master_프로그래밍초짜/images/p06_X22.png" caption="(Start of the build-up on side A in the image above)" />
+   <Figure
+     src="/2026/replay/master_프로그래밍초짜/images/p06_X22.png"
+     caption="(Start of the build-up on side A in the image above)"
+   />
+
 2. After taking 2 strongholds, designate the stronghold nearest the enemy's stronghold as the "rally point."
 3. After that, train troops and gather them at the rally point; once 5 or more warriors beyond the minimum labor force
    have gathered, invade the nearest stronghold 5 at a time.
@@ -183,20 +199,36 @@ The initial implementation of the all-out rush strategy was as follows.
 The finished all-out rush strategy clearly performed better than the previous one.
 The biggest point in particular: with the previous strategy,
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p07_X26.png" caption="Records of getting thoroughly wrecked…" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p07_X26.png"
+  caption="Records of getting thoroughly wrecked…"
+  width="560px"
+/>
 
 we often lost without being able to lay a finger on opponents even slightly stronger than us, whereas this strategy
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p07_X27.png" caption="Reasonably decent? records" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p07_X27.png"
+  caption="Reasonably decent? records"
+  width="560px"
+/>
 
 brought results good enough that mid-Diamond was well within reach. Of course, Ruby tier[^3] was still out of our league.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p08_X30.png" alt="Screenshot of match results" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p08_X30.png"
+  alt="Screenshot of match results"
+  width="560px"
+/>
 
 And so we kept discussing with the team, divided the working hours among ourselves, and kept revising things one by one.
 There were 6 versions in particular that became the backbone, and those are the files you can see in my VS Code below.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p09_X34.png" caption="A collection of all-out rush strategies" width="240px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p09_X34.png"
+  caption="A collection of all-out rush strategies"
+  width="240px"
+/>
 
 The `first.py` file you can see above is the file that, through the all-out rush strategy, first won $8$ matches against
 the sample AI.
@@ -243,7 +275,11 @@ July 7, we confirmed that when attacking, if the opponent had a level $2$ HQ, we
 attacking with $5$ warriors. So we revised the code that sent a base of $5$ to send
 $5+2\times(\text{opponent's level}-1)$ instead. Using this code we were able to put up our best result.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p10_X38.png" alt="Screenshot of match results with the revised attack logic" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p10_X38.png"
+  alt="Screenshot of match results with the revised attack logic"
+  width="560px"
+/>
 
 After the all-out rush strategy, the biggest upgrade was building a system that tracks the opponent's movement. The idea
 started from the basic fact that movement paths are predetermined. Namely, that movement from a given starting point to
@@ -270,7 +306,11 @@ So we built a simulation that, according to the given combat rules, calculates t
 needed to destroy a base given the base's level and defending troops, taking both our HQ level and the opponent's into
 account.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p12_X43.png" caption="Combat simulation" width="240px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p12_X43.png"
+  caption="Combat simulation"
+  width="240px"
+/>
 
 Just in case we hit the time limit, we even prepared a dataset covering every case ourselves… but it never really ended
 up being needed.
@@ -278,11 +318,19 @@ up being needed.
 At any rate, through this we completed a strategy upgraded beyond the previous one, predicting the opponent's movements
 to avoid areas of strength while digging into their weak points, and
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p12_X44.png" caption="Our own little golden age" width="480px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p12_X44.png"
+  caption="Our own little golden age"
+  width="480px"
+/>
 
 although it was only the Pretest standings, we got to visit Ruby briefly — it was really… a lot of fun.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p12_X45.png" caption="Settling stably into Diamond" width="560px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p12_X45.png"
+  caption="Settling stably into Diamond"
+  width="560px"
+/>
 
 But that was short-lived. Users who defended against this style of early attack gradually increased, and as we moved up
 into higher-ranked strategies, defense processes were established as a matter of course — so our ranking started to
@@ -346,6 +394,7 @@ own bases to aim for a health win, and carried out the detailed implementation a
 
      That is, when a situation arises where the switching technique can be used, note that the warrior's movement should
      target the intermediate stronghold rather than aiming at the destination from the start.
+
 6. When training and dispatching warriors from the HQ, just as with the switching technique, move the personnel already
    there and train at the same time, saving $1$ turn compared to departing after training.
 7. Except at the start of the game, when the opponent trains soldiers, train the same number of soldiers and gather them
@@ -379,6 +428,7 @@ own bases to aim for a health win, and carried out the detailed implementation a
      At this point, if the opponent moves troops from base to base, cases arise that the above algorithm alone cannot
      handle; to solve this, move defending personnel to our stronghold positioned in the same direction as the enemy
      soldiers' movement direction, according to the "combat simulation" results.
+
    - What the combat simulation is: a calculation, synthesizing both sides' HQ levels and base levels, of whether the HQ
      or base in question can be destroyed as turns pass, based on warrior health and the attack power of the HQ and
      bases.
@@ -386,15 +436,14 @@ own bases to aim for a health win, and carried out the detailed implementation a
      in the manner that minimizes the sum of Euclidean distances and thereby tracks their destination. It assumes my HQ
      and strongholds and the opponent's strongholds as candidate destinations and predicts the actual destination by
      elimination according to the opponent's movement.
+
 9. Repeat the above steps 1–8, and accumulate leftover money continuously rather than wasting it. In this process, raise
    the HQ's level the moment enough leftover money to do so has accumulated (however, if that HQ upgrade is judged to
    interfere with steps 1–8 that must be observed on that turn, do not carry out the upgrade on that turn).
 
 </div>
 
-<p style={{ textAlign: "center" }}>
-  The prompt we wrote
-</p>
+<p style={{ textAlign: "center" }}>The prompt we wrote</p>
 
 Back around July 3–4 we had talked with the team about the following 2 elements:
 
@@ -420,13 +469,25 @@ early build-up speed.
 
 And so at 3 PM on July 8, we tested this defense strategy for the first time.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p16_X54.png" alt="Screenshot of the first test results for the defense strategy" width="540px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p16_X54.png"
+  alt="Screenshot of the first test results for the defense strategy"
+  width="540px"
+/>
 
 The result was an ordinary score, but opening it up revealed a rather interesting pattern.
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p16_X55.png" alt="Record of a win against a Diamond-level strategy" width="540px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p16_X55.png"
+  alt="Record of a win against a Diamond-level strategy"
+  width="540px"
+/>
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p16_X56.png" alt="Record of a loss against a Bronze-level strategy" width="540px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p16_X56.png"
+  alt="Record of a loss against a Bronze-level strategy"
+  width="540px"
+/>
 
 As you can see, while it beat Diamond-level strategies, by the nature of a defense strategy there were also situations
 where it couldn't even beat a Bronze-level strategy.
@@ -434,9 +495,17 @@ where it couldn't even beat a Bronze-level strategy.
 So we hurriedly designed a simple attack strategy to handle those weak opponents, blended it in, fixed the bugs that had
 shown up, and submitted the resulting strategy at 9 PM — and the result:
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p17_X59.png" caption="Final result" width="540px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p17_X59.png"
+  caption="Final result"
+  width="540px"
+/>
 
-<Figure src="/2026/replay/master_프로그래밍초짜/images/p17_X60.png" caption="Some of the matches along the way" width="540px" />
+<Figure
+  src="/2026/replay/master_프로그래밍초짜/images/p17_X60.png"
+  caption="Some of the matches along the way"
+  width="540px"
+/>
 
 We completed a strategy that didn't fall far behind even when facing actual Ruby-level strategies. Of course, there were
 a fair few matches we lost due to some bugs and errors, so our ranking didn't come out as high as that.
@@ -499,7 +568,9 @@ contest that made me think I'd want to participate any time, as long as I can ke
 Thank you all for your hard work.
 
 [^1]: Editor's note: performance $1300$ or above and below $1700$.
+
 [^2]: Editor's note: performance $2100$ or above and below $2500$.
+
 [^3]: Editor's note: performance $2500$ or above.
 
 [^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

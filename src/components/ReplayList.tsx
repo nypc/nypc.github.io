@@ -59,12 +59,7 @@ export const ReplayRow = ({ year, replay, to }: Props) => {
         <Text flexShrink={0} fontSize="xs" color="fg.muted">
           {m.replay_featured({}, { locale })}
         </Text>
-        <Text
-          flexShrink={0}
-          color={accentColor}
-          fontSize="xs"
-          fontFeatureSettings="'tnum' 1"
-        >
+        <Text flexShrink={0} color={accentColor} fontSize="xs" fontFeatureSettings="'tnum' 1">
           {m.replay_rank({ rank }, { locale })}
         </Text>
         <Text flex="1" minWidth="0" fontSize="sm" color="fg">

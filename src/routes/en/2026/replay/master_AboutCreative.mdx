@@ -26,7 +26,10 @@ Since there are many strongholds that could become targets for the opponent, we 
 
 Perhaps the attack criterion was too strict: excessive training kept repeating even when a successful attack was already possible. Judging that the current "can we win" threshold was too demanding, we began revising it to relax the numbers. We rebuilt the formulas from the HP and attack values of buildings and warriors stated in the rules, quantified them with an LLM with reuse in mind, and provided an Excel file computing each efficiency, to serve as the foundation for the attack and defense logic we would improve later.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p02_Image24.jpg" alt="Excel file quantifying efficiency from buildings' and warriors' HP and attack values" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p02_Image24.jpg"
+  alt="Excel file quantifying efficiency from buildings' and warriors' HP and attack values"
+/>
 
 After the improvement attempt, we came to think that keeping defenders idle for defense was an economic loss. To minimize idle defense we tried having the defenders actively join attacks, but the new attempt brought new problems. Once we started dominating the opponent's defense, warriors stopped being trained, and the gold supposedly saved for building upgrades was not actually being spent on upgrades. The economy model did not get a Pretest, but after checking the Pretest results of the initial economy model, we confirmed the need for early detection of rush models. Facing new problems and refining our individual strategies, the second $8$-win model was born.
 
@@ -36,11 +39,17 @@ Submitted June 30, 8 PM
 
 When we simply told Codex "build a model," it could not produce a proper one — WA, odd behavior and so on. First, we organized the rules in Markdown so it could understand them. Then, applying the Nexon tests to patch weaknesses and analyzing logs, Codex seemed to lack the ability to judge on its own when just handed a text file.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p03_Image27.png" alt="The first document organizing the rules in Markdown so the LLM could understand them" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p03_Image27.png"
+  alt="The first document organizing the rules in Markdown so the LLM could understand them"
+/>
 
 So, second, we wrote a Markdown guide on how to interpret the text files so they would not need explaining every time. At first, thinking "wouldn't the AI find problems and improve them better than I can?", we ordered Codex to improve things on its own, relying on it.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p03_Image28.png" alt="The order given to Codex to find problems and improve them on its own" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p03_Image28.png"
+  alt="The order given to Codex to find problems and improve them on its own"
+/>
 
 But contrary to the expectation that Codex finding and upgrading problems by itself would be ideal, the AI agent's characteristic neutrality checks and conservative development got in the way, and it felt like it lost its direction. We ended up building the model by checking the logs ourselves, pointing out specific turns and problems, and proposing new approaches. Performance then improved astonishingly, so we upgraded in the direction of analyzing logs ourselves and proposing methods, and reached $8$ wins.
 
@@ -60,7 +69,10 @@ Internal testing showed the economy bot had a problem: when attacking, it failed
 
 But new problems always followed. To counter rush strategies, we intended that an enemy approaching within $4$ areas of our HQ, or within $2$ areas of a stronghold, be treated as a threat to that building and that defenders join the HQ defense — but this backfired and handed our strongholds over without any resistance. Analyzing the logs with an LLM, we analyzed why these orders were being issued and tried to resolve the cause. It turned out the HQ alert's importance outweighed the stronghold alert, so we changed the alert method and began devising logic that recomputes the defenders' rally point every turn and defends expansions to the extent that they can still reach the HQ on the same turn as the enemy group.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p04_Image31.jpg" alt="The situation where defenders gave up a stronghold due to the HQ/stronghold alert priority problem, and the improved rally-point recomputation logic" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p04_Image31.jpg"
+  alt="The situation where defenders gave up a stronghold due to the HQ/stronghold alert priority problem, and the improved rally-point recomputation logic"
+/>
 
 Continuing internal testing and focusing on internal strategy diversity, we tried new models by combining strategies judged effective. Among them, the perimeter-attack strategy began to show meaningful results.
 
@@ -74,7 +86,10 @@ Submitted July 2, 3 AM
 
 Looking at the Pretest logs to check other teams' strategies, we felt there were more varied strategies than we had thought, and set out to build models by imitating them through opponents' logs. Keeping the strengths of the existing economy bot, we developed a model that gathers at the center and attacks the opponent's perimeter as much as possible, circling and striking the low-density outer strongholds before their defense arrives. But no matter how much we told the LLM to develop a new model, it kept copying existing source code or logic, and we felt various limits. So we tried to understand the model's chain of command as much as possible, added code carefully, and patched weaknesses by analyzing logs from battles against the models built internally.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p05_Image34.jpg" alt="The perimeter-attack strategy model that gathers at the center and strikes the low-density outer strongholds in turn" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p05_Image34.jpg"
+  alt="The perimeter-attack strategy model that gathers at the center and strikes the low-density outer strongholds in turn"
+/>
 
 Checking the Pretest results, we raised the quality of internal testing by producing bots similar to the strategies our bots had been weak against, and began detailed analysis of the top teams' strategies. One strategy that stood out — build $2$ strongholds early, gather warriors $5$ at a time, then attack — was scoring highly, and we tried benchmarking it. We reinterpreted another team's strategy in a new style and built a high-scoring bot.
 
@@ -102,7 +117,10 @@ The version with the economy bot's problems fixed placed $32$nd of $700$ teams. 
 
 The real problem lay elsewhere: WA started occurring. Gold had been spent tightly, since we did not want spare gold to accumulate, and as improvements piled up these collided and caused WA. A single change rippled through the existing logic. Judging that losses due to WA rather than strategy were dangerous, we obtained WA logs through internal testing, analyzed them with the LLM, and tried to fix the recurring causes. We also tried turning the attack/defense logic into functions to untangle the spaghetti code.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p06_Image37.png" alt="Attack/defense logic refactored into functions to untangle the spaghetti code" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p06_Image37.png"
+  alt="Attack/defense logic refactored into functions to untangle the spaghetti code"
+/>
 
 The economy bot focused on fixing WA, while the controller model that had placed $58$th in the 10 AM Pretest on the 3rd kept improving by analyzing its logs and patching weaknesses — each of us iterating on our own strategy. Every member built bots capable of meaningful results, and the controller model's improvements in particular showed very positive results.
 
@@ -126,7 +144,10 @@ We fixed the economy bot's old WA problem and kept improving by continuing inter
 
 As internal testing accumulated, improvements had drifted toward favoring only our internal bots, and unintended behavior began to appear. Judging that there were internal functions we had not checked, we tried removing internal logic. Through the LLM we checked whether logic conflicting with the original intent, or favoring our internal bots, had been applied, and removed it where it had.
 
-<Figure src="/2026/replay/master_AboutCreative/images/p08_Image42.png" alt="Identifying and removing internal logic that only worked in favor of internal tests" />
+<Figure
+  src="/2026/replay/master_AboutCreative/images/p08_Image42.png"
+  alt="Identifying and removing internal logic that only worked in favor of internal tests"
+/>
 
 Like the Galápagos Islands, whose unique ecosystem persists because of isolation, blind faith in the team's internal tests ended up causing side effects. After the economy bot's collapse, the controller model too slid from $19$th to $59$th in the 9 PM Pretest on the 4th, and the team was in crisis. Other bots' WA, compiler failures and other problems erupted as well. We tried building new bots, rolling back to pre-improvement versions, and more, to solve the problems.
 

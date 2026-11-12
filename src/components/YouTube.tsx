@@ -6,7 +6,7 @@ const YouTubeIframe = chakra("iframe", {
     maxWidth: "100%",
     aspectRatio: "16 / 9",
     borderRadius: "lg",
-    marginBottom: 5
+    marginBottom: 5,
   },
 });
 

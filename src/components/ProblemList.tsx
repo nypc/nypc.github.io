@@ -79,7 +79,12 @@ const ProblemRows = ({ items, variant, year, to, replayTo, replays, label }: Row
           // Both the problem row and its replay (if any) sit inside one
           // bordered box, so nesting reads from layout, not just indent —
           // and a break can't land between a row and its own replay.
-          <Box key={id} borderBottomWidth="1px" borderColor="border" style={{ breakInside: "avoid" }}>
+          <Box
+            key={id}
+            borderBottomWidth="1px"
+            borderColor="border"
+            style={{ breakInside: "avoid" }}
+          >
             <ProblemLink to={to} params={{ year, page: id }} style={{ display: "block" }}>
               <Flex
                 align="center"

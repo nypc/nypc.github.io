@@ -46,11 +46,26 @@ Claude Code (Opus 4.8)을 이용해서 코드를 효율적으로 짜기 위해�
 새롭게 코드를 짜기 위해 `Seed Transportation ver2`라는 폴더를 만들어 이전과 같이 `Statement.md`, `Example`, `sample_code.c`를 넣었고, Claude Code (Fable 5)에게 아래의 프롬프트를 작성하였다. 프롬프트는 미션 14, 미션 15에 대해 SA를 돌리면서 얻게 된 정보와 내가 분석한 문제점을 모두 포함하도록 Claude (Opus 4.8)을 이용해 작성했다. 구현 결과 제출 했을 때 $\mathrm{cost}$가 이전($200\mathrm{K}$) 보다 상당히($30\mathrm{K}$) 줄어들었다. 중간평가 결과도 많이 나아지긴 했으나 아직 부족하다고 느꼈다.
 
 <Details summary="Claude (Opus 4.8)로 작성해 Claude Code (Fable 5)에게 전달한 프롬프트 전문">
-  <Figure src="/2026/replay/rookie_yeongminb/p2_02_Im2.png" alt="Claude Code에게 전달한 프롬프트 (1/5): 작업 지시, 문제 정의, 이미 검증된 구조적 통찰 L1~L4" />
-  <Figure src="/2026/replay/rookie_yeongminb/p2_03_Im3.png" alt="Claude Code에게 전달한 프롬프트 (2/5): 구조적 통찰 L5~L7, 설계할 알고리즘 Step 0~2" />
-  <Figure src="/2026/replay/rookie_yeongminb/p2_04_Im4.png" alt="Claude Code에게 전달한 프롬프트 (3/5): 담금질(SA) 설계와 후처리 ①~③" />
-  <Figure src="/2026/replay/rookie_yeongminb/p3_05_Im5.png" alt="Claude Code에게 전달한 프롬프트 (4/5): 구현 요구사항, 산출물, 개발 순서" />
-  <Figure src="/2026/replay/rookie_yeongminb/p3_06_Im6.png" alt="Claude Code에게 전달한 프롬프트 (5/5): 골든 테스트, 성능 목표, 참고 사항" />
+  <Figure
+    src="/2026/replay/rookie_yeongminb/p2_02_Im2.png"
+    alt="Claude Code에게 전달한 프롬프트 (1/5): 작업 지시, 문제 정의, 이미 검증된 구조적 통찰 L1~L4"
+  />
+  <Figure
+    src="/2026/replay/rookie_yeongminb/p2_03_Im3.png"
+    alt="Claude Code에게 전달한 프롬프트 (2/5): 구조적 통찰 L5~L7, 설계할 알고리즘 Step 0~2"
+  />
+  <Figure
+    src="/2026/replay/rookie_yeongminb/p2_04_Im4.png"
+    alt="Claude Code에게 전달한 프롬프트 (3/5): 담금질(SA) 설계와 후처리 ①~③"
+  />
+  <Figure
+    src="/2026/replay/rookie_yeongminb/p3_05_Im5.png"
+    alt="Claude Code에게 전달한 프롬프트 (4/5): 구현 요구사항, 산출물, 개발 순서"
+  />
+  <Figure
+    src="/2026/replay/rookie_yeongminb/p3_06_Im6.png"
+    alt="Claude Code에게 전달한 프롬프트 (5/5): 골든 테스트, 성능 목표, 참고 사항"
+  />
 </Details>
 
 `Seed Transportation ver2` 폴더 내부에서 Claude Code (Fable 5)를 이용해 미션 14, 15에 대한 정답을 찾으려고 했다. 미션 14는 오전에 열심히 고민해서 $\mathrm{cost}$를 $6$까지 줄이는데 성공했다. 나의 방식을 모두 알려준 뒤 SA를 돌리는 것 대신 논리적인 추론으로 해결할 것을 요구했다. 미션 14에 대해서는 나의 배치에서 개선을 하지 못했고, 미션 15에 대해서는 수의 구조를 파악해 최적해 ($\mathrm{cost} = 3$)를 찾아 주었다. 이 과정에서 얻은 이론들을 모두 물어본 뒤 정리하였다. 가장 중요했던 수확은 단순히 SA를 돌리는 것보다 "$\mathrm{rate}$ 행렬, 격자 컴파일, 위상" 구조의 훨씬 효율적인 방법을 Claude가 스스로 찾은 것이었다.
@@ -124,6 +139,7 @@ Claude Code (Fable 5)가 어제의 계획을 모두 구현에 옮겼고 제출�
 문제 상으로 아직 해결하지 못한 것은 먼저 이론적 하한과 실제 비용이 차이가 있다는 것, $\mathrm{cost}$의 이론적 하한이 $60k$ 이상인 영역에서는 단순히 SA를 돌려 $\mathrm{cost}$가 크다는 것 정도이다. 작은 아쉬움으로는 스텝 업 미션 14에 대해 상당히 많이 고민했었는데 $\mathrm{cost}$를 $5$로 만들지 못한 것이다.
 
 [^1]: 편집자주: 담금질 기법(Simulated Annealing).
+
 [^2]: 편집자주: 원본 문서는 LaTeX으로 작성되었습니다.
 
 [^kst]: 편집자주: 이 시각을 포함하여 리플레이에 작성된 모든 시각은 한국 표준시(KST) 기준입니다.

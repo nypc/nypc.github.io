@@ -30,43 +30,43 @@ To shape the initial strategy, we listed the points that had to be considered an
 ## 1. Game Premises
 
 1. The per-turn report lets us track all information on both sides. The only things that must be estimated are the opponent's movement
-paths and the gold differences caused by movement. Predicting the opponent's movement path — the estimated data — is therefore critical.
+   paths and the gold differences caused by movement. Predicting the opponent's movement path — the estimated data — is therefore critical.
 2. The win condition is destroying the HQ, or the HQ HP tiebreak at T200. So by the end of the game we must somehow have more HP than the
-opponent's HQ.
+   opponent's HQ.
 
 ## 2. Resource Costs
 
 1. For warrior training and base construction/upgrades, it is possible to model precisely at which point each action becomes economically
-profitable. For example, training $1$ warrior takes $13$ days to pay off in gold; expanding to a new base, including the labor warrior, takes
-$32$ days. So the order of upgrades and expansions should be chosen to maximize economic gain. HQ upgrades also directly strengthen warrior
-HP, so the added combat power should be counted in their value too.
+   profitable. For example, training $1$ warrior takes $13$ days to pay off in gold; expanding to a new base, including the labor warrior, takes
+   $32$ days. So the order of upgrades and expansions should be chosen to maximize economic gain. HQ upgrades also directly strengthen warrior
+   HP, so the added combat power should be counted in their value too.
 2. Since the game runs to T$200$, past a certain point expansion no longer pays off, so a cutoff is needed. HQ upgrades for warrior HP have to
-proceed separately from this.
+   proceed separately from this.
 
 ## 3. Training
 
 1. Each turn proceeds in the order Build → Move → Train → Battle → Labor → Supply. When defending the HQ, warriors trained the same day can be
-counted toward the defense.
+   counted toward the defense.
 2. Warriors cannot heal, so warrior HP must be considered when computing combat power.
 3. A standing army must always be maintained. It consists of the following, and a simulation is needed to compute how many defenders are
-required.
-  1. The minimum defenders needed to protect every allied building
-  2. An attack reserve
+   required.
+4. The minimum defenders needed to protect every allied building
+5. An attack reserve
 
 ## 4. Movement
 
 1. A Move command over too long a distance cannot be cancelled (lock-in). So the more you split Move commands, the more flexibly you can
-respond to the situation.
+   respond to the situation.
 2. Movement paths are fixed per map, so if you know the opponent's path you can quickly estimate their destination.
 3. The early expansion order is as follows.
-  1. First secure the contested strongholds that are equidistant from both sides.
-  2. Once the contested ones are secured, take the nearby ones.
-4. Compute the optimal rally point for pre-empting the opponent's attacks (front line & center).
+4. First secure the contested strongholds that are equidistant from both sides.
+5. Once the contested ones are secured, take the nearby ones.
+6. Compute the optimal rally point for pre-empting the opponent's attacks (front line & center).
 
 ## 5. Combat
 
 1. Defense is almost always favorable. So play defensively, and when the opponent attacks, defend in a way that yields the maximum economic
-gain. Always play defensively, but be sure to secure the center early to gain an economic edge, and turn that edge into the win.
+   gain. Always play defensively, but be sure to secure the center early to gain an economic edge, and turn that edge into the win.
 2. An allied base's HP does not drop as long as the defending warriors' total HP holds.
 3. When attacking, it pays to concentrate force and destroy the target in one go. A siege-feasibility simulation is important for this.
 4. Warriors not needed for defense should be sent to siege at the right moments. Don't be overly defensive.
@@ -79,7 +79,7 @@ gain. Always play defensively, but be sure to secure the center early to gain an
 ## 8. Endgame
 
 1. To avoid the draw that results from endless defense, an economic edge must be established by the mid-game, and used either to have more
-HQ HP than the opponent or to destroy their HQ.
+   HQ HP than the opponent or to destroy their HQ.
 
 ## 9. Action Pipeline
 
@@ -106,17 +106,17 @@ improving features on top of hazzzelnut's code.
 The LLMs used were Claude Opus 4.8, GPT 5.5, and Gemini Pro 3.1. Each member's way of developing code was as follows.
 
 1. hazzzelnut: used the Claude Code and Codex extensions inside the VS Code editor. Wrote a Markdown document in the workspace with the
-basic game rules and the project's direction, then developed the code. For each patch, used Gemini to generate a Replay tool that re-runs a
-pre-patch log against the current version, and applied the patch only after confirming the log diverged from the previous version at the
-intended point. The same approach was applied to log analysis after losses.
+   basic game rules and the project's direction, then developed the code. For each patch, used Gemini to generate a Replay tool that re-runs a
+   pre-patch log against the current version, and applied the patch only after confirming the log diverged from the previous version at the
+   intended point. The same approach was applied to log analysis after losses.
 2. MinChoi: built the Pretest dashboard with Claude Opus, and when building prototype bots, gave Codex the rules and context and had it
-write the code. Then handed the Pretest dashboard to Codex so it could read the logs directly. After that, read the logs personally, spotted
-where the bot moved strangely, asked Codex about it, found which part to fix, and used Codex as an implementation assistant.
+   write the code. Then handed the Pretest dashboard to Codex so it could read the logs directly. After that, read the logs personally, spotted
+   where the bot moved strangely, asked Codex about it, found which part to fix, and used Codex as an implementation assistant.
 3. 253: did basic work in VS Code and mainly used Claude Code / Copilot for overall changes to the game plan. When parts of the code needed
-editing, also worked with Gemini Pro. After writing code, ran internal matches against earlier models to compare win rates, and generated log
-files to confirm the modified code was actually taking effect.
+   editing, also worked with Gemini Pro. After writing code, ran internal matches against earlier models to compare win rates, and generated log
+   files to confirm the modified code was actually taking effect.
 4. dltjwns119: wrote a Manager interface for each strategy on top of the initial class structure, designed the strategies and the formulas
-needed for the design by hand, refined the prompts with an LLM (GPT 5.5), and updated the code with Codex.
+   needed for the design by hand, refined the prompts with an LLM (GPT 5.5), and updated the code with Codex.
 
 # 4. Problems Found and How We Solved Them
 
@@ -124,58 +124,58 @@ Before the initial strategy was reasonably implemented, we went through the foll
 
 1. Slow stronghold expansion — we had enough gold but weren't accounting for travel time. Fixed the gold modeling (reservation) issue.
 2. Attacking the opponent's HQ at a disadvantage — the timing and exchange ratio in the gate for attacking the enemy HQ were inaccurate;
-fixed.
+   fixed.
 3. Setting the rally point — we couldn't find an answer to "what is the optimal rally point for responding to the opponent's attacks as fast
-as possible?" Initially we set the rally point at the midpoint reachable fastest from all our bases, but that was very poor at responding to
-fast attacks, so we added the condition that it must be a forward base.
+   as possible?" Initially we set the rally point at the midpoint reachable fastest from all our bases, but that was very poor at responding to
+   fast attacks, so we added the condition that it must be a forward base.
 4. Always abandoning the base and retreating whenever an opponent attack was predicted — there was a bug where our reinforcements weren't
-counted in the defense condition; fixed.
+   counted in the defense condition; fixed.
 
 We wrote version 7.9, which we believed implemented the strategy completely, took a Pretest with it, and were delighted with $11$th place — but
 log analysis revealed fatal flaws that had to be fixed. The problems of the previous version fixed in each version were as follows.
 
 1. 8.0 — Splitting Move commands worked, but we observed inconsistent behavior: the base should be built at the final destination, yet if
-there was enough money midway, a base got built along the intermediate path first. To prevent this we separated movement with intent to
-settle from intermediate movement, and changed it to build a base only with intent to settle.
+   there was enough money midway, a base got built along the intermediate path first. To prevent this we separated movement with intent to
+   settle from intermediate movement, and changed it to build a base only with intent to settle.
 2. 8.1 — In the early contest over expansion, we always judged whether we could win a stronghold by the distance from each HQ. But we realized
-that when building a base, sending our labor warrior and then sending newly produced HQ warriors to the existing base expands faster, and
-applied that.
+   that when building a base, sending our labor warrior and then sending newly produced HQ warriors to the existing base expands faster, and
+   applied that.
 3. ~8.3 — After hitting one base, when immediately re-attacking, there was a bug where it re-attacked (especially against the enemy HQ)
-without judging whether the battle was a sure win for us. We confirmed the HQ chained-retarget gate was the problem and removed it. The
-resulting lack of aggression was delegated to the attack/defense decision function `simulation_siege()`.
+   without judging whether the battle was a sure win for us. We confirmed the HQ chained-retarget gate was the problem and removed it. The
+   resulting lack of aggression was delegated to the attack/defense decision function `simulation_siege()`.
 4. 8.4 — When defending our bases, we found that other bases were sending excessive support — excessive meaning, say, $10$ reinforcing a base
-attacked by $5$. So we applied sending the minimum number able to hold the defense. The intent is that the longer a defense lasts, the more
-profit we get from our turret damage.
+   attacked by $5$. So we applied sending the minimum number able to hold the defense. The intent is that the longer a defense lasts, the more
+   profit we get from our turret damage.
 5. 8.5 — A large allied force lacked the gold to move, so warriors moved in dribs and drabs and got picked off one by one. We eased the
-sequential departure by accounting for the budget the movement path requires.
+   sequential departure by accounting for the budget the movement path requires.
 6. 8.6 — The value of the enemy and allied HQ was set to near-infinite (`e18`), but using this in an `int` in the attack/defense simulation
-caused an integer overflow. Fixed by clamping to `train_cap` before casting.
+   caused an integer overflow. Fixed by clamping to `train_cap` before casting.
 7. 8.7 — Confirmed the rally point's defensive position was still in the rear; changed it so the rally point always responds to the opponent
-(moves forward on its own), taking into account the day the opponent's threat arrives.
+   (moves forward on its own), taking into account the day the opponent's threat arrives.
 8. 8.8 — Observed too many warriors piling up at our HQ and not moving to the rally point. Realized the algorithms committing warriors to the
-HQ and to bases differed, and redesigned them as a single unified algorithm.
+   HQ and to bases differed, and redesigned them as a single unified algorithm.
 9. 8.10–13 — Previously, opponent attack-threat detection only worked for moving enemy forces; it could not detect a threat that was
-stationary but massing warriors. We added a gate that detects such latent threats, and also added logic that, when such a force moves
-straight for our HQ, rallies and defends at an allied base if one lies on the route — so that rush attacks are countered effectively. We also
-found that when attacking, we over-invested in the attack without keeping a minimum defense, so we changed it to dispatch only the number left
-over after those needed to defend the base. (The criterion for "able to defend the base" is whether, if the opponent right now sent all their
-available warriors except labor at that base, we could hold it from that point on.)
+   stationary but massing warriors. We added a gate that detects such latent threats, and also added logic that, when such a force moves
+   straight for our HQ, rallies and defends at an allied base if one lies on the route — so that rush attacks are countered effectively. We also
+   found that when attacking, we over-invested in the attack without keeping a minimum defense, so we changed it to dispatch only the number left
+   over after those needed to defend the base. (The criterion for "able to defend the base" is whether, if the opponent right now sent all their
+   available warriors except labor at that base, we could hold it from that point on.)
 10. 8.14 — The attack-force limit in 8.13 was overly conservative. The opponent's warrior production is constrained by HQ level and gold on
-hand, but we always assumed maximum production, causing a slight mismatch; we relaxed it to reflect this. Also, once we judge ourselves safe
-and issue an attack order, those warriors can't receive any Move command while attacking. We included this window of defensive vulnerability
-in the simulation and adjusted how many to commit to defense and attack.
+    hand, but we always assumed maximum production, causing a slight mismatch; we relaxed it to reflect this. Also, once we judge ourselves safe
+    and issue an attack order, those warriors can't receive any Move command while attacking. We included this window of defensive vulnerability
+    in the simulation and adjusted how many to commit to defense and attack.
 11. 8.15 — When attacking, instead of chaining attacks, our forces moved back to the rally point and re-attacked. We added a chained-attack
-algorithm: if a destroyed enemy base is strategically important and economical enough to build on, build immediately, redistribute defenders,
-then attack. We also found that when the opponent attacked somewhere other than our HQ, the warriors guarding the route between the two HQs
-were over-invested in defensive support, leaving the route vulnerable; we changed that position to stay garrisoned until the threat to our HQ
-is cleared.
+    algorithm: if a destroyed enemy base is strategically important and economical enough to build on, build immediately, redistribute defenders,
+    then attack. We also found that when the opponent attacked somewhere other than our HQ, the warriors guarding the route between the two HQs
+    were over-invested in defensive support, leaving the route vulnerable; we changed that position to stay garrisoned until the threat to our HQ
+    is cleared.
 12. 8.16 — After destroying an enemy base at a dangerous spot very close to the enemy HQ, we built a base there purely because it was
-economical, and it was quickly destroyed. We added a gate that evaluates safety before building.
+    economical, and it was quickly destroyed. We added a gate that evaluates safety before building.
 13. 8.17 (final submission) — As a last improvement, we found that defending every base as heavily as the HQ prevented attacks from proceeding
-properly, so ordinary bases now respond only when the opponent is definitely heading there. This distributed resources more efficiently and
-improved overall stability. There were also cases where a warrior on an expansion mission reached the target stronghold but couldn't build
-because $300$ gold hadn't accumulated. So we introduced an escrow system that sets aside a reservation for each builder that has reached its
-target, at top priority.
+    properly, so ordinary bases now respond only when the opponent is definitely heading there. This distributed resources more efficiently and
+    improved overall stability. There were also cases where a warrior on an expansion mission reached the target stronghold but couldn't build
+    because $300$ gold hadn't accumulated. So we introduced an escrow system that sets aside a reservation for each builder that has reached its
+    target, at top priority.
 
 There were further changes after 8.17, but no clear performance gain, and we often observed the models not behaving as intended. In the end
 we judged this to be a structural limit of the initial strategy, and since no further improvement was possible in the remaining time, we
@@ -243,12 +243,12 @@ The second regret was that after the July 4 code, there was no major progress un
 as follows.
 
 - 1. The July 4 code had many bugs and many parts that didn't behave as intended. The intended Move-command splitting was confirmed not to
-cause logical conflicts with base construction, defense, and attack. Beyond that, many parts of the initial strategy — early concentration on
-securing the center, detecting and countering enemy rushes, and so on — were designed but never implemented.
+     cause logical conflicts with base construction, defense, and attack. Beyond that, many parts of the initial strategy — early concentration on
+     securing the center, detecting and countering enemy rushes, and so on — were designed but never implemented.
 - 2. We realized this around the afternoon of July 5, and communication among teammates was lacking while fixing it. Everyone assumed the
-bug-ridden code was perfect code, and as we each added our own features on top of "perfect" code, it became spaghetti — full of bugs with no
-idea where to start fixing. Resolving that ultimately went nowhere, and we ended up submitting a version with only some bugs improved. In the
-process, the parts that diverged from the original strategic intent never got improved.
+     bug-ridden code was perfect code, and as we each added our own features on top of "perfect" code, it became spaghetti — full of bugs with no
+     idea where to start fixing. Resolving that ultimately went nowhere, and we ended up submitting a version with only some bugs improved. In the
+     process, the parts that diverged from the original strategic intent never got improved.
 
 The third regret was that all this wasted time consumed a lot of tokens, and in the end we couldn't finish improving the code before the AI
 tokens ran out. On the last day, therefore, we proceeded with minor changes centered on the existing code, and the contest ended.

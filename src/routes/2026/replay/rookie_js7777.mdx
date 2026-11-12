@@ -117,7 +117,11 @@ v10도 역시 시간 커트만 좀 더 늘린 버전을 재제출해 중간평�
 배치 방식을 좀 정형화해야 할 필요를 느껴서 Claude에게 지시를 했다. Claude는 홀짝열을 구분해서 각 열에다가 다람쥐를 다
 넣고 아래나 수평 방향으로만 진행되는 신기한 구조를 만들어냈다.
 
-<Figure src="/2026/replay/rookie_js7777/images/p03_X39.png" alt="Claude가 만들어낸 홀짝열 구분 배치 구조" width="840px" />
+<Figure
+  src="/2026/replay/rookie_js7777/images/p03_X39.png"
+  alt="Claude가 만들어낸 홀짝열 구분 배치 구조"
+  width="840px"
+/>
 
 다람쥐, 햄스터가 $3$개씩 홀짝 교차로 구성되어 있어 다람쥐끼리 겹치지 않고 분배를 해낼 수 있다. 분배한 결과는 마지막 몇 개의 행에서
 위치를 바꿔 주기만 하면 가장 크기가 비슷한 굴에 배치할 수 있어 효과가 좋아 보였기 때문에 이를 제출하고 #8을 보았다(#116856, v11).
@@ -198,7 +202,11 @@ GPT가 말한 개선사항들을 일단 Claude한테 전달해주고 코드를 �
 GPT가 찾아준 논문은 Synthesis of Stochastic Flow Networks(Zhou, Chen, & Bruck, 2014)이다.[^2] 논문을 슥슥 보
 다가, 중요한 그림을 하나 찾았다.
 
-<Figure src="/2026/replay/rookie_js7777/images/p06_X50.png" alt="논문에서 발견한 피드백 분배기 구조 그림" width="840px" />
+<Figure
+  src="/2026/replay/rookie_js7777/images/p06_X50.png"
+  alt="논문에서 발견한 피드백 분배기 구조 그림"
+  width="840px"
+/>
 
 $2$방향 분배기 $2$개를 사용하되, 저렇게 서로한테 피드백을 주도록 방향을 설정하면 $A_i$를 $2$개의 분배기만으로 $\displaystyle \frac{2}{3}A_i$, $\displaystyle \frac{1}{3}A_i$로
 나눌 수 있기 때문에 훨씬 더 다양한 조합으로 씨앗들을 쪼갤 수 있게 된다.
@@ -258,5 +266,7 @@ $C=5$만 보완하라고 했다고 진짜 그 부분에만 적용시키다니 �
 이런 긴 대회에서는 단기적인 능력보다는 현실의 삶과 적절한 균형을 맞추면서 페이스를 유지하는 것이 더 중요한 것 같다.
 
 [^1]: 편집자주: 테스트 케이스.
+
 [^2]: 편집자주: H. Zhou, H.-L. Chen, and J. Bruck, "Synthesis of stochastic flow networks," arXiv:1209.0724 [cs.IT], 2012. [Online]. Available: https://arxiv.org/abs/1209.0724
+
 [^3]: 편집자주: 런타임 에러.

@@ -50,51 +50,19 @@ const List = () => {
       }}
       theme={themes[year]}
     >
-      <SectionHeading
-        as="h2"
-        size="2xl"
-        textAlign="center"
-        marginTop="12"
-        marginBottom="4"
-      >
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         루키 트랙 &mdash; Qualification Round
       </SectionHeading>
-      <ProblemList
-        year={year}
-        problems={problems.rookie}
-        replays={replays.rookie}
-      />
-      <SectionHeading
-        as="h2"
-        size="2xl"
-        textAlign="center"
-        marginTop="12"
-        marginBottom="4"
-      >
+      <ProblemList year={year} problems={problems.rookie} replays={replays.rookie} />
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         마스터 트랙 &mdash; Qualification Round
       </SectionHeading>
-      <ProblemList
-        year={year}
-        problems={problems.master}
-        replays={replays.master}
-      />
-      <SectionHeading
-        as="h2"
-        size="2xl"
-        textAlign="center"
-        marginTop="12"
-        marginBottom="4"
-      >
+      <ProblemList year={year} problems={problems.master} replays={replays.master} />
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         루키 트랙 &mdash; Final Round
       </SectionHeading>
       <ProblemList year={year} problems={problems.rookieFinal} />
-      <SectionHeading
-        as="h2"
-        size="2xl"
-        textAlign="center"
-        marginTop="12"
-        marginBottom="4"
-      >
+      <SectionHeading as="h2" size="2xl" textAlign="center" marginTop="12" marginBottom="4">
         마스터 트랙 &mdash; Final Round
       </SectionHeading>
       <ProblemList year={year} problems={problems.masterFinal} />

@@ -1,10 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
-import {
-  BODY_FONT,
-  CONTENT_HEADING_FONT,
-  DISPLAY_FONT,
-  MONO_FONT,
-} from "./fonts";
+import { BODY_FONT, CONTENT_HEADING_FONT, DISPLAY_FONT, MONO_FONT } from "./fonts";
 
 /** Carries the current year's accent; set per page by `PostLayout`. */
 export const YEAR_ACCENT_VAR = "--nypc-year-accent";

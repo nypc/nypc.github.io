@@ -70,6 +70,7 @@ At first we judged that attacking enemy bases was a losing proposition.
 2. Enemy bases have turrets, so a few warriors can hold off many.
 
 But a question came up.
+
 > What if the enemy has built more bases than we have? Then they earn more gold.
 
 So the enemy-base attack mechanism was designed as follows.
@@ -87,6 +88,7 @@ Battles against the sample AIs showed cases where HQ level $5$ was unreachable. 
 #### Defense Logic
 
 Playing the sample AIs raised the following question.
+
 > Always keeping exactly as many warriors as labor slots is optimal for reaching HQ level $5$. But is it still optimal when the enemy is massing warriors to attack?
 
 The answer is "no." Since warrior training per turn is limited, if the enemy is massing warriors we have to respond pre-emptively.
@@ -141,8 +143,16 @@ Departing at turn $180$ meant we couldn't produce the maximum number of warriors
 With $7.5$ wins against the sample AIs and a Pretest rank as high as $45$th, we confirmed that the greedy approach works, and that drove the strategy design from then on. Until catlong brought in the offensive strategy, I made $88$ submissions in total, and thanks to that every submission was exciting and fun.
 
 <FigureRow caption="Start simple, then flesh it out.">
-  <Figure src="/2026/replay/master_cattype/images/p05_Im2.jpg" alt="Aster's strategy notes (strategies #1–#4)" width="240px" />
-  <Figure src="/2026/replay/master_cattype/images/p05_Im3.jpg" alt="Aster's strategy notes (strategies #5–#7)" width="480px" />
+  <Figure
+    src="/2026/replay/master_cattype/images/p05_Im2.jpg"
+    alt="Aster's strategy notes (strategies #1–#4)"
+    width="240px"
+  />
+  <Figure
+    src="/2026/replay/master_cattype/images/p05_Im3.jpg"
+    alt="Aster's strategy notes (strategies #5–#7)"
+    width="480px"
+  />
 </FigureRow>
 
 ## Submission #74421
@@ -236,7 +246,10 @@ When the enemy did nothing but train warriors and then attacked our HQ, we lost 
 
 I wanted to estimate the enemy's destination and have the defense in place ahead of time. But no suitable implementation came to mind. So I asked Claude Fable 5.0 for destination-estimation-based defense logic, but it wasn't satisfactory.
 
-<Figure src="/2026/replay/master_cattype/images/p08_Im4.jpg" alt="Destination-estimation-based defense logic requested from Claude Fable 5.0" />
+<Figure
+  src="/2026/replay/master_cattype/images/p08_Im4.jpg"
+  alt="Destination-estimation-based defense logic requested from Claude Fable 5.0"
+/>
 
 ### Strategy Notes
 
@@ -325,7 +338,11 @@ Problems
 
 Problem $1$ is partly solved in a later submission. Problem $2$ was judged to be a situation that would almost never occur. It never actually happened in a Pretest, so it was left unsolved through the final submission.
 
-<Figure src="/2026/replay/master_cattype/images/p11_Im5.jpg" alt="The prompt written to implement the enemy destination estimation logic" caption="The prompt we wrote" />
+<Figure
+  src="/2026/replay/master_cattype/images/p11_Im5.jpg"
+  alt="The prompt written to implement the enemy destination estimation logic"
+  caption="The prompt we wrote"
+/>
 
 ### Strategy Notes
 
@@ -386,8 +403,16 @@ The attack-focused strategy was complemented with a "defense base."
 Every warrior passes through the defense base.
 
 <FigureRow>
-  <Figure src="/2026/replay/master_cattype/images/p13_Im6.jpg" caption="Previous strategy" width="360px" />
-  <Figure src="/2026/replay/master_cattype/images/p13_Im7.jpg" caption="Defense base strategy" width="300px" />
+  <Figure
+    src="/2026/replay/master_cattype/images/p13_Im6.jpg"
+    caption="Previous strategy"
+    width="360px"
+  />
+  <Figure
+    src="/2026/replay/master_cattype/images/p13_Im7.jpg"
+    caption="Defense base strategy"
+    width="300px"
+  />
 </FigureRow>
 
 ### Revised Strategy

@@ -26,8 +26,16 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 채워질 수 있도록 하여 $2$의 비용으로 $50{,}000$점을 획득했다.
 
 <FigureRow>
-  <Figure src="/2026/replay/rookie_circle/images/p01_Im2.png" caption="9번 미션 – 비용 7" width="360px" />
-  <Figure src="/2026/replay/rookie_circle/images/p01_Im1.png" caption="9번 미션 – 비용 2" width="360px" />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p01_Im2.png"
+    caption="9번 미션 – 비용 7"
+    width="360px"
+  />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p01_Im1.png"
+    caption="9번 미션 – 비용 2"
+    width="360px"
+  />
 </FigureRow>
 
 ## 10번 미션
@@ -41,9 +49,21 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 배치를 결과가 예측할 수 있게 단순한 형태로 바꾸었고 조금씩 변형을 하며 정답을 찾아낼 수 있었다.
 
 <FigureRow>
-  <Figure src="/2026/replay/rookie_circle/images/p02_Im0.png" caption="10번 미션 – 비용 12" width="160px" />
-  <Figure src="/2026/replay/rookie_circle/images/p02_Im1.png" caption="10번 미션 – 비용 5"  width="160px" />
-  <Figure src="/2026/replay/rookie_circle/images/p02_Im2.png" caption="10번 미션 – 비용 3"  width="160px" />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p02_Im0.png"
+    caption="10번 미션 – 비용 12"
+    width="160px"
+  />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p02_Im1.png"
+    caption="10번 미션 – 비용 5"
+    width="160px"
+  />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p02_Im2.png"
+    caption="10번 미션 – 비용 3"
+    width="160px"
+  />
 </FigureRow>
 
 이러한 과정을 늘어놓고 보니 좋은 해는 새로운 보드에서 시작하는 것이 아닌 초기 보드에서 조금씩 변형을 하며 찾는 것이라는 관찰을 할 수 있었다.
@@ -64,13 +84,22 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 이를 보완하기 위해 다양한 순서로 씨앗 분배를 시도해 봤고 더 좋은 해를 얻을 수 있었다. 이러한 관찰과 한계는 10번 미션과 함께 챌린지 문제 해결의 핵심으로 활용되었다.
 
 <FigureRow>
-  <Figure src="/2026/replay/rookie_circle/images/p03_Im0.png" caption="15번 미션 – 기본 경로" width="360px" />
-  <Figure src="/2026/replay/rookie_circle/images/p03_Im1.png" caption="15번 미션 – 기본 경로 + 그리디" width="360px" />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p03_Im0.png"
+    caption="15번 미션 – 기본 경로"
+    width="360px"
+  />
+  <Figure
+    src="/2026/replay/rookie_circle/images/p03_Im1.png"
+    caption="15번 미션 – 기본 경로 + 그리디"
+    width="360px"
+  />
 </FigureRow>
 
 # 챌린지
 
 ## 제출 번호 #119461
+
 제출 시각 7월 14일 오전 12시[^kst]
 
 10번 미션에서 경험한 것과 같이 기존 보드를 조금씩 변경하며 개선해 나가기 위해서는 어떤 방식이 좋을지 고민하던 중
@@ -102,6 +131,7 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 각 칸마다 한 개의 상태만 저장했고 $410{,}293$점을 획득했다.
 
 ## 제출 번호 #120876
+
 제출 시각 7월 14일 오후 8시
 
 이전 코드에서 유전 알고리즘을 활용해 문제를 해결하는 코드를 작성했다.
@@ -111,13 +141,21 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 반대로 변이율을 낮추면 전역 최솟값 근처에 도달하지 못한다는 문제에 부딪혔다.
 이를 해결하기 위해 담금질 기법을 활용해 유전 알고리즘이 찾은 대략적인 위치를 세부적인 위치로 바꾸려 시도했다.
 
-<Figure src="/2026/replay/rookie_circle/images/p05_Im0.png" caption="유전 알고리즘과 담금질 기법의 목적" width="360px" />
+<Figure
+  src="/2026/replay/rookie_circle/images/p05_Im0.png"
+  caption="유전 알고리즘과 담금질 기법의 목적"
+  width="360px"
+/>
 
 따라서 유전 알고리즘이 찾은 최적해를 담금질 기법으로 미세하게 조정해 나가도록 했다.
 담금질 기법의 온도는 선형적으로 낮춰 나가며 $1.8$초가 되면 $0$이 되도록 하였고,
 유전 알고리즘과 담금질 기법의 비율은 여러 번의 시뮬레이션 후 다항 회귀 분석으로 최적점을 찾아냈다.
 
-<Figure src="/2026/replay/rookie_circle/images/p05_Im1.jpg" caption="다항 회귀 분석" width="240px" />
+<Figure
+  src="/2026/replay/rookie_circle/images/p05_Im1.jpg"
+  caption="다항 회귀 분석"
+  width="240px"
+/>
 
 이전 코드에 담금질 기법을 추가하는 것 외에도 수렴 속도 향상을 위해 코드를 조금 수정했다.
 그 중 대표적인 것이 다람쥐나 햄스터 중 아무것도 배치하지 않는 칸을 제거한 것이다.
@@ -125,6 +163,7 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 `X`가 들어갈 수 있는 칸을 제거했다.
 
 ## 제출 번호 #122644
+
 제출 시각 7월 15일 오후 8시
 
 새로 작성한 코드는 15번 미션에서 관찰한 결과를 바탕으로 작성하였다.
@@ -138,6 +177,7 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 그 결과 출력이 무작위성에 기반하지 않아 실제로 코드의 성능이 개선되었는지 확인하기 더 수월해졌다.
 
 ## 제출 번호 #123056
+
 제출 시각 7월 16일 오전 1시
 
 유전 알고리즘과 그리디 알고리즘은 완전히 다른 결의 알고리즘임에도 불구하고 평균 비용으로 비교했을 때, 큰 차이를 찾기 어려웠다.
@@ -156,6 +196,7 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 결과적으로 의도한 코드를 작성해낼 수 있었다.
 
 ## 제출 번호 #128037
+
 제출 시각 7월 18일 오후 10시
 
 앞에서 작성된 코드들을 기초적인 알고리즘 토대로 삼아 작은 개선을 거듭해 최종 제출용 코드를 작성했다.
@@ -164,7 +205,11 @@ llmModel: GPT-5.6 Sol, Gemini-3.5
 하지만 이러한 방식은 스텝 업 미션의 9번과 같이 일부 꽃에 대부분의 씨앗이 몰려있는 입력에 약하다는 점이 있었다.
 따라서 씨앗의 흐름을 $6$, $9$, $13$개의 갈래로도 나눌 수 있도록 하였다.
 
-<Figure src="/2026/replay/rookie_circle/images/p07_Im0.png" caption="개선된 알고리즘으로 해결한 미션 9" width="360px" />
+<Figure
+  src="/2026/replay/rookie_circle/images/p07_Im0.png"
+  caption="개선된 알고리즘으로 해결한 미션 9"
+  width="360px"
+/>
 
 또한 LLM을 활용해 알고리즘을 최적화하였고 중간 평가 등에서 상대적으로 취약한 입력을 찾아 효율·오차·지연 카테고리로 분류해 LLM이 효과적으로 개선할 수 있도록 하였다.
 
