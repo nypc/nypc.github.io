@@ -41,14 +41,26 @@ const posts = defineCollection({
       stage: z.optional(z.string()),
       codebattle: z.optional(z.boolean()),
       bikoId: z.optional(z.number()),
+      // Replay writeups only: rendered as a small key/value table under the
+      // title when set, labeled per-locale rather than by these field names.
+      // Master track competes in teams, rookie track individually, so a given
+      // writeup sets one of `teamName`/`nickname`, not both.
+      teamName: z.optional(z.string()),
+      nickname: z.optional(z.string()),
+      llmProvider: z.optional(z.string()),
+      llmModel: z.optional(z.string()),
       content: z.string(),
     }),
     z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])),
   ),
   transform: (post) => {
     const { _meta, ...rest } = post;
-    const slug = `${_meta.directory}/${_meta.fileName.replace(/\.mdx$/, "")}`;
-    const derived = editionFromDirectory(_meta.directory);
+    // On Windows, _meta.directory can come back with `\` segments (from
+    // Node's path.dirname), which would otherwise leak into the slug and
+    // break every route lookup nested more than one level deep.
+    const directory = _meta.directory.replaceAll("\\", "/");
+    const slug = `${directory}/${_meta.fileName.replace(/\.mdx$/, "")}`;
+    const derived = editionFromDirectory(directory);
 
     const resolved = {
       ...rest,

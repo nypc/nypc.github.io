@@ -1,0 +1,505 @@
+---
+title: Three Programming Novices Take On NYPC!
+stage: Master Track Qualification Round
+teamName: 프로그래밍 초짜 (Programming Novices)
+llmProvider: Claude
+llmModel: Sonnet, Fable
+---
+
+Written by: Kera
+
+Back in high school, I — the person writing this — once took on NYPC. That was right around the time I was first
+becoming interested in problem solving, and what left a strong impression on me, unlike other contests, was that the
+problems genuinely mixed in elements from all sorts of games, and that the format asked you to find your own optimized
+answer among many possible ones. I couldn't really participate properly at the time, since my skills were lacking and I
+had to juggle schoolwork, but I still have memories of solving and discussing problems together with my high school
+friends, and I even attended last year's $10$th anniversary offline event — so this contest has always meant a lot to me.
+
+Time passed, I graduated from high school, and I thought my connection with NYPC was over. But then I heard that the
+NYPC University Code Battle, which had felt like a trial run last year, was being launched officially under the name
+NYPC Master Track — so I resolved that this time I would take part properly.
+And so I decided to take it on together with bananasoyami and GGRIM. Both teammates have excellent mathematical
+reasoning and are skilled at strategic design, so I felt very reassured.
+
+After registering, we played the mushroom game ourselves for a bit, talked it over, and discussed a little about how we
+should approach things once the actual qualification round began. Then we spent the time until the qualification round
+on final exams and personal activities. Time passed, and the day the qualification round began arrived.
+
+On June 29, when I read the problem that had just been made public, two thoughts came into my head: "this is quite
+complex" and "this is going to be quite fun."
+
+Reading through the game rulebook calmly, it looked like it was built on top of "Civilization" and "StarCraft." But
+between the $200$-turn limit, the order of actions, and the detailed movement rules and battlefield generation rules —
+the fact that it explained even the basic parts of the game in such depth gave me a feeling that this was going to get
+fairly complicated.
+
+So, in order to understand the rules that weren't clicking for me and to work out a strategy, I first built a simulator
+I could play myself.
+In the case of the mushroom game — the practice game — you could play it in the simulator by default, which made
+understanding the rules and devising strategy really convenient. However, right after building it myself, what I felt
+was: "ah, now I see why they didn't make one for us this time."
+
+The more soldiers there were each turn, and the more complex the operation I wanted to carry out, the more commands I
+actually had to issue — and since this had to go on for close to $200$ turns, it was obvious that playing a single game
+properly would take an enormous amount of time.
+
+So I gave up on devising strategy by playing it myself, and instead started by looking at the sample code they provided.
+The sample code simply had logic that sent $3$ warriors marching forward right at the start, and beyond learning how to
+write the code itself, it didn't look like there was anything to gain from it.
+
+The next day, June 30, was the day I decided I should lay the groundwork for the actual working environment going
+forward, based on the rules and sample code I had checked the day before.
+The previous day I had used an LLM to write a few pieces of code that came to mind, but it didn't produce results as
+satisfying as I'd expected.
+So, to fix that, I thought hard about more efficient ways of instructing it and of writing the code.
+
+(As for the LLM models used, we worked on the basis of Anthropic's Claude, mainly using Sonnet and Fable.)
+
+Here's what I realized:
+
+1. Leaving the entire code-writing process to the LLM is not a good approach. So we need to structure things well enough
+   that we can read, at least roughly at the code level, how the actual logic works.
+2. For the strategy design process, you definitely should not rely on the LLM's help. At first we discussed with it what
+   the best strategy would be based on the rules, but as time went on I realized that the strategies we thought through
+   and built ourselves were far more efficient and far better.
+3. When writing prompts, organize what you want implemented as cleanly as possible before handing it over. In
+   particular, numbering your requirements one by one (item 1 ~, item 2 ~) rather than writing in conversational prose
+   produces much better results.
+
+Based on what we'd realized, we split the code's structure into a variable declaration section, a section that reads
+basic server information, and the `decide()` function where the actual strategy lives — and once we wrote the code that
+way, we were thankfully able to implement the strategy we wanted.
+
+And so on July 2, with submission 46329, we managed to produce a strategy that reached Gold tier[^1] for the first time.
+To describe it a little more precisely, the basic skeleton of this strategy was as follows.
+
+1. Capture the center point of the map and its surroundings as the top priority, and after that simply capture the
+   strongholds near our HQ one by one.
+2. Once capturing is finished, dispatch 5 warriors at a time to enemy strongholds to destroy them, build a stronghold on
+   that spot, and expand one by one.
+3. Level up the HQ to level 3 along the way, and after that watch the opponent and stay $+1$ above them.
+
+There were minor HQ defense routines and other details mixed in, but overall this was the concept of our first strategy.
+
+However, even after going through numerous error fixes and logic revisions via matches against the sample AI, fighting
+actual opponents in the Pretest turned out to be no easy matter. The problems I wrote down in my notes at the
+time were as follows.
+
+<div style={{ padding: 8, border: "1px solid" }}>
+
+\<first> A document analyzing the strategy's weaknesses, errors, counters, and so on from multiple angles.
+
+1. In the capture process, if the opponent has defensive measures, it retries infinitely until it breaks through<br />
+   --> This became the main cause of the gold gap and led to defeat. - MS
+2. Code failure of unknown cause at turn 87 - Man Pro
+3. Problem with the early warrior dispatch process<br />
+   --> When the equidistant point is far away, quick support becomes impossible (the strategy loses its meaning)
+4. Absence of an early central defense strategy. After fixing item 3, we need to build a defense process that uses
+   nearby bases - 누난너무예뻐, 캥x6<br />
+   --> Many opponents take the center and use it to nibble away at the surrounding area
+5. Optimization of the very early build-up; we're one turn behind - xonynn
+6. In the very late turns, aim for a health win rather than capturing (probably fixed in the final version) - xonynn
+7. If there is no equidistant point, 2 warriors depart simultaneously<br />
+   --> Can be merged in while fixing item 3. - 새벽 코딩단
+8. If a capture fails once, the risk is large, and this leads to losing the entire capture battle - 새벽 코딩단
+9. Around turn 120, troops appear that move the HQ and bases around pointlessly.
+
+---------------------------------------------------------------- Ideas
+
+1. Attacking at the very, very earliest stage does seem like an optimized strategy for throwing the opponent off —
+   especially if, after destroying the opponent, you don't build a stronghold there but<br />
+   only go around destroying… that seems to work well sometimes. (Though it might fall apart if their early defense is
+   well established?)
+
+To fix -- errors occurring, late-game HQ upgrade
+
+</div>
+
+On July 3–4, I spent time further analyzing and shoring up the problems with the current strategy.
+
+First, to solve two problems — the very early build-up issue and the pointless attacks that kept going even when the
+opponent's defense was holding — I built logic that could track my own gold accurately.
+This let me construct bases more precisely in line with the money I actually had.
+
+And building on this gold-tracking logic, I tried to revise the attack strategy so that we would also track the
+opponent's money and attack when they couldn't respond… but it wasn't easy.
+
+Fundamentally, the biggest issue was that the code as a whole kept breaking during the writing process. Whenever I
+implemented one thing, features that used to work fine kept falling apart, so when experimenting via matches against the
+sample AI, I'd see a situation where I beat 5 of them and lost to the 6th flip to the exact opposite once I revised the
+code — which was rather demoralizing.
+The root cause of this turned out to be that, as the code gradually got longer and more complex, I could no longer
+smoothly follow the code the LLM had written.
+
+Still, by somehow pouring in the hours and resolving the problems one by one:
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p05_X16.png" caption="First Platinum of my life!" width="560px" />
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p05_X18.png" caption="And straight on to Diamond…!" width="560px" />
+
+we got to knock on the door of Diamond[^2], which had looked impossibly far away at first. Just two days earlier, my
+teammates and I would be trembling whenever we ran into the occasional Diamond in matchmaking… but in the end, with all
+of us working hard together, we got there.
+
+Having achieved results we were reasonably satisfied with at the time, I think everyone started to find it more and more
+fun.
+And so our daily rhythm came to revolve around the Pretest submission times of $10$ AM[^kst], $3$ PM, and $9$ PM, taking turns
+sleeping in shifts to line up our schedules — we really threw ourselves into that last week (I think I may have worked
+harder than during university exam season).
+
+However, even though we resolved various existing problems, I felt a great deal of frustration.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p05_X19.png" caption="A stagnating score…" width="560px" />
+
+No matter how many problems we fixed, new errors and problems kept appearing, and as our tier rose I got the feeling
+that it would be difficult to aim any higher on the basis of our current strategy.
+
+So, among several strategic ideas, we decided to reimplement from scratch the one we expected to be most effective: a
+strategy of attacking at the very earliest stage to widen the resource gap between the opponent and us.
+The so-called "all-out rush" strategy.
+The basis for choosing this strategy was the thought that opponents wouldn't be able to respond well to an attack early
+on when they had no resources, and the fact that when we met opponents who actually ran it, we got absolutely wrecked
+without room to breathe. So I wanted to design it myself and draw some inspiration from it.
+
+And so after the 3 PM submission on July 5, I designed all of the code from scratch myself and built this all-out rush
+strategy.
+
+On July 6, after grinding myself through an all-nighter, I finally finished it!
+The initial implementation of the all-out rush strategy was as follows.
+
+1. Of the first 3 warriors, send 1 to the stronghold nearest our HQ, and have the remaining 1 take the base on our side
+   that is nearest the map's central stronghold.
+
+   <Figure src="/2026/replay/master_프로그래밍초짜/images/p06_X22.png" caption="(Start of the build-up on side A in the image above)" />
+2. After taking 2 strongholds, designate the stronghold nearest the enemy's stronghold as the "rally point."
+3. After that, train troops and gather them at the rally point; once 5 or more warriors beyond the minimum labor force
+   have gathered, invade the nearest stronghold 5 at a time.
+   The key point is that, unlike before, we don't build a stronghold — we immediately use those troops to press on and
+   invade the enemy's strongholds.
+4. Once all strongholds are captured, gather troops after that and march them into the enemy HQ to finish the game.
+5. Throughout this entire process, as long as the HQ is not in danger, the minimum labor force for each base and the HQ
+   must always remain in place.
+
+The finished all-out rush strategy clearly performed better than the previous one.
+The biggest point in particular: with the previous strategy,
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p07_X26.png" caption="Records of getting thoroughly wrecked…" width="560px" />
+
+we often lost without being able to lay a finger on opponents even slightly stronger than us, whereas this strategy
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p07_X27.png" caption="Reasonably decent? records" width="560px" />
+
+brought results good enough that mid-Diamond was well within reach. Of course, Ruby tier[^3] was still out of our league.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p08_X30.png" alt="Screenshot of match results" width="560px" />
+
+And so we kept discussing with the team, divided the working hours among ourselves, and kept revising things one by one.
+There were 6 versions in particular that became the backbone, and those are the files you can see in my VS Code below.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p09_X34.png" caption="A collection of all-out rush strategies" width="240px" />
+
+The `first.py` file you can see above is the file that, through the all-out rush strategy, first won $8$ matches against
+the sample AI.
+Honestly… at first I wondered whether we could ever beat sample AI strategy number 8, so I was really happy.
+
+After that we fought actual opponents and went through various strategic revisions.
+
+First, the biggest problem was the number of strongholds built in the all-out rush strategy. The initial all-out rush
+strategy I described above builds only $2$ strongholds.
+As a result, as soon as the map got even a little larger, the efficiency of attacks starting from those strongholds
+dropped sharply, and we simply could not win against an opponent who just built up.
+
+So we simply set the number of bases to build to $(\text{number of buildable strongholds on my side} / 3)$, which
+produced better results than before… but depending on the situation it was still sometimes too few or too many, so
+problems remained.
+
+And although we went through many revisions — calculation formulas, adding logic that decides based on the shape of the
+map, and so on — in the end we never fully solved it.
+
+Since we still had no optimization for base construction or movement based on the shape of the map, we also confirmed
+that when we ran into a similar all-out rush strategy, we would lose to teams that had optimized better than us.
+So in the early hours of July 7, to fix this, we added logic that identifies when the opponent is running an all-out
+rush and commits to defense.
+The conditions for identifying an opponent as running an all-out rush are as follows.
+
+1. The opponent maintains $2$ bases for $20$ or more turns.
+2. After that, they do not build or upgrade bases and spend all their money on training warriors.
+
+And the process carried out once an all-out rush is identified is as follows.
+
+1. Terminate all attack processes being carried out.
+2. Always maintain $2$ bases, and if one is destroyed, rebuild it at the buildable location nearest the HQ.
+3. Always keep the total warrior count at $7$ or more.
+4. For every base, if an enemy warrior comes within $4$ tiles, add it to the "watch" list.
+5. If, for a base on the "watch" list, an enemy warrior is detected within $3$ tiles on the next turn, send $3$ warriors
+   to that base.
+6. If a base is under direct attack, keep sending warriors continuously.
+7. If a base is removed from the "watch" list, gather all available soldiers at that location (warriors beyond the
+   minimum force) back to the HQ.
+8. If enough money accumulates to upgrade the HQ, upgrade it.
+
+Through the above process we were able to win most matchups against all-out rush strategies. In the 10 AM simulation on
+July 7, we confirmed that when attacking, if the opponent had a level $2$ HQ, we could not break through even by
+attacking with $5$ warriors. So we revised the code that sent a base of $5$ to send
+$5+2\times(\text{opponent's level}-1)$ instead. Using this code we were able to put up our best result.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p10_X38.png" alt="Screenshot of match results with the revised attack logic" width="560px" />
+
+After the all-out rush strategy, the biggest upgrade was building a system that tracks the opponent's movement. The idea
+started from the basic fact that movement paths are predetermined. Namely, that movement from a given starting point to
+a destination always follows the path of minimum Euclidean sum.
+
+But while trying to understand the battlefield generation rules in order to understand these movement rules more
+precisely, I realized one extremely important fact.
+Namely, that moving by minimum Euclidean sum does not necessarily guarantee the minimum number of tiles.
+In particular, I learned that in the method of constructing the map using Delaunay triangulation, the large polygons
+that form on the outside create many routes that take few tiles but have a long Euclidean distance.
+I was able to properly grasp this thanks to my teammates GGRIM and bananasoyami, who have strong mathematical reasoning.
+
+In any case, on the basis of this movement scheme, we built logic that predicts enemy troop movement: assuming the
+opponent is moving toward their own or our HQ and strongholds, it investigates every possible minimum-Euclidean-sum path
+and then eliminates candidates one by one as they deviate from those paths.
+It was basically put together by blending various exhaustive search algorithms including BFS, and thankfully it didn't
+hit the time limit.
+
+Another one of the big upgrades was building a combat simulation algorithm. To solve a problem that had been chronic
+even in the strategies before the all-out rush — attacking and continually losing troops even when we couldn't actually
+destroy the enemy's bases and HQ — we needed a simulation that calculated when we could actually destroy an enemy base.
+
+So we built a simulation that, according to the given combat rules, calculates the actual minimum number of troops
+needed to destroy a base given the base's level and defending troops, taking both our HQ level and the opponent's into
+account.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p12_X43.png" caption="Combat simulation" width="240px" />
+
+Just in case we hit the time limit, we even prepared a dataset covering every case ourselves… but it never really ended
+up being needed.
+
+At any rate, through this we completed a strategy upgraded beyond the previous one, predicting the opponent's movements
+to avoid areas of strength while digging into their weak points, and
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p12_X44.png" caption="Our own little golden age" width="480px" />
+
+although it was only the Pretest standings, we got to visit Ruby briefly — it was really… a lot of fun.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p12_X45.png" caption="Settling stably into Diamond" width="560px" />
+
+But that was short-lived. Users who defended against this style of early attack gradually increased, and as we moved up
+into higher-ranked strategies, defense processes were established as a matter of course — so our ranking started to
+fall.
+
+And so on the night of July 7, with one day left until the final submission, we held an emergency meeting with the team.
+A full $6$-hour meeting… through which we came to realize a great many things.
+
+First, that this game is nothing more than rock-paper-scissors. The $3$ most fundamental strategies that govern this
+game — attack, defense, and build-up — beat and lose to each other in a rock-paper-scissors relationship.
+So the all-out rush strategy had a hard time beating defense strategies, whereas the build-up strategy we implemented
+first beat defense strategies easily.
+
+After realizing this, we had $2$ options.
+
+1. Develop the all-out rush strategy we'd been running even further.
+2. Build an entirely new strategy that appropriately mixes defense and build-up.
+
+And we decided to just do both.
+
+bananasoyami, who among the team had thought the most about the all-out rush strategy and was mainly handling the
+related work, would develop the existing strategy further, while GGRIM and I would design a new strategy completely from
+scratch together.
+And so, with our sleep patterns already thoroughly wrecked from running the contest, we pulled another all-nighter.
+
+The foundation of the new strategy was to mix defense and build-up appropriately. The reason lay in the nature of
+defense strategies.
+A defense strategy collectively refers to making your bases unbreakable by the opponent's attacks, and we discovered
+that by exploiting the fact that the attacker normally spends more time moving, it isn't too late to respond after
+watching the opponent's movements.
+
+In other words, defense is relatively lower-difficulty than attacking.
+(Of course, with more advanced strategies this changes once you use things like fake movement… but we set that aside for
+now.)
+
+So we set the basic concept as a strategy that defends against all of the opponent's attacks while gradually growing our
+own bases to aim for a health win, and carried out the detailed implementation as follows.
+
+<div style={{ padding: 8, border: "1px solid" }}>
+
+1. The basic action principle is to prioritize building bases starting from the buildable stronghold area nearest our
+   HQ. All soldier dispatches happen when a base can be built as soon as they arrive at the construction area.
+2. The game's basic premise is that every stronghold and the HQ always has warriors stationed equal to the minimum labor
+   force.
+3. All movement basically moves along the route that minimizes the number of "tiles" between origin and destination.
+   However, since by the movement rules movement proceeds in the direction that minimizes the sum of Euclidean
+   distances, if the minimum-tile movement differs from the path minimizing the Euclidean distance sum, then split the
+   destination into $2$, $3$… parts if necessary so that movement always takes the minimum number of tiles. However,
+   split the destination as few times as possible.
+4. If there are multiple routes taking the minimum number of tiles, preferentially choose the route that passes through
+   one of our bases along the way where possible.
+5. If, once a warrior's route to its destination has been decided by rules 3 and 4, the route passes through one of our
+   strongholds, use the "switching" technique to move.
+   - Switching: the switching technique is a strategy for moving faster by using another base that lies between the
+     destination and the starting point.
+
+     The way to execute it: if the warrior's location is the tile immediately before the base it passes through, then at
+     the same time as the warrior moves into that base, move $1$ warrior that was in the base (one that was filling the
+     minimum labor force, etc.) onward along the route the original warrior was taking. This makes it possible to gain
+     $1$ turn.
+
+     That is, when a situation arises where the switching technique can be used, note that the warrior's movement should
+     target the intermediate stronghold rather than aiming at the destination from the start.
+6. When training and dispatching warriors from the HQ, just as with the switching technique, move the personnel already
+   there and train at the same time, saving $1$ turn compared to departing after training.
+7. Except at the start of the game, when the opponent trains soldiers, train the same number of soldiers and gather them
+   at the base located nearest to all of our bases (the center of our bases).
+8. If $\text{minimum labor force} + 1$ or more warriors gather at the opponent's stronghold, or if $3$ or more warriors
+   move together from the opponent's HQ, the "defense process" activates.
+   - Defense process: the defense process collectively refers to the following procedure. It is the work of blocking the
+     opponent's invasion with the minimum number of personnel, and the detailed operation is as follows.
+
+     If $\text{minimum labor force} + 1$ troops are present at the opponent's stronghold, dispatch $1$ warrior to the
+     stronghold nearest it, and if troops gather beyond that, dispatch the minimum troops needed to block, per the
+     "combat simulation," to the base nearest that base. If they actually attack with troops gathered at their base, run
+     the "movement prediction simulation."
+     At this point, if my base nearest the enemy base where the defending troops have gathered is not included in the
+     simulation results, move the defending personnel to the base among those included that is farthest from the HQ.
+     (Depending on the number of attacking personnel, rerun the combat simulation and dispatch as many as needed.)
+     This process is continuously recalculated and repeated according to the opponent's movements.
+
+     Also, if $3$ or more warriors move together from the opponent's HQ, dispatch defending personnel from the rally
+     point — as many as the "combat process" result — to whichever of my bases included in the "movement simulation"
+     results is farthest from the HQ. However, dispatch at the most optimal timing, taking into account my movement
+     distance, the opponent's movement time, and resources (meaning: don't have them dispatched in advance). This lets
+     us narrow the movement simulation results as much as possible.
+
+     If a stronghold where defending personnel had been dispatched drops out of the "movement simulation" results, move
+     the defending personnel to whichever of my strongholds in the simulation is farthest from the HQ (as many as the
+     value resulting from the combat simulation).
+
+     This defense process automatically terminates when its activation conditions are no longer met, and the remaining
+     defensive personnel are moved back to the central base among our bases.
+     At this point, if the opponent moves troops from base to base, cases arise that the above algorithm alone cannot
+     handle; to solve this, move defending personnel to our stronghold positioned in the same direction as the enemy
+     soldiers' movement direction, according to the "combat simulation" results.
+   - What the combat simulation is: a calculation, synthesizing both sides' HQ levels and base levels, of whether the HQ
+     or base in question can be destroyed as turns pass, based on warrior health and the attack power of the HQ and
+     bases.
+   - Movement prediction simulation: a simulation that, based on the game's movement rules, assumes the opponent moves
+     in the manner that minimizes the sum of Euclidean distances and thereby tracks their destination. It assumes my HQ
+     and strongholds and the opponent's strongholds as candidate destinations and predicts the actual destination by
+     elimination according to the opponent's movement.
+9. Repeat the above steps 1–8, and accumulate leftover money continuously rather than wasting it. In this process, raise
+   the HQ's level the moment enough leftover money to do so has accumulated (however, if that HQ upgrade is judged to
+   interfere with steps 1–8 that must be observed on that turn, do not carry out the upgrade on that turn).
+
+</div>
+
+<p style={{ textAlign: "center" }}>
+  The prompt we wrote
+</p>
+
+Back around July 3–4 we had talked with the team about the following 2 elements:
+
+1. The importance of optimizing turn count
+2. The order of game commands
+
+We did realize these $2$ were important elements, but at the time we were preoccupied with revising the algorithm right
+then and there, and we left them alone because we didn't know how to actually make use of them.
+However, once we redesigned the strategy, their importance gradually became visible. It was the fruit of a great deal of
+failure and experience.
+
+Where we properly applied this was in the process of redesigning the movement process.
+In the newly designed movement process, taking into account that minimum-Euclidean-sum movement and minimum-tile
+movement can differ as discussed above, we added an algorithm that selects the route that uses turns more efficiently,
+along with a technique called "switching."
+
+The switching technique is a movement technique discovered by our teammate GGRIM, a technique for moving one tile faster
+by using our own bases (it's explained in detail in the prompt above).
+Because of the game's basic command order of build → move → train, this could also be applied when sending troops out
+from the HQ, so almost all movement could be made $1$ or more turns faster.\
+Our movement process, optimized this way, meant that in matches against any other team, we were at least never behind on
+early build-up speed.
+
+And so at 3 PM on July 8, we tested this defense strategy for the first time.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p16_X54.png" alt="Screenshot of the first test results for the defense strategy" width="540px" />
+
+The result was an ordinary score, but opening it up revealed a rather interesting pattern.
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p16_X55.png" alt="Record of a win against a Diamond-level strategy" width="540px" />
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p16_X56.png" alt="Record of a loss against a Bronze-level strategy" width="540px" />
+
+As you can see, while it beat Diamond-level strategies, by the nature of a defense strategy there were also situations
+where it couldn't even beat a Bronze-level strategy.
+
+So we hurriedly designed a simple attack strategy to handle those weak opponents, blended it in, fixed the bugs that had
+shown up, and submitted the resulting strategy at 9 PM — and the result:
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p17_X59.png" caption="Final result" width="540px" />
+
+<Figure src="/2026/replay/master_프로그래밍초짜/images/p17_X60.png" caption="Some of the matches along the way" width="540px" />
+
+We completed a strategy that didn't fall far behind even when facing actual Ruby-level strategies. Of course, there were
+a fair few matches we lost due to some bugs and errors, so our ranking didn't come out as high as that.
+
+And so, while watching the Pretest standings come in, we quickly fixed problems at the same time, and finally completed
+our final submission at 9:56 PM.
+Of course, since we couldn't test it, I don't know whether it was actually fixed… we can only pray.
+
+# Afterword
+
+## Kera.
+
+Personally, I found it a shame that there were somewhat few Pretests. In particular, since there were only
+$3$ chances a day, in the case of a strategy like ours that finished its design at the very end, we couldn't test it
+enough, which made it rather difficult to find out what bugs might exist or what could be improved.
+That said, maybe because the chances were so few, every single Pretest had me on edge, as though the child
+I'd raised so carefully was being judged by the world, haha.
+
+Also, personally, NYPC gave me time to think a great deal about how programming will be done going forward.
+In the age of the LLM as a tool and of vibe coding, I think this was the experience of answering for myself the question
+"how exactly is it best to use this tool?" and producing a result.
+
+So, borrowing this replay, I'd like to extend my thanks to everyone on the NYPC staff who worked so hard to create such
+a great opportunity.
+
+P.S. Honestly, I was amazed by the quality of the mushroom game and the Next Nation simulation tools. How hard must they
+have been to build… thank you all for your hard work.
+
+## Bananasoyami.
+
+Since I participated in NYPC in 2024 and 2025, I applied together with my friends thinking it would be nice to do it in
+university too.
+I think I was fairly bewildered at first by the overall approach, which had changed greatly from previous years. I found
+it very difficult until we got the overall framework down, but after going through a few simulations and getting a read
+on other teams' strategies, I think we were able to find our rhythm.
+Early on it was a struggle to even beat the $8$ AIs provided by default, but after winning once we could win without
+much trouble.
+I think the most fun part was competing repeatedly against other teams, getting a read on each team's strategy, and
+gradually developing our code.
+I felt the appeal was in personally going through the process of devising algorithms and struggling with them, rather
+than in code implementation.
+
+## GGRIM.
+
+It was a shame to be short on time, to the point of thinking "what if I had focused on NYPC a bit earlier?"
+The Pretest, available only $3$ times a day, was the one moment that made me nervous, and also a moment I
+looked forward to.
+Even though my head was filled with the thought of whether the strategy we'd built would really work, in one corner
+there was also the expectation that with this strategy, surely we could achieve a high ranking.
+
+In fact, as someone without all that much coding experience, it was hard to achieve good results in the existing NYPC,
+and I was someone who felt the pressure before participating.
+That's why NYPC: Master Track, where you can actively use an LLM and deploy the strategy you want, became an opportunity
+that couldn't have been better.
+Setting aside its being a good opportunity, just staying up all night discussing and taking on a single goal together
+with friends was itself an enjoyable experience.
+
+With this being Master Track's first year, I don't know how next year or the year after will turn out, but this was a
+contest that made me think I'd want to participate any time, as long as I can keep participating in this way.
+Thank you all for your hard work.
+
+[^1]: Editor's note: performance $1300$ or above and below $1700$.
+[^2]: Editor's note: performance $2100$ or above and below $2500$.
+[^3]: Editor's note: performance $2500$ or above.
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

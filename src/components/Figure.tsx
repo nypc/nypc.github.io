@@ -22,7 +22,8 @@ const FigureImg = chakra("img", {
   },
 });
 
-const FigureCaption = chakra("figcaption", {
+/** Shared with `FigureRow` so a row-level caption reads the same as a single figure's. */
+export const FigureCaption = chakra("figcaption", {
   base: {
     padding: "1em",
     color: "fg.muted",
@@ -41,17 +42,31 @@ interface Props {
   caption?: ReactNode;
   width?: string | number;
   style?: React.CSSProperties;
+  /**
+   * Floats the figure beside surrounding paragraphs instead of breaking the
+   * flow as a full-width block. Falls back to a normal stacked figure below
+   * the `md` breakpoint, where text wrapping around a small image reads
+   * poorly. While floating, `width` sizes the whole figure (image included)
+   * rather than just the image, since the figure no longer centers itself.
+   */
+  float?: "left" | "right";
 }
 
 export const Figure: React.FC<Props> = (props) => {
-  const { src, alt, caption, width, style } = props;
+  const { src, alt, caption, width, style, float } = props;
 
   return (
-    <FigureContainer>
+    <FigureContainer
+      float={float ? { base: "none", md: float } : undefined}
+      width={float ? { base: "100%", md: width ?? "320px" } : "100%"}
+      marginInline={float ? "0" : "auto"}
+      marginInlineStart={float === "right" ? { base: "0", md: "4" } : undefined}
+      marginInlineEnd={float === "left" ? { base: "0", md: "4" } : undefined}
+    >
       <FigureImg
         src={src}
         alt={alt || (typeof caption === "string" ? caption : undefined)}
-        style={{ width, ...style }}
+        style={{ width: float ? "100%" : width, ...style }}
       />
       {caption && <FigureCaption>{caption}</FigureCaption>}
     </FigureContainer>

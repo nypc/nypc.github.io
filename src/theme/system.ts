@@ -1,5 +1,10 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
-import { BODY_FONT, DISPLAY_FONT, MONO_FONT } from "./fonts";
+import {
+  BODY_FONT,
+  CONTENT_HEADING_FONT,
+  DISPLAY_FONT,
+  MONO_FONT,
+} from "./fonts";
 
 /** Carries the current year's accent; set per page by `PostLayout`. */
 export const YEAR_ACCENT_VAR = "--nypc-year-accent";
@@ -64,6 +69,13 @@ const config = defineConfig({
         textDecorationColor: "currentColor",
       },
     },
+    // Footnote markers (GFM, via remark-gfm) read as a label, not prose — full
+    // accent color and no underline, rather than the muted-underline treatment
+    // links get inside a paragraph.
+    "a[data-footnote-ref]": {
+      color: accentColor,
+      textDecoration: "none",
+    },
     // KaTeX sizing lives in AppProviders — it must be unlayered to beat KaTeX's
     // own stylesheet. See the note there.
     // Chakra's preflight blockifies `img`, which breaks inline glyphs mid-sentence.
@@ -85,6 +97,7 @@ const config = defineConfig({
     tokens: {
       fonts: {
         heading: { value: DISPLAY_FONT },
+        headingCond: { value: CONTENT_HEADING_FONT },
         body: { value: BODY_FONT },
         mono: { value: MONO_FONT },
       },
@@ -118,8 +131,8 @@ const config = defineConfig({
         },
         fg: {
           DEFAULT: { value: "{colors.stone.900}" },
-          /** Prose copy, a step softer than headings — matches the official site's ~7.3:1. */
-          body: { value: "{colors.stone.600}" },
+          /** Prose copy, a step softer than headings — ~15.2:1 against white. */
+          body: { value: "{colors.stone.800}" },
           muted: { value: "{colors.stone.500}" },
           subtle: { value: "{colors.stone.400}" },
           inverted: { value: "{colors.stone.50}" },

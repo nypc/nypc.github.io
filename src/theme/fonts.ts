@@ -1,7 +1,8 @@
 /**
  * new.nypc.co.kr sets its display type in `poster-gothic-excond-atf`, an Adobe
  * Fonts (Typekit) face. This kit serves it in weights 300/400/500/600 — there
- * is no 700, so display headings top out at 600.
+ * is no 700, so display headings top out at 600. The same kit also carries the
+ * regular-condensed `poster-gothic-cond-atf` in 300/600.
  */
 export const TYPEKIT_KIT_ID = "tnq6rtz";
 
@@ -22,5 +23,12 @@ export const BODY_FONT = `"Pretendard Variable", Pretendard, Inter, ${SYSTEM_SAN
  * the official site renders mixed headings.
  */
 export const DISPLAY_FONT = `"poster-gothic-excond-atf", ${BODY_FONT}`;
+
+/**
+ * Headings inside markdown content. At 16–24px the extra-condensed face gets
+ * too narrow to read comfortably, so content headings use the regular
+ * condensed cut instead; the page title and section banners keep ExCond.
+ */
+export const CONTENT_HEADING_FONT = `"poster-gothic-cond-atf", ${BODY_FONT}`;
 
 export const MONO_FONT = '"IBM Plex Mono", "Pretendard Variable", Pretendard, monospace';

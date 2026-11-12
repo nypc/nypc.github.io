@@ -4,7 +4,7 @@ import { createLink } from "@tanstack/react-router";
 import React, { useMemo } from "react";
 import { BASE_LOCALE, useLocale } from "@/i18n";
 import * as m from "@/paraglide/messages";
-import { ReplayList } from "./ReplayList";
+import { ReplayRow } from "./ReplayList";
 import { accentColor } from "@/theme";
 import type { GridProps } from "@chakra-ui/react";
 import type { Replay } from "./ReplayList";
@@ -40,8 +40,8 @@ interface Props {
     | ReadonlyArray<readonly [string, string]>;
   /** Overrides the layout implied by the edition. */
   variant?: ProblemListVariant;
-  /** Featured replays for this round, listed under its problems. */
-  replays?: ReadonlyArray<Replay>;
+  /** Featured replays for this round, keyed by the id of the problem each belongs to. */
+  replays?: Readonly<Record<string, ReadonlyArray<Replay>>>;
 }
 
 interface RowsProps {
@@ -49,11 +49,14 @@ interface RowsProps {
   variant: ProblemListVariant;
   year: number | string;
   to: "/$year/$page" | "/en/$year/$page";
+  replayTo: "/$year/replay/$page" | "/en/$year/replay/$page";
+  /** Keyed by problem id; each hit is nested under that problem's row. */
+  replays: Readonly<Record<string, ReadonlyArray<Replay>>>;
   /** Rendered in the number column; practice rows show a label instead. */
   label?: (index: number) => React.ReactNode;
 }
 
-const ProblemRows = ({ items, variant, year, to, label }: RowsProps) => {
+const ProblemRows = ({ items, variant, year, to, replayTo, replays, label }: RowsProps) => {
   const heuristic = variant === "heuristic";
 
   return (
@@ -69,59 +72,62 @@ const ProblemRows = ({ items, variant, year, to, label }: RowsProps) => {
           : { columnWidth: "360px", columnCount: 2, columnGap: "var(--chakra-spacing-10)" }
       }
     >
-      {items.map(([id, title], index) => (
-        <ProblemLink
-          key={id}
-          to={to}
-          params={{ year, page: id }}
-          // Keeps a row from being split across a column break.
-          style={{ display: "block", breakInside: "avoid" }}
-        >
-          {/* Rule sits outside the negative margin so only the hover wash widens. */}
-          <Box borderBottomWidth="1px" borderColor="border">
-            <Flex
-              align="center"
-              gap="3"
-              // The archive index's rhythm for heuristic rounds; a compact row
-              // for traditional ones, where a round can run to 23 problems.
-              paddingBlock={heuristic ? "6" : "2"}
-              // Padding cancelled by the negative margin: the wash gets room
-              // while the number stays flush with the heading above.
-              paddingInline="3"
-              marginInline="-3"
-              transitionProperty="background-color"
-              transitionDuration="fast"
-              _hover={{ bg: "bg.subtle" }}
-            >
-              <Text
-                flexShrink={0}
-                color={accentColor}
-                fontSize={heuristic ? "md" : "sm"}
-                fontFeatureSettings="'tnum' 1"
-                // Traditional lists reserve width so 1. and 23. align.
-                minWidth={label || heuristic ? undefined : "1.5em"}
-                textAlign={label || heuristic ? undefined : "end"}
+      {items.map(([id, title], index) => {
+        const problemReplays = replays[id] ?? [];
+
+        return (
+          // Both the problem row and its replay (if any) sit inside one
+          // bordered box, so nesting reads from layout, not just indent —
+          // and a break can't land between a row and its own replay.
+          <Box key={id} borderBottomWidth="1px" borderColor="border" style={{ breakInside: "avoid" }}>
+            <ProblemLink to={to} params={{ year, page: id }} style={{ display: "block" }}>
+              <Flex
+                align="center"
+                gap="3"
+                // The archive index's rhythm for heuristic rounds; a compact row
+                // for traditional ones, where a round can run to 23 problems.
+                paddingBlock={heuristic ? "6" : "2"}
+                // Padding cancelled by the negative margin: the wash gets room
+                // while the number stays flush with the heading above.
+                paddingInline="3"
+                marginInline="-3"
+                transitionProperty="background-color"
+                transitionDuration="fast"
+                _hover={{ bg: "bg.subtle" }}
               >
-                {label ? label(index) : `${index + 1}.`}
-              </Text>
-              <Text flex="1" minWidth="0" fontSize={heuristic ? "lg" : "md"} color="fg">
-                {title.replace(PRACTICE_TAG, "")}
-              </Text>
-              {heuristic && (
-                <Box
-                  aria-hidden
+                <Text
                   flexShrink={0}
-                  color="fg.subtle"
-                  display={{ base: "none", md: "flex" }}
-                  alignItems="center"
+                  color={accentColor}
+                  fontSize={heuristic ? "md" : "sm"}
+                  fontFeatureSettings="'tnum' 1"
+                  // Traditional lists reserve width so 1. and 23. align.
+                  minWidth={label || heuristic ? undefined : "1.5em"}
+                  textAlign={label || heuristic ? undefined : "end"}
                 >
-                  <IconArrowRight />
-                </Box>
-              )}
-            </Flex>
+                  {label ? label(index) : `${index + 1}.`}
+                </Text>
+                <Text flex="1" minWidth="0" fontSize={heuristic ? "lg" : "md"} color="fg">
+                  {title.replace(PRACTICE_TAG, "")}
+                </Text>
+                {heuristic && (
+                  <Box
+                    aria-hidden
+                    flexShrink={0}
+                    color="fg.subtle"
+                    display={{ base: "none", md: "flex" }}
+                    alignItems="center"
+                  >
+                    <IconArrowRight />
+                  </Box>
+                )}
+              </Flex>
+            </ProblemLink>
+            {problemReplays.map((replay) => (
+              <ReplayRow key={replay[0]} year={year} replay={replay} to={replayTo} />
+            ))}
           </Box>
-        </ProblemLink>
-      ))}
+        );
+      })}
     </Box>
   );
 };
@@ -132,10 +138,12 @@ export const ProblemList: React.FC<Props> = (props) => {
   // Selected as a literal rather than built by concatenation, so the router's
   // route-path union still type-checks the destination.
   const to = locale === BASE_LOCALE ? "/$year/$page" : "/en/$year/$page";
+  const replayTo = locale === BASE_LOCALE ? "/$year/replay/$page" : "/en/$year/replay/$page";
   const resolved = variant ?? problemListVariantFor(year);
 
   const practices = useMemo(() => list.filter(([, title]) => PRACTICE_TAG.test(title)), [list]);
   const problems = useMemo(() => list.filter(([, title]) => !PRACTICE_TAG.test(title)), [list]);
+  const resolvedReplays = replays ?? {};
 
   return (
     <>
@@ -146,12 +154,20 @@ export const ProblemList: React.FC<Props> = (props) => {
             variant={resolved}
             year={year}
             to={to}
+            replayTo={replayTo}
+            replays={resolvedReplays}
             label={() => m.problem_practice({}, { locale })}
           />
         </Box>
       )}
-      <ProblemRows items={problems} variant={resolved} year={year} to={to} />
-      {replays && <ReplayList year={year} replays={replays} />}
+      <ProblemRows
+        items={problems}
+        variant={resolved}
+        year={year}
+        to={to}
+        replayTo={replayTo}
+        replays={resolvedReplays}
+      />
     </>
   );
 };

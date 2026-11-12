@@ -2,6 +2,7 @@ export * from "./Blockquote";
 export * from "./Code";
 export * from "./Example";
 export * from "./Figure";
+export * from "./FigureRow";
 export * from "./LanguageDetails";
 export * from "./LanguageSwitcher";
 export * from "./List";

@@ -1,0 +1,199 @@
+---
+title: About Creative
+stage: Master Track Qualification Round
+teamName: About Creative
+llmProvider: Claude Max (5x), Codex Pro, Codex Plus
+llmModel: Claude Opus 4.8, Claude Fable 5, GPT 5.5
+---
+
+# Solution
+
+## 6/29
+
+Right after the qualification round began, since our understanding of NEXT NATION was low, we focused on analyzing the core rules of the game. After finishing that analysis, each of us fed the core rules into our own LLM and completed our preparations in earnest. Believing that more diverse strategies are a clear advantage, we decided each member would cultivate a strategy of their own. We tried a variety: an economy strategy focused on the accumulated gold difference; a growth strategy that seizes the surrounding strongholds, focuses on building upgrades, and overwhelms the opponent with the combat-power gap that comes from HQ level; a rush strategy that produces warriors and attacks immediately without building bases; and more.
+
+Since resource efficiency is critical in the RTS genre, we analyzed gold efficiency — for instance the turns needed for a base to turn a profit after construction. The difference in the number of strongholds held directly becomes the difference in accumulated gold. Because the battlefield generation rules make the number of strongholds odd, once all of them are taken, the difference in stronghold count comes down to who holds the exact center. From this we grasped the importance of the central stronghold. We also analyzed the advantage of defense: thanks to the building, a relatively small number of warriors can defend rather than needing equal headcount. A successful defense with fewer warriors can be seen as a relative gold gain. The Pretest results let us confirm the validity of each strategy and which defense strategies countered them successfully, and showed us the direction the top teams' strategies were taking. We could see that to cover the cost of building or upgrading a base, no forces are reinforced for many turns, and that a base is vulnerable to attack right after an upgrade. Exploiting this, we could devise a strategy of aggressively destroying bases around turn $23.07$, the break-even point after construction. We also struggled with resolving CLE, WA and TLE.
+
+## 6/30
+
+Development began in earnest. Referring to the first day's Pretest logs, each of us reinforced our strategy and worked toward the first goal: $8$ wins against the Nexon bots. Some chose a strategy of taking as many strongholds as possible in the early turns to maintain economic wealth; others chose to seize the opponent's bases to widen the per-turn gold production gap. Continuously analyzing logs from simulations against the Nexon bots, we confirmed that a stronghold with one building and one warrior stationed on it can be taken with three warriors. We thought this could be applied to the existing problem of warriors charging one at a time into strongholds they could not win, and decided to use it aggressively. There was also the problem that we were very vulnerable to the Nexon bot strategy of massing warriors and marching straight at the HQ. So we tried building a systematic defense strategy, and as a result the team's first $8$-win bot was born.
+
+### Submission #32620
+
+Submitted June 30, 3 PM[^kst]
+
+Since there are many strongholds that could become targets for the opponent, we focused on a fluid defense that could respond immediately, timed to the arrival turn, based on the headcount of the enemy's combat warriors excluding their laborers. We analyzed the enemy's combat forces excluding their labor warriors and maintained a defense force able to match them. For attacks, we measured the warriors needed from the target stronghold's building level and garrison and used that as the attack criterion. Both warriors and buildings were converted into gold value, and we focused on efficient gold use. (Hereafter the "economy bot".)
+
+Perhaps the attack criterion was too strict: excessive training kept repeating even when a successful attack was already possible. Judging that the current "can we win" threshold was too demanding, we began revising it to relax the numbers. We rebuilt the formulas from the HP and attack values of buildings and warriors stated in the rules, quantified them with an LLM with reuse in mind, and provided an Excel file computing each efficiency, to serve as the foundation for the attack and defense logic we would improve later.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p02_Image24.jpg" alt="Excel file quantifying efficiency from buildings' and warriors' HP and attack values" />
+
+After the improvement attempt, we came to think that keeping defenders idle for defense was an economic loss. To minimize idle defense we tried having the defenders actively join attacks, but the new attempt brought new problems. Once we started dominating the opponent's defense, warriors stopped being trained, and the gold supposedly saved for building upgrades was not actually being spent on upgrades. The economy model did not get a Pretest, but after checking the Pretest results of the initial economy model, we confirmed the need for early detection of rush models. Facing new problems and refining our individual strategies, the second $8$-win model was born.
+
+### Submission #35107
+
+Submitted June 30, 8 PM
+
+When we simply told Codex "build a model," it could not produce a proper one — WA, odd behavior and so on. First, we organized the rules in Markdown so it could understand them. Then, applying the Nexon tests to patch weaknesses and analyzing logs, Codex seemed to lack the ability to judge on its own when just handed a text file.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p03_Image27.png" alt="The first document organizing the rules in Markdown so the LLM could understand them" />
+
+So, second, we wrote a Markdown guide on how to interpret the text files so they would not need explaining every time. At first, thinking "wouldn't the AI find problems and improve them better than I can?", we ordered Codex to improve things on its own, relying on it.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p03_Image28.png" alt="The order given to Codex to find problems and improve them on its own" />
+
+But contrary to the expectation that Codex finding and upgrading problems by itself would be ideal, the AI agent's characteristic neutrality checks and conservative development got in the way, and it felt like it lost its direction. We ended up building the model by checking the logs ourselves, pointing out specific turns and problems, and proposing new approaches. Performance then improved astonishingly, so we upgraded in the direction of analyzing logs ourselves and proposing methods, and reached $8$ wins.
+
+Starting from the second $8$-win bot, we began internal testing with the CLI tool in earnest. Battling our bots against each other gave us large volumes of logs, and let us analyze causes of defeat that could not be obtained against the Nexon bots. The Pretest results confirmed that many teams were using rush strategies. We also kept trying to port logic from within the team that was judged efficient.
+
+## 7/1
+
+Reviewing the previous day's Pretest logs, we also considered other forms of strategy. Knowing the value of internal simulation from our experience in the practice round, we began thinking about increasing the diversity of our internal models. To raise resistance to and effectiveness against rush models, we used the CLI tool with a rush model and our own models adapted to counter it, checked the results, experimented with various ideas for defense logic and rush-detection logic, checked how win rates changed with battlefield size, and considered strategies by map size. Internal testing did in fact produce meaningful performance improvements.
+
+Since the more strategies there are in internal evaluation the better the results, we decided to increase the diversity of internal strategies. We kept testing internally and improving our individual bots.
+
+### Submission #40655
+
+Submitted July 1, 1 PM
+
+Internal testing showed the economy bot had a problem: when attacking, it failed to notice enemy warriors joining and kept fighting battles it could not win. It attacked to gain money, but failing to see the enemy reinforce and losing our warriors only brought losses. To fix this, every turn we add the measured combat power of the areas adjacent to the enemy stronghold and refresh the predicted outcome. The Pretest result was $21$st of $557$ teams.
+
+But new problems always followed. To counter rush strategies, we intended that an enemy approaching within $4$ areas of our HQ, or within $2$ areas of a stronghold, be treated as a threat to that building and that defenders join the HQ defense — but this backfired and handed our strongholds over without any resistance. Analyzing the logs with an LLM, we analyzed why these orders were being issued and tried to resolve the cause. It turned out the HQ alert's importance outweighed the stronghold alert, so we changed the alert method and began devising logic that recomputes the defenders' rally point every turn and defends expansions to the extent that they can still reach the HQ on the same turn as the enemy group.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p04_Image31.jpg" alt="The situation where defenders gave up a stronghold due to the HQ/stronghold alert priority problem, and the improved rally-point recomputation logic" />
+
+Continuing internal testing and focusing on internal strategy diversity, we tried new models by combining strategies judged effective. Among them, the perimeter-attack strategy began to show meaningful results.
+
+## 7/2
+
+Combining the effective strategies and improving through internal testing yielded a meaningful new strategy.
+
+### Submission #47806
+
+Submitted July 2, 3 AM
+
+Looking at the Pretest logs to check other teams' strategies, we felt there were more varied strategies than we had thought, and set out to build models by imitating them through opponents' logs. Keeping the strengths of the existing economy bot, we developed a model that gathers at the center and attacks the opponent's perimeter as much as possible, circling and striking the low-density outer strongholds before their defense arrives. But no matter how much we told the LLM to develop a new model, it kept copying existing source code or logic, and we felt various limits. So we tried to understand the model's chain of command as much as possible, added code carefully, and patched weaknesses by analyzing logs from battles against the models built internally.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p05_Image34.jpg" alt="The perimeter-attack strategy model that gathers at the center and strikes the low-density outer strongholds in turn" />
+
+Checking the Pretest results, we raised the quality of internal testing by producing bots similar to the strategies our bots had been weak against, and began detailed analysis of the top teams' strategies. One strategy that stood out — build $2$ strongholds early, gather warriors $5$ at a time, then attack — was scoring highly, and we tried benchmarking it. We reinterpreted another team's strategy in a new style and built a high-scoring bot.
+
+### Submission #49903
+
+Submitted July 2, 12 PM
+
+We reinterpreted the strategy of building $2$ strongholds early, gathering $5$ warriors, then attacking. While attackers were on the move and had not yet reached the target, the target was refreshed every turn and they turned back. Since the criterion for starting an attack after rallying was not established, some warriors started attacking and were defeated piecemeal. Also, our early forces lagged behind the opponent's. The buffering meant to prevent WA was backfiring.
+
+To fix this, the target is fixed once chosen, preventing the turn-back problem, and the buffering was relaxed to secure early warrior production speed. Through the LLM we examined the judgment on every turn using "wrong judgment by turn" as the criterion, and corrected WA, compile errors and unintended behavior via simulation. Combining the importance of the central stronghold confirmed earlier with the monetary gain available from defending, we tried keeping defenders to a minimum and concentrating forces on one target to pressure the enemy HQ
+
+Judging that code changes through the LLM can cause cracks, and to minimize damage from the LLM's characteristic optimism, we verified the facts with a reproduction test after every change. The result was the team's best rank, $15$th.
+
+As the number of bots imitating strategies our bots were weak against grew, the quality of internal test results kept rising, and it became a good environment for confirming strengths and weaknesses. The Pretest could not be attempted often enough to test four people's strategies, so we began relying on internal testing. Repeating the cycle of analyzing logs and improving, we realized something: having the AI write the code first and then patching it through log analysis can produce a reasonably capable model, but repeated, it becomes unmaintainable and increasingly likely to hurt further improvement. To address this, we conceptually split the logic into systems and built a chain of command, so that later improvements could be maintained efficiently — the idea of an object-oriented controller — and began developing through harness engineering.
+
+## 7/3
+
+As the team's strategies kept scoring in the upper ranks of the Pretests, we could obtain the top teams' logs and gather information on various strategies. Since the bots had been built mostly by vibe coding through LLMs, sloppy spots were found often, and taking this as a turning point we began strengthening the existing logic and editing the code in more detail. The bot applying the object-oriented controller concept showed promise, placing $58$th in the 10 AM Pretest. And so the economy bot's 3 PM Pretest began.
+
+### Submission #58894
+
+Submitted July 3, 1 PM
+
+The version with the economy bot's problems fixed placed $32$nd of $700$ teams. Many changes were added compared to the initial version. The initial version, focusing aggressively on base construction to get ahead in base count, tried to build in areas relatively close to the enemy HQ. As a result, reinforcements for defense arrived late relative to the enemy's attack and bases fell before they arrived. To fix this, if the remaining strongholds are relatively close to the enemy HQ, they are judged unbuildable and combat-warrior production is brought forward to allow faster attacks. Also, judging that converting combat warriors into workers reduces combat power, workers are newly produced instead; once a majority of strongholds is secured, the HQ upgrade weight is raised to increase warriors' combat power; and strategy adjustments by battlefield size were added. We also tried to remove the unnecessary losses incurred when reinforcements step on enemy stronghold areas on the way.
+
+The real problem lay elsewhere: WA started occurring. Gold had been spent tightly, since we did not want spare gold to accumulate, and as improvements piled up these collided and caused WA. A single change rippled through the existing logic. Judging that losses due to WA rather than strategy were dangerous, we obtained WA logs through internal testing, analyzed them with the LLM, and tried to fix the recurring causes. We also tried turning the attack/defense logic into functions to untangle the spaghetti code.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p06_Image37.png" alt="Attack/defense logic refactored into functions to untangle the spaghetti code" />
+
+The economy bot focused on fixing WA, while the controller model that had placed $58$th in the 10 AM Pretest on the 3rd kept improving by analyzing its logs and patching weaknesses — each of us iterating on our own strategy. Every member built bots capable of meaningful results, and the controller model's improvements in particular showed very positive results.
+
+### Submission #62539
+
+Submitted July 3, 8 PM
+
+We thought about why WA and unexplained behavior kept appearing as upgrades continued. Observing the models so far, each had different I/O and operating styles, so we applied the object-oriented controller concept to design a model that could be upgraded continuously. Rather than piling on conditionals every time a problem arose, it was a model split into an observation system, an economy system, and attack and defense systems that worked together organically. Upgrading with a focus on weaknesses found in the Pretest logs, it reached $19$th.
+
+We then continued internal testing, began the cycle of analyzing logs, forming a hypothesis, building a model from it, and keeping the models whose score went up.
+
+## 7/4
+
+The 10 AM test on the 4th confirmed the effectiveness of the last member's strategy. We confirmed the defense logic was flimsy and began revising it with free switching between offense and defense as the goal. Day $6$'s keyword is "Galápagos." As internal testing continued, the direction of improvement naturally drifted toward what worked in internal tests, and the more we improved, the harsher the Pretest results became, contrary to the internal results.
+
+### Submission #67492
+
+Submitted July 4, 11 AM
+
+We fixed the economy bot's old WA problem and kept improving by continuing internal tests and reducing the behaviors that caused losses. Seeing overwhelming results in internal testing, we expected a good Pretest result, but got the exact opposite. Having consistently stayed in the upper ranks, the 3 PM Pretest on the 4th brought a steep drop: $115$th of $747$ teams.
+
+As internal testing accumulated, improvements had drifted toward favoring only our internal bots, and unintended behavior began to appear. Judging that there were internal functions we had not checked, we tried removing internal logic. Through the LLM we checked whether logic conflicting with the original intent, or favoring our internal bots, had been applied, and removed it where it had.
+
+<Figure src="/2026/replay/master_AboutCreative/images/p08_Image42.png" alt="Identifying and removing internal logic that only worked in favor of internal tests" />
+
+Like the Galápagos Islands, whose unique ecosystem persists because of isolation, blind faith in the team's internal tests ended up causing side effects. After the economy bot's collapse, the controller model too slid from $19$th to $59$th in the 9 PM Pretest on the 4th, and the team was in crisis. Other bots' WA, compiler failures and other problems erupted as well. We tried building new bots, rolling back to pre-improvement versions, and more, to solve the problems.
+
+## 7/5
+
+Galápagos syndrome and the tight schedule meant the team had to make a decision. The internal meeting concluded that internal testing had already lost its validity; each member would improve their own strategy as best they could, use the remaining Pretest results to gather high-quality log data, and decide which bots to abandon. The economy bot stripped out the logic that only favored internal tests and fixed the economic collapse on certain map sizes, but the 10 AM Pretest result was a dismal $201$st. In the 3 PM Pretest, the rush bot — which had kept fixing its problems through continuous code changes — competed and placed $102$nd. In the 9 PM Pretest, a revised economy bot with the internally specialized logic removed competed, but the result was even worse: $263$rd.
+
+## 7/6
+
+The team's last strategy, the surprise-attack strategy, competed in the 10 AM Pretest with improved defense logic and placed $99$th of $826$ teams.
+
+### Submission #80882
+
+Submitted July 5, 11 PM
+
+Based on experience from earlier Pretests, we confirmed a valid strategy. Drawing on the experience of measuring the opponent's combat power and checking their economic situation, the principle is basic stronghold expansion starting from the central stronghold early on, then gathering forces and launching an attack once victory over the enemy HQ is judged possible. If victory is judged impossible, it targets another nearby base that can be won.
+
+The problem was the defense logic. From live and internal testing, we conceived logic that sets the areas adjacent to a building and, when enemy forces are detected, defends with enough warriors to match them. But focusing on base defense left gaps at the HQ and weakened its defense. In particular, the alert logic of strongholds near the HQ overlapped, scattering the defenders. We tried applying the game's movement rules and Dijkstra's algorithm to this problem. Problems arose in the LLM implementation: defending local strongholds worked, but the final destination could not be pinned down precisely. Analyzing the top teams' logs to see what behavioral tendencies their bots showed, presenting the LLM with branch points, proposing alternatives, setting judgment criteria — despite all these attempts we never found a solution.
+
+In the 3 PM Pretest we submitted the final revised version of the rush bot. It placed in the upper ranks: $48$th of $833$ teams.
+
+### Submission #77166
+
+Submitted July 5, 3 PM
+
+The final revised version of the rush bot. Loss-log analysis revealed a sharp rise in win rate when the stronghold closest to the enemy HQ is destroyed first, so the targeting criterion was changed to the stronghold nearest the enemy HQ. Problems arose where warriors went to attack the enemy HQ before a stronghold was completely destroyed, or turned back toward another stronghold mid-attack. Also, losing a stronghold shrank income to the HQ alone and halted production — an economic collapse. And in late-game stalemates, forces rallied but never started attacking.
+
+Through the LLM we pinned down the cause of each loss log, then fixed the target and concentrated forces on the designated target stronghold; when a stronghold is attacked, the rear rally-point forces leave the laborers behind and support it; and laborers are replenished at empty strongholds so that rebuilding continues even after a stronghold is lost. Simulation confirmed the stability of the changes to targeting, training and critical defense support. We also pinned down causes by reproducing the opponent's behavior from loss logs and observing how the improved rush bot responded.
+
+At 9 PM we submitted a newly built bot rather than the controller bot. Since it was submitted in a hurry, the attack logic and the additional defense logic apparently did not work properly, and it placed $380$th. After checking each bot's Pretest results, the team held an internal meeting to discuss solutions. Analyzing the top Pretest teams showed they had already implemented systems predicting the opponent's attack path and were gaining a relative advantage through perfect defense, while our bots' path-prediction systems were flimsy; we also found various other problems, such as the opponent's cumulative and current gold not being observed properly.
+
+## 7/7
+
+In the 10 AM Pretest the rush bot fell from $48$th to $217$th and the team was once again in an emergency. Knowing that the logic the rush bot was using loses value sharply in the late game, raising its rank would not be easy — but with no intention of giving up easily, we decided to look again at each model's Pretest results.
+
+### Submission #94157
+
+Submitted July 7, 2 PM
+
+The economy bot, reverted to before it was contaminated by internal testing and then improved, saw the light: it placed $11$th of $876$ teams and the team saw another chance. The team decided to go all in on the economy bot and spend all the remaining Pretests on improving it — a decision made so as not to repeat the side effects we had felt so painfully through internal testing.
+
+But the economy bot still had problems. While removing conflicting logic and hardening the defense logic, the defense logic's priority swallowed the logic related to building upgrades. Also, the defense logic based on predicting the opponent's path — which we had wanted — reacted more slowly than intended, only joining when a building was about to be destroyed. This did not occur when the economy bot had the upper hand and was the attacker, but it was fatal when hunkering down to turn a game around through defense, so we set the direction of overhauling the defense logic completely, keeping only path prediction via Dijkstra's algorithm, so the defense logic would stop tripping over itself. We identified the conflicting logic with the LLM, reproduced it ourselves in simulation, and confirmed the behavior deviating from intent. We tried improvements such as presenting branch points, or designating buildings near a branch point as defense priorities.
+
+The path-prediction defense logic had the problem that the target cannot be known with certainty until the enemy passes the area that forms the branch point. We tried resolving it by defending at whichever of two candidate targets is closer to the enemy force, but the variance by battlefield shape meant it came down to luck; judging it unsolvable, we gave up on the logic that decides before the branch point.
+
+## 7/8
+
+On the last day we submitted the version of the economy bot that had placed $11$th to the Pretest once more. This time it placed $28$th, a slight drop. Since the Pretest plays each of $20$ teams once but the final evaluation has the top $100$ teams play $5$ times each, we judged the version too unstable and decided to revise it into something more stable. In the 3 PM Pretest the fix was not complete, so we focused on it working at all, and submitted a slightly more improved version at 9 PM.
+
+### Submission #104693
+
+Submitted July 8, 2 PM
+
+A model that introduces prediction of the opponent's attack target via Dijkstra's algorithm, built on the version that placed $11$th. The 9 PM Pretest result was $84$th, but we found a positive sign instead: checking the losses, the only games lost were lost on HQ level. The consistent losses clarified the direction of the fix, so we decided to make the final submission by changing only the logic related to HQ level-ups. Reproducing loss logs through the LLM to correct unintended behavior, we tried to fix only the HQ-upgrade problem while minimizing logic changes.
+
+We built the final submission version with the now-clear cause of defeat — losses due to HQ upgrades — improved, and wrapped up the contest with the final submission.
+
+# Afterword
+
+There was something all the team members felt in common. For all of us, taking an interest in the game, building RTS strategies, and analyzing each other's strategies through the objective data of logs was a kind of fun hard to find in other competitions. The biggest regret was our mistaken contest strategy during the contest. Pretest submissions were limited, and the number was insufficient for $4$ people to get real evaluations of each strategy.
+
+Given another chance, rather than four people building bots with four different strategies, we would limit ourselves to about two strategies and raise their completeness by reproducing the opponents they proved weak against.
+
+The hard part was the stream of unexpected variables: strengthening the defense logic broke the attack logic, running the gold tight set off chains of WA, and so on. The Galápagos syndrome caused by the team's internal testing was the biggest regret. Perhaps if the number of strategies available for internal testing had been more diverse, this would not have happened; the time invested without realizing Galápagos syndrome was setting in felt wasted, and watching results that had been going so well collapse was crushing. The Galápagos effect hit hardest at the very end of the contest, and the regret that we could not produce our best result lingers.
+
+Working many hours with LLMs, we felt their limits acutely. We thought we had been specific, but LLMs seemed to need even more specific requests. Things got implemented in directions other than intended, and abstract requests with high reasoning difficulty were hard to implement. This made us think again about how important the user's skill is in using an LLM. Another problem: even when we asked the LLM to optimize, or to delete duplicated or conflicting code, in the end it was the user who had to find it. When asked for new logic, it would overwrite rather than change the existing logic.
+
+We felt the LLMs' drawbacks strongly, but at the same time felt their usefulness. Even without confidence in your coding skill, repeated revision eventually produces something close to what you asked for — in that sense, we felt the two-sidedness of LLMs.
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

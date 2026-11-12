@@ -6,6 +6,7 @@ import { Code } from "./Code";
 import { Details } from "./Details";
 import { Examples, IO, Input, Output } from "./Example";
 import { Figure } from "./Figure";
+import { FigureRow } from "./FigureRow";
 import { LanguageDetails } from "./LanguageDetails";
 import { Enumerate, Itemize } from "./List";
 import { LanguageExample } from "./languageExample";
@@ -58,19 +59,46 @@ const subHeading = {
 
 export const mdxComponents: ReturnType<UseMdxComponents> = {
   h1: ({ ref, ...props }) => (
-    <SectionHeading as="h1" fontSize="24px" {...ruledHeading} {...props} />
+    <SectionHeading
+      face="headingCond"
+      as="h1"
+      fontSize="24px"
+      {...ruledHeading}
+      {...props}
+    />
   ),
   h2: ({ ref, ...props }) => (
-    <SectionHeading as="h2" fontSize="20px" {...ruledHeading} {...props} />
+    <SectionHeading
+      face="headingCond"
+      as="h2"
+      fontSize="20px"
+      {...ruledHeading}
+      {...props}
+    />
   ),
   h3: ({ ref, ...props }) => (
-    <SectionHeading as="h3" {...subHeading} marginTop="7" marginBottom="4" {...props} />
+    <SectionHeading
+      face="headingCond"
+      as="h3"
+      {...subHeading}
+      marginTop="7"
+      marginBottom="4"
+      {...props}
+    />
   ),
   h4: ({ ref, ...props }) => (
-    <SectionHeading as="h4" {...subHeading} marginTop="4" marginBottom="2" {...props} />
+    <SectionHeading
+      face="headingCond"
+      as="h4"
+      {...subHeading}
+      marginTop="4"
+      marginBottom="2"
+      {...props}
+    />
   ),
   h5: ({ ref, ...props }) => (
     <SectionHeading
+      face="headingCond"
       as="h5"
       {...subHeading}
       fontSize="15px"
@@ -81,6 +109,7 @@ export const mdxComponents: ReturnType<UseMdxComponents> = {
   ),
   h6: ({ ref, ...props }) => (
     <SectionHeading
+      face="headingCond"
       as="h6"
       {...subHeading}
       fontSize="15px"
@@ -91,7 +120,14 @@ export const mdxComponents: ReturnType<UseMdxComponents> = {
   ),
 
   p: ({ ref, ...props }) => (
-    <Box as="p" fontSize="16px" lineHeight="1.5" color="fg.body" marginBottom="5" {...props} />
+    <Box
+      as="p"
+      fontSize="16px"
+      lineHeight="1.5"
+      color="fg.body"
+      marginBottom="5"
+      {...props}
+    />
   ),
   strong: ({ ref, ...props }) => (
     <Box as="strong" display="inline" fontWeight="700" color="fg" {...props} />
@@ -129,7 +165,14 @@ export const mdxComponents: ReturnType<UseMdxComponents> = {
   ul: ({ ref, ...props }) => <Itemize {...props} />,
   ol: ({ ref, ...props }) => <Enumerate {...props} />,
   li: ({ ref, ...props }) => (
-    <Box as="li" fontSize="16px" lineHeight="1.5" color="fg.body" marginBottom="1" {...props} />
+    <Box
+      as="li"
+      fontSize="16px"
+      lineHeight="1.5"
+      color="fg.body"
+      marginBottom="1"
+      {...props}
+    />
   ),
 
   // Tables keep the archive's centred, content-width layout — most statements
@@ -186,6 +229,7 @@ export const mdxComponents: ReturnType<UseMdxComponents> = {
   Output,
   Details,
   Figure,
+  FigureRow,
   LanguageDetails,
   LanguageExample,
   Itemize,

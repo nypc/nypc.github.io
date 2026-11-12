@@ -1,0 +1,310 @@
+---
+title: 홍대2팀
+stage: Master Track Qualification Round
+teamName: 홍대2팀 (Hongdae Team 2)
+llmProvider: Claude pro, Codex Pro, Google AI Pro
+llmModel: Claude Opus 4.8, GPT 5.5, Gemini Pro 3.1
+---
+
+# Solution
+
+# 1. Initial Strategy
+
+At first we approached the game with the simple notion that "if you grab a lot of land first and then attack the opponent, you win,"
+and built an initial model on that. But this code performed poorly, and we realized there were many factors to weigh — the timing of base
+construction and reinforcements, where to expand, and so on. We then designed a definite win plan from scratch and rewrote the code from a
+blank slate.
+
+To shape the initial strategy, we listed the points that had to be considered and wrote the code around them. The outline was as follows.
+
+1. Game premises
+2. Resource costs
+3. Training
+4. Movement
+5. Combat
+6. Defense
+7. Early game
+8. Endgame
+9. Action pipeline
+
+## 1. Game Premises
+
+1. The per-turn report lets us track all information on both sides. The only things that must be estimated are the opponent's movement
+paths and the gold differences caused by movement. Predicting the opponent's movement path — the estimated data — is therefore critical.
+2. The win condition is destroying the HQ, or the HQ HP tiebreak at T200. So by the end of the game we must somehow have more HP than the
+opponent's HQ.
+
+## 2. Resource Costs
+
+1. For warrior training and base construction/upgrades, it is possible to model precisely at which point each action becomes economically
+profitable. For example, training $1$ warrior takes $13$ days to pay off in gold; expanding to a new base, including the labor warrior, takes
+$32$ days. So the order of upgrades and expansions should be chosen to maximize economic gain. HQ upgrades also directly strengthen warrior
+HP, so the added combat power should be counted in their value too.
+2. Since the game runs to T$200$, past a certain point expansion no longer pays off, so a cutoff is needed. HQ upgrades for warrior HP have to
+proceed separately from this.
+
+## 3. Training
+
+1. Each turn proceeds in the order Build → Move → Train → Battle → Labor → Supply. When defending the HQ, warriors trained the same day can be
+counted toward the defense.
+2. Warriors cannot heal, so warrior HP must be considered when computing combat power.
+3. A standing army must always be maintained. It consists of the following, and a simulation is needed to compute how many defenders are
+required.
+  1. The minimum defenders needed to protect every allied building
+  2. An attack reserve
+
+## 4. Movement
+
+1. A Move command over too long a distance cannot be cancelled (lock-in). So the more you split Move commands, the more flexibly you can
+respond to the situation.
+2. Movement paths are fixed per map, so if you know the opponent's path you can quickly estimate their destination.
+3. The early expansion order is as follows.
+  1. First secure the contested strongholds that are equidistant from both sides.
+  2. Once the contested ones are secured, take the nearby ones.
+4. Compute the optimal rally point for pre-empting the opponent's attacks (front line & center).
+
+## 5. Combat
+
+1. Defense is almost always favorable. So play defensively, and when the opponent attacks, defend in a way that yields the maximum economic
+gain. Always play defensively, but be sure to secure the center early to gain an economic edge, and turn that edge into the win.
+2. An allied base's HP does not drop as long as the defending warriors' total HP holds.
+3. When attacking, it pays to concentrate force and destroy the target in one go. A siege-feasibility simulation is important for this.
+4. Warriors not needed for defense should be sent to siege at the right moments. Don't be overly defensive.
+
+## 7. Early Game
+
+1. Watch for when the opponent launches an attack. Respond properly to attacks on our HQ from an opponent who has built only $0$–$2$ bases.
+2. Per the win plan, we must secure more of the contested strongholds than the opponent.
+
+## 8. Endgame
+
+1. To avoid the draw that results from endless defense, an economic edge must be established by the mid-game, and used either to have more
+HQ HP than the opponent or to destroy their HQ.
+
+## 9. Action Pipeline
+
+1. State update (map-based data estimation)
+2. Threat analysis (based on estimated opponent paths)
+3. Opportunity analysis (whether we can attack)
+4. Strategic state (expand / pressure / defend / hit economy / endgame)
+5. Budget (survival defense > labor warriors > expansion > HQ upgrade > attack training > repairs, upkeep)
+6. Assignment (low-HP warriors become labor)
+7. WA validation
+
+# 2. Division of Roles
+
+After forming the team, we first tried coding the practice problem, the mushroom game. During this, dltjwns119 suggested it would be good to
+build a tool that simulates our models against each other to compare performance; we thought it was a good idea and tested the system. It
+did give us plenty of log data, which helped with debugging and with judging which approach to a feature was better, so we used it the same
+way in the Qualification Round. 253 developed this simulation tool, and MinChoi took charge of analyzing the logs it produced plus the logs
+from the contest's Pretests, building a site that organized them. As for overall development and review of the code: as mentioned, each of us
+initially tried our own approach, and from the point where hazzzelnut's code was confirmed to perform well, the work shifted to fixing bugs and
+improving features on top of hazzzelnut's code.
+
+# 3. How the Code Was Written
+
+The LLMs used were Claude Opus 4.8, GPT 5.5, and Gemini Pro 3.1. Each member's way of developing code was as follows.
+
+1. hazzzelnut: used the Claude Code and Codex extensions inside the VS Code editor. Wrote a Markdown document in the workspace with the
+basic game rules and the project's direction, then developed the code. For each patch, used Gemini to generate a Replay tool that re-runs a
+pre-patch log against the current version, and applied the patch only after confirming the log diverged from the previous version at the
+intended point. The same approach was applied to log analysis after losses.
+2. MinChoi: built the Pretest dashboard with Claude Opus, and when building prototype bots, gave Codex the rules and context and had it
+write the code. Then handed the Pretest dashboard to Codex so it could read the logs directly. After that, read the logs personally, spotted
+where the bot moved strangely, asked Codex about it, found which part to fix, and used Codex as an implementation assistant.
+3. 253: did basic work in VS Code and mainly used Claude Code / Copilot for overall changes to the game plan. When parts of the code needed
+editing, also worked with Gemini Pro. After writing code, ran internal matches against earlier models to compare win rates, and generated log
+files to confirm the modified code was actually taking effect.
+4. dltjwns119: wrote a Manager interface for each strategy on top of the initial class structure, designed the strategies and the formulas
+needed for the design by hand, refined the prompts with an LLM (GPT 5.5), and updated the code with Codex.
+
+# 4. Problems Found and How We Solved Them
+
+Before the initial strategy was reasonably implemented, we went through the following trial and error.
+
+1. Slow stronghold expansion — we had enough gold but weren't accounting for travel time. Fixed the gold modeling (reservation) issue.
+2. Attacking the opponent's HQ at a disadvantage — the timing and exchange ratio in the gate for attacking the enemy HQ were inaccurate;
+fixed.
+3. Setting the rally point — we couldn't find an answer to "what is the optimal rally point for responding to the opponent's attacks as fast
+as possible?" Initially we set the rally point at the midpoint reachable fastest from all our bases, but that was very poor at responding to
+fast attacks, so we added the condition that it must be a forward base.
+4. Always abandoning the base and retreating whenever an opponent attack was predicted — there was a bug where our reinforcements weren't
+counted in the defense condition; fixed.
+
+We wrote version 7.9, which we believed implemented the strategy completely, took a Pretest with it, and were delighted with $11$th place — but
+log analysis revealed fatal flaws that had to be fixed. The problems of the previous version fixed in each version were as follows.
+
+1. 8.0 — Splitting Move commands worked, but we observed inconsistent behavior: the base should be built at the final destination, yet if
+there was enough money midway, a base got built along the intermediate path first. To prevent this we separated movement with intent to
+settle from intermediate movement, and changed it to build a base only with intent to settle.
+2. 8.1 — In the early contest over expansion, we always judged whether we could win a stronghold by the distance from each HQ. But we realized
+that when building a base, sending our labor warrior and then sending newly produced HQ warriors to the existing base expands faster, and
+applied that.
+3. ~8.3 — After hitting one base, when immediately re-attacking, there was a bug where it re-attacked (especially against the enemy HQ)
+without judging whether the battle was a sure win for us. We confirmed the HQ chained-retarget gate was the problem and removed it. The
+resulting lack of aggression was delegated to the attack/defense decision function `simulation_siege()`.
+4. 8.4 — When defending our bases, we found that other bases were sending excessive support — excessive meaning, say, $10$ reinforcing a base
+attacked by $5$. So we applied sending the minimum number able to hold the defense. The intent is that the longer a defense lasts, the more
+profit we get from our turret damage.
+5. 8.5 — A large allied force lacked the gold to move, so warriors moved in dribs and drabs and got picked off one by one. We eased the
+sequential departure by accounting for the budget the movement path requires.
+6. 8.6 — The value of the enemy and allied HQ was set to near-infinite (`e18`), but using this in an `int` in the attack/defense simulation
+caused an integer overflow. Fixed by clamping to `train_cap` before casting.
+7. 8.7 — Confirmed the rally point's defensive position was still in the rear; changed it so the rally point always responds to the opponent
+(moves forward on its own), taking into account the day the opponent's threat arrives.
+8. 8.8 — Observed too many warriors piling up at our HQ and not moving to the rally point. Realized the algorithms committing warriors to the
+HQ and to bases differed, and redesigned them as a single unified algorithm.
+9. 8.10–13 — Previously, opponent attack-threat detection only worked for moving enemy forces; it could not detect a threat that was
+stationary but massing warriors. We added a gate that detects such latent threats, and also added logic that, when such a force moves
+straight for our HQ, rallies and defends at an allied base if one lies on the route — so that rush attacks are countered effectively. We also
+found that when attacking, we over-invested in the attack without keeping a minimum defense, so we changed it to dispatch only the number left
+over after those needed to defend the base. (The criterion for "able to defend the base" is whether, if the opponent right now sent all their
+available warriors except labor at that base, we could hold it from that point on.)
+10. 8.14 — The attack-force limit in 8.13 was overly conservative. The opponent's warrior production is constrained by HQ level and gold on
+hand, but we always assumed maximum production, causing a slight mismatch; we relaxed it to reflect this. Also, once we judge ourselves safe
+and issue an attack order, those warriors can't receive any Move command while attacking. We included this window of defensive vulnerability
+in the simulation and adjusted how many to commit to defense and attack.
+11. 8.15 — When attacking, instead of chaining attacks, our forces moved back to the rally point and re-attacked. We added a chained-attack
+algorithm: if a destroyed enemy base is strategically important and economical enough to build on, build immediately, redistribute defenders,
+then attack. We also found that when the opponent attacked somewhere other than our HQ, the warriors guarding the route between the two HQs
+were over-invested in defensive support, leaving the route vulnerable; we changed that position to stay garrisoned until the threat to our HQ
+is cleared.
+12. 8.16 — After destroying an enemy base at a dangerous spot very close to the enemy HQ, we built a base there purely because it was
+economical, and it was quickly destroyed. We added a gate that evaluates safety before building.
+13. 8.17 (final submission) — As a last improvement, we found that defending every base as heavily as the HQ prevented attacks from proceeding
+properly, so ordinary bases now respond only when the opponent is definitely heading there. This distributed resources more efficiently and
+improved overall stability. There were also cases where a warrior on an expansion mission reached the target stronghold but couldn't build
+because $300$ gold hadn't accumulated. So we introduced an escrow system that sets aside a reservation for each builder that has reached its
+target, at top priority.
+
+There were further changes after 8.17, but no clear performance gain, and we often observed the models not behaving as intended. In the end
+we judged this to be a structural limit of the initial strategy, and since no further improvement was possible in the remaining time, we
+submitted version 8.17.
+
+# Afterword
+
+Because NYPC's main theme is a game, it didn't feel like dry studying — it felt like the whole team was tackling one game together and hunting
+for the way to beat it. It feels like only yesterday that we met, said hello, and started by solving last year's problem together for
+practice; then the round began, we held strategy meetings, and pulled all-nighters running the log analyzer — it was a frantic sprint. So while
+it was a joy to watch code we wrote play the game itself, the process was by no means easy.
+
+The greatest pressure was the Pretest that came around three times a day. It was good that the Pretests let us see our code's weaknesses and
+the opponents' tactics, but precisely because each one was such a valuable chance, we didn't want to let a single one go to waste. Watching
+other teams' code visibly improve and the rankings change in real time at every evaluation, everyone was too anxious to rest and stayed up
+almost every night.
+
+Hardest of all was the endless debugging. After staring at logs for ages and finally catching one error, another bug would blow up somewhere
+completely unexpected. Especially in the decision logic, where many conditions are entangled as gates, it was truly frustrating to watch units
+wander aimlessly around our own bases or commit reckless attacks on bases they couldn't beat, even though we'd clearly written it as intended.
+Most frustrating of all was repeatedly running into games where we'd fought to take the central base, then expanded without preparing for the
+opponent's attack, and lost before recouping the money.
+
+Below are our individual retrospectives.
+
+## 253
+
+This team was made up of people I know, so it must have been awkward for the others, but watching everyone pull together to solve problems
+made me genuinely grateful. So in this contest I put the most effort into making it even a little easier for my teammates to develop.
+
+I set up a small test website where our bots could fight each other and the results could be seen at a glance. Early on I thought it was a
+good system because of how easy it made sharing files, but as versions and test counts grew, I found that running simulations through the web
+wasn't really a suitable system. So later on we made better use of the local test tool hazzzelnut built.
+
+While playing practice games before the round, I figured you could just use whatever language was comfortable, so I wrote my code in Python —
+but seeing code written in C++ run vastly faster with the same strategy and logic, I felt first-hand how much search speed affects wins and
+losses. I met teammates far beyond my ability, and it was a chance to enjoy coding throughout the contest and to think about things I'd
+never noticed before.
+
+## hazzzelnut
+
+When I first learned of the contest, I'm not good at coding, but I was strongly drawn to the idea of competing by comparing your own creation
+against others'. For practice I first played the mushroom game, and gained experience — along with some disappointment at a lower rank than I'd
+expected.
+
+After the Qualification Round began, up to July 3 I developed by roughly understanding the game and blindly throwing ideas at it. Obsessed with
+somehow producing an 8-win model first, I wasted time without properly understanding the game. I felt the limits of that process and realized
+I needed to properly establish a strategy for the game before developing.
+
+On July 4, after laying out the basic strategy for the game, I considered various cases and rewrote the code from scratch using Claude. The
+resulting version 7.7 showed considerable performance. Then version 7.9, with a small improvement from teammate MinChoi because it wasn't
+striking in the endgame, reached our best rank of $10$th — a big mid-contest sense of achievement. That feeling kept me developing for two days
+on three hours of sleep without noticing the fatigue.
+
+Sharing ideas with teammates while improving the code, running internal matches between our codes, and watching the code steadily improve was
+genuinely fun. Building a replay-based debugging file, sharing it with the team, and watching bugs get fixed one by one through log analysis was
+fascinating too. But in the end there was no major improvement in the code through to the final Pretest, and we finished the last Pretest at
+$53$rd; judging things unstable, we decided to submit the code used in the Pretest by 10 AM[^kst] on the last day.
+
+There were roughly $3$ regrets. First, at the start of the contest we implemented features one by one without sufficient strategy design, and
+produced nothing but garbage code that went nowhere. Judging that patching like a patchwork quilt wasn't the right direction, we established a
+proper strategy and redesigned the code — which led directly to $11$th/$10$th in the July 4 3 PM / 9 PM Pretests. It was a real shame that it
+took so much time to realize that getting a project's direction right at the start matters more than anything.
+The second regret was that after the July 4 code, there was no major progress until the contest ended. Reconsidering why, the problems were
+as follows.
+
+- 1. The July 4 code had many bugs and many parts that didn't behave as intended. The intended Move-command splitting was confirmed not to
+cause logical conflicts with base construction, defense, and attack. Beyond that, many parts of the initial strategy — early concentration on
+securing the center, detecting and countering enemy rushes, and so on — were designed but never implemented.
+- 2. We realized this around the afternoon of July 5, and communication among teammates was lacking while fixing it. Everyone assumed the
+bug-ridden code was perfect code, and as we each added our own features on top of "perfect" code, it became spaghetti — full of bugs with no
+idea where to start fixing. Resolving that ultimately went nowhere, and we ended up submitting a version with only some bugs improved. In the
+process, the parts that diverged from the original strategic intent never got improved.
+
+The third regret was that all this wasted time consumed a lot of tokens, and in the end we couldn't finish improving the code before the AI
+tokens ran out. On the last day, therefore, we proceeded with minor changes centered on the existing code, and the contest ended.
+
+For the reasons above, it's a real pity that we couldn't hold on to the good result of $10$th in the Pretest through to the end.
+
+Finishing the contest, I felt a lot about the pros and cons of coding with AI. I worked in C++, and in practice I vibe-coded knowing only the
+basic syntax. When a problem arose in the code, I'd demand an explanation of where it came from, and I built my own debugging tool to check
+whether it was logically sound alongside log analysis, coding in a way that gradually reduced the mistakes an LLM can make. This approach saved
+me — someone who isn't good at coding — an enormous amount of time, but lacking basic coding skill made second-order structural improvement of
+the code impossible when it came to detailed optimization and precise problem-hunting. Through the contest I learned a lot about "what is the
+way to write good code?" and "what way of collaborating raises a team's productivity?", and though there were hard moments, it was a good
+contest for the valuable experience it gave me before graduation.
+
+## dltjwns119
+
+Early on I got $7$ wins with a strategy of building bases in a block-shell pattern, and stayed up until 5 AM charging ahead to "get that $8$th
+win." But with each successive patch, the decision logic for economic investment, base construction, attack, and defense kept updating and
+started to conflict, and every time I saw a log of our troops going on bizarre suicide-squad escapades my heart sank. The AI couldn't fix the
+truly critical parts and only touched some dependent functions, so I tried splitting the decide structure itself into functions to re-establish
+the context. There were details I missed while tearing it apart, but I think re-reading and organizing the entire codebase is where I learned
+the most.
+
+## MinChoi
+
+I'm actually a CS major, but I never really enjoyed PS[^1]. Even so — having only ever taken the algorithms course — I entered this contest
+because I wanted to test how well I could perform in an unfamiliar domain with Codex/LLMs at my side.
+
+Honestly, early in the contest I thought I could produce a good bot by relying entirely on the LLM. So I didn't try to understand the problem's
+rules myself, and built the bot by only giving the LLM context. But as the contest went on, I felt the limits of this approach. No matter how
+many logs I gave it, the LLM's analysis had limits, and no strong bot emerged.
+
+Meanwhile, my teammates read the logs themselves, observed how the bot moved, detected strange behavior, and raised various problems and
+improvement ideas — the limits of constant thresholds and so on — and when I applied that feedback, the bot's performance really did go up.
+That was a result I couldn't get by having the LLM analyze the logs. So thanks to my teammates I learned how important understanding the game
+domain and relentless log analysis are. I certainly wouldn't have felt this had I entered alone, which makes me all the more grateful to them.
+
+What I'm personally proud of is using the LLM to quickly produce many candidates and rapidly test teammates' ideas. Of course, early on I
+wasn't doing the log analysis myself, so there was a lot lacking in practice, but I still think there was value in rapidly experimenting with
+a variety of bots.
+I also built a dashboard that collected and analyzed the Pretest logs and shared it with the team, and a teammate wrote a program to run
+benchmarks — I'm very proud that we built tools like these within our team to support our own judgment and strategy.
+
+What I regret is starting too late on understanding the problem's rules and the domain. It would have been better to develop the bot from the
+start by reading logs and examining the code.
+I also think it would have been better to build bots with a wider variety of strategies and run a matchup tournament. When running the
+benchmark program a teammate built, using only our existing bots differed from the real Pretest environment, so we couldn't objectively tell
+whether a bot had improved — in hindsight, a pity.
+And since time and opportunities run short at the end, we should have experimented more early and focused on validation and risk management
+late, which I don't think we fully managed.
+
+Still, I feel rewarded, because entering this contest helped me grow a great deal personally.
+The biggest lesson from this contest is that, in the end, you have to understand a domain to solve its problems. Simply handing everything to
+an LLM has limits; only by looping with the LLM really persistently, grounded in domain understanding, can you produce a strong bot — I think
+I learned one real direction for how to use AI.
+
+[^1]: Editor's note: PS (Problem Solving) — the abbreviation commonly used in the Korean algorithmic problem-solving community.
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

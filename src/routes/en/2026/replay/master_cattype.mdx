@@ -1,0 +1,530 @@
+---
+title: NEXT NATION – Replay
+stage: Master Track Qualification Round
+teamName: cat type
+llmProvider: Claude Pro
+llmModel: Claude Opus 4.8, Fable 5.0
+---
+
+Members: 11one, Aster, catlong
+
+# Solution
+
+## June 29
+
+The contest began. We each read the problem, and none of the three of us had the faintest idea of a strategy.
+
+> catlong: The problem is so hard to grasp.<br />
+> Aster: Let me start with something simple for now.<br />
+> 11one: Hearing other people's strategies might make it harder to come up with ideas, so how about each of us thinks up an idea, implements it, and then we fill in each other's gaps?
+
+Following 11one's suggestion, we decided that each of us would design a strategy and then implement it.
+
+# Individual Strategies
+
+## Submission #46243
+
+Submitted July 1, 23:58:09[^kst]
+
+### Description
+
+Aster's strategy prototype.
+Code that scores $7.5$ wins against the sample AIs.
+Uses a growth-oriented defensive strategy.
+
+### Core Idea
+
+Reach HQ level $5$, then gather warriors and attack the enemy HQ.
+
+### Idea
+
+Let's apply greedy to every strategy.
+Start simple, then flesh it out.
+
+### Design and Strategy
+
+At first the strategy was designed simply.
+
+1. Build bases starting from the strongholds nearest the HQ.
+2. Upgrade the HQ as far as possible.
+3. Once the HQ reaches level $5$, train warriors indefinitely.
+4. When enough warriors have gathered, or turn $200$ approaches, attack the enemy HQ.
+5. Always keep at least as many laborers as there are labor slots.
+
+Watching the sample AIs' various strategies then broadened our view, and the strategies below were designed.
+All of the strategy implementation was done with Claude Opus 4.8.
+
+#### Allied HQ and Base Levels
+
+To win the tiebreak, our HQ level must be raised as high as possible. That requires maximizing gold income.
+
+1. Reach HQ level $3$ first, to raise the number of warriors trainable per turn.
+2. Train only as many warriors as needed, to cut upkeep.
+3. Upgrade in the order HQ level $3$ &rarr; all bases level $2$ &rarr; HQ level $5$.
+
+#### Attacking Enemy Bases
+
+At first we judged that attacking enemy bases was a losing proposition.
+
+1. Our warriors pay movement cost, while enemy warriors defend without paying any.
+2. Enemy bases have turrets, so a few warriors can hold off many.
+
+But a question came up.
+> What if the enemy has built more bases than we have? Then they earn more gold.
+
+So the enemy-base attack mechanism was designed as follows.
+
+1. If we have fewer bases than the enemy, destroy an enemy base and build our own.
+2. If we have more bases, the enemy is relatively worse off, so don't attack.
+
+#### All-Out Attack
+
+Battles against the sample AIs showed cases where HQ level $5$ was unreachable. So an all-out attack mechanism was designed.
+
+1. From turn $150$ at the latest, train warriors for attack.
+2. Launch the all-out attack at turn $180$.
+
+#### Defense Logic
+
+Playing the sample AIs raised the following question.
+> Always keeping exactly as many warriors as labor slots is optimal for reaching HQ level $5$. But is it still optimal when the enemy is massing warriors to attack?
+
+The answer is "no." Since warrior training per turn is limited, if the enemy is massing warriors we have to respond pre-emptively.
+
+≫ Always keep at least half the enemy's warrior count at the HQ.
+
+## Submission #69027
+
+Submitted July 4, 15:51:23
+
+### Description
+
+Aster's final strategy.
+
+### Changes / Strategies Tried
+
+#### Changed the HQ and base upgrade order
+
+- Before: HQ level $3$ &rarr; all bases level $2$ &rarr; HQ level $5$
+- After: HQ level $3$ &rarr; all bases level $2$ &rarr; HQ level $4$ &rarr; all bases level $3$ &rarr; HQ level $5$
+
+It bothered us that the HQ level $5$ upgrade meant nearly $20$ turns of doing nothing but saving gold. To raise gold production we tried reaching base level $3$ first and then upgrading the HQ to level $5$, but it made no real difference.
+
+1. Because of the rule that always keeps half the enemy's warrior count at the HQ, bases almost never get raised to level $3$.
+2. The gold to raise every base to level $3$ never accumulates by turn $200$. So we lose on the turn limit and the HQ level gap.
+
+So this strategy was withdrawn and we went back to the previous one.
+
+#### Enemy base attack condition
+
+- Before: attack regardless of how many warriors are at the enemy base.
+- After: give up if the enemy base holds $3$ or more.
+
+Previously, when an enemy base held many warriors, ours were often wiped out. After the change we check the count before attacking, and no longer take losses.
+
+#### Defense logic change
+
+- Before: keep half of the enemy's total warriors at our HQ.
+- After: keep as many as the largest enemy group in any one place.
+
+Previously, a large enemy cluster in one place was taken as attack intent, and that many warriors were trained as defenders. As a result we kept more warriors than half the enemy's total, which made HQ level $5$ hard to reach.
+
+#### All-out attack timing change
+
+- Before: depart at turn $180$.
+- After: depart at $\text{total turns}(200) - \text{distance between the two HQs} - \text{margin}(11)$.
+
+Departing at turn $180$ meant we couldn't produce the maximum number of warriors. We designed a change of timing so we could produce as many warriors as possible before attacking. Not a big change, but the win rate went up a little.
+
+### Strategy Notes
+
+With $7.5$ wins against the sample AIs and a Pretest rank as high as $45$th, we confirmed that the greedy approach works, and that drove the strategy design from then on. Until catlong brought in the offensive strategy, I made $88$ submissions in total, and thanks to that every submission was exciting and fun.
+
+<FigureRow caption="Start simple, then flesh it out.">
+  <Figure src="/2026/replay/master_cattype/images/p05_Im2.jpg" alt="Aster's strategy notes (strategies #1–#4)" width="240px" />
+  <Figure src="/2026/replay/master_cattype/images/p05_Im3.jpg" alt="Aster's strategy notes (strategies #5–#7)" width="480px" />
+</FigureRow>
+
+## Submission #74421
+
+Submitted July 5, 04:21:18
+
+### Description
+
+catlong's strategy prototype.
+The team's first $8$-win code.
+Uses an offensive strategy, the exact opposite of Aster's.
+All later submissions are based on this one.
+
+### Core Idea
+
+Reach HQ level $3$, then gather $10$ warriors and attack enemy bases.
+
+### Idea
+
+Design as greedily as possible, then refine.
+This is a perfect-information game. Everything possible should be designed dynamically and interactively.
+
+### Design and Strategy
+
+Early in the contest I implemented the code foundation myself. But as the strategy grew, implementing it got unwieldy, and everything below was implemented with Claude Fable 5.0.
+
+The first thing in the game I approached greedily was gold.
+To earn as much gold as possible, no turns must be lost.
+So the approach was to minimize lost turns.
+
+#### Early Base Construction
+
+We confirmed that the greedy approach of building the base nearest our HQ first is not optimal.
+
+1. If the enemy builds from the half-line (bases whose estimated travel time from the enemy HQ equals that from our HQ), we lose out in base construction.
+2. If you have the construction cost on hand, building immediately is optimal. But if you build the nearest bases first, by the time you build the far ones, gold income per turn exceeds $100$. A builder must arrive within three turns for no gold income to be lost.
+
+So the following strategy was designed.
+
+1. Send every non-laboring warrior to an empty stronghold, one each.
+2. If gold is sufficient, send a warrior to the nearest empty stronghold to build a base.
+3. If gold is not sufficient, compute when it will be, and send the warrior timed to arrive then.
+
+#### Allied HQ Level
+
+While checking the HQ upgrade table, it occurred to me that HQ upgrades stop being efficient beyond a certain level. Since the HQ level has to be raised early for higher-HP warriors to be trained, I thought about where to stop.
+
+1. HQ level $2$ can train only $1$ warrior per turn, which may slow the attack tempo.
+2. HQ level $4$ trains the same number of warriors as level $3$ and only adds $1$ warrior HP.
+3. The HQ level $5$ upgrade costs $3{,}600$ gold — enough to train $30$ warriors.
+
+I judged level $1$ or level $3$ to be optimal, and since level $1$ risks losing the tiebreak, settled on level $3$.
+
+Also, with the tiebreak in mind, every turn the HQ was upgraded whenever the remaining gold allowed.
+
+#### The Army
+
+If we only grow without attacking, a tiebreak draw is likely. So I judged that only an attacking strategy leads to victory. The "army" is the set of warriors for attacking enemy bases. Once our HQ reaches level $3$, the army rallies. The rally size was set at $10$ based on the following.
+
+1. It pays to minimize the number of times the army gets hit by turrets.
+2. With $10$ warriors departing, a level-$1$ enemy base and its level-$1$ warrior can be eliminated in a single turn.
+
+Also, without a minimum army size, attacks on enemy bases were more likely to fail, so the attack stops once the army drops below $7$.
+
+Attacking with $7$, a level-$1$ enemy base and a level-$3$ warrior can usually be eliminated in two turns.
+
+After destroying an enemy base, we build our own for gold production. Judging that a threat remains right after a base is destroyed, $2$ warriors were left there.
+
+#### Latecomers
+
+There are situations — construction, a gold shortage — where the HQ cannot send warriors to the army. So that the army doesn't burn turns in those situations, it departs as soon as the minimum size is met.
+
+#### The Wounded
+
+As the army attacks, low-HP wounded warriors appear. Swapping them with laborers at rear bases or the HQ minimized warrior deaths.
+
+#### Assault
+
+There is a point in time where attacking the enemy HQ wins, but not attacking creates the possibility of losing. To compute that point I implemented a `canWin` function with Claude Fable 5.0. When `canWin` is satisfied, the warriors gather in one place and attack the enemy HQ. I named this the "assault."
+
+- Limitation: since it must only fire in guaranteed wins, `canWin`'s conditions are strict.
+- Improvement: tracking the enemy's gold and gold income in real time relaxed the `canWin` conditions.
+
+#### Stockpile Response
+
+When the enemy did nothing but train warriors and then attacked our HQ, we lost most of the time. To prevent this, if $5$ or more enemy warriors are clustered together, we too train warriors above everything else.
+
+#### Defense Logic
+
+> This is a perfect-information game. Everything possible should be designed dynamically and interactively.
+
+I wanted to estimate the enemy's destination and have the defense in place ahead of time. But no suitable implementation came to mind. So I asked Claude Fable 5.0 for destination-estimation-based defense logic, but it wasn't satisfactory.
+
+<Figure src="/2026/replay/master_cattype/images/p08_Im4.jpg" alt="Destination-estimation-based defense logic requested from Claude Fable 5.0" />
+
+### Strategy Notes
+
+The offensive strategy was high-risk, and the thought "will this really work?" kept nagging. Fortunately, after a few revisions it took $8$ wins in the sample AI battles and recorded a performance of $2200$ at $109$th place, which was a relief. At the same time I thought, "$109$th, with this much still left to fix?" — and started to hope.
+
+# Team Strategy
+
+## July 5
+
+With nearly $78$ hours left in the contest, we felt the limits of thinking about strategy separately, and Aster and catlong shared their strategies. Taking catlong's strategy as the base and folding in only the strengths of the strategy Aster had built, the prototype of the final strategy was completed.
+
+All three of us were on Claude Pro, so plan limits were tight. So the three of us took turns handling strategy design, log analysis, and prompt entry.
+
+All of the strategies below were implemented with Claude Fable 5.0.
+
+## Submission #82964
+
+Submitted July 6, 05:18:47
+
+### Description
+
+The first strategy devised jointly by 11one, Aster and catlong and put through a Pretest.
+The countless bugs catlong had left behind were fixed overnight with local battles using the CLI tool.
+Only the strategic changes are listed below.
+
+### Revised Strategy
+
+#### Removed the stockpile response
+
+The stockpile response is the counter for when the enemy does nothing but train warriors and then attacks our HQ. It was removed for the following reasons.
+
+1. The right answer is to pressure the enemy so they can't stockpile.
+2. It throws away the advantage of an offensive strategy.
+
+#### Raised the warrior cap
+
+Once the stockpile response was removed, we lacked defenders and couldn't stop enemy invasions. To fix this, our warrior cap was raised by $3$. The cap is removed entirely in a later submission.
+
+## Submission #86839
+
+Submitted July 6, 18:11:04
+
+### Revised Strategy
+
+#### Gave up the half-line
+
+The current strategy is offensive, and has to attack the enemy at the fastest possible tempo. Judging that building too many bases cost us the early gold lead, we gave up building on the half-line.
+
+1. Building a base requires $\text{warrior }120\text{ gold} + \text{movement }10\text{ gold} + \text{construction }300\text{ gold}$. A base produces $15$ gold per turn while its laborer eats $2$ gold of upkeep per turn, so a base only turns a profit after roughly $34$ turns.
+2. The half-line is the most exposed position. If a base is destroyed before turn $34$ it is an outright loss, and half-line bases are likely to be one.
+
+#### Chain strikes
+
+The army's movement mechanism was changed. Previously it destroyed one enemy base, rallied at an allied base, and then attacked the next enemy base. The changed logic is as follows.
+
+1. After capturing an enemy base, if the army is still above the minimum size, move straight on to the next enemy base.
+2. So that reinforcements don't join late, the rally point for new warriors is changed to the base just destroyed.
+3. To raise both attack power and tempo, the warrior cap was removed.
+
+## Submission #88056
+
+Submitted July 6, 20:32:00
+
+### Description
+
+Completed the enemy destination estimation that had been needed since the very start of the strategy design.
+Barring special cases, pre-emptive response became possible.
+
+### Revised Strategy
+
+#### Changed the enemy destination estimation logic
+
+Previously we used the flimsy defense logic Claude had designed. As its limits showed more and more, we spent a long time thinking through the destination-estimation logic that had looked impossible, and completed it.
+
+Implementation
+
+1. Precompute the shortest path from every stronghold to every other stronghold.
+2. Store each enemy warrior's movement start position and every possible path in `candDest`.
+3. Once the possible destinations narrow to one, store it in `inferDest`.
+4. Our warriors count the enemies heading for `inferDest` and respond pre-emptively.
+
+Problems
+
+1. On certain seeds, the possible destinations don't narrow to one even right before the enemy arrives.
+2. The enemy could set an empty area, rather than a stronghold, as its destination.
+
+Problem $1$ is partly solved in a later submission. Problem $2$ was judged to be a situation that would almost never occur. It never actually happened in a Pretest, so it was left unsolved through the final submission.
+
+<Figure src="/2026/replay/master_cattype/images/p11_Im5.jpg" alt="The prompt written to implement the enemy destination estimation logic" caption="The prompt we wrote" />
+
+### Strategy Notes
+
+Completing the logic we had considered necessary since the beginning of the design felt like the strategy leaping several stages at once. Watching it actually run was genuinely beautiful, and it was strikingly obvious that defense, our weak spot until then, had been filled in.
+
+## Submission #92244
+
+Submitted July 7, 06:48:18
+
+### Description
+
+Found a flaw in the wounded rotation and removed the logic.
+
+### Revised Strategy
+
+#### Removed the wounded rotation
+
+The logic that swaps low-HP warriors with warriors at our bases so they don't die showed several downsides.
+
+1. Slower army attack tempo<br />
+   As the wounded pull out, the army temporarily shrinks, which means less attack power. The army that should be smashing enemy bases at a fast tempo is weakened, if only briefly.
+2. Wounded swapped for wounded<br />
+   As the army keeps fighting, both our HQ and bases fill up with wounded. Eventually a wounded warrior gets swapped for another wounded warrior with slightly more HP.
+
+So the wounded rotation was removed, and the wounded are now placed first only when army warriors are converted into base laborers.
+
+## Submission #92477
+
+Submitted July 7, 08:15:10
+
+### Core Idea
+
+Raise the HQ only to level $2$.
+
+### Revised Strategy
+
+#### HQ level cap $\bm{3}$ &rarr; $\bm{2}$
+
+In catlong's initial strategy design the HQ level was set as follows.
+
+> HQ level $2$ can train only $1$ warrior per turn, which may slow the attack tempo.
+
+But with the warrior cap removed, we train a warrior every turn. As a result, at no point after the army rallies do we ever have $240$ gold or more, so the maximum trainable per turn is $1$ anyway. That means the advantage of HQ level $3$ is gone.
+
+Right after reaching this conclusion, the HQ level cap was lowered to $2$. The army's attack tempo became dramatically faster, and a team stuck in the $200$s jumped to $108$th.
+
+## Submission #97569
+
+Submitted July 7, 20:48:43
+
+### Description
+
+The submission that set the team's best rank, $22$nd in the Pretest.
+The attack-focused strategy was complemented with a "defense base."
+
+### Core Idea
+
+Every warrior passes through the defense base.
+
+<FigureRow>
+  <Figure src="/2026/replay/master_cattype/images/p13_Im6.jpg" caption="Previous strategy" width="360px" />
+  <Figure src="/2026/replay/master_cattype/images/p13_Im7.jpg" caption="Defense base strategy" width="300px" />
+</FigureRow>
+
+### Revised Strategy
+
+#### Defense base
+
+Of all the strongholds buildable on our side, the one with the smallest total distance to every other such stronghold and the HQ is defined as the defense base.
+
+1. Every warrior moves to the defense base after training, without exception.
+2. The early base construction order was changed.
+   - Before: if gold is sufficient, send a warrior to the nearest empty stronghold to build a base. If not, compute when it will be and send the warrior timed to arrive then.
+   - After: build the base nearest our HQ first, then the defense base. After that, build starting from the bases nearest the defense base.
+
+Previously, even when `inferDest` (enemy destination estimation) told us where the enemy was heading, our warriors were far away and struggled to come to the rescue. With the new defense base, `inferDest`'s strengths were maximized, and our bases almost never got destroyed in the early game.
+
+Problems
+
+1. The changed early construction order delayed the timing of HQ level $2$.
+2. Strongholds far from the defense base are hard to defend.
+
+Problem $1$ is solved later by making builders the one exception that doesn't pass through the defense base. Problem $2$ had the solution below, but we didn't consider it a big problem and left it unsolved through the final submission.
+
+Solution: drop the $1$ outlier farthest from the defense base, and build a half-line base instead.
+
+## Submission #107403
+
+Submitted July 8, 18:55:03
+
+### Revised Strategy
+
+#### Dynamic base construction
+
+Going through the logs we noticed more than $1{,}500$ gold piling up before HQ level $2$. That gave us a strategy for pulling the attack forward to a point the enemy can't respond to.
+
+1. Before training a builder, compute when it would finish construction and estimate the gold at that point.
+2. If, adding the builder's training cost, movement cost and construction cost, there would be enough gold for HQ level $2$, stop building bases and upgrade the HQ to level $2$ instead.
+
+This logic pulled the army's attack timing forward considerably.
+
+# Afterword
+
+## Individual Afterwords
+
+### 11one
+
+In this contest my teammates put in a tremendous amount of effort, repeatedly devising and analyzing new strategies, then implementing and debugging them. It felt like a very well-prepared contest, and I really enjoyed the qualification round. Great work, everyone.
+
+### Aster
+
+As someone who loves both coding and games, I had always wondered what the code that makes up a game looks like, and I got a thoroughly satisfying answer. Thinking through optimal strategies was also genuinely fun. Over the contest I happily built hundreds of strategies and made hundreds of submissions. Thank you for putting together such a good contest.
+
+### catlong
+
+When I first heard of NYPC, I assumed it was an algorithm contest. But the problem I saw when the qualification round began was a form I'd never seen before. It was hard to grasp and the amount of information was overwhelming, so until 7/1 I couldn't come up with any real strategy. Now that the contest is over, my one regret is not thinking the strategy through properly a little sooner. The contest was enormously fun, and my teammates and I spent $15$ hours a day thinking about strategy and writing code. Seeing the strategies each of us came up with, I got to experience what teamwork really is. To my cat type teammates who kept building strategies and fixing bugs until the very last moment — great work — and thank you for preparing a contest we could take part in together.
+
+## Team Afterword
+
+The Pretest system was a highlight of this contest. Watching the $3$ evaluations a day together, all of us on edge, was a joy. The result logs were also a huge help in finding unintended behavior and improving the strategy. Beyond the Pretests, the CLI tool for local battles and the simulator that shows a battle's result and progress in detail let us track down bugs smoothly.
+
+One regret is that we spent too long each working on ideas separately. As the final submission drew near, there weren't enough Pretests left to try every idea we'd come up with, which was a real shame.
+
+Taking part in the NYPC 2026 MASTER TRACK Qualification Round, which ran for $10$ days from June 29, each of us learned more about what we're good and bad at, and we all felt our teamwork grow. None of us had ever tackled a problem this large and complex with no single right answer, so we went through plenty of trial and error and enjoyed every bit of it.
+
+# Timeline
+
+## 6/29 – 6/30
+
+Everyone thinks about strategy separately
+
+## 7/1 – 7/4
+
+Aster's individual strategy submissions
+
+## 7/4 – 7/5
+
+catlong's individual strategy submissions
+
+## 7/5 – 7/8
+
+- Warriors that have arrived as reinforcements and are standing by after a base-threat judgment are not counted as surplus
+- Compute surplus warriors on assault
+- **Removed the stockpile response**
+- Draw warriors excluding those heading to the HQ
+- No wounded swaps during an assault
+- Found the warrior cap was far too low
+- Banned base level $2$
+- Added a margin of $3$ to the maximum warrior count
+- Pretest revealed we couldn't stop fast attacks while the HQ was at level $1$–$2$
+- **Banned half-line base construction**
+- Added logic preventing the force from being cut off
+- **Added chain-strike logic**
+- Found the army moving along paths that pass through the enemy HQ
+- Avoid paths through the enemy HQ
+- Newly trained warriors keep joining the army; if the army weakens, wait for reinforcements
+- **Added the `candDest`/`inferDest`-based enemy path prediction algorithm**
+- If the win condition isn't met, defend our HQ instead of assaulting
+- Once a rally point is chosen, don't change it before departure
+- If no path avoids the enemy HQ, detour (move via empty areas)
+- Found we weren't attacking strongholds with only enemy warriors and no base
+- Treat a stronghold holding only enemy warriors as an enemy base
+- When the expedition reinforces an allied base, reinforce all at once
+- Found the rally point kept being set wrongly
+- Changed how the rally point is chosen
+- With no army, set the rally point to the allied building nearest the enemy bases
+- When short of warriors and waiting after a seizure, set the rally point to the current position
+- If the expedition has $5$ or fewer, disband it and mark them surplus
+- Found the army running into an enemy base mid-move and getting wiped out
+- If the army's path passes an enemy HQ or base, detour when moving there is expected to lose
+- The detour's extra gold caused a bug in the gold prediction logic
+- When detouring, reduce predicted gold by $10$
+- Warriors starved during an assault
+- On assault, instead of a separate starvation check, leave a set number of warriors at the base
+- Found we were reinforcing from allies too far away
+- Reinforce only if the travel time from our base or the expedition is shorter than the enemy's average arrival time
+- `desperate` (individual movement when the win condition is unmet and an assault rally is impossible) wasn't working
+- When `deadline` (turn $185$) is true: if `canWin` is true, `mustGoNow` (start the assault); if `canWin` is false, run `desperate`
+- With insufficient movement cost, only part of the expedition departed and was wiped out
+- When the army lacks the movement cost to depart, first send the expedition back to the nearest base, then treat them as surplus and reassign to labor
+- Found wounded swaps took too many turns, the wounded piled up, and reinforcement headcounts weren't managed properly
+- **Removed the wounded rotation**
+- If the army lacks movement cost, disband it and send them to empty bases as laborers
+- The army kept rallying forever for lack of warriors
+- Laborer distribution wasn't sending anyone to the HQ
+- Distribute laborers to the HQ too
+- Start rallying the army from HQ level $2$
+- Pretest revealed we couldn't stop attacks arriving while the HQ was at level $1$
+- If the enemy trains warriors at level $1$, train extra warriors according to the enemy's total
+- Judged `desperate` to have no benefit
+- Deleted `desperate`
+- When the army lacks movement cost and every base already has a laborer, pause training until the movement cost accumulates and the army departs
+- Using `candDest`/`inferDest`, treat warriors heading for enemy bases as threats too
+- **Introduced the defense base**
+- Builders no longer pass through the defense base
+- **Dynamic base construction**
+- Fixed the assault rally point logic
+- Rally point changed to the allied base minimizing the path our HQ &rarr; defense base &rarr; allied base &rarr; enemy HQ
+- When our HQ is level $1$ and the defense base has surplus warriors, dispatch builders from the defense base rather than the HQ
+- Fixed a bug where, if any empty area existed, every surplus warrior at the defense base turned into a builder
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

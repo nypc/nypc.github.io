@@ -66,6 +66,19 @@ export const PostLayout: React.FC<Props> = (props) => {
       }`
     : "NYPC — NEXON Young Programmers Cup";
 
+  // Optional per-author fields a replay writeup can set in its frontmatter —
+  // rendered as a small key/value table under the title when present, in this
+  // fixed order, skipping whichever are absent. Labeled per-locale rather
+  // than by the (canonical, English) frontmatter field name.
+  const metaRows = (
+    [
+      [meta?.teamName, m.replay_meta_team_name],
+      [meta?.nickname, m.replay_meta_nickname],
+      [meta?.llmProvider, m.replay_meta_llm_provider],
+      [meta?.llmModel, m.replay_meta_llm_model],
+    ] as const
+  ).flatMap(([value, label]) => (value ? [[label({}, { locale }), value] as const] : []));
+
   return (
     <Box
       style={yearAccentVars(resolvedTheme)}
@@ -154,6 +167,46 @@ export const PostLayout: React.FC<Props> = (props) => {
 
       <Box as="main" flex="1" paddingTop="12">
         <PageContainer>
+          {metaRows.length > 0 && (
+            // Grouped with the content rather than the hero title above —
+            // left-aligned like the body, and snug against it below.
+            <Box
+              as="table"
+              marginBottom="8"
+              borderWidth="1px"
+              borderColor="border"
+              borderCollapse="collapse"
+              fontSize="sm"
+              textAlign="left"
+            >
+              <Box as="tbody">
+                {metaRows.map(([key, value]) => (
+                  <Box
+                    as="tr"
+                    key={key}
+                    borderBottomWidth="1px"
+                    borderColor="border"
+                    _last={{ borderBottomWidth: 0 }}
+                  >
+                    <Box
+                      as="th"
+                      paddingInline="4"
+                      paddingBlock="2"
+                      bg="bg.subtle"
+                      fontWeight="600"
+                      color="fg"
+                      whiteSpace="nowrap"
+                    >
+                      {key}
+                    </Box>
+                    <Box as="td" paddingInline="4" paddingBlock="2" color="fg">
+                      {value}
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          )}
           {children}
           <Box h="24" />
         </PageContainer>

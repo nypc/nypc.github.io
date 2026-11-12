@@ -1,8 +1,7 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { IconArrowRight } from "@tabler/icons-react";
+import { Box, Flex, Text, chakra } from "@chakra-ui/react";
+import { IconArrowRight, IconCornerDownRight } from "@tabler/icons-react";
 import { createLink } from "@tanstack/react-router";
-import { chakra } from "@chakra-ui/react";
-import { BASE_LOCALE, useLocale } from "@/i18n";
+import { useLocale } from "@/i18n";
 import * as m from "@/paraglide/messages";
 import { accentColor } from "@/theme";
 
@@ -17,84 +16,64 @@ const ReplayLink = createLink(ReplayLinkStyles);
 
 /**
  * One featured replay: the identifier of its MDX file under
- * `<year>/replay/`, the placement, and whose run it is.
+ * `<year>/replay/`, matching the id of the problem it belongs to; the
+ * placement; and whose run it is.
  */
 export type Replay = readonly [id: string, rank: number, nickname: string];
 
 interface Props {
   year: number | string;
-  replays: ReadonlyArray<Replay>;
+  replay: Replay;
+  to: "/$year/replay/$page" | "/en/$year/replay/$page";
 }
 
 /**
- * Featured replays for a round, listed under its problems. Label on the left,
- * entries on the right, matching the row rhythm of the heuristic problem list.
+ * A featured replay nested directly under its problem's row, rather than
+ * pooled into a separate list, so the relationship between a replay and the
+ * single problem it belongs to stays unambiguous. Rendered inside the same
+ * bordered container as the problem row above it, indented and set off by a
+ * top rule so it reads as that row's child, not a sibling.
  */
-export const ReplayList = ({ year, replays }: Props) => {
+export const ReplayRow = ({ year, replay, to }: Props) => {
   const locale = useLocale();
-  // Literal rather than concatenated, so the router still type-checks it.
-  const to = locale === BASE_LOCALE ? "/$year/replay/$page" : "/en/$year/replay/$page";
-
-  if (replays.length === 0) return null;
+  const [id, rank, nickname] = replay;
 
   return (
-    <Box borderBottomWidth="1px" borderColor="border">
+    <ReplayLink to={to} params={{ year, page: id }} style={{ display: "block" }}>
       <Flex
-        direction={{ base: "column", md: "row" }}
-        gap={{ base: "2", md: "6" }}
-        paddingBlock="6"
-        // Matches the problem rows: padding cancelled by the negative margin so
-        // the label stays flush while each entry's hover wash has room.
-        paddingInline="3"
+        align="center"
+        gap="2"
+        paddingBlock="2"
+        paddingInlineStart="9"
+        paddingInlineEnd="3"
         marginInline="-3"
+        borderTopWidth="1px"
+        borderColor="border"
+        transitionProperty="background-color"
+        transitionDuration="fast"
+        _hover={{ bg: "bg.subtle" }}
       >
-        <Text flexShrink={0} width={{ md: "280px" }} fontSize="lg" color="fg">
+        <Box aria-hidden flexShrink={0} color="fg.subtle" display="flex" alignItems="center">
+          <IconCornerDownRight size={14} />
+        </Box>
+        <Text flexShrink={0} fontSize="xs" color="fg.muted">
           {m.replay_featured({}, { locale })}
         </Text>
-
-        <Box flex="1" minWidth="0">
-          {replays.map(([id, rank, nickname]) => (
-            <Flex
-              key={id}
-              asChild
-              align="center"
-              gap="3"
-              paddingBlock="1"
-              paddingInline="2"
-              marginInline="-2"
-              borderRadius="md"
-              transitionProperty="background-color"
-              transitionDuration="fast"
-              _hover={{ bg: "bg.subtle" }}
-            >
-              <ReplayLink to={to} params={{ year, page: id }}>
-                <Text
-                  flexShrink={0}
-                  minWidth="3.5em"
-                  textAlign="end"
-                  color={accentColor}
-                  fontSize="sm"
-                  fontFeatureSettings="'tnum' 1"
-                >
-                  {m.replay_rank({ rank }, { locale })}
-                </Text>
-                <Text flex="1" minWidth="0" color="fg">
-                  {nickname}
-                </Text>
-                <Box
-                  aria-hidden
-                  flexShrink={0}
-                  color="fg.subtle"
-                  display="flex"
-                  alignItems="center"
-                >
-                  <IconArrowRight />
-                </Box>
-              </ReplayLink>
-            </Flex>
-          ))}
+        <Text
+          flexShrink={0}
+          color={accentColor}
+          fontSize="xs"
+          fontFeatureSettings="'tnum' 1"
+        >
+          {m.replay_rank({ rank }, { locale })}
+        </Text>
+        <Text flex="1" minWidth="0" fontSize="sm" color="fg">
+          {nickname}
+        </Text>
+        <Box aria-hidden flexShrink={0} color="fg.subtle" display="flex" alignItems="center">
+          <IconArrowRight size={14} />
         </Box>
       </Flex>
-    </Box>
+    </ReplayLink>
   );
 };

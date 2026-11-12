@@ -1,0 +1,266 @@
+---
+title: worKing
+stage: Master Track Qualification Round
+teamName: worKing
+llmProvider: Claude, ChatGPT, Codex
+llmModel: Claude Opus 4.8
+---
+
+Members: byeol, mjyuung, hyeon09
+
+# Problem-Solving Timeline and Problems Found
+
+We describe how the contest went, keyed to the submissions where big changes happened.
+
+## 1. #37141
+
+First, each of us decided to quickly build and submit code with whatever tactics we wanted.
+
+After submitting the sample code as-is, we watched the simulations of battles $1$~$8$ against the sample AIs and noted each one's tactics.
+
+Our first goal was $8$ wins.
+
+### ⭐byeol
+
+I thought simply: **build lots of bases**. Crossing the center line lets the opponent reach a base faster, so we too build starting from the strongholds closest to our HQ. Battles $7$ and $8$ use about half the strongholds, so for now the goal was to build up to half. Then, with enough gold, upgrade, produce warriors and strike the enemy HQ.
+
+Problem (battle $2$) – For this kind of growth strategy, an **HQ rush** like battle $2$ was the most lethal. I came up with the following solutions and asked Claude Opus 4.8 which was appropriate.
+
+- Defend at the base on the chokepoint
+- Set an approach criterion and, when the enemy approaches the HQ, return to defend it
+- Leave $2$ warriors at the HQ from the start
+
+&rarr; <strong>On approach to the HQ, "produce extra warriors at the HQ to block."</strong>
+
+If within $8$ hops of the HQ, pin the HQ's existing warriors in defense so they do not leave. In an emergency, produce warriors and recall those that went out. Added HQ level-up logic and more.
+
+Problem (battle $3$) – Judged the threat too early, so too many forces stayed at the HQ and the HQ was destroyed.
+
+&rarr; Realized hop distance does not fit, since map size varies. Narrowed the condition: the criterion became **the number of enemies that crossed the center line onto our side**.
+
+Problem – Now we build more bases than the sample AIs and gold income is fine. But the opponent sends $10$+ at once to wipe out bases, while my code sends too few.
+
+&rarr; Raise the attack headcount, and gather at a rally point near the enemy HQ before sending. Built a condition that accounts for the enemy HQ's defense and HQ level.
+
+Problem – With no upgrade logic, the existing attack condition was never met in battle $5$.
+
+&rarr; Wrote upgrade logic. Keep a set amount for producing warriors. With few bases, upgrade bases; with many, prioritize HQ level-ups.
+
+Many attempts followed at $7$ wins.
+
+Problem (battles $7$, $8$) – We only keep losing strongholds.
+
+&rarr; Attack bases weakest-first, considering enemy base level and warrior count. We also have to defend when our base is attacked.
+
+&rarr; Added base-defense logic, which mistook an HQ rush for a base attack and the HQ was destroyed. Removed the base-defense logic in the end.
+
+For the tiebreak, when the game reaches the very late stage and our level is below the enemy HQ's, prioritize the HQ upgrade.
+
+If the enemy masses $6$+ warriors and outnumbers us, produce warriors too.
+
+When our HQ is safe and the enemy sends forces our way, leaving their HQ weakly defended, attack their HQ through the gap.
+
+### 👾mjyuung
+
+| Attempt | Strategy | Limit |
+| :-: | --- | --- |
+| $1$ | Take $3$ bases early and earn money. Then HQ upgrades and warrior training | Earns money fine but neither attacks nor defends. Just earns money until the end. |
+| $2$ | Secure over half the strongholds early, then train warriors. HQ upgrades and training. Send the HQ's spare warriors to the enemy HQ. | While I was taking strongholds the opponent attacked our HQ first and we lost. HQ warriors were sent $1$ per turn, so every warrior took the full turret fire. |
+| $3$ | Gather warriors at the HQ and move once they outnumber the enemy HQ's warriors. | On the way to the enemy HQ the warriors walked straight past enemy bases instead of detouring, arriving with HP already worn down. While the lead warriors attacked the HQ, ours was still training and gathering more. Meanwhile the enemy HQ surged out in huge numbers and we lost. |
+| $4$ | Sort strongholds by priority not only on distance from the HQ but on whether they lie on the path from our HQ to the enemy HQ. | Definitely good for taking more bases faster than the opponent. But the opponent does not always come by the shortest path. And there are always enemy bases on our warriors' path to their HQ too. Realized that capturing the shortest path is favorable for neither attack nor defense. |
+| $5$ | Instead of launching attackers from the HQ, rally them at the frontmost of our bases and move on the enemy HQ once a set number has gathered. | Rallying at the front base meant warriors moved more often than when launching from the HQ, which helped base defense a tiny bit. But the bigger problem was having no one to defend the HQ. We moved the HQ's warriors to the front base leaving only the minimum, and when the HQ was attacked the front base's warriors could not be used. |
+| $6$ | Tie the defenders to the HQ. | Adjusted the HQ defender count by the current enemy positions, but it could not respond to fluid situations. |
+| $7$ | Put the same number of warriors on every stronghold. | A few warriors on every stronghold. When another stronghold is attacked they just watch. |
+| $8$ | Not only move the HQ's warriors but start moving the non-labor warriors from every stronghold to other strongholds that need reinforcement. | A few warriors on every stronghold, going to help whichever is attacked. But by the time they move to help, it has already been attacked and is gone. |
+| $9$ | Remember the enemy warriors' positions from the previous turn to predict their destination. Sort our bases by highest predicted likelihood and defend. | Keeping the state of the last $3$ turns helps predict where the enemy is heading. But it never actually attacks; it only defends according to the enemy's direction. |
+| $10$ | Instead of attacking the enemy HQ from the start, sort the enemy bases by closeness to our bases. | Each stronghold's spare warriors gather in the area near the enemy base. As turns pass and the gathered count grows, attack the enemy base. Stable, but mostly ends in a draw. |
+
+### 😁hyeon09
+
+First strategy:
+
+- warrior $1$: charge the enemy HQ
+- warrior $2$: stay at the HQ
+- warriors $3$, $4$: build a base, then earn money
+- warriors $5$, $6$: stay at the HQ (HQ upgrades)
+- warriors $7$ ~: charge the enemy HQ
+
+Second strategy:
+
+Priorities:
+
+- $1$, $2$, $3$ as above.
+- From $4$ on, there is a priority order
+  - Priority $1$: Does the HQ have as many warriors as its labor slots?
+  - Priority $2$: Are $2$ bases built?
+  - Priority $3$: Can the HQ be upgraded?
+  - Priority $4$: Can we produce people? If too many have been produced, MOVE.
+
+&rarr; Did not produce particularly good results.
+
+37141 reached $8$ wins, but since we had not been applying the Pretest logs up to then, we felt we were overfitting to the sample code, and from then on began studying the logs actively.
+
+From here on, revisions centered on the Pretest logs, and for the Pretest we chose the code based on winning battles $1$~$8$ (**byeol**).
+
+## 2. #69251
+
+Problem: When the opponent attacked a base near our HQ and left some warriors there, the HQ threat-detection logic kept triggering, so no attacks or counterattacks happened. Gold that should have gone to the HQ went into bases, and late-game HQ upgrades went poorly.
+
+&rarr; Excluded enemies standing on enemy buildings, fixing the HQ-attack misdetection when capturing a nearby base. Suppressed base level-$3$ upgrades.
+
+## 3. #84910
+
+Problem: When the enemy team brought a large army in the late game, our attacking warriors came back too late.
+
+&rarr; During a late enemy rush, returning to the HQ takes priority for anyone closer than the midpoint. That is, when a large enemy force is coming, HQ defense is the top priority for everyone except warriors closer to the enemy's bases on the current map and the fixed laborers.
+
+## 4. #86205
+
+Problem: Pretest replays showed we were poor at retaking strongholds once captured, and never seized enemy bases either.
+
+&rarr; Originally we took only half the strongholds and carried on; now, once the attack force and money are reasonably secured, we seize enemy bases.
+
+&rarr; After turn $120$, if the attack force is large enough and no empty bases remain, split into two to capture enemy bases
+
+## 5. #88363
+
+Problem: In AI battle $5$ we did not attack despite having enough forces
+
+&rarr; After turn $180$, as the final race, the attack strategy is forced. (Unless the HQ is in danger — recall)
+
+## 6. #95191
+
+Problem: We could not defend against early rushes. An early rush builds few bases, masses warriors, hits the opponent's bases fast to stop them earning money, and wins on the early production gap. In the Pretests we lost to most teams using this tactic.
+
+&rarr; Tried to implement an early rush ourselves (**hyeon09**)
+
+Basic premise: build two bases.
+
+1. Attack with the initial $3$ as much as they can<br />
+   &rarr; On larger maps travel is slow, so bases got built faster than they could be destroyed; $3$ could destroy at most $2$ bases.
+2. Attack with the initial $4$ as much as they can, and keep destroying bases with reinforcements until turn $80$<br />
+   &rarr; Reinforcements meant little. They arrived a step behind the initial squad of $4$ and were no match even for $\text{base }1 + \text{warrior }1$. They died too fast.
+3. No reinforcements. Keep hitting bases in squads of $4$ until turn $80$ (keep forming squads of $4$)<br />
+   &rarr; Then it felt like it took too long to build new bases. Wouldn't building bases in that time be more effective?
+4. Keep sending squads of $4$ at enemy bases until turn $60$<br />
+   &rarr; The best result of the above. Still, $7.5$ wins at most in the AI battles.<br />
+   &rarr; Patching further, the AI battles dropped to $2$ wins. Judging further patching pointless, we switched to the code with early-rush defense logic.
+
+We used the code that had been our biggest weakness, implemented in reverse, to shore up our defense. This part gave us our biggest jump in rank. Had time allowed, it is a strategy we would have liked to keep using. (hooray **hyeon09**~~) 👏
+
+## 7. Early-rush defense code (#96716) &rarr; patched code (#97352)
+
+Rush-response idea (**mjyuung**): over-expanding bases early prevents producing the warriors to respond. What if we build only $\text{enemy base count} + 1$?
+
+&rarr; Early rushes, apart from unusual cases, could now be blocked well enough. Confirmed in local battles against hyeon09's rush code.
+
+Code problem: Used base warriors first without using the surplus warriors inside the HQ
+
+- &rarr; Changed to use, in order, $1$st the HQ's surplus, $2$nd the surplus outside, $3$rd base warriors.
+- &rarr; For late-game attacks we also tried going in groups of $3$ rather than $1$ at a time, but the Pretest results came out low, and we learned that attacking in bunches is not good.
+
+## 8. #100152
+
+Problem: In the Pretests, too many warriors crowded the HQ, so we often just defended until we were overrun and died
+
+- &rarr; Changed so that unless a large enemy force is coming to the HQ, we keep attacking in groups of $4$.
+- &rarr; But since AI battle $5$ kept ending in a draw, we declared turn $165$ the final race and forced the attack strategy from turn $165$.
+- &rarr; This got $8$ wins, but from experience turn $165$ did not seem like a turn by which forces are reliably secured, so we judged it could not be a final-submission candidate.
+
+## 9. #104788
+
+Problem: On small maps, when the opponent attacked with the initial $6$ warriors, we lost
+
+1. Changed so base laborers can also be mobilized to defend the HQ<br />
+   &rarr; Base laborers got mobilized in the late game too, so we could not earn money and lost in the end.
+2. Changed so base laborers can be mobilized for HQ defense only until turn $20$. (Originally only base defense was possible) &rarr; But this was not used
+
+## Final: #97352
+
+We judged it the most reliable because it recorded the highest rank among the later Pretest submissions. It was chosen because it still showed a reasonable win rate in many local battles against the later revised versions.
+
+Unsolved: when we fall well behind in bases, our forces get stuck at the HQ.
+
+# LLMs Used
+
+(Which models we used and how)
+
+## hyeon09
+
+- Used Codex in Visual Studio Code
+
+**Early:**
+
+Asked it to interpret the sample code, then threw ideas at it and Codex turned them into code.
+
+**Mid and late:**
+
+After $8$ wins, with the rough frame in place, gave it the Pretest logs as material and analyzed the causes of defeat. Told it the rough reason for a loss and asked it to come up with fixes
+
+<Figure src="/2026/replay/master_worKing/images/p08_X53.png" alt="Conversation with Codex in Visual Studio Code" />
+
+When writing the early rush, though, the early game had to be rewritten almost from scratch, so it was like the early phase: ask about ideas, settle on an idea, and Codex writes the code from it.
+
+Example:
+
+<Figure src="/2026/replay/master_worKing/images/p08_X55.png" alt="Example conversation with Codex" />
+
+<Figure src="/2026/replay/master_worKing/images/p08_X56.png" alt="Example conversation with Codex" />
+
+<Figure src="/2026/replay/master_worKing/images/p08_X57.png" alt="Example conversation with Codex" />
+
+After several questions, once it is settled
+
+<Figure src="/2026/replay/master_worKing/images/p09_X62.png" alt="The idea being settled in the conversation with Codex" />
+
+Ask Codex to code the settled idea. &rarr; Codex applies it
+
+<Figure src="/2026/replay/master_worKing/images/p10_X67.png" alt="Code written by Codex applying the idea" />
+
+## mjyuung
+
+ChatGPT
+
+Asked for implementation based on the strategy: the early base-expansion algorithm and the base/HQ upgrade algorithm.
+
+Judging that getting the information I wanted from the existing data structures was inefficient, I asked the AI's opinion. I thought updating the information would be costly, but got the answer that since `GameState` and `GameMap` are recomputed every turn anyway it makes little difference, so I created the new structs `Region` and `RegionInfo`.
+
+<Figure src="/2026/replay/master_worKing/images/p11_X72.png" alt="Conversation with ChatGPT" />
+
+When I first ran the algorithm to find the stronghold closest to my HQ, there was a gap between the actual distance and the turns it takes to move there. I asked the AI to find the closest stronghold by turn count, based on the game rules.
+
+Asked it to implement an algorithm computing the attackers and defenders needed per region.
+
+Asked it to implement the parts I had left as comments in the code.
+
+Asked it to write a function computing the turns from every stronghold to every other stronghold.
+
+## byeol
+
+Claude
+
+Looking at the log text files and the log visualization, I wrote up the parts I wanted to improve or had questions about and discussed the direction of changes together. Left the code changes to it.
+
+<Figure src="/2026/replay/master_worKing/images/p11_X73.png" alt="Conversation with Claude" />
+
+<Figure src="/2026/replay/master_worKing/images/p12_X78.png" alt="Conversation with Claude" />
+
+To check improvements locally, I asked it to build a bot that replays the opponent's orders verbatim from a log file, which was useful for checking whether we blocked early rushes well.
+
+To see whether base-attack prediction worked, I briefly described battle $3$'s logic and asked it to implement it. Then had it change the logic from HQ attacks to base attacks.
+
+Used it to compare a teammate's code with mine and to judge and make the merge.
+
+# Closing Thoughts
+
+## hyeon09
+
+I think I spent about $10$ hours a day for $3$ days straight solving the problem with AI, and the two things I felt were: "with AI you don't need to type code," and "AI doesn't understand what I say perfectly." In the experience of finding the right answer within code that has no right answer, the AI's code changes dramatically depending on how I think, and even its ability to implement what I say changes. So I had thought that with AI, coding contests would become too easy — and honestly I am very glad to have realized that is not so. The world seems to need not one clear right answer but many solutions.
+
+## byeol
+
+Wow, AI eats so many tokens;; I'm not smart enough, so I have to brute-force it with tokens… I felt the scariness of vibe coding. The code gets complicated fast, and to fix problems you have to really understand the code to prompt well. Also, since it can't watch video, when it can't grasp from the logs what I can quickly see in the visualization, explaining the problem in terms of the core change I want turned out to be very effective. The visualization tool rocks! And it was amazing how my teammates kept coming up with effective ideas whenever there was a problem. I'm really curious what the top-$20$ code logic looks like. Won't you release it? Anyway, our team rocks.
+
+## mjyuung
+
+The codebase was so huge that it took a long time just to analyze the code and run a first test. Getting the AI to understand the rules and the code also took quite a while. I realized why AI use is allowed. But I also realized that my teammates were even more of a genius than the AI. I saw that with the same AI, results differ visibly depending on who uses it and how. It was interesting to be able to watch battles against other teams in the simulation.

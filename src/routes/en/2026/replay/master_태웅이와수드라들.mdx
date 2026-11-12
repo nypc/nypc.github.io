@@ -1,0 +1,482 @@
+---
+title: 태웅이와 수드라들
+stage: Master Track Qualification Round
+teamName: 태웅이와 수드라들 (Taeung and the Sudras)
+llmProvider: Codex Pro, Google AI Pro, GPT Plus
+llmModel: Claude Opus 4.8, GPT 5.5, Gemini Pro 3.1
+---
+
+# Solution
+
+## Early Design
+
+### First Concept of the Raid Algorithm
+
+Submission #54392
+
+Submitted July 2, 21:00[^kst]
+
+Early in NYPC, after seeing a strategy that stacks up $6$ warriors and then immediately marches $5$ of them at the opponent's HQ to bring it down or wipe out their forces, we thought: "if defense isn't handled properly, an aggressive strategy will work well in the early game." Then came the thought, "rather than hitting the HQ, wouldn't hitting bases with a somewhat smaller force be effective too?" — and that is how the first raid algorithm was born. At first we simply decided to gather three warriors and invade an enemy base, because three warriors are guaranteed to win against a level-$1$ base garrisoned by a single enemy warrior and destroy it. But realizing that was not enough, we compared $\text{our warriors' combat power}$ against $\text{enemy base} + \text{warriors' combat power}$ and decided to raid with a number of warriors that was certain to win. We simulated the game's combat as-is to compute the minimum number of warriors needed for victory, then added a safety margin of $+1$ so the raid would not go wrong.
+
+The algorithm we designed was as follows.
+
+- Right at the start, build one base on a nearby neutral stronghold and garrison it so it can labor, because increasing the early income is extremely important.
+- Then pick the enemy base closest to our HQ as the raid target, compute the number of warriors needed to break it using the simulation described above, and launch the raid as soon as that many warriors have gathered. On a successful raid, build a base on the spot immediately, leave just one laborer, and return.
+- If there is nothing to raid, surplus warriors exist, and there is money to build a base, move the surplus warriors to empty strongholds and expand.
+- Keep adding warriors whenever money allows so that neither the raid party nor the HQ garrison runs short. Once the simulation says our forces exceed the enemy HQ's combat power, lead everyone to hit the enemy HQ.
+
+We generated the code with Google Gemini. The initial "gather three warriors and attack" algorithm came out of the following conversation.
+
+<Figure src="/2026/replay/master_태웅이와수드라들/images/p02_X53.png" alt="Conversation with Google Gemini to generate the algorithm that gathers three warriors and attacks" />
+
+<Figure src="/2026/replay/master_태웅이와수드라들/images/p02_X54.png" alt="Conversation with Google Gemini to generate the algorithm that gathers three warriors and attacks (continued)" />
+
+With just this, the bot never attacked the HQ afterward and produced only draws or losses, so we added separate HQ-attack logic; and since attacking with only three was inefficient, we added the simulation above so that only raids certain to win were carried out.
+
+### Introducing a Phase Structure
+
+Submission #60916
+
+Submitted July 3, 17:00
+
+We found the algorithm so far was far too focused on raiding. To fix this we split the game into phases by turn and specified which actions take priority in each phase.
+
+There are $3$ phases: before turn $150$, between turns $150$ and $180$, and after turn $180$.
+
+- Before turn $150$ (normal operation)<br />
+  Proceeds just like the previous raid algorithm. Designed as the phase for building the first base, then raiding and adding strongholds to widen the economic gap and produce the forces for the final battle. Raid targets were chosen starting with the enemy base closest to our HQ. When a raid party succeeded in this phase, priority was pinned on actually building a base at that spot; once construction finished, only the laborers stayed and the rest returned to the HQ. A raid was judged successful by checking that the enemy base at the designated target was gone and our warriors remained.
+- Turns $150$ ~ $180$ (final-battle preparation)<br />
+  In this phase we stop expanding and raiding and train forces according to the following priorities.
+  1. If forces that raided before turn $150$ are still on a neutral stronghold, build a base there first.
+  2. Train warriors according to base levels and the gold on hand.
+- After turn $180$ (final battle)<br />
+  Send the warriors trained at the HQ toward the enemy HQ in turn, as movement cost allows. Only warriors sitting at the HQ are used for the attack; those at bases stay put so they can keep generating movement cost. Gold left over after movement is spent on producing more warriors.
+
+We also built a safety net for HQ defense.
+
+When enemy forces come within $4$ areas of our HQ and their number is judged lethal — higher than our HQ level plus our warrior count — the laborers at our bases gather at the HQ to defend. Also, with a base race in mind, if we judge we can destroy their HQ first, we attack the enemy HQ instead of coming back to defend ours.
+
+HQ upgrades followed this policy.
+
+They proceed when no higher-priority action is pending; before turn $40$, only when there are no neutral strongholds left, we have $5$ or more warriors, or we have the upgrade cost plus the cost of $2$ more warriors in reserve. After that, when our HQ HP is lower than or equal to the opponent's, or when our warrior count is at least $4\times$ the HQ level.
+
+## Improving Raid Efficiency
+
+Using version 60916 we found the Pretest results fell broadly into three cases.
+
+1. Against opponents with no defense algorithm, vulnerable to raids, we snowball quickly and win comfortably.
+2. Against opponents with a defense algorithm, raids keep getting blocked and the snowball rolls the other way.
+3. Against opponents using an outpost, we keep attacking only the outpost and the raid party dies pointlessly.
+   
+   [An "outpost" means an algorithm that gathers its forces at a base other than the HQ and fights from there. We were especially vulnerable to algorithms that used the central stronghold as an outpost.]
+
+At this point we debated "should we drop the raid algorithm and go with something new?", but rather than imitating opponents we chose to strengthen our own raid algorithm and play the game at our own pace.
+
+So we split things into $3$ cases and tried to improve performance by bypassing defense against opponents with a defense algorithm, and by changing raid-target priorities against opponents using outposts.
+
+### Reusing the Raid Party Consecutively
+
+Submission #70126
+
+Submitted July 4, 18:00
+
+Previously, the raiding force returned to the HQ before setting out on the next raid. We thought the turns spent returning were wasteful, so to improve this we made the raid party move straight to the next raid site instead of returning to the HQ.
+
+The conditions for a consecutive raid were designed as follows.
+
+1. Not currently in emergency-defense state.
+2. Not in base-race all-in state.
+3. Enemy bases still remain.
+4. After a successful raid, enough warriors remain to raid again. If only one remains, that warrior waits at the raided spot as the standby who will build the base; if $2$ or more remain, the next raid proceeds.
+
+Since raids now continue back to back, we changed it so that once a raid succeeds — the enemy base at the target is gone and the party has been assigned a new target — one warrior is sent from the HQ to the raided neutral stronghold to build the base.
+
+After implementing this, we ran $200$ practice games against each of the algorithms we had built earlier and compared win rates, but found only a marginal change.
+
+### Capturing Two Strongholds Early
+
+Submission #70282
+
+Submitted July 4, 18:00
+
+Previously we took just one stronghold before starting the first raid, but in most Pretests we saw opponents use their initial $3$ warriors by leaving one at the HQ and sending the other two to two different neutral strongholds, so we checked whether that worked for us too.
+
+Early on, two warriors are sent to the two different neutral strongholds closest to the HQ, and raiding does not start until both bases are built.
+
+Practice games after applying this showed a higher win rate, and we decided to keep it in the final version.
+
+But the hard requirement of taking $2$ strongholds before moving on to raiding meant we could do nothing against an opponent who attacked early, so in the final version we changed it to switch automatically to the raid phase once turn $30$ passes.
+
+### Adding Warriors After a Failed Raid
+
+Submission #70693
+
+Submitted July 4, 19:00
+
+Against opponents with a defense algorithm, we thought sending the same number of raiders every time was pointless. So we experimented with recording earlier failures and adjusting the headcount for later raids.
+
+First, after a failed raid, later raids get $1$ extra warrior each time, capped at $6$ extra.
+
+Raid failures were recorded as follows.
+
+- Raid target tracking<br />
+  Remember which enemy base we raided, so the location is stored for judging failure later.
+- Raid failure criterion<br />
+  Check whether an enemy base still remains at the target and whether any of our warriors are still fighting on it; if the enemy base remains and none of our warriors do, the raid is judged a failure.
+
+Practice games again showed a higher win rate. But when we ran a Pretest with this algorithm included, performance actually dropped, so we decided not to include it in the final version.
+
+### Running Two Raid Parties, Changing Target Selection
+
+Submission #77433
+
+Submitted July 5, 15:00
+
+We then concluded that headcount adjustment is meaningless if the opponent's defense algorithm reacts to the size of our force, and that increasing the number of raid parties might be more effective.
+
+Raid failure was judged the same way as before, but this time we increased the number of raid parties, allowing up to $4$ to operate at once. We hoped this would create guerrilla warfare and let us hit wherever the opponent's defenders were absent.
+
+Since several raid parties were running, we also changed how raid targets were chosen.
+
+Initially we targeted the nearest enemy base, but against outpost algorithms the raid party charged the outpost every time and died pointlessly, so we changed it.
+
+The selection rule:
+
+1. The weakest enemy base (the one needing the fewest raiders)
+2. If there are several, the one farthest from the enemy HQ
+3. If there are still several, the one closest to our HQ
+
+Practice games again showed a higher win rate, just as before. But performance did not recover in the Pretest; we concluded that the algorithms we used as opponents in practice games could not stand in for the results of top-tier matches, and lowered the weight we gave to practice-game results.
+
+We still thought the new target-selection rule would help when applied to the original algorithm, and indeed, changing only the target selection in the original algorithm raised its performance.
+
+### Devising a Way Around the Opponent's Defense
+
+Submission #85365
+
+Submitted July 5, 18:00
+
+Next we thought about bypassing the defense itself. If opponents treat a large group of our warriors emerging at once as a threat and prepare to block it, then sending them one at a time, rallying in front, and entering all at once might work.
+
+Unlike before, once a raid target is set, the areas adjacent to it become rally candidates; warriors gather one by one at the rally point and then go in together.
+
+The rally point is chosen as follows.
+
+1. Put every area adjacent to the target stronghold on the candidate list.
+2. First remove the one adjacent area that lies on the shortest path to the candidates.
+3. Among the remaining candidates, choose the one closest to our HQ.
+4. If the path to that rally point passes through an enemy stronghold, remove that candidate.
+5. If every candidate is removed, choose the shortest-path area that was excluded at the start.
+
+We did it this way because, if the opponent predicts from our movement paths, deliberately taking a non-shortest route and then raiding should slip past them.
+
+Also, if a new enemy base appears partway along the path to the rally point, the raid target is switched to that base — to avoid losing raiders one at a time while they gather.
+
+After applying this algorithm we took $1$ loss against the sample AIs, but since the point was to check whether the defense was bypassed, we checked the result in the Pretest.
+
+It turned out the bypass did not work as hoped, so in the end this version was not used in the final stage.
+
+In this way we explored raising the efficiency of raiding itself, and based on the results decided what to keep in the final version and what to drop.
+
+The strategies included in the final version:
+
+1. Capture $2$ strongholds early, then switch to the raid phase
+2. The new target-selection rule
+3. Use of an outpost
+
+In the final stage we concluded that more raid parties or more raiders only raise the risk of a raid if it does not succeed, and so they were excluded.
+
+## Defense Algorithm
+
+### Early-Rush Defense Algorithm
+
+Submission #76938
+
+Submitted July 5, 14:00
+
+We found that in the Pretest we lost every game to an early $5$-warrior rush. We devised a way to prevent this and called it, internally, the Zerg defense algorithm.
+
+Before designing it, we confirmed that the opponent's algorithm was not complicated, and that opponents using this kind of attack all behaved identically in the early game. Since games against Zerg that reached the late game ended in wins, we figured we only needed to hold the early game.
+
+Because the opponent's algorithm was simple, we easily replicated it with GPT 5.5, then used the CLI tool with the replica and our modified algorithm, swapping sides over seeds $1$~$100$ for $200$ games in total, to check whether the win rate improved.
+
+We built the Zerg defense in several versions and picked the one with the best win rate.
+
+V1. Separate $3$-area / $2$-area defense
+
+Since the early game was the problem, we added a branch that works only during the first $30$ turns, and changed the form of defense by distinguishing $3$ areas and $2$ areas around the HQ.
+
+- Within $3$ areas<br />
+  Keep normal operation, but produce $1$ warrior first
+- Within $2$ areas<br />
+  Treat it as a direct threat to the HQ: pause expansion/raiding/construction, recall the $1$ warrior that went out to expand early, and produce $2$ more warriors at the HQ.
+
+This raised the win rate against Zerg sharply, but could not block it completely, and new losses against the sample AIs appeared, so further fixes were needed. First we found the code's "within N areas" detection was wrong, and fixed that.
+
+V2. Detection by actual travel distance
+
+Initially we used a shortest-distance value like `P.dist`, but it was based on coordinate distance and could differ from how many turns it actually takes to arrive. In the revision we treated each area as a graph node and switched detection to the number of edges between them.
+
+With this we won against the sample AIs again, but the Zerg win rate still was not $100\%$, so we made further changes.
+
+V3. Adding a defense-mode state
+
+Initially, an enemy within $2$ areas was handled purely as defense, so the defense logic toggled on and off every turn. We changed it so that once defense activates, it stays active until $2$ extra defenders have been produced, and returns to normal operation once the threat is gone and the extra production is done. On returning to normal operation, if any of our bases is empty, the minimum laborers are filled in first for the sake of HQ defense.
+
+There was also a bug where Zerg defense triggered after turn $30$, so we locked it out firmly after turn $30$ so late-game attacks would not be disrupted.
+
+### General-Purpose Defense Algorithm
+
+Submission #86106
+
+Submitted July 6, 16:00
+
+With the Zerg defense in place we defended effectively against opponents that mass-produce warriors early and attack our HQ, but problems remained.
+
+First, when the opponent attacked a base near our HQ rather than the HQ itself, we took the wrong approach: not defending the base, but defending from the HQ. Second, because the Zerg defense activates whenever forces appear within $n$ areas of our HQ, on small maps where the opponent's strategy was to take the center stronghold, we misread it as an early mass attack on our HQ, and the laborers at every surrounding base were ordered to stay locked in the HQ defending instead of earning money.
+
+The second case in particular is quite fatal: the opponent takes several strongholds and earns money fast, while we earn from the HQ alone despite there being no real threat, so once the Zerg defense finally deactivates, the growth gap is huge. Feeling the limits of the Zerg defense, we set out to implement a new defense algorithm.
+
+Also, there were many games against more aggressive opponents that we judged winnable if only the defense held, so we expected a defense algorithm to bring a somewhat higher win rate.
+
+First, a quick definition: among our forces, warriors not laboring at the HQ or at strongholds are called surplus warriors.
+
+The simplest defense algorithm sends these surplus warriors to whichever of our bases or HQ the opponent is attacking. The problem is that if we send them once the attack is already underway, it is probably too late. Most opponents bundle their forces and hit one of our bases or the HQ all at once, so by the time we respond to an attack the base has most likely already been demolished. And since our current algorithm gathers forces at the HQ, the bigger the map, the clearer this limit becomes.
+
+So instead of blindly building a simple defense, we studied the algorithms of high-rated Pretest opponents that had defended well against us, organized what they did, and used it to shore up our strategy.
+
+The pseudocode for the defense algorithm:
+
+Suppose we have strongholds $1, 2, 3, 4, \dots$ (the HQ is stronghold $1$)
+
+- Several enemy warriors ($3$ or more) come in to attack
+- `list = []`
+- Measuring the enemy's path, estimate that our stronghold $n$ is the target<br />
+  &rarr; add stronghold $n$ to `list`
+- Among the strongholds in `list`, find the stronghold $k$ reachable by the shortest distance<br />
+  (e.g., distance $3$ between strongholds $1$ and $2$, $5$ between $1$ and $3$, $7$ between $2$ and $3$ — in that case gathering at stronghold $1$ is optimal)
+- Send $\text{enemy force sent} + 2$ defenders to stronghold $k$
+
+The idea behind this is as follows. Most high-rated opponents' defense algorithms fire when they detect several of our warriors moving somewhere. Taking inspiration from that, we internally remember the paths the enemy has been travelling and, using the fact that they always reach our base or HQ by the shortest path, estimate which of our bases (or the HQ) they will attack.
+
+One of the most important things in defense is reaching the point to be defended on roughly the same turn as the opponent. So, as in the pseudocode, forces are sent ahead to the stronghold judged fastest to reach the likely defense sites.
+
+We do not send every warrior to the defense site; we match the enemy's force size, for two reasons.
+
+First, once the defense is judged sufficient there is no need to send more. Sending every surplus warrior to that one site leaves other sites exposed — that is, if the opponent attacked two places at once, our defense algorithm would fail.
+
+Second, our strategy is to raid (attack) actively. We have to keep attacking enemy bases as soon as forces gather, and pouring every surplus warrior into defense would stop us attacking. We judged this would be a serious problem for our strategy, so capping the number of defenders was essential.
+
+We also added logic called path-overlap filtering. When a stronghold is predicted from the enemy's path, if reaching that stronghold necessarily requires passing through another of our strongholds, that stronghold is removed. It runs in situations like this:
+
+Let $A$ be the enemy's starting point and $B$ and $B'$ two of our strongholds. If enemy forces leaving $A$ must pass through stronghold $B$ to reach $B'$ by the shortest distance, $B'$ is removed from the defense candidates. This runs when we look for stronghold $k$ in the algorithm above. We expected it to solve the problem of $k$ being pulled too far toward our own side, pushing the timing back and making the defense late.
+
+We designed this algorithm ourselves through discussion, and asked the Gemini AI to write the overall code for the implementation. Errors that came up afterward we fixed ourselves by going through replays of many games.
+
+### Patching the Defense Algorithm
+
+Submission #86208
+
+Submitted July 6, 16:00
+
+While pitting the defense algorithm above against our original algorithm we found a serious problem with path-overlap filtering: when the opponent attacked our HQ directly, the logic fell apart and blocked nothing at all.
+
+Since this logic was originally built in the hope of reacting a little faster to the opponent's attack tempo, we judged that removing it would cause no great harm, and fixed the problem by deleting the path-overlap filtering algorithm.
+
+## Final Submission Stage
+
+Submission #89004
+
+Submitted July 6, 22:00
+
+For the final submission we combined only the experiments that had shown valid results.
+
+The algorithm has $4$ broad stages.
+
+1. Opening<br />
+   Secure $2$ of our bases, or until turn $30$
+2. Normal operation (before turn $150$)<br />
+   Expansion, defense, raiding and outpost rallying in parallel
+3. Final-battle preparation (the final attack turn is decided dynamically after turn $150$)<br />
+   Stop new raids and base construction<br />
+   Leave the laborers and rally at the outpost<br />
+   Produce/upgrade with a target of $35$ warriors at the HQ
+4. Final attack<br />
+   Decide the attack turn by map size, and send the forces from the outpost and the HQ at the enemy HQ within the movement cost available
+
+The final version also merged the defense algorithm and the raid algorithm built earlier.
+
+1. Defense priority<br />
+   In the final submission, defense has the highest priority: it is handled before raiding, expansion and late-game preparation, and then the turn ends. It was built by porting the defense from 86106, with Codex's help. Also, if the opponent has $0$ bases during the first $5$ turns, we treat it as a Zerg situation and postpone base construction until we too have $5$ warriors at the HQ.
+2. Raid procedure<br />
+   Raid targets are chosen by the target-selection rule defined earlier, and raids run only between turn $40$ and turn $150$, only when warriors and gold are to spare, with at most two parties.
+3. Outpost operation<br />
+   With defense and raiding running simultaneously, having everything move from the HQ became inefficient, so we decided to operate an outpost. During the opening, the HQ serves as the outpost; afterward, each turn we pick, among the strongholds we hold, the one closest to the map center and closer to our HQ as the outpost. The outpost's roles:
+   - Departure point for raid parties
+   - Standby point for defenders
+   - Rally point for the final attack force
+   - Shorter travel times on large maps
+4. Final attack<br />
+   Instead of launching at a fixed turn $180$ as before, the final version decides dynamically, taking into account the time needed to reach the enemy HQ. The earliest attack turn is $165$ and the default start is $180$, varying dynamically in between. From turn $150$ we aim to secure $35$ warriors; the first sortie is decided by whether there is enough movement cost for $50\%$ of the gathered force to depart. Only warriors able to arrive before turn $200$ count as candidates; if $50\%$ can be gathered we wait and then sortie, and if arrival before turn $200$ is impossible we send as many as can make it first. From the point when arrival becomes impossible, production stops and the HQ is upgraded to win on the tiebreak.
+
+## Additional Efforts
+
+Below, unrelated to our final submission, are the submissions along the way that failed but into which we put a lot of effort.
+
+### Reinforcement Learning
+
+Submissions #80380 etc.
+
+Submitted –
+
+Our original goal was to build algorithms that play quite well and then use them to train an AI with reinforcement learning. We actually wrote RL code and trained against our algorithms, but the results were poor. Most of the trained agents either used only very simple strategies (such as sending many warriors at the enemy HQ early) or acted to their own disadvantage.
+
+To fix this we put in a great deal of specific effort.
+
+Believing reward is the most important part of RL, we tuned the reward finely so the agent would act as close as possible to the ideal behavior we had in mind. If winning the game itself is rewarded heavily early on, the agent only performs early rushes (massing warriors and hitting the enemy HQ) against the random agent and the sample code. It would not even destroy the enemy HQ — its goal was simply to deal $1$ damage to it, so after attacking the enemy HQ once it would send the warriors back to our HQ. So early on, rather than rewarding winning, we rewarded money heavily so it would earn a lot: reward proportional to total money earned, reward for reaching empty strongholds, building bases on strongholds, upgrading, and so on.
+
+We also judged that moving too much was bad. Moving between strongholds does not matter much, but when moving toward an enemy stronghold, issuing a single Move command saves money. So we penalized excessive movement to make it move with as few commands as possible.
+
+Even with these rewards, the agent's overall strategy did not change at all (e.g., where it used to just charge, it now built $1$ stronghold and then just charged). Suspecting overfitting, we retrained a fresh agent from scratch, but it was not much different. We judged that raising the AI past a certain level in the remaining time would be hard, and that spending the time on algorithms would yield better results than spending more on the AI, so we gave up on RL and put our effort into developing a better algorithm.
+
+### Build-Up Algorithm
+
+Submissions #99164, #100059, #100083, #102662, #104287 etc.
+
+Submitted –
+
+Through the Pretests we came to feel that an aggressive strategy (the raid algorithm) was not a good idea. We kept adding strategies, yet our rank kept falling.
+
+The first reason is that, by the nature of this game, attacking enemy bases carries a lot of risk. If the attack on the base fails, the warriors are simply thrown away. Also, since the enemy base attacks our warriors too, against an equal force the enemy always has more survivors. Worse, the raid algorithm gives up building or upgrading bases in order to attack, so a failed assault on a base is a heavy loss.
+
+Second, assuming two players of similar skill, defense is favorable in most situations. To succeed in attacking an enemy base you must bring $1$ more warrior than they have. And the base being attacked is usually close to the enemy HQ, so even if we march a large force to the attack point first, they can train more warriors at the HQ and prepare. This is magnified on larger maps: the bigger the map, the more turns it takes to reach the enemy base, and the more forces they can defend with in the meantime.
+
+From these two results we concluded that the raid algorithm has a ceiling unless the opponent's defense algorithm can be fully broken. So we began developing a build-up algorithm: rather than actively attacking enemy bases, slowly take empty strongholds, maximize our labor capacity, and topple the opponent in one blow. We decided to develop the build-up and raid algorithms side by side and use whichever performed better.
+
+We kept the broad frame of the original raid algorithm (different strategies per phase, the central-stronghold selection algorithm) and modified/added the following.
+
+1. Laborer logic<br />
+   Every stronghold must hold as many warriors (hereafter "laborers") as its labor capacity, and if a stronghold has no laborer, sending one there is executed first. This is the top-priority action unless the defense algorithm signals that laborers are needed. Laborers are chosen from the surplus warriors starting with the longest-trained (lowest-numbered), but a laborer already working is not replaced.
+
+2. Build-up order<br />
+   Build-up proceeds in this order:<br />
+   Take empty strongholds &rarr; upgrade HQ to level $2$ &rarr; upgrade HQ to level $3$ &rarr; upgrade $2$ strongholds to level $2$ &rarr; upgrade HQ to level $4$ &rarr; upgrade remaining strongholds to level $2$ &rarr; upgrade HQ to level $5$ &rarr; upgrade remaining strongholds<br />
+   Whenever money is judged to be to spare, build-up proceeds in this order.
+
+   Taking empty strongholds proceeds as follows.
+
+   (1) Search for empty-stronghold candidates
+
+   (2) Among them, pick the one with the smallest total reach distance from all our strongholds and the HQ as the strong candidate
+
+   (3) Measure the distance $D$ from the strong candidate to the nearest of our strongholds, and the distance $D'$ from it to the enemy stronghold (or HQ) where they gather forces. If $D' < D$, drop the candidate and go back to (1). Here, for the enemy gathering stronghold (or HQ) $A$, if the distance $P$ between the enemy HQ and $A$ and the distance $P'$ between our HQ and $A$ satisfy $P \ge P'$, measure $D'$ from the enemy HQ rather than from $A$
+
+   (4) If no empty stronghold satisfies (1)–(3), then among the empty strongholds, with $T$ the distance from our core base to the empty stronghold and $T'$ the distance from the enemy gathering stronghold (or HQ) to it, take the one with the largest $T' - T$ first. If $T' - T$ is negative, stop taking empty strongholds.
+
+   When taking an empty stronghold, bring surplus warriors from the nearest stronghold or the HQ to build it, and put them straight to work as laborers. Warriors are sent ahead to the empty stronghold on turn $k$ satisfying $300 - (\text{current total labor of all buildings}) \times 15 \times k \le 0$. If the defense signal is active, warriors are not moved to an empty stronghold even when one is found.
+
+   Once no more empty strongholds can be taken, we start comparing our labor capacity with the opponent's. The comparison runs for $2$ turns, and if the conditions below hold for $3$ turns, the corresponding algorithm runs. (If not, the attack algorithm does not run and the build-up in 1. proceeds.) First, as soon as money is to spare, the build-up proceeds from the HQ level-$2$ upgrade step onward.
+
+   1) $\text{our total labor} > \text{opponent's total labor}$<br />
+   Run attack algorithm A, and perform the build-up in 1. when money is to spare
+
+   2) $\text{our total labor} = \text{opponent's total labor}$<br />
+   Perform the build-up in 1.
+
+   3) $\text{our total labor} < \text{opponent's total labor}$<br />
+   2-1) If the labor gap is $1$: perform the build-up in 1.<br />
+   2-2) If the labor gap is $2$ or more: run attack algorithm B
+
+   Stronghold upgrade priority:
+
+   1) Among the outermost strongholds, upgrade the one with the lowest HP first
+
+   2) Strongholds marked as priority upgrade targets
+
+   3) Strongholds where conflict has occurred $2$ or more times (if enemy forces came in once and fought, there was a turn with only our forces present, and then enemy forces came in and fought once more, that counts as $2$ conflicts)
+
+   4) The stronghold closest to the opponent's core stronghold<br />
+   As an exception, if one of our strongholds is within $3$ areas of the enemy HQ and conflict has occurred $3$ or more times there, upgrade it to level $3$ (this takes precedence over the HQ level-$4$ upgrade)
+
+   5) Strongholds closer to the map center first
+
+3. Criteria for judging money to be to spare<br />
+   Money is judged to be to spare if any one of the following holds.
+
+   1) We earn $\text{max trainable warriors} \times 120$ gold every turn
+
+   2) The defense signal is not active
+
+   3) $\text{opponent's total forces} - \text{our total forces} < 3$
+
+4. Defense algorithm
+
+   1) Algorithm to identify the opponent's central stronghold
+   - Among the opponent's buildings, any stronghold or HQ holding $\text{that building's labor capacity} + 2$ or more warriors is set as a candidate for their core stronghold.
+   - Among the candidates, the one where forces have been gathering the longest, for $n$ turns, is estimated to be their core stronghold. Here $n$ must satisfy:<br />
+     $n = (\text{turns forces were actually massing there}) - (\text{turns of conflict there}) - (\text{turns from our sending forces there until arrival}) > 2$<br />
+     This logic is to avoid mistaking a spot where they gathered because of their defense algorithm for the core stronghold. Also, if we are attacking their core stronghold, it keeps being recognized as such until the conflict ends even if the formula is not satisfied.
+
+   2) Forces are sent ahead to our stronghold closest to the enemy gathering stronghold (or HQ), enough to satisfy $\text{opponent's forces} + 1$. There may be several enemy gathering strongholds.<br />
+   &rarr; A stronghold holding $3$ or more enemy warriors for $3$ or more turns without a conflict just before is recognized as a gathering stronghold (or HQ) (for an HQ at level $3$ or above, $5$ or more warriors for $3$ or more turns); this is treated separately from their core stronghold.<br />
+   Usually the number of enemy gathering strongholds and ours match, but if several of our strongholds must be defended against one enemy gathering stronghold, the exception is to gather forces at the stronghold that minimizes the distance between the two (or more).
+
+   3) If a stronghold where we pre-positioned forces drops out of the defense candidates, move the defenders to the closest remaining candidate.
+
+   4) From the moment the defense point is settled, we compute whether the defense can succeed, as follows.<br />
+   a) Compare all incoming enemy forces against our defenders (laborers at that stronghold count as defenders). If $\text{our total warriors} \ge \text{enemy total warriors}$, assume success<br />
+   b) If $\text{our total warriors} - 1 = \text{enemy total warriors}$, pull laborers from the nearest stronghold to serve temporarily as defenders (not if they cannot reach the stronghold within $3$ turns)<br />
+   c) Otherwise, treat it as a failed defense and send no more forces
+
+   5) After the defense is complete (all enemy forces eliminated), the force does not return immediately; it scans $1$ area around the stronghold and waits if enemies are present. After clearing the surroundings too, the stronghold becomes a defensive strongpoint for $10$ turns: $1$ more warrior than the building's labor capacity waits there and the rest return to our central stronghold — not directly, but converging on it via the strongholds in between. After $10$ turns it is recognized as an ordinary stronghold again, and warriors beyond the minimum labor return to the intermediate stronghold.
+
+   6) In 5), if after the full defense $4$ or more warriors remain beyond the minimum labor, the stronghold is recognized as a temporary attack outpost. When the core base attacks, these forces pick the nearest target other than the one the core base is attacking (excluding the enemy HQ and strongholds that require passing through it) and attack it. If there are several temporary outposts, they must attack different enemy strongholds (if no remaining stronghold satisfies all three conditions — not the enemy HQ, not requiring passage through it, not overlapping with another temporary outpost — they attack the same target as the squad from the central stronghold). Since the squad from the central stronghold and every temporary-outpost squad must reach the enemy stronghold on the same turn, a squad with a short distance departs a set number of turns after the others so they arrive together. Right after sending its squad, the temporary outpost reverts to an ordinary stronghold.
+
+   7) If the defense is expected to succeed, the defense signal is turned off; if it is expected to fail, it is turned on.
+   - Defense signal: activated when<br />
+     1) $(\text{enemy warriors excluding all buildings' labor}) - (\text{our warriors excluding all buildings' labor}) > 2$<br />
+     2) The defense algorithm cannot be satisfied<br />
+     &rarr; While the defense signal is active, warrior training takes top priority.
+
+5. Attack algorithm
+   - An attack must always proceed with $2$ or more teams, so one of the following must hold.<br />
+     1) $\text{minimum force needed to attack} \times 2 + \text{core stronghold's labor capacity}$ warriors are at the core stronghold<br />
+     2) $\text{minimum force needed to attack} + \text{core stronghold's labor capacity}$ warriors are at the core stronghold, and at least $1$ temporary attack outpost exists
+   - As mentioned under temporary outposts, attacks are timed so that every squad reaches the enemy stronghold on the same turn.
+   - After a successful attack, the force does not return immediately but keeps holding the now-empty stronghold. While holding it, if an adjacent area contains enemy forces equal to or greater than what remains after the attack, move to the nearest of our strongholds reachable without passing through an enemy stronghold (without building).
+   - While holding the empty stronghold after a successful attack, when money is to spare, pick the $3$ nearest bases or HQs. If among those $3$ at most $1$ is an enemy stronghold or HQ and money is to spare, build a stronghold there and mark it as a priority upgrade target; for $5$ turns after construction, every warrior that took part in the attack guards it.
+   - After a successful attack, if the defense signal is on, move to the nearest of our strongholds reachable without passing through an enemy stronghold and serve as defenders.
+
+6. Strategy changes by phase<br />
+   From turn $150$ forces are massed, and the base race at turn $180$ works just as before. Between turns $150$ and $180$, an attack is launched when either<br />
+   1) $(\text{our warriors excluding all buildings' labor}) - (\text{enemy warriors excluding all buildings' labor}) > 2 \times \text{minimum force needed to attack}$<br />
+   2) $(\text{our warriors excluding all buildings' labor}) - (\text{enemy warriors excluding all buildings' labor}) > \text{minimum force needed to attack}$ and at least $1$ temporary attack base exists<br />
+   holds.
+
+7. Action priority across the algorithms<br />
+   After laborer assignment, the highest-priority order is defense. So even while gathering a squad to attack, when the opponent's attack signal comes, the squad is immediately disbanded and treated as defenders. As an exception, a squad that has already departed is not subject to defense; it accepts no other orders until it has destroyed its target enemy stronghold.
+
+We wrote this algorithm and tried implementing it in code, but it did not work properly — the defense algorithm in particular had many problems. Since the build-up algorithm was begun only one day before the end of the Master Track, there was not enough time to finish the code, and it was dropped from the submission candidates.
+
+# Afterword
+
+Kimtaka7
+
+- Overall it was tremendously fun. I am simply grateful that a contest exists where you pit strategies against other teams, like Kaggle. During the contest I kept thinking about it even in the middle of other work, constantly wondering "how could I make a better strategy?"
+- I have many regrets about myself. First, I regret starting reinforcement learning early on without a proper plan. Having never done RL before, I went in with the complacent thought "this should be enough," and the results were poor. If the RL had properly succeeded we might have achieved a better result, and I feel sorry that my teammates suffered because of me. Next time I get a chance like this I should be more careful and thorough.
+- I think we started developing the build-up algorithm far too late. If we had designed it a bit earlier and moved quickly into development, we could have pitted the build-up algorithm against our raid algorithm and built a strategy that covers each other's weaknesses.
+- This contest reminded me once again how important careful planning is. I do not know how the final result will turn out, but it was a good contest that brought back a lesson I had forgotten.
+
+YePpLe
+
+- I think the experience of understanding a game's rules, designing an algorithm and building a game agent yourself is not easily come by. Through NYPC I got a great opportunity to build a game bot.
+- The Pretest element fired us up even more. Battling our algorithm against other teams' bots showed us, through the game results, the problems in our algorithm and what we could learn from theirs, and it gave us reason to keep thinking about how to improve, so we could work harder on the contest.
+- I have one regret. After coming up with the raid algorithm first, I think it was good that I shared the idea with my friends, proposed our direction and decided which way to go. But in the process of coming up with various algorithms afterward and putting them in code, things did not run the way I wanted, and I feel I was not much help to the team. I also think it would have been better if I had shared my ideas more actively and broadened my teammates' thinking a little more.
+
+ilmsangte
+
+- Unlike problems where you solve a fixed problem in a fixed way, fighting other people's algorithms with the one you built made this more enjoyable than other contests. I liked that it was not over once you built something: watching the Pretest results, figuring out our algorithm's strengths from the win logs and its weaknesses from the loss logs, and continually developing it.
+- Also, since the number of Pretests was fixed, there was the fun of choosing which algorithm to submit and see results for each time. I had to keep in mind that the Pretest is not just a place to check my own position but a place to see opponents' strategies — and that, conversely, my strategy is exposed too.
+- I do wonder whether the result would have changed if we had kept our strategy hidden from opponents early on and revealed it late in the contest so they could not counter it. The Pretest is another place where my strategy can be exposed, and I think I gave that too little thought.
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

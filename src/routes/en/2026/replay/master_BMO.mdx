@@ -1,0 +1,427 @@
+---
+title: BMO
+stage: Master Track Qualification Round
+teamName: BMO
+llmProvider: ChatGPT Plus, ChatGPT Pro, Codex High, Codex Extra High
+llmModel: GPT 5.5
+---
+
+# Solution
+
+# Summary
+
+We proceeded in the order: understanding the sample AIs &rarr; Strategy 01 (the strategy of our final submission) &rarr; Strategy 02 (failed) &rarr; Strategy 03 (failed) &rarr; Strategy 04 (failed).
+
+We describe in detail the sample-AI analysis that led to the final submission's strategy, Strategy 01 itself, and the problems and fixes at each step. Strategies 02, 03 and 04 ultimately failed and are unrelated to the final submission, so they are covered only briefly.
+
+Below are the reasons Strategies 02, 03 and 04 failed.
+
+Strategy 02 failed because we tried to add macro behaviors on top of Strategy 01 — extra base construction, HQ upgrades and so on — but that only blunted Strategy 01's aggressiveness and made it perform worse.
+
+Strategy 03 failed because, although we designed it to play defensively, secure a stable gold income and then punish the opponent's openings, we did not define the behaviors in enough detail even though it is a rule-based AI. Some steps did not execute properly and the flow between steps was not smooth. There was not enough time to fix this, so we stopped improving it.
+
+Strategy 04 failed because many other teams showed tendencies similar to our Strategy 02 attack, so we focused purely on defense to counter them — but that made our attacks far too conservative and the timing hard to get right, so we stopped improving it as well.
+
+# Understanding the Sample AIs
+
+## Submissions #21617, #22466
+Submitted June 29, 10:00[^kst] and 13:00
+
+#21617 is the sample code and #22466 is code that does nothing (the same behavior as sample AI $1$).
+
+We made and submitted these to observe how the sample AIs behave and how they develop the game.
+In short, looking at the sample AIs, apart from AI $1$, which takes no action, and AI $2$, which heads straight for the opponent's HQ with the $3$ warriors given at the start (identical to the sample code), they all seemed to follow this pattern: focus on building bases to widen the gold-income gap &rarr; upgrade the HQ or bases &rarr; prepare defensive forces at each base &rarr; once enough forces have gathered for an attack, attack the opponent's HQ; and if an enemy attack comes in the meantime, send defensive forces to block it.
+
+# Strategy 01
+
+## Submissions #29198, #29684, #29877, etc.
+
+Submitted June 30, 02:00 – July 4, 16:00
+
+### #29198
+2026-06-29 – 2026-06-30
+
+We thought this game was remarkably similar to StarCraft.
+And looking at the sample AIs' behavior, we thought: if we set up the bare minimum of an early foundation and then keep the pressure on, giving them no room to build bases, wouldn't we easily beat AIs that prioritize base construction?
+At that point vyx, referencing the $4$-drone rush from StarCraft, proposed the idea: use the starting $500$ gold to build $1$ nearby base and $1$ center base, gather $5$ warriors at the center, and attack the HQ right away.
+If the opponent focuses on base construction early, they will be short of defenders, and assuming their laborers are told to hold position to keep gold coming in, what we would face is $(\text{level-}1\text{ base} + 1\text{ laborer})$. So we had to decide how many warriors to gather before attacking. Calculating, for each of our force sizes, how long the engagement takes (in turns) and how many survive:
+
+1) With $3$ of our warriors, victory takes $4$ turns with no enemy reinforcement; $1$ of ours dies, $2$ survive, and $1$ of the survivors is at HP $2$.
+2) With $4$ warriors, victory takes $3$ turns with no enemy reinforcement; $1$ dies, $3$ survive.
+3) With $5$ warriors, victory takes $2$ turns with no enemy reinforcement; all $5$ survive, $1$ at HP $1$.
+4) With $6$ warriors, victory takes $2$ turns with no enemy reinforcement; all $6$ survive, $1$ at HP $1$.
+5) … the same up to $9$.
+6) With $9$ or more warriors, victory takes $1$ turn with no reinforcement; all survive, $1$ at HP $2$.
+
+Those were the results.
+Considering the turns and gold needed to gather the required number of warriors, and the opponent's response, we thought about how many warriors it pays to train. Building $1$ base costs $300$ gold, and the minimum number needed to hold a base is $\text{enemy attack squad} - 1$. If the opponent attacks before a base is built, they will most likely spend the roughly $300$ gold earmarked for the base on extra training for defense instead.
+
+1) With $3$ warriors, we spend $360\text{ gold} + \text{attack movement cost}$ / => after building a base, the opponent can top up the minimum defenders by $+1$.
+2) With $5$ warriors, we spend $600\text{ gold} + \text{attack movement cost}$ / => after building a base, topping up the minimum defenders by $+3$ is hard for the opponent.
+3) With $7$–$8$ warriors, we spend $840\text{ gold} \sim 960\text{ gold} + \text{attack movement cost}$ / => the opponent has built $5$–$6$ bases while we have $2$, so with the gold gap they have plenty of time to prepare while we are gathering.
+So we concluded that $5$ warriors is the sweet spot: if the opponent builds a base while our warriors are training and moving, they are exactly out of gold, and it is the hardest moment for them to top up their numbers.
+
+So the initial plan was: after building $2$ bases early, keep training and send everything to the center base; once $5$ non-laborer warriors have gathered at the center base, attack the nearest enemy base with a $(\text{level-}1\text{ base} + 1\text{ laborer})$ composition; once it is destroyed, attack the next target. Next we had to decide where to build the first $2$ bases, and several ideas came up.
+
+The main candidates were: capture the $2$ nearest bases, or capture $\text{nearest base} \times 1 + \text{center base} \times 1$. Since the rules say the map is point-symmetric about the center, we rated the center as extremely important and decided we absolutely had to take a center base. (We judged that it makes attack movement into enemy territory much easier, and since it is equidistant from our HQ and the opponent's, whoever captures it first holds the attacking initiative.)
+
+Opinion converged on securing the center, so we decided to capture $1$ nearby base (built quickly for an extra $+15$ gold per turn) and $1$ center base (the staging ground for attacks after the $2$ bases are built). But if the opponent also reaches for the center, a $1$ vs $1$ fight kills both, which breaks the "$2$ bases, then train $5$" plan.
+
+So $2$ more ideas came up:
+
+1) Use the spare early gold to train $1$ extra warrior and send a total of $2$ to the center base, to take it for sure?
+2) Give up the center, but secure the stronghold closest to it. If there are several candidates, build on the one closer to our HQ.
+Option 1 takes at least $4$ turns to accumulate the $120$ gold, which does not suit our strategy, whose lifeblood is speed — finishing the bases fast and attacking. So we safely settled on option $2$.
+
+With option $2$, we give up the center, but once $5$ warriors are quickly gathered we attack the nearest enemy stronghold. At that point, if the opponent has taken the center, we destroy it, so we thought of it as reclaiming the center.
+
+Here, if the stronghold near the center is too far away, we cannot build there the moment $300$ gold accumulates after the first base; it is a small difference, but with bad luck it could give the opponent time to respond. So we roughly calculated the maximum distance to the center base as a function of the distance to the nearby base, and only chose near-center candidates within that distance.
+(Photo of the distance formula attached.)
+
+<Figure src="/2026/replay/master_BMO/images/p04_Image31.jpg" alt="Distance formula used to choose near-center base candidates" />
+
+To prepare for an early enemy attack, if the opponent attacks while we are still training the $5$, we respond with the non-laborer warriors gathered on the stronghold near the center.
+The defense logic is as follows.
+
+1) Attack detection. ($2$ or more non-laborers grouping up, or moving along a route other than enemy HQ &rarr; enemy base-construction site.)
+2) Attack preparation. If (distance from where the enemy showed attack intent to our base and our HQ) and (distance from the forces rallied at our near-center base to the targeted base or HQ) differ by $1$, move the warriors gathered at the near-center base (excluding laborer 1) to the base or HQ judged to be the target.
+3) Once resolved, the non-laborer warriors return to the near-center base.
+
+We wrote an md file describing how to act in each situation, asked GPT to define the behaviors that must be verified when implementing the code, add the functions and data structures each behavior needs, and write a concrete implementation plan. We then gave Codex the concrete plan from GPT together with the md file summarizing the strategy above, and asked it to write code that follows my strategy as faithfully as possible. To reduce token usage, we asked it to compile at most $2$ times and to do at most $1$ round of error re-correction. Error re-correction is the step where, if a behavior is found not to work during verification, it is fixed based on the attached reference md and the implementation plan. If the problem was still not solved after $1$ round, it had to add a short final report on which behavior had what problem and what fixes were attempted.
+
+We also submitted the code on the NYPC qualification page and manually verified, in battles against each sample AI, that it behaved according to the defined strategy.
+
+### #29684
+We found several problems in the submission above:
+
+1. Like the sample code's behavior, when the opponent charges in blindly and kills all the laborers at the base near our HQ, the warriors that went to build at the center do not return, so gold income stops and they just sit there.
+2. When the opponent's group moves out from their HQ, even by a single turn, the laborers at our base near the HQ bunch up on one area and gold income drops.
+3. When attacking from the center base, $5$ warriors including the laborer sortie, and when the slot becomes empty the laborers from the base near the HQ suddenly move to the center base.
+4. The $5$ warriors attack and then return to the near-center base. &rarr; After the $5$ smash a $(\text{level-}1\text{ base} + 1\text{ laborer})$ composition there are still $5$ warriors left, enough to destroy the next target if they attacked, yet they return.
+
+The fixes:
+
+1. Pin $1$ laborer at each base and defend with additional training.
+2. Since every unit moves along shortest paths, compute the shortest distances from the enemy group's position to our bases and HQ, watch the path they move each turn, and predict their destination (add attack-detection logic). Then match the turn the enemy reaches the destination with the turn we return to the base to defend. (If there is no one else and a laborer unavoidably has to go as backup, call the backup as late as possible so it keeps earning gold.)
+3. Attack when $5$ non-laborers have gathered.
+4. Do not return; run a combat simulation against the next target and, if the attack would succeed, attack it. &rarr; Here "combat simulation" means resolving the fight while accounting for the backup that can arrive during the turns we spend moving to attack, plus the base's attack power, the laborer, and the warriors garrisoned at the base.
+
+Additional idea
+
+1. If we avoid building our bases on the shortest paths between the enemy's bases and ours, can we read the opponent's intent in one go? If there is exactly $1$ of our bases in the direction they advance, it is certain.
+
+### #29877
+Problems remained after the improvements.
+Problems found
+
+1. Possibly because the combat simulation rarely judged an attack as successful, far too many forces destroyed $1$ base and then did not move.
+2. When the opponent upgrades to a level-$2$ base, our level-$1$ warriors cannot even scratch it — $100\%$ of the time.
+
+Fixes.
+
+1. Since our attack timing is expected to be right after the opponent builds a base, we assume they do not have many defenders. So drop the combat simulation: after an attack, unconditionally send the remaining $5$ or $4$ to the next attack candidate; if $3$ or fewer remain, give them the same target as the next $5$-warrior squad and have them join at that squad's destination.
+2. To save gold, fix the warrior count: keep $3$ laborers and $10$ combat warriors ($2$ squads), $13$ warriors in total. While maintaining the attack squads, if gold exceeds $460$, build a $3$rd base at the center (to attack more conveniently); if it exceeds $460$ again, build in turn on strongholds close to the center (if several are equally close, the one nearer our HQ first). &rarr; If an additional base ends up closer to the enemy's bases, move the rally point there.
+
+### #35136, #36148, #36135, #36913, #37193
+Shaken by the battle against team 게챠게챠 in the June 30 15:00 battle (battle ID 67859), we added a counter to early rush strategies.
+
+- The opponent does nothing
+- The opponent trains
+- The initial $3$ move together
+
+In these $3$ cases we respond with $1\text{ base} + 2\text{ trainings}$.
+Otherwise we proceed with the usual $2$ bases.
+
+- At the start, $3$ warriors exist at the HQ, and this was mistaken for the "opponent does nothing" case, so we always started with $1\text{ base} + 2\text{ trainings}$. We changed it to build $1$ base first and then watch $1$ turn before deciding between $2$ trainings and the $2$nd base.
+
+After $1\text{ base} + 2\text{ trainings}$ we build the $2$nd base the same way, gather $5$, and keep attacking.
+
+In the June 30 21:00 battles we identified a few more problems:
+
+1. $100\%$ losses against a level-$2$ HQ. &rarr; A level-$2$ base is hard to break with $5$ warriors; it burns too many turns.
+2. $3$ warriors wait and join the next fight, but too much time passes while the next $5$ gather.
+
+Fixes
+
+1. Add a headcount condition: use $5$ against level-$1$ bases and HQs, $7$ against level-$2$.
+2. Return to the rally point and quickly form the next $5$-warrior squad to attack. (Return when down to $4$.)
+
+New problems after the fix
+
+1. A level-$1$ base attack is supposed to use $5$, but every non-laborer at the rally point sorties.
+2. They return too eagerly: after killing all the warriors at an enemy base, if $4$ or fewer remain, they return immediately without destroying the base.
+So we fixed the base-destruction and headcount conditions.
+
+Afterwards another problem appeared: Codex did not implement the strategy as written but added conditions of its own, including "the attack squad's movement cost is insufficient" as a return condition.
+
+We had that condition removed.
+
+### #40573, #40732
+The return logic above blunted #29877's original aggressiveness, giving mediocre performance that neither defended nor attacked well. So we discarded that direction and restarted improvement from the #29877 code.
+
+Of the improvements above, the ones worth keeping on top of #29877:
+- Early rush counter (choose $1\text{ base} + 2\text{ trainings}$ or $2$ bases depending on the opponent's situation)
+- Once all level-$1$ bases are destroyed, raise the squad size from $5$ to $7$ for attacks on level-$2$ bases.
+- (New) If the first attack fails we always lose to macro strategies, so target the enemy base farthest from their HQ first.
+
+### #49291, #49435, #49587
+No matter how we looked at it, having the $3$ warriors that finished an attack idle at the destroyed enemy base was a waste, so we decided to keep the leftovers busy somehow — return quickly for the next attack, or join the defense. (With only $45$ gold of income, the supply cost hurt.) Also, if there is no next target and $4$ or more sit idle, then with $3$ laborers and the $13$-warrior cap, the next attack squad can only reach $6$ at most. But having no next target means only level-$2$ or higher bases remain, which need at least $7$. &rarr; Attacking becomes impossible.
+
+Summarizing this and the other problems and fixes:
+
+1. For the first bases we choose $1$ nearby stronghold and $1$ near-center stronghold, but the near-center choice was implemented as "avoid the center stronghold as much as possible via a penalty" rather than excluding it. Changed to exclude the center completely instead of penalizing it.
+2. The early-rush counter had the problem noted above: the $1$st turn, when $3$ warriors are provided at the HQ, was mistaken for "the opponent does nothing", so $1\text{ base} + 2\text{ trainings}$ was locked in.
+3. Instead of headcount rules like "return when $4$ or fewer / $3$ or fewer, join, etc.", return when there is no next attack target.
+
+### #49662, #49901, #50058 (final submission)
+The return logic still was not fixed properly, so we made further changes.
+
+1. Warriors returned to somewhere other than the rally point, so squads leaving for the next target set off from different places and did not arrive together.
+2. When movement cost was short, the $5$ sometimes set off separately during an attack (split $2$ and $3$, etc.).
+3. When returning, sometimes only $1$ came back and $3$ stayed behind — an incomplete return.
+
+We cleaned these up (synchronize arrival at the destination; wait a turn if movement cost is short; a squad attacks and returns as one).
+
+### #69423
+2026-07-04
+To examine whether building $2$ bases early is really efficient, we analyzed the following cases.
+
+1) Train immediately and attack with $5$ non-laborers
+2) Build $1$ base, then attack with $5$ non-laborers
+3) Build $2$ bases, then attack with $5$ non-laborers
+4) Build $3$ bases, then attack with $5$ non-laborers
+5) …
+
+Roughly computing, for each base count, the training turns and the turns to gather $5$ warriors:
+
+1) $0$ bases => $15\text{ gold} \times 8$ / $3\text{ to train} = 24\text{ turns}$
+2) $1$ base => $30\text{ gold} \times 4$ / $4\text{ to train} = 16\text{ turns}$
+3) $2$ bases => $45\text{ gold} \times 3$ / $5\text{ to train} = 15\text{ turns}$
+4) $3$ bases => $60\text{ gold} \times 2$ / $5\text{ to train} = 10\text{ turns}$
+5) $4$ bases => $75\text{ gold} \times 2$ / $5\text{ to train} = 10\text{ turns}$
+6) $5$ bases => $90\text{ gold} \times 2$ / $5\text{ to train} = 10\text{ turns}$
+7) …
+
+So with $3$ bases we can train in the same number of turns as with $4$, $5$ or more, which we thought might be the efficient choice.
+
+The problems that arose seem to come from the logic inherited from #29877.
+
+There was a rule to maintain $13$ warriors in total $(\text{labor }3 + \text{attack squads }10)$ and build an extra base at the center when gold accumulates — but with the early $3$-base expansion there are $4$ laborers, so training $10$ attackers makes $14$ in total.
+
+⇨ Failure cause candidate $1$.
+
+As gold accumulates, $1$ extra base should be built at the center, but the $13$-warrior cap is exceeded, so the $1$ laborer needed for construction cannot be trained and placed, and the "build a base" order stalls.
+
+⇨ Failure cause candidate $2$.
+
+While all this is tangled, if an enemy base reaches level $3$, this strategy only specifies "attack level-$1$ bases/HQ with $5$, level-$2$ with $7$" — level $3$ was never defined, so it cannot attack.
+
+⇨ Failure cause candidate $3$.
+
+We ran out of time after this and could not fix the $3$-base strategy's problems.
+
+# Strategy 02
+
+## Submissions #31917, #32096, #34294
+
+Submitted June 30, 13:44:03 (#31917), 14:08:11 (#32096), 18:41:26 (#34294)
+
+Strategy 01 had no answer to a mirror of itself, and it lost when the opponent was waiting with more than $5$ trained warriors. Strategy 02 was prepared to address this.
+
+Fixing the attack force at $5$ is strong against a $\text{level-}1\text{ base} + 1\text{ garrisoned warrior}$ composition, but once the opponent upgrades to level $2$ we just lose warriors. So at first we considered $(\text{base/HQ HP} + \text{garrisoned warriors} \times \text{garrisoned warrior HP}) / 2$ warriors, but that formula does not account for reinforcements, so for now we decided to refrain from early attacks on level-$2$ or higher bases and attack only when upgraded warriors can handle any surprises.
+
+There was also an attack-route problem: when an enemy base or HQ lay on the attack route, combat broke out somewhere other than the destination. We added a check of the attack path in advance, with a detour when necessary.
+
+Rather than making attacks more conservative in case one fails, the first attack uses $5$ and later ones $6$, for $+1$ damage and spare bodies to shorten the replenishment cycle. Attack destinations are also limited to bases we can reach $2$ turns earlier than enemy reinforcements, eliminating the reinforcement variable. After a successful attack we move to and build at the center, gaining fewer attack-movement turns.
+
+As for timing, right after the opponent builds a base they have usually spent all their gold, so attacking then means they cannot train reinforcements and the base can be destroyed.
+
+For additional bases, once we have $3\times$ as many bases as the opponent we stop building, keep $6$ warriors, and take the timing for the level-$2$ HQ upgrade.
+
+Based on this strategy we asked Codex to modify the Strategy 01 code.
+
+After the changes, checking the Strategy 01 code and the local-test log files showed that, contrary to our requests, instead of building $2$ bases and then gathering forces and watching the situation, it immediately built an extra base at the center and then added yet another stronghold. We could also confirm bugs where the attack-decision logic was so conservative it would not attack even destroyable bases; where, with no stronghold left to build on and no attacks either, gold just piled up; where headcount allocation broke so that $5$ never gathered at or near the center; and where, after the opponent destroyed a base, gold went unspent and the warriors stopped at the destroyed base without rebuilding.
+
+So to fix these bugs we requested the following changes.
+
+> Using the attack-decision function, compute every turn how many warriors each enemy base/HQ needs, attack starting from the one needing the fewest, and lift the attack headcount cap when necessary to ease the conservatism.
+>
+> When the enemy attacks, pin down the destination via shortest-route detection logic and send reinforcements equal to the enemy attack force. Half of the defenders come from the attack squad (the smaller half if odd) and half from HQ training. The attack squad's detachment moves when the enemy's remaining movement turns to the destination equal the turns the detachment needs to reinforce.
+>
+> The rally point must be the frontline base closest to the enemy's bases.
+>
+> When defending or attacking, always move with the whole force gathered, to reduce the chance of being defeated piecemeal.
+
+In battles against other teams we found a losing case: the opponent trains $4$ warriors with the starting $500$ gold right away and attacks our HQ with $6$.
+
+The current code could not yet handle this attack, so to address it we added: when an enemy attack is detected, the destination is our HQ, and our garrison is smaller than the attacking force, then to live to fight another day, gather every warrior except $1$ laborer (including laborers at other bases) at the HQ to meet the attack.
+
+So that our gathering forces do not cross paths with the enemy's attackers, we additionally changed the placement of the first $2$ bases to avoid the movement path from the enemy HQ to ours, so that HQ attacks are recognized quickly and defenders are not picked off one by one.
+Since the attack-decision function was still conservative, we changed it so that a level-$1$ base with $1$ garrisoned warrior is always attacked with a full $5$-warrior squad.
+
+We found a bug where inaccurate enemy-attack prediction made the defense misfire, so we simplified it: if several enemy warriors are moving together toward one place, station defenders at the base closest to the enemy force.
+
+# Strategy 03
+
+## Submissions #56809, #58122, #60251, #64692, #64894, #73126
+
+Submitted July 3 – July 5
+These submissions are the record of instructing Codex to implement the strategy below, checking whether it worked, and fixing what did not, so here we describe only Strategy 03 and how we arrived at it.
+
+Below are the idea notes written while building Strategy 03.
+For the sake of the replay's length, we record only what to do at each stage and a few of the logic pieces central to Strategy 03.
+
+----
+
+How should gold be divided into units? Thinking about it, we got the following.
+
+**A (per $\bm{300}$ gold): possible operations**
+
+a. Build $1$ base<br />
+b. Train $2$–$3$ warriors<br />
+c. Save<br />
+d. Movement funds for an attack
+
+Based on this we defined the actions for each round. (A round here is $600$ gold. We grouped by $600$ gold because Strategy 01, our best-performing strategy, attacks once $5$ have gathered, and training $5$ costs at least $600$ gold.)
+
+### Round $\bm{1}$ (first $\bm{600}$ gold)
+
+#### First action
+
+- Build base 1 at the stronghold closest to the HQ &rarr; a, fixed.
+
+#### Second action
+
+1. If the opponent's $3$ warriors at the HQ have done nothing for $2$ turns, or they trained up to $4$ warriors, or the $3$ warriors move as a group => train $2$ more warriors and wait (defense prep) &rarr; choose b.
+
+2. Otherwise, build base 2 close to our base and HQ &rarr; choose a.
+
+### Round $\bm{2}$ (second $\bm{600}$ gold)
+
+#### Timing of base 3 and base 4
+
+- If the opponent's total force excluding laborers is $3$ or more, wait $1$ turn. If they train more after $1$ turn, assume they are preparing an invasion and save gold. (We train defensive warriors when the enemy group starts moving. &rarr; This works because bases 1 and 2 are built close to our HQ rather than the center, so our backup is faster than theirs, and we spend the time gained to our advantage.)
+  1. Assume the enemy group will attack whichever of our bases is closest to its position. Compute the movement turns their attack takes and the turns for us to train at the HQ and send backup, and station in advance the minimum number needed to hold. That is, when the enemy sets off, place the minimum at the base closest to their squad and start training the extra warriors needed as backup. By the time the enemy squad reaches our closest base, we must have $(\text{minimum} + \text{arriving backup})$ there, equal to the enemy squad's size.
+  2. If the gold for $(\text{minimum} + \text{arriving backup})$ is secured and there is spare gold ($\text{total gold} - \text{gold reserved for backup}$), build base 3. => One more base than the opponent, to widen the income gap. (Pursue maximum profit.)
+  3. The minimum is prepared immediately, independent of whether the enemy has started attacking, based on their warrior count excluding laborer 1; the backup is trained from the moment the enemy squad sets off. Because backup training does not run until they set off, spare gold accumulates, and to make the most of it we do not let it sit but build base 3 for maximum gain.
+- If the opponent builds base 3 — from base 3 on, it is usually some distance from the HQ — train $1$ warrior and send it near the enemy base to see whether they reinforce that base for defense or ignore it and save gold.
+  1. If they reinforce (train, or move spare non-laborer warriors to that base), assume they will respond when attacked, and build our base 3 too. When the scout returns, if their combat warriors pull back, it is confirmed they had backup. Before building base 4, likewise send $1$ warrior near their base 4 to scout before deciding.
+  2. If instead they ignore it, assume they will not respond even when we attack a $(\text{level-}1\text{ base} + 1\text{ laborer})$, skip base 3, quickly gather $5$ through extra training and strike the base. After the strike, send $1$ warrior near the next enemy base meeting the $(\text{level-}1\text{ base} + 1\text{ laborer})$ condition to check for backup, and attack if there is none. If they respond (train, or rally to the base we scouted — "scouting" meaning sending $1$ warrior near the base) — i.e., there is backup — the warriors do not attack; instead place $1$ each on the buildable strongholds close to our HQ (excluding already-built ones). (Preparation for the next base and defenders for when the enemy attacks.)
+
+### Spending gold the moment it appears can actually be poison.
+
+Waiting $1$ turn costs only $15$ gold even in the case where the opponent builds a base, and it lets us read what they intend. Reading the intent and responding accordingly seems worth far more than $15$ gold.
+
+Moreover, the order I give this turn can be the reason I cannot respond to the order the opponent gives. e.g., I invest $300$ gold in a base while the opponent orders $5$ warriors to attack my base &rarr; no way to respond.
+
+The opponent usually saves or spends gold with a purpose, and once the minimum gold for that purpose is there, they spend it right away. So by acting $1$ turn later from the start, we are always $1$ turn behind the opponent and can see all of their intent for a $15$-gold loss.
+
+### The best timing to attack a base
+
+When the opponent has no defenders and has spent all their gold on base construction or an upgrade, unable to react — if the fight (not merely the attack) begins then, it is pure profit. To defend, they must move laborers, so we gain enormously: their gold income (laborers sent as support) + a destroyed base + lost warriors.
+
+For this we must be sure the opponent is building a base. If we leave it to luck and the attack fails, the opponent gains far more.
+The reason we need certainty is that if we train warriors and send them only after the opponent has built the base, they have more than enough time to prepare and minimize their losses.
+
+The attack must begin the very turn the opponent builds, or combat must break out within $2$–$3$ turns at most, to raise the success rate much. So warriors must be produced in advance and positioned near the expected construction stronghold (which may be an ordinary area, or one of our strongholds near the expected site). It is a strategy we can only use when we are certain they will build there.
+
+The certainty conditions are: "the opponent's estimated gold is comfortably above $150$, yet they are not training" and "$1$ warrior is moving toward a buildable stronghold, or is standing on one."
+
+We took these as certainty conditions because they can be read as "I will capture this spot — sent ahead", or "I have saved the gold for a base, so I am moving to build."
+
+### Using ordinary areas rather than strongholds
+
+The fork mentioned above (the key to raising attack success — when the defense is very strong, movement cost is paid $2$ times, but the attack succeeds $100\%$), or scouting. Most defense logic responds to the number of moving warriors, predicts their target and positions defenders accordingly. So by sending a few warriors to an ordinary area near an enemy base for scouting, we can see how the opponent reacts and infer their defensive strategy.
+
+### Priorities for base placement
+
+A defensive strategy places bases close to our HQ so forces can move quickly; an attacking strategy places them where movement toward enemy bases is easy.
+How should this be decided per situation? Consider map layout, our strategy, the opponent's strategy, and how location importance depends on the number of buildable strongholds.
+
+First, avoid offering the opponent a fork, because if several of our bases are reachable from one area in the same number of turns, defending becomes drastically harder.
+Also, most opponents open with a macro strategy of building bases early and almost never cross over past the center, so the key is placing bases well near our own bases and near the center.
+
+### Tracking the opponent's gold
+
+Base construction, training, supply, and HQ/base upgrades can be confirmed from the results, so that gold is certain. Movement, however, cannot be pinned down.
+
+Movement cost can be estimated by tracking the opponent's moves: assign each enemy warrior a unique ID, $-10$ gold when it moves, $+10$ gold when the area it stops on is theirs. That gives a simple estimate.
+
+The problem with this estimate is that when a warrior steps on one of our bases en route or runs into our moving forces, combat happens away from its destination, and if it dies we can no longer know its destination, so an exact calculation is impossible. So we decided to estimate movement cost as a maximum and a minimum.
+
+&rarr; This was a method GPT recommended during implementation: if many warriors die midway or have unclear destinations, the gap between max and min grows too wide, and keeping only the top few candidates beam-search style reduces this, so we adopted it.
+
+### Combat simulation
+
+ChatGPT helped with the combat-simulation logic. We listed the factors to consider and asked it to compute the combat simulation using only these.
+The factors are:
+
+- Target building HP / turret
+- Attacker HP / ID
+- Current defender HP / ID
+- Backup arriving per day
+- Lowest-HP warrior is hit first
+- On ties, the lower ID is hit first
+- Day the building is destroyed
+- Surviving attackers / HP
+
+Later, to speed up computation, we put the combat data into a `data.bin` file and used that.
+`data.bin` contains:
+- Building type
+- Building level
+- Building current HP
+- Attacker HP bucket
+- Defender HP bucket
+- Number of defending warriors
+- Combat day limit
+- Minimum attackers
+- Whether destruction is possible
+
+# Strategy 04
+
+## Submission #94858
+
+Submitted July 7, 15:19:05
+
+The goal of #94858 was a hard-defense + growth strategy, using the #29877 and #50058 strategy code as the baseline.
+
+Knowing our algorithmic skills lag behind other participants', we felt we first needed to know every card available, so we had Codex digest the game rules and asked it to list every applicable algorithm.
+
+Among them, for predicting enemy movement destinations — the most important thing when defending — we compute all-pairs shortest distances with Floyd–Warshall; from that, a next-hop table stores, from source $u$ to destination $t$, the shortest path breaking ties by smaller area number; as an aid to accuracy, a reverse next-hop table stores, for a move from $u$ to $t$, the set of candidate final destinations; and a turns table stores the movement turns computed by following the next-hop table.
+
+From this data, prior probability (initially $1/n$ for $n$ candidates) $\times$ the weight of the current observation ($4.0$ if the path matches the shortest path, $0.2$ otherwise) gives each candidate's destination probability. Combined with enemy count/HP, enemy arrival turn, current garrison and other weights, a risk score selects the bases at risk and whether to reinforce.
+
+Since prediction alone is never enough, for smooth reinforcement routes we designate as rally point the base whose total shortest distance to all captured bases + the HQ is smallest, and built a defense system that sends $(\text{attacker HP total} - \text{destination garrison HP total}) / \text{average HP of surplus warriors at the rally point}$ warriors from the surplus (excluding laborers) as reinforcements.
+
+In the early game the fast opening attack of #29877/#50058 worked, but against fast level-$2$ HQ upgrade builds we observed that unless we secured a clear early lead we eventually lost on macro. So we set attacks conservatively — a "you come to me" posture rather than attacking first — for more stability and to profit from the mid-to-late-game gap.
+
+This hard-defense + growth strategy managed a $43.8\%$ win rate, $32\%$ loss rate and $24.2\%$ draw rate over $1000$ games against #29877/#50058, but against the #69423 strategy code the loss rate rose above $90\%$. It was overfitted to #29877/#50058 and could not be used generally.
+
+Up to the submission deadline we tried easing the attack conservatism, but the code got tangled or only the defense degraded, so we had it attack enemy bases instead when reinforcements looked like they would be late; the local test results still fell short of expectations, and we wrapped up there.
+
+Thinking now about why it fell short: because enemy movement prediction is probability-based, adjusting the weights to make attacks less conservative seems to have opened a serious gap in defensive performance, and since we started from a hard-defense strategy it was hard to pick attack timings while keeping the defense intact.
+
+# On LLMs
+
+We wrote our strategies out as md files, then either had ChatGPT produce work instructions for Codex and handed those over, or gave Codex the md file directly and asked it to implement the described behavior.
+
+The problem with this was that, watching the code run, behaviors we never wanted crept in, and behaviors clearly laid out in the md file were sometimes not executed.
+
+Early on we found the problems ourselves, issued fix instructions one by one until it behaved as we wanted, and then checked whether it had improved. But for things we could not verify by eye — gold-prediction logic, the combat simulation, or complex attack/defense logic — it was hard to tell for sure whether they worked through local tests or battles against the sample AIs. So near the end of the contest we gave the md file and the written code to GPT or Codex and asked, "Does this code properly reflect the md file?" — and every time, the answer was "this is missing" or "that is not done."
+
+Then ChatGPT and Codex always add, "if you instruct Codex like this," or "if you fix it like this, it will apply properly." Following those solutions with Codex, Codex would leave a final report in the format our instructions prescribed saying everything was done — yet it still did not work, which was extremely frustrating. This seems to have been the single biggest reason only the simple early Strategy 01 was improved to good results while Strategies 02, 03 and 04 failed.
+
+Was this a problem of not knowing how to handle AI, since we do not use it much normally? Would it have been fine if we had split the md file's strategy into pieces, implemented them one at a time, and then wired the behaviors together? I still do not know the answer.
+
+We had Codex read the md file summarizing the desired strategy and algorithms directly, or requested code changes with prompts based on its contents, but — perhaps due to code optimization or to avoid TLE — computation-heavy or complex logic often was not applied on the first request, and Codex said nothing about it.
+
+To prevent the same problem we added emphasis with the word "unconditionally" frequently, and added a final step after each change where it compares the md file or prompt with the modified code and reports or re-fixes anything missing. This did not eliminate the problem, but we confirmed it improved from frequently missing $5$–$6$ items to occasionally missing $1$–$2$.
+
+# Afterword
+
+The more we thought about this qualification problem, the more ideas and new approaches kept coming, which made it fun and interesting.
+It is a shame, and a regret, that our skills were not enough to implement many of those ideas perfectly in code, leaving so many unapplied.
+
+The problem reminded us of StarCraft, which made the idea discussions and problem-solving all the more fun. We felt we still need more study on the algorithmic side, and while we could not use every strategy in our heads, it was enjoyable to try and test the ones that looked interesting. If only we had managed our stamina better from the middle of the contest and avoided health problems, we might have kept up the challenge of holding a single-digit rank — losing that chance is what we regret most.
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

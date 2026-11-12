@@ -1,0 +1,360 @@
+---
+title: 누가내머리에똥쌌어
+stage: Master Track Qualification Round
+teamName: 누가내머리에똥쌌어 (Who Pooped on My Head?)
+llmProvider: GPT Plus, Gemini Pro
+llmModel: GPT 5.5, Gemini Pro 3.1
+---
+
+## 1. Division of Roles
+
+We did not divide roles for problem solving; we worked on everything together. Everyone attended a meeting every day to devise and discuss the overall strategy. After the discussion, each of us wrote response-strategy code in our own way, and by comparing each other's code we could develop it into a better strategy. In particular, by pitting the code each member had written against each other with the CLI tool, we could analyze what was lacking, what was fine, and the pros and cons of each. Not dividing roles let us exchange opinions in a freer atmosphere.
+
+## 2. How We Cooperated While Solving the Problem
+
+Problem solving proceeded through overall strategy design in meetings and individual exploration. After laying the basic foundation of the strategy, we analyzed the logs from the Pretests or from battles against the sample AIs and listed what needed patching. Going through the logs of lost games together, we found the common causes, everyone proposed strategies to resolve them, and based on those we revised the strategy and added features. At the same time we took care to keep the balance so as not to drop the elements that had won earlier games. After each meeting, each member wrote code reinforcing the code with the highest win rate based on the revised strategy, and at the next meeting we competed these against each other to produce better code. By each writing supplementary code in our own way, battling directly with the CLI tool, and thinking about better code, we could select effective and efficient strategies.
+
+After reaching $8$ wins against the sample AIs, we used the CLI tool even more actively to draw out a strategy that was not biased toward a single counter-attack strategy and could handle exceptional situations too. Every time we revised the strategy, we ran games not only against the sample AIs but also against the $8$-win codes written earlier. This let us respond to a variety of attacks beyond the sample AIs' limited attack styles and discover new weaknesses in the revised strategy.
+
+## Submission #33893
+
+Submitted June 30, 17:45:59[^kst]
+
+### 1. Strategy
+
+We designed the strategy in phases so that it would run in a structured way. We also accounted for the upkeep incurred every turn when training warriors, computing it first and running the strategy on the gold left over.
+
+- Phases $1$ ~ $3$: Build four strongholds and keep $10$ warriors standing by at the HQ.
+- Phases $4$ ~ $5$: Raise every base to level $2$, then keep $15$ warriors standing by at the HQ.
+- Phase $6$: Raise every base to level $3$.
+- Then rally the attack squad and prepare to attack the enemy HQ.
+
+### 2. How the Strategy Was Devised and Adopted
+
+First we ran the given sample code and analyzed the sample AIs, excluding no. $1$, which does nothing, and no. $2$, which behaves like the sample code. In common, they built bases on the strongholds around the HQ in the early stage to raise gold income per turn. Considering that the earlier per-turn gold income rises, the higher the expected total gold for the whole game, we judged this a meaningful strategy. We then compared upgrading bases and the HQ together, like sample AI $4$, with upgrading only the HQ, like sample AI $5$; thinking that upgrading both was more efficient in the per-turn income gained relative to gold spent, we chose to upgrade both bases and the HQ.
+
+To protect the HQ from enemies attacking it, a certain number of warriors stand by at the HQ in each phase. For the game's ultimate goal, destroying the enemy HQ, we chose to train warriors after the upgrades and set out to attack it. Considering the $200$-turn limit, we computed the turns spent moving and designed it to send all trained warriors toward the enemy HQ at turn $180$ to fight.
+
+### 3. Problems
+
+- Because it depended on phase progress, if not every condition of a phase was met, serious problems occurred, such as not responding to the opponent's attack or passing turns doing nothing at all.
+- Apart from the attack at the end, it consistently showed defensive tactics, so beating the opponent was not easy.
+
+### 4. Attempted Solutions
+
+- We tried forming an attack squad to destroy the opponent's bases while maintaining the defensive tactics, and saw positive results.
+- We also tried to fix the phase-dependency problem, but when the revised code ran it caused further problems instead, such as freezing when a phase failed to advance to the next. We could not solve the phase dependency that day, and fixed it through several rounds of debugging later.
+
+### 5. Where We Used the LLM / Its Limits and How We Compensated
+
+We used Gemini 3.1 Pro to organize the strategy and to write and revise the code.
+
+<FigureRow>
+  <Figure src="/2026/replay/master_누개내머리에똥쌌어/images/p03_X14.png" alt="Conversation organizing the strategy with Gemini 3.1 Pro" />
+  <Figure src="/2026/replay/master_누개내머리에똥쌌어/images/p03_X12.png" alt="Conversation writing and revising the code with Gemini 3.1 Pro" />
+</FigureRow>
+
+## Submission #41561
+
+Submitted July 1, 14:53:13
+
+### 1. Strategy
+
+The overall vanguard strategy is to train warriors in between the basic infrastructure-building steps, and to use part of the trained force to destroy enemy bases.
+
+#### Vanguard creation logic
+
+The vanguard consists of $20$ warriors in total. So we trained warriors $5$ at a time while setting up a system for basic infrastructure and gold income. After building $2$ strongholds, train $5$ warriors; repeat until $4$ strongholds in total exist. Once all $4$ bases are built, upgrade the HQ to level $2$ and go back to training until there are $15$ warriors. To maximize gold income and secure the other resources needed to produce warriors, upgrade all $4$ bases to level $2$. Repeat training until there are $20$ warriors.
+
+#### Vanguard attack logic
+
+The vanguard that actually fights consists of $10$ warriors. The other $10$ already produced stand by for later replenishment. The $10$ warriors destroy the enemy base, and warriors lost in combat are replenished to maintain attack power. We destroy the enemy base and build our own.
+
+### 2. How the Strategy Was Devised and Adopted
+
+We wanted to raise attack power by imitating sample AI $7$'s attack style. Attacking and destroying enemy bases with a vanguard, as that strategy does, blocks the enemy's gold income while making additional income possible through a new base.
+
+The existing strategy implemented basic infrastructure and an orthodox attack. But training a large number of warriors and attacking the enemy HQ all at once carried several risks: if the opponent attacked and destroyed our base, our gold income would suffer and the existing attack could no longer be used. So we needed a more active attack that still secured gold income. Looking through the logs of battles against the sample AIs and thinking about effective attacks, we focused on sample AI $7$'s. Sample AI $7$ gathers a vanguard of $10$ warriors and destroys the opponent's bases one by one. This let the AI secure more sources of gold and, by blocking the opponent's income, gain an advantage in the fights that followed.
+
+Adopting sample AI $7$'s vanguard attack, it was important to implement the logic so it would blend into our strategy. As in the existing strategy, the basic infrastructure system builds $2$ bases first, then trains warriors to build up forces. Once there are $4$ bases, the HQ is upgraded to raise defense, and by still training in between, we could rally $20$ warriors in total as the vanguard.
+
+### 3. Problems
+
+The initial vanguard had three problems.
+
+1. The vanguard was fixed at $10$ warriors regardless of the enemy base's size, so it could not fully destroy the base.
+2. The areas the vanguard captured were poorly used. The captured areas had little strategic meaning, and there were cases where a new base could not be built on the destroyed area for lack of resources.
+3. Too many forces went into the vanguard, increasing the resource burden.
+
+In short, the vanguard's performance was somewhat low and the captured areas were not used properly, so forces and resources were wasted and used inefficiently.
+
+### 4. Attempted Solutions
+
+The vanguard logic was built through many rounds of trial and error. First, to solve the resource problem, we expanded the sources of gold: raising all $4$ bases to level $2$ and the HQ to level $4$ before the vanguard attacked strengthened gold income. This served as a fallback against lost forces and failed attacks, securing defense and income at the same time. Next, the use of captured areas was solved by building our own base there. However, since there was no effective criterion for choosing which areas to capture, the price paid in forces still varied from battle to battle.
+
+### 5. Where We Used the LLM / Its Limits and How We Compensated
+
+- After analyzing the sample AIs' strategies, we discussed strategy with the LLM to devise the form of vanguard that best fit the growth route we had designed.
+- We could put together the basic form of the vanguard through LLM code generation.
+
+## Submission #75579
+
+Submitted July 5, 10:53:19
+
+### 1. Strategy
+
+The strategy was split into two parts: exception handling and a growth route.
+
+#### Growth route
+
+- Stage $1$: Build strongholds $0$ and $1$
+- Stage $2$: Build strongholds $2$ and $3$
+- Stage $3$: Upgrade HQ to level $2$
+- Stage $4$: Upgrade only $2$ bases to level $2$
+- Stage $5$: Build $1$ more base.
+- Stage $7$: Upgrade HQ to level $4$ (training is forcibly stopped here and money saved to do this first)
+- Stage $8$: Attempt HQ level $5$ (after level $4$, training does not stop; try flexibly whenever money is left over)
+
+#### Responding to the opponent's strategy
+
+- If the opponent crosses past the $(0, 0)$ (center) point within the first $20$ turns, judge it an early rush and focus on producing warriors.
+- If $20$ or more enemy warriors gather at their HQ, judge an attack squad is coming and focus on producing warriors up to a similar number, within about $5$. If the opponent still has not attacked by the time they exceed $40$, attack first.
+- If the opponent builds more than $5$ buildings, send a few warriors to destroy their buildings and block their gold income.
+- Only $5$ warriors stand by at the HQ; the rest stand by at their own bases. If the opponent attacks, rally the nearby warriors to defend.
+- Past turn $150$, raise the HQ standby count to $20$, rally the nearby warriors, and attack the enemy HQ.
+
+<Figure src="/2026/replay/master_누개내머리에똥쌌어/images/p06_X22.jpg" alt="Diagram of the turn counts to be reached at each stage of the growth route" caption="Figure 1" />
+
+We developed the strategy above into the one below; this code was submitted midway through that change.
+
+### 2. How the Strategy Was Devised and Adopted
+
+We focused on two things. First, we tried to find the middle ground between steadily raising the HQ level and building bases appropriately to keep gold flowing. Proceeding by stage (phase), we computed, as shown in Figure 1, the appropriate turn count for reaching each stage, and forced progress to the next stage once that count was exceeded. This was because many battles had been lost by being chained to a stage and unable to move on — for example, when a base was destroyed, doing nothing until there were $3$ bases again instead of stopping the warriors that destroyed it. Second, we introduced exception handling. The growth route alone cannot respond quickly to situations such as early rushes, late-game decisive battles or base attacks. Since we cannot write a new strategy for every enemy movement, we turned the common crisis situations into exceptions, and instead of investing $100\%$ of the money in the growth route, invested in the exceptions too in order to respond to the opponent. For example, when the enemy attack squad rallies to attack the HQ, it is hard to block all at once, so we tried to keep our warrior count similar to the enemy's within some margin. Also, since the game ends when the HQ falls, when the HQ is attacked, every nearby warrior — including laborers — rallies to the HQ to respond.
+
+### 3. Problems
+
+- Investing $100\%$ of the money in the exceptions meant we lost while merely chasing the opponent's moves without even building bases properly.
+- The priority between the two choices, exception handling and the growth route, got tangled, and there were cases where we could not respond properly.
+
+In conclusion, organizing crises as exceptions and responding to them was good for blocking early rushes and the like, but we learned that reacting too sensitively to the opponent's moves means the turns end while only chasing them rather than unfolding our own strategy.
+
+### 4. Attempted Solutions
+
+- Since we cannot respond to every exception at once, we gave the exceptions priorities too.<br />
+  &rarr; With priorities, the logic got tangled less and warriors were less often stuck doing neither one thing nor another. Even when a base of ours being destroyed and the enemy warrior count exceeding a threshold happened at the same time, we could respond one at a time.
+- We played with $40\%$ of the gold invested in exceptions and $60\%$ in the growth route.<br />
+  &rarr; In parts that use a lot of gold, such as leveling up the HQ, there were cases where turns slipped by stuck between the two. When handling exceptions, making the minimum response within the fewest turns helped systematic growth more than responding aggressively.
+
+### 5. Where We Used the LLM / Its Limits and How We Compensated
+
+- To judge the strategy's efficiency we generated a first draft of the code with the LLM, but the LLM did not properly understand the complex strategy, gave us code whose logic conflicted with itself, and failed to set priorities properly, so the code did not work well. To compensate for that limit we chose to write the code ourselves from the ground up.
+
+## Submission #97121
+
+Submitted July 7, 20:09:29
+
+### 1. Strategy
+
+We wrote the `decide()` function in two branches: more than $10$ strongholds, and $10$ or fewer.
+
+#### 1) More than $\bm{10}$ strongholds
+
+- Exceptions: HQ damaged or destroyed, base damaged or destroyed, enemy attack squad over the threshold, enemy stronghold count over the threshold
+- Responses:
+  - HQ damaged – rally every warrior (laborers included)
+  - Base damaged – send $5$ warriors to defend the base (only if money allows)
+  - Enemy attack squad over the threshold – train warriors to within $2$ or $5$ of them, depending on stronghold count
+  - Enemy stronghold count over the threshold – form a $5$-warrior squad and destroy an enemy stronghold.
+- Phase $1$ – Build $3$ bases
+- Phase $2$ – Build $3$ more bases / build $2$ bases and level up
+- Phase $3$ – HQ level $2$
+- Phase $4$ – HQ level $3$; destroy enemy bases with a $15$-warrior squad (move to phase $5$ once no level-$1$ or $2$ bases remain or turn $130$ passes)
+- Phase $5$ – HQ level $4$; (in case phase $4$ ended early) upgrade bases to level $2$ until turn $120$
+- Phase $6$ – HQ level $5$
+- Phase $7$ – Sortie to destroy the enemy HQ with $30$ or more warriors, or $5$ more than the enemy. Forced sortie after turn $180$.
+
+#### 2) $\bm{10}$ or fewer strongholds
+
+- Exceptions: HQ damaged or destroyed, base damaged or destroyed, enemy attack squad over the threshold, enemy stronghold count over the threshold
+- Responses:
+  - HQ damaged – rally every warrior (laborers included)
+  - Base damaged – if the enemy HQ is empty (fewer than $10$ warriors), rally the attack squad and attack it.
+  - Enemy attack squad over the threshold – train warriors to within $3$ of them
+  - Enemy stronghold count over the threshold – form a $5$-warrior squad and destroy an enemy stronghold.
+- Phase $1$ – Build $3$ bases
+- Phase $2$ – Level up $1$ base
+- Phase $3$ – Level up $1$ base
+- Phase $4$ – Destroy enemy bases with a $10$-warrior squad (move to phase $5$ once no level-$1$ or $2$ bases remain or turn $130$ passes)
+- Phase $5$ – HQ level $4$ (move on even if not achieved); (in case phase $4$ ended early) upgrade bases to level $2$ until turn $120$
+- Phase $6$ – HQ level $5$ (move on even if not achieved)
+- Phase $7$ – Sortie to destroy the enemy HQ with $20$ or more warriors, or $5$ more than the enemy. Forced sortie after turn $180$.
+
+### 2. How the Strategy Was Devised and Adopted
+
+- More than $10$ strongholds
+  - Exception – base destroyed: with many strongholds we had built many bases, and attacking the enemy HQ would cost too much base damage, so we chose a defensive response.
+  - Phases $1$, $2$: Since having as many bases as possible is the best way to earn gold, on maps large enough that there is no immediate collision we aimed to place as many bases as possible. But with $13$ or fewer strongholds, placing $6$ bases could cause an immediate collision, so instead of building we got the same effect by leveling bases up. We judged fighting without a gold income to be inefficient.
+  - Phase $4$: Having learned from sample AIs $7$ and $8$ how effective destroying enemy bases is, once the gold income was complete we organized a squad to destroy enemy bases.
+  - Phase $6$: Having often lost on HQ level, we focused on raising the HQ to level $5$ as fast as possible.
+  - Phase $7$: There were cases where, despite having gathered enough warriors, we reached turn $200$ without sortieing because we were one or two short, so after turn $180$ we switched to a forced sortie. Even if short on warriors, we judged it would not cause a loss since few turns remained.
+- Fewer than $10$ strongholds
+  - Since there are few bases, we judged it would be hard to earn enough gold to raise the HQ level, and dropped the HQ-level part entirely.
+  - Exception – base destroyed: on a small map we can reach the enemy HQ within $10$ turns by the shortest route and can draw the enemies destroying our base back to their HQ, so we chose to respond by attacking the HQ.
+  - Phase $4$: With fewer strongholds, we thought sending the squad a little faster mattered more, and cut the squad to $10$.
+
+### 3. Problems
+
+- If an area where many enemy warriors had gathered lay on the shortest path to the enemy base, the squad was wiped out without playing its role.
+- Fighting sample AI $8$, by the time we tried to form a squad the opponent had already formed one and was attacking our bases. The response was too late and we lost.
+- Building our base on a destroyed base slowed the capture, or we did not build at all and left the area neglected.
+
+### 4. Attempted Solutions
+
+- We check the route in advance and take a detour if an area holds $10$ or more enemy warriors or is the enemy HQ.
+- Experimenting with squad sizes of $6$, $7$, $8$, $9$ and so on, we learned that $7$ was already enough. Attacking with $7$ warriors, we formed our squad faster than the opponent and destroyed bases first.
+- One warrior is sent from the HQ to build a base where the squad has passed; if gold is short, the destroyed base is skipped and a base is built on an empty area in the next phase.
+
+### 5. Where We Used the LLM / Its Limits and How We Compensated
+
+- As the phase $4$ code grew too long and complex, we used the LLM to find a somewhat more efficient approach.
+- When experimenting with the squad's various attack patterns, generating the phase $4$ code with the LLM let us get through many battles quickly.
+- The exceptions and logic conflicts mentioned earlier were resolved by writing the code ourselves.
+
+## Submission #102706
+
+Submitted July 8, 09:37:41
+
+### 1. Strategy
+
+Priority $0$: guarantee the warriors' upkeep.
+
+#### Laborer rules
+
+- Keep a roster; a laborer works at one building until it dies.
+- Assign the number of laborers matching the base's level.
+- If no laborer is available, train one to fill in.
+
+#### Vanguard rules
+
+- The vanguard moves as $7$.
+- It destroys enemy bases.
+- If the enemy HQ lies on the path to an enemy base, it detours.
+
+#### Phase summary
+
+- Phase $1$ – Build $2$ bases in total
+- Phase $2$ – Produce $5$ warriors in total
+- Phase $3$ – Build $4$ bases in total
+- Phase $4$ – Form the 1st $7$-warrior vanguard
+- Phase $5$ – Build $6$ bases in total, reach HQ level $2$
+- Phase $6$ – Skip if fewer than $6$ empty strongholds at phase start; move to the next phase once there are $9$ bases in total during the phase and no empty strongholds remain
+- Phase $7$ – Upgrade every base to level $2$
+- Phase $8$ – Form the 2nd $7$-warrior vanguard
+- Phases $9$~$11$ – HQ level $5$ (training paused)
+- Phases $12$~$13$ – Only train, and move the trained warriors to the base closest to the enemy HQ. Then, once the decisive-battle force exceeds the enemy HQ's warrior count by more than $20$, or after turn $190$, it advances on the enemy HQ.
+
+### 2. How the Strategy Was Devised and Adopted
+
+1. The vanguard attacks enemy bases relatively early. In the early turns the enemy's bases are usually weak and their warriors few, so bases can be destroyed efficiently.
+2. The vanguard attacks enemy bases often. Destroying as many enemy bases as possible wastes their construction costs and makes them waste turns rebuilding.
+3. We compare the enemy HQ's warrior count with ours to decide whether to advance for the decisive battle. Rather than rallying at a fixed turn, attacking at a favorable moment when our HQ has far more warriors gives a much higher win rate.
+4. When the HQ is attacked, all laborers and the vanguard return to defend it. Since the game ends when the HQ falls, we judged protecting it more important for avoiding defeat than producing gold.
+5. Several Move commands can be issued in one turn but a building can be upgraded only once per turn, so we designed the vanguard's movement and HQ upgrades to run concurrently and waste no turns.
+6. Rather than striving to achieve each phase's goal $100\%$, some phases are skipped or abandoned. This reduces phase dependency and prevents the code from being chained to one stage and failing to move on.
+
+### 3. Problems
+
+- a. Raising every base to level $2$ is poor value for the effort and gold. Building a new base widens our territory and lets warriors be sent to our own base to cut movement cost, whereas raising every base to level $2$ has no advantage beyond producing the same gold and being close to the HQ.
+- b. While the HQ is being raised to level $5$ the vanguard is out roaming, so relatively few warriors are stationed at the HQ and it is vulnerable to attack.
+- c. Trying to build several buildings at once consumes a lot of gold.
+
+### 4. Attempted Solutions
+
+- a. Instead of upgrading every base to level $2$, we build bases where the vanguard destroyed enemy bases. Strategically, building one more base and widening our territory is more advantageous.
+- b. Once the HQ reaches level $2$, warrior training becomes the priority, and HQ upgrades proceed flexibly with whatever resources remain after training. Growing the force through training raises combat power, and upgrading the HQ with leftover resources keeps gold from being wasted.
+- c. We added a new role, the "architect." The existing strategy moved many warriors to several strongholds at once and then built bases in sequence as gold came in, but this wasted resources on upkeep and training. So the architect role is given to a single warrior and the base-construction queue holds only one area. This prevents resources being wasted on excessive training.
+
+### 5. Where We Used the LLM / Its Limits and How We Compensated
+
+- I explained the strategy I had in mind and the moves for each phase, then had the LLM organize it.
+- After roughing out the code's skeleton, I implemented the detailed features with the LLM, alternating between my own edits and LLM edits to implement exactly the features I wanted.
+
+## Submission #107783
+
+Submitted July 8, 19:27:42
+
+### 1. Strategy
+
+#### Priority $\bm{0}$ considerations
+
+- The warriors' upkeep must always be guaranteed.
+- When building or upgrading, if there is no money or no builder, training is blocked so that resources go to buildings as much as possible.
+
+#### Defense rules
+
+- When a hit on the HQ is detected, laborers, the vanguard and surplus warriors gather at the HQ to protect it.
+
+#### Laborer and architect rules
+
+- The builder waits quietly in the area where a build or upgrade was ordered and builds without fuss.
+- A laborer receives a roster assignment to one base and labors only at that base until it dies.
+- Laborers are assigned by the base's level.
+- If a base is short of laborers, training a warrior at the HQ is given top priority so the laborer assignment rule is strictly kept.
+- If enemies are on the spot where the architect intends to build, that stronghold is boldly abandoned.
+
+#### Vanguard rules
+
+- Destroys only enemy bases.
+- If the enemy HQ lies on the path to an enemy base, it detours and destroys only the base.
+
+#### Phase summary
+
+- Phases $1$~$3$ – Build $2$ bases, $5$ warriors, build $4$ bases
+- Phase $4$ – Form the 1st $5$-warrior vanguard
+- Phase $5$ – HQ level $2$ (training paused)
+- Phase $6$ – Form the 2nd $7$-warrior vanguard
+- Phase $6.1$ – Skip if fewer than $6$ empty strongholds at phase start. Otherwise keep building bases and move on once there are $9$ bases in total or no empty strongholds remain
+
+From the following phases on, if the money saved during training exceeds the HQ upgrade cost, the HQ is leveled up.
+
+- Phase $7$ – If the HQ is not under attack, build level-$1$ bases on empty strongholds until the vanguard is wiped out.
+- Phases $8$~$11$ – Form the 3rd vanguard, replenishing whenever a vanguard warrior dies to keep its size. Then, once the squad exceeds the enemy HQ's warrior count by more than $20$, or from turn $180$, the squad advances on the enemy HQ.
+
+### 2. How the Strategy Was Devised and Adopted
+
+- We introduced the architect so that there is never more than one pending construction. In the previous strategy several laborers tried to build bases at once, leaving warriors waiting on empty strongholds; this wasted upkeep, and with no base built there they were easy to capture.
+- Instead of upgrading every base to level $2$, we build level-$1$ bases on empty strongholds, because the phase that raised every base to level $2$ took many turns. After this change we relaxed the phase-skip condition to "no empty strongholds remain," making it easier to move on than before. It also suited taking the initiative overall, since gold income grows with the number of our bases.
+- Rather than blindly halting training to reach HQ level $5$, we attempt HQ level-ups with leftover resources so training continues. Halting training while saving for the HQ upgrade left us short of warriors and losing the numbers game, and as turns went on there were cases where resources piled up unused even while training. So we judged that training while spending the surplus on HQ upgrades would strengthen attack and defense efficiently.
+- When advancing on the enemy HQ for the final decisive battle, we route around enemy bases, because meeting an enemy base on the way costs warriors.
+
+### 3. Problems
+
+- When the enemy invades a base, we are not defending it properly.
+
+### 4. Attempted Solutions
+
+- With little submission time left we could not fix it properly, but when an enemy group of $3$ or more tries to move and its destination is our HQ or one of our bases, we train at the HQ; the trained warriors then move to protect the base or HQ expected to be invaded.
+
+### 5. Where We Used the LLM / Its Limits and How We Compensated
+
+- I explained the strategy I had in mind and the moves for each phase, then had the LLM organize it.
+- After roughing out the code's skeleton, I implemented the detailed features with the LLM, alternating between my own edits and LLM edits to implement exactly the features I wanted.
+
+# Afterword
+
+The Nexon Young Programmers Cup was the first contest we entered after starting university, together with classmates. Before it began, the previous year's write-ups we read used difficult concepts we would learn around our $2$nd year, so we were worried, but we decided to enter in the spirit of learning. To take part, we shared the programming concepts each of us had studied a little before university, read posts on algorithms, and unified our language so we could develop together — and grew a great deal as programmers.
+
+First, our team used C++. We had all studied C fully, but were still unfamiliar with parts of C++. The only language we all knew was C, and C++ was chosen at the active urging of one member who could use it. Even being comfortable with C, learning the features of C++ in the $2$ weeks after deciding to enter was no easy task. Still, sharing materials and watching lectures together as we studied was another kind of fun.
+
+Then we began solving the qualification problem. Some members had contest experience and some did not, but since a contest where you devise strategies and write code to win a game, rather than simply solving problems, was new to all of us, everyone was absorbed in preparing. We fumbled a lot at first, and even basic code was hard, but recalling the algorithm concepts from the posts we had read and the structuring we learned from talking with the LLM, we shaped it up roughly. Below are the write-ups our members left in fragments.
+
+- The smoothest team project ever >&lt;
+- It was nice to see the expected performance each time we submitted code. Submitting the code with the higher expected performance to the Pretest when the record against the sample AIs was the same, or revising from the code with the higher expected performance, helped a lot in writing and debugging.
+- Battling other teams' strategies in the Pretest and revising ours… there was a lot to learn
+- Fixing code while watching timeouts pop up and eliminating redundant computation was fun, and I finally get why professors tell you to structure first and then start coding…….
+- Rather than thinking alone, it was fun to discuss strategy with teammates, share different ideas, build strategies, run battles with the code each of us wrote using the CLI tool, and compare, improve and complete them into one strategy.
+- Having not yet studied efficient algorithms, implementation methods or code optimization in depth, studying from posts and textbooks on our own was hard but fun.
+
+There were also things we felt needed improving. For the current sample AIs, not only the AI's strategy but the seed — the size and shape of the arena — is always the same, which made it hard to verify strategies that account for the number of strongholds. It would be good if the sample AI executable were included with the simulator, or the sample AI code shared, so we could battle them locally, and if the sample AIs' seeds varied too. We would also like to be able to play other participating teams freely outside the Pretests; battling the diverse strategies of other teams in addition to the sample AIs would help find weaknesses in strategy and problems in code and raise the overall level. We also had regrets about code submission: the submission limit meant waiting whenever we wanted to try the same strategy several times with only small numbers tweaked, such as the number of warriors acting or the turn it runs on.
+
+[^kst]: Editor's note: All times in this replay, including this one, are in Korea Standard Time (KST).

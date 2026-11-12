@@ -23,5 +23,9 @@
   "not_found_body": "This page could not be found.",
   "site_tagline": "Break, Solve, Win.",
   "replay_featured": "Featured replays",
-  "replay_rank": "#{rank}"
+  "replay_rank": "#{rank}",
+  "replay_meta_team_name": "Team Name",
+  "replay_meta_nickname": "Nickname",
+  "replay_meta_llm_provider": "LLM Provider (Plan)",
+  "replay_meta_llm_model": "Used Models"
 }
